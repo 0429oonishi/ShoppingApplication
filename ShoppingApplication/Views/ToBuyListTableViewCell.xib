@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="toBuyListCellId" rowHeight="68" id="KGk-i7-Jjw" customClass="ToBuyListTableViewCell" customModule="ShoppingApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="342" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQK-mE-FT3">
+                        <rect key="frame" x="71" y="0.0" width="201" height="68"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2c-6x-Nzn">
+                        <rect key="frame" x="15" y="13.5" width="41" height="41"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="h2c-6x-Nzn" secondAttribute="height" multiplier="1:1" id="qEu-Yg-4Ze"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <state key="normal">
+                            <imageReference key="image" image="circle" catalog="system" symbolScale="large"/>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                        </state>
+                        <connections>
+                            <action selector="tappedToBuyListCellButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u5M-VI-G8I"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F61-XU-7La">
+                        <rect key="frame" x="287" y="20.5" width="50" height="27.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="gyC-NR-D6b"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="SQK-mE-FT3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1Dr-n1-IwW"/>
+                    <constraint firstAttribute="bottom" secondItem="SQK-mE-FT3" secondAttribute="bottom" id="4nm-0W-cxZ"/>
+                    <constraint firstItem="F61-XU-7La" firstAttribute="leading" secondItem="SQK-mE-FT3" secondAttribute="trailing" constant="15" id="BId-1M-uKc"/>
+                    <constraint firstItem="h2c-6x-Nzn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="GB0-j8-nA1"/>
+                    <constraint firstItem="F61-XU-7La" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JGg-bH-sjm"/>
+                    <constraint firstItem="h2c-6x-Nzn" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.6" id="Uxh-JI-BRJ"/>
+                    <constraint firstAttribute="trailing" secondItem="F61-XU-7La" secondAttribute="trailing" constant="5" id="d44-De-N9F"/>
+                    <constraint firstItem="SQK-mE-FT3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ggW-qo-mzG"/>
+                    <constraint firstItem="h2c-6x-Nzn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wpR-qg-WvP"/>
+                    <constraint firstItem="SQK-mE-FT3" firstAttribute="leading" secondItem="h2c-6x-Nzn" secondAttribute="trailing" constant="15" id="xn3-Sh-K7I"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="numberOfToBuyLabel" destination="F61-XU-7La" id="kWq-lT-Pri"/>
+                <outlet property="toBuyCheckButton" destination="h2c-6x-Nzn" id="txT-cC-aQX"/>
+                <outlet property="toBuyTitleLabel" destination="SQK-mE-FT3" id="hiY-MH-W6o"/>
+            </connections>
+            <point key="canvasLocation" x="-62.318840579710148" y="141.29464285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

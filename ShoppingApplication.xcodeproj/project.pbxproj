@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
-		AB97117025950FC600AAA0E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116F25950FC600AAA0E1 /* ViewController.swift */; };
 		AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB97117125950FC600AAA0E1 /* Main.storyboard */; };
 		AB97117525950FC900AAA0E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB97117425950FC900AAA0E1 /* Assets.xcassets */; };
 		AB97117825950FC900AAA0E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB97117625950FC900AAA0E1 /* LaunchScreen.storyboard */; };
+		AB97118A259511A100AAA0E1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971186259511A000AAA0E1 /* MapViewController.swift */; };
+		AB97118B259511A100AAA0E1 /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971187259511A000AAA0E1 /* MemoViewController.swift */; };
+		AB97118C259511A100AAA0E1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971188259511A000AAA0E1 /* SettingViewController.swift */; };
+		AB97118D259511A100AAA0E1 /* CalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971189259511A100AAA0E1 /* CalculationViewController.swift */; };
+		AB971196259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */; };
+		AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */; };
+		AB971198259511B200AAA0E1 /* ToBuyListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */; };
+		AB971199259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AB97116825950FC600AAA0E1 /* ShoppingApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB97116B25950FC600AAA0E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AB97116F25950FC600AAA0E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AB97117225950FC600AAA0E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB97117425950FC900AAA0E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB97117725950FC900AAA0E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB97117925950FC900AAA0E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB971186259511A000AAA0E1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AB971187259511A000AAA0E1 /* MemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
+		AB971188259511A000AAA0E1 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		AB971189259511A100AAA0E1 /* CalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationViewController.swift; sourceTree = "<group>"; };
+		AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListCollectionViewCell.xib; sourceTree = "<group>"; };
+		AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToBuyListTableViewCell.swift; sourceTree = "<group>"; };
+		AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToBuyListTableViewCell.xib; sourceTree = "<group>"; };
+		AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,38 @@
 		AB97116A25950FC600AAA0E1 /* ShoppingApplication */ = {
 			isa = PBXGroup;
 			children = (
+				AB971190259511A900AAA0E1 /* Views */,
+				AB9711822595116600AAA0E1 /* Controllers */,
 				AB97116B25950FC600AAA0E1 /* AppDelegate.swift */,
 				AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */,
-				AB97116F25950FC600AAA0E1 /* ViewController.swift */,
 				AB97117125950FC600AAA0E1 /* Main.storyboard */,
 				AB97117425950FC900AAA0E1 /* Assets.xcassets */,
 				AB97117625950FC900AAA0E1 /* LaunchScreen.storyboard */,
 				AB97117925950FC900AAA0E1 /* Info.plist */,
 			);
 			path = ShoppingApplication;
+			sourceTree = "<group>";
+		};
+		AB9711822595116600AAA0E1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AB971189259511A100AAA0E1 /* CalculationViewController.swift */,
+				AB971186259511A000AAA0E1 /* MapViewController.swift */,
+				AB971187259511A000AAA0E1 /* MemoViewController.swift */,
+				AB971188259511A000AAA0E1 /* SettingViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AB971190259511A900AAA0E1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */,
+				AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */,
+				AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */,
+				AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +163,8 @@
 			files = (
 				AB97117825950FC900AAA0E1 /* LaunchScreen.storyboard in Resources */,
 				AB97117525950FC900AAA0E1 /* Assets.xcassets in Resources */,
+				AB971196259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib in Resources */,
+				AB971198259511B200AAA0E1 /* ToBuyListTableViewCell.xib in Resources */,
 				AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +176,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB97117025950FC600AAA0E1 /* ViewController.swift in Sources */,
+				AB97118C259511A100AAA0E1 /* SettingViewController.swift in Sources */,
+				AB97118B259511A100AAA0E1 /* MemoViewController.swift in Sources */,
+				AB971199259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift in Sources */,
 				AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */,
+				AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */,
+				AB97118A259511A100AAA0E1 /* MapViewController.swift in Sources */,
+				AB97118D259511A100AAA0E1 /* CalculationViewController.swift in Sources */,
 				AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,7 +339,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = oonishireon.ShoppingApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -313,7 +357,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = oonishireon.ShoppingApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
