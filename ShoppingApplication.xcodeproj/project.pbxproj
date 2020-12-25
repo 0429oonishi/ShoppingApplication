@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,8 @@
 		AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */; };
 		AB971198259511B200AAA0E1 /* ToBuyListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */; };
 		AB971199259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */; };
+		AB9711C92595B58D00AAA0E1 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */; };
+		AB9711CA2595B58D00AAA0E1 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */; };
 		BF495BC36754661E352D68B8 /* Pods_ShoppingApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToBuyListTableViewCell.swift; sourceTree = "<group>"; };
 		AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToBuyListTableViewCell.xib; sourceTree = "<group>"; };
 		AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListCollectionViewCell.swift; sourceTree = "<group>"; };
+		AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,7 +66,6 @@
 				4D42455615181A2242F6F1DC /* Pods-ShoppingApplication.debug.xcconfig */,
 				834375D080C12E75C0FF1AF3 /* Pods-ShoppingApplication.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -95,6 +98,7 @@
 		AB97116A25950FC600AAA0E1 /* ShoppingApplication */ = {
 			isa = PBXGroup;
 			children = (
+				AB9711C32595B4A600AAA0E1 /* Models */,
 				AB971190259511A900AAA0E1 /* Views */,
 				AB9711822595116600AAA0E1 /* Controllers */,
 				AB97116B25950FC600AAA0E1 /* AppDelegate.swift */,
@@ -125,8 +129,17 @@
 				AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */,
 				AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */,
 				AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */,
+				AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */,
+				AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AB9711C32595B4A600AAA0E1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +179,7 @@
 				};
 			};
 			buildConfigurationList = AB97116325950FC600AAA0E1 /* Build configuration list for PBXProject "ShoppingApplication" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -190,6 +203,7 @@
 			files = (
 				AB97117825950FC900AAA0E1 /* LaunchScreen.storyboard in Resources */,
 				AB97117525950FC900AAA0E1 /* Assets.xcassets in Resources */,
+				AB9711CA2595B58D00AAA0E1 /* SettingTableViewCell.xib in Resources */,
 				AB971196259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib in Resources */,
 				AB971198259511B200AAA0E1 /* ToBuyListTableViewCell.xib in Resources */,
 				AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */,
@@ -248,6 +262,7 @@
 				AB97118C259511A100AAA0E1 /* SettingViewController.swift in Sources */,
 				AB97118B259511A100AAA0E1 /* MemoViewController.swift in Sources */,
 				AB971199259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift in Sources */,
+				AB9711C92595B58D00AAA0E1 /* SettingTableViewCell.swift in Sources */,
 				AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */,
 				AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */,
 				AB97118A259511A100AAA0E1 /* MapViewController.swift in Sources */,
@@ -401,6 +416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 242KS3V77L;
 				INFOPLIST_FILE = ShoppingApplication/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -420,6 +436,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 242KS3V77L;
 				INFOPLIST_FILE = ShoppingApplication/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

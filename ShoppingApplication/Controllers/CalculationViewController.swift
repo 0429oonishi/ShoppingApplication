@@ -15,7 +15,7 @@ class CalculationViewController: UIViewController {
         didSet { tappedTaxRateOrTaxIncludeOrNotButton() }
     }
     private var toggleKeyboardFlag = true
-    private let cellId = "shoppingListCellId"
+    private let shoppingListCellId = "shoppingListCellId"
     private var shoppingListArray: [String] = [] {
         didSet {
             shoppingListCollectionView.reloadData()
@@ -51,7 +51,7 @@ class CalculationViewController: UIViewController {
         taxIncludePriceLabel.text = ""
         taxIncludeTaxRateLabel.text = ""
         
-        shoppingListCollectionView.register(UINib(nibName: "ShoppingListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellId)
+        shoppingListCollectionView.register(UINib(nibName: "ShoppingListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: shoppingListCellId)
         shoppingListCollectionView.delegate = self
         shoppingListCollectionView.dataSource = self
         
@@ -206,7 +206,7 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ShoppingListCollectionViewCell
+        let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: shoppingListCellId, for: indexPath) as! ShoppingListCollectionViewCell
         let itemSize = shoppingListCollectionView.frame.size.width / 3 - 20
         cell.setupCell(cellSize: itemSize) 
         return cell

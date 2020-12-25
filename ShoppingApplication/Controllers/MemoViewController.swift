@@ -10,7 +10,7 @@ class MemoViewController: UIViewController {
     @IBOutlet weak var toBuyStepper: UIStepper!
     @IBOutlet weak var toBuyNumberLabel: UILabel!
     private var toggleKeyboardFlag = true
-    private let cellId = "toBuyListCellId"
+    private let toBuyListCellId = "toBuyListCellId"
     private var toBuyListArray: [String] = [] {
         didSet {
             toBuyListTableView.reloadData()
@@ -31,7 +31,7 @@ class MemoViewController: UIViewController {
         
         toBuyListTableView.delegate = self
         toBuyListTableView.dataSource = self
-        toBuyListTableView.register(UINib(nibName: "ToBuyListTableViewCell", bundle: nil), forCellReuseIdentifier: cellId)
+        toBuyListTableView.register(UINib(nibName: "ToBuyListTableViewCell", bundle: nil), forCellReuseIdentifier: toBuyListCellId)
         
         NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -133,7 +133,7 @@ extension MemoViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ToBuyListTableViewCell
+        let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as! ToBuyListTableViewCell
         cell.toBuyTitleLabel.text = toBuyListArray[indexPath.row]
         cell.numberOfToBuyLabel.text = "×\(numberOfToBuyArray[indexPath.row])"
         
