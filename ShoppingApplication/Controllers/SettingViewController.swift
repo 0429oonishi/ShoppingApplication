@@ -45,7 +45,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt")
+        if indexPath.row == 0 {
+            let themeColorViewController = storyboard?.instantiateViewController(identifier: "themeColorVCId") as! ThemeColorViewController
+            themeColorViewController.modalPresentationStyle = .fullScreen
+            present(themeColorViewController, animated: true)
+        }
+        
     }
 
     
