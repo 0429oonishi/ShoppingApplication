@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rMb-Nx-Atv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XpA-6I-Ias">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -33,7 +33,7 @@
         <!--メモ-->
         <scene sceneID="2NY-6i-6AZ">
             <objects>
-                <viewController id="uVh-1w-t2b" customClass="MemoViewController" customModule="ShoppingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uVh-1w-t2b" customClass="MemoViewController" customModule="ShoppingApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0S-wE-U1z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,7 +184,7 @@
         <!--計算機-->
         <scene sceneID="wyK-TZ-kwu">
             <objects>
-                <viewController id="6ug-Tz-NwM" customClass="CalculationViewController" customModule="ShoppingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6ug-Tz-NwM" customClass="CalculationViewController" customModule="ShoppingApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wup-74-heA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -509,7 +509,7 @@
         <!--マップ-->
         <scene sceneID="Gtj-lB-dIp">
             <objects>
-                <viewController id="lN2-kO-fEy" customClass="MapViewController" customModule="ShoppingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lN2-kO-fEy" customClass="MapViewController" customModule="ShoppingApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2DM-B0-MJc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -525,40 +525,21 @@
         <!--設定-->
         <scene sceneID="zcf-EN-tmd">
             <objects>
-                <viewController id="hx7-K3-je7" customClass="SettingViewController" customModule="ShoppingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hx7-K3-je7" customClass="SettingViewController" customModule="ShoppingApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ucX-Ec-3w6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I51-5G-vvG">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
-                                <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingCellId" textLabel="AeC-W5-Tmm" style="IBUITableViewCellStyleDefault" id="SyK-7x-v4G">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SyK-7x-v4G" id="19P-re-1Qa">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AeC-W5-Tmm">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <sections/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tu7-ry-UX9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="I51-5G-vvG" firstAttribute="top" secondItem="tu7-ry-UX9" secondAttribute="top" id="8p8-JN-Umy"/>
+                            <constraint firstItem="I51-5G-vvG" firstAttribute="top" secondItem="tu7-ry-UX9" secondAttribute="top" constant="100" id="8p8-JN-Umy"/>
                             <constraint firstItem="tu7-ry-UX9" firstAttribute="bottom" secondItem="I51-5G-vvG" secondAttribute="bottom" id="hWv-wc-4Ds"/>
                             <constraint firstItem="tu7-ry-UX9" firstAttribute="trailing" secondItem="I51-5G-vvG" secondAttribute="trailing" id="ist-Mz-Ouq"/>
                             <constraint firstItem="I51-5G-vvG" firstAttribute="leading" secondItem="tu7-ry-UX9" secondAttribute="leading" id="ydV-Se-xws"/>
@@ -572,6 +553,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nux-iV-Smp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2043" y="970"/>
+        </scene>
+        <!--Theme Color View Controller-->
+        <scene sceneID="c9H-ah-TpM">
+            <objects>
+                <viewController storyboardIdentifier="themeColorVCId" id="XpA-6I-Ias" customClass="ThemeColorViewController" customModule="ShoppingApplication" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lpE-HC-mez">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKn-hK-fk7">
+                                <rect key="frame" x="20" y="64" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BT3-J2-e3K"/>
+                                    <constraint firstAttribute="width" constant="50" id="GHg-um-2fA"/>
+                                </constraints>
+                                <state key="normal" title="決定"/>
+                                <connections>
+                                    <action selector="tappedThemeColorDecisionButton:" destination="XpA-6I-Ias" eventType="touchUpInside" id="y9I-gu-Xq6"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-6h-pxX">
+                                <rect key="frame" x="0.0" y="114" width="414" height="748"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lBg-RP-Gfz">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ngj-bA-9fg">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UFw-hn-n7b">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hrW-zM-WKC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="top" secondItem="tKn-hK-fk7" secondAttribute="bottom" id="as3-Wa-hMh"/>
+                            <constraint firstItem="hrW-zM-WKC" firstAttribute="bottom" secondItem="RzQ-6h-pxX" secondAttribute="bottom" id="cTh-Sx-fSA"/>
+                            <constraint firstItem="tKn-hK-fk7" firstAttribute="top" secondItem="hrW-zM-WKC" secondAttribute="top" constant="20" id="h0m-Bf-gvo"/>
+                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="leading" secondItem="hrW-zM-WKC" secondAttribute="leading" id="hUQ-J2-TOZ"/>
+                            <constraint firstItem="hrW-zM-WKC" firstAttribute="trailing" secondItem="RzQ-6h-pxX" secondAttribute="trailing" id="hcx-Xa-ByA"/>
+                            <constraint firstItem="tKn-hK-fk7" firstAttribute="leading" secondItem="hrW-zM-WKC" secondAttribute="leading" constant="20" id="vDS-Tl-rFf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="themeColorCollectionView" destination="RzQ-6h-pxX" id="d3b-mP-6op"/>
+                        <outlet property="themeColorDecisionButton" destination="tKn-hK-fk7" id="dEI-Uh-WRA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rti-St-hdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2801" y="970"/>
         </scene>
     </scenes>
     <resources>
