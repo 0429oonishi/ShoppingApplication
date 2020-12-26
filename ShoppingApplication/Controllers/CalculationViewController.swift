@@ -4,7 +4,6 @@
 import UIKit
 
 //合計個数とそれぞれの個数を追加する
-//カンマをつける
 //.redのところは後でテーマカラーで変更できるようにする
 
 class CalculationViewController: UIViewController {
@@ -22,7 +21,9 @@ class CalculationViewController: UIViewController {
             shoppingListCollectionView.reloadData()
         }
     }
-    
+    private var totalPriceLabelString = ""
+    private var totalPriceLabelInt = 0
+
     @IBOutlet weak var calculatorNavigationBar: UINavigationBar! {
         didSet { calculatorNavigationBar.barTintColor = .red }
     }
@@ -219,15 +220,16 @@ class CalculationViewController: UIViewController {
     
     private func reflectToLabel(button: UIButton) {
         priceLabelString += button.currentTitle!
-        priceLabel.text = priceLabelString
-        
+        priceLabel.text = addComma(priceLabelString)
     }
     
     private func tappedTaxRateOrTaxIncludeOrNotButton() {
         guard let  priceLabelDouble = Double(priceLabelString) else { return }
-        let includeTaxPrice = priceLabelDouble * taxRate
         if taxIncludeOrNotButton.currentTitle == "税抜" {
-            taxIncludePriceLabel.text = "税込 \(Int(includeTaxPrice))円"
+            let includeTaxPrice = priceLabelDouble * taxRate
+            var includeTaxPriceString = String(Int(includeTaxPrice))
+            includeTaxPriceString = addComma(includeTaxPriceString)
+            taxIncludePriceLabel.text = "税込 \(includeTaxPriceString)円"
         }
     }
     
@@ -239,6 +241,11 @@ class CalculationViewController: UIViewController {
             let includeTaxPrice = Int(floor(priceLabelDouble * taxRate))
             shoppingListArray.append(String(includeTaxPrice))
         }
+        
+        totalPriceLabelInt += Int(priceLabelString)!
+        let priceLabelCommaString = addComma(String(totalPriceLabelInt))
+        totalPriceLabel.text = "\(priceLabelCommaString)円"
+
         clearLabel()
     }
     
@@ -269,6 +276,15 @@ class CalculationViewController: UIViewController {
         button.layer.cornerRadius = button.frame.size.width/2
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    private func addComma(_ wantToAddCommaString: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = ","
+        numberFormatter.groupingSize = 3
+        let commaPrice = numberFormatter.string(from: NSNumber(integerLiteral: Int(wantToAddCommaString)!)) ?? "\(wantToAddCommaString)"
+        return commaPrice
     }
 }
 
