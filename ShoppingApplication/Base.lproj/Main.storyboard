@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XpA-6I-Ias">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hx7-K3-je7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -562,19 +562,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKn-hK-fk7">
-                                <rect key="frame" x="20" y="64" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="BT3-J2-e3K"/>
-                                    <constraint firstAttribute="width" constant="50" id="GHg-um-2fA"/>
-                                </constraints>
-                                <state key="normal" title="決定"/>
-                                <connections>
-                                    <action selector="tappedThemeColorDecisionButton:" destination="XpA-6I-Ias" eventType="touchUpInside" id="y9I-gu-Xq6"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RzQ-6h-pxX">
-                                <rect key="frame" x="0.0" y="114" width="414" height="748"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lBg-RP-Gfz">
                                     <size key="itemSize" width="128" height="128"/>
@@ -593,21 +582,34 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3d-r6-CIc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="テーマカラー" id="DL8-vO-jCR">
+                                        <barButtonItem key="leftBarButtonItem" title="決定" id="mqP-sr-XkG">
+                                            <connections>
+                                                <action selector="tappedThemeColorDecisionButton:" destination="XpA-6I-Ias" id="sVR-Zk-lQw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hrW-zM-WKC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="top" secondItem="tKn-hK-fk7" secondAttribute="bottom" id="as3-Wa-hMh"/>
-                            <constraint firstItem="hrW-zM-WKC" firstAttribute="bottom" secondItem="RzQ-6h-pxX" secondAttribute="bottom" id="cTh-Sx-fSA"/>
-                            <constraint firstItem="tKn-hK-fk7" firstAttribute="top" secondItem="hrW-zM-WKC" secondAttribute="top" constant="20" id="h0m-Bf-gvo"/>
-                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="leading" secondItem="hrW-zM-WKC" secondAttribute="leading" id="hUQ-J2-TOZ"/>
-                            <constraint firstItem="hrW-zM-WKC" firstAttribute="trailing" secondItem="RzQ-6h-pxX" secondAttribute="trailing" id="hcx-Xa-ByA"/>
-                            <constraint firstItem="tKn-hK-fk7" firstAttribute="leading" secondItem="hrW-zM-WKC" secondAttribute="leading" constant="20" id="vDS-Tl-rFf"/>
+                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="trailing" secondItem="hrW-zM-WKC" secondAttribute="trailing" id="JaJ-H1-60J"/>
+                            <constraint firstItem="M3d-r6-CIc" firstAttribute="leading" secondItem="hrW-zM-WKC" secondAttribute="leading" id="R37-ud-m7q"/>
+                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="leading" secondItem="hrW-zM-WKC" secondAttribute="leading" id="TpH-pR-rKa"/>
+                            <constraint firstItem="M3d-r6-CIc" firstAttribute="top" secondItem="hrW-zM-WKC" secondAttribute="top" id="UcX-Om-S3a"/>
+                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="bottom" secondItem="hrW-zM-WKC" secondAttribute="bottom" id="Vnk-Vh-E6i"/>
+                            <constraint firstItem="M3d-r6-CIc" firstAttribute="trailing" secondItem="hrW-zM-WKC" secondAttribute="trailing" id="lFV-1z-cUk"/>
+                            <constraint firstItem="RzQ-6h-pxX" firstAttribute="top" secondItem="M3d-r6-CIc" secondAttribute="bottom" id="qVJ-UU-LaE"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="themeColorCollectionView" destination="RzQ-6h-pxX" id="d3b-mP-6op"/>
-                        <outlet property="themeColorDecisionButton" destination="tKn-hK-fk7" id="dEI-Uh-WRA"/>
+                        <outlet property="themeColorDecisionButton" destination="mqP-sr-XkG" id="tJb-E0-t9B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rti-St-hdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

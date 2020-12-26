@@ -4,7 +4,8 @@ import UIKit
 
 class ThemeColorViewController: UIViewController {
 
-    @IBOutlet weak var themeColorDecisionButton: UIButton!
+    
+    @IBOutlet weak var themeColorDecisionButton: UIBarButtonItem!
     @IBOutlet weak var themeColorCollectionView: UICollectionView!
     private let themeColorCellId = "themeColorCellId"
     private let horizontalSpace = 40
@@ -55,6 +56,8 @@ extension ThemeColorViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: cellSize, height: cellSize)
     }
+    
+    
     
     
 }
