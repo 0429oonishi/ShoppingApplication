@@ -19,6 +19,7 @@ class ThemeColorViewController: UIViewController {
         themeColorCollectionView.dataSource = self
         themeColorCollectionView.register(UINib(nibName: "ThemeColorCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: themeColorCellId)
         
+        
         themeColorCollectionViewLayout()
     }
     

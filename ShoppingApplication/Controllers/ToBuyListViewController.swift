@@ -1,16 +1,34 @@
 
 import UIKit
 
-class MemoViewController: UIViewController {
+//.redのところは後でテーマカラーで変更できるようにする
+
+class ToBuyListViewController: UIViewController {
     
     @IBOutlet weak var toBuyRemainCountLabel: UILabel!
-    @IBOutlet weak var toBuyListTableView: UITableView!
-    @IBOutlet weak var toBuyView: UIView!
-    @IBOutlet weak var toBuyTextField: UITextField!
-    @IBOutlet weak var toBuyStepper: UIStepper!
-    @IBOutlet weak var toBuyNumberLabel: UILabel!
-    private var toggleKeyboardFlag = true
-    private let toBuyListCellId = "toBuyListCellId"
+    @IBOutlet weak var toBuyListNavigationBar: UINavigationBar! {
+        didSet { toBuyListNavigationBar.barTintColor = .red }
+    }
+    @IBOutlet weak var toBuyListTableView: UITableView! {
+        didSet {
+            toBuyListTableView.delegate = self
+            toBuyListTableView.dataSource = self
+            toBuyListTableView.register(UINib(nibName: "ToBuyListTableViewCell", bundle: nil), forCellReuseIdentifier: toBuyListCellId)
+            toBuyListTableView.separatorColor = .red
+            toBuyListTableView.tableFooterView = UIView()
+        }
+    }
+    @IBOutlet weak var toBuyListToAddView: UIView! {
+        didSet { toBuyListToAddView.backgroundColor = .red }
+    }
+    @IBOutlet weak var toBuyListToAddTextField: UITextField! {
+        didSet { toBuyListToAddTextField.delegate = self }
+    }
+    @IBOutlet weak var toBuyListToAddStepper: UIStepper! {
+        didSet { toBuyListToAddStepper.layer.cornerRadius = 8 }
+    }
+    @IBOutlet weak var toBuyListToAddNumberLabel: UILabel!
+    
     private var toBuyListArray: [String] = [] {
         didSet {
             toBuyListTableView.reloadData()
@@ -21,54 +39,54 @@ class MemoViewController: UIViewController {
             }
         }
     }
-    private var numberOfToBuy = 1
     private var numberOfToBuyArray: [Int] = []
+    private let toBuyListCellId = "toBuyListCellId"
+    private var toggleKeyboardFlag = true
+    private var numberOfToBuy = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        toBuyTextField.delegate = self
-        
-        toBuyListTableView.delegate = self
-        toBuyListTableView.dataSource = self
-        toBuyListTableView.register(UINib(nibName: "ToBuyListTableViewCell", bundle: nil), forCellReuseIdentifier: toBuyListCellId)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
-        
+        self.view.backgroundColor = .red
+
+        operateKeyboard()
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    private func operateKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     @objc func showKeyboard(notification: Notification) {
         guard let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue else { return }
-        let toBuyViewMaxY = toBuyView.frame.maxY
+        let toBuyViewMaxY = toBuyListToAddView.frame.maxY
         let keyboardMinY = keyboardFrame.minY
         let distance = toBuyViewMaxY - keyboardMinY
         if toggleKeyboardFlag {
             UIView.animate(withDuration: 0.1) {
-                self.toBuyView.transform = CGAffineTransform(translationX: 0, y: -distance)
+                self.toBuyListToAddView.transform = CGAffineTransform(translationX: 0, y: -distance)
             }
             toggleKeyboardFlag = false
         }
-        
     }
     
     @objc func hideKeyboard() {
         if !toggleKeyboardFlag {
             UIView.animate(withDuration: 0.1) {
-                self.toBuyView.transform = .identity
+                self.toBuyListToAddView.transform = .identity
             }
             toggleKeyboardFlag = true
         }
     }
     
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    //全て消去した後のバグを修正する
     @IBAction func toBuyListClearAll(_ sender: Any) {
         if numberOfToBuyArray.count != 0 {
             let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
@@ -87,24 +105,19 @@ class MemoViewController: UIViewController {
     }
     
     @IBAction func toggleKeyboard(_ sender: Any) {
-        if toggleKeyboardFlag {
-            UIView.animate(withDuration: 0.1) {
-                let distance = self.view.frame.maxY - self.toBuyView.frame.minY
-                self.toBuyView.transform = CGAffineTransform(translationX: 0, y: distance)
-                self.toBuyView.transform = CGAffineTransform(translationX: 0, y: distance)
-            }
-        }else {
-            UIView.animate(withDuration: 0.1) {
-                self.toBuyView.transform = .identity
-                self.toBuyView.transform = .identity
+        UIView.animate(withDuration: 0.1) {
+            if self.toggleKeyboardFlag {
+                let distance = self.view.frame.maxY - self.toBuyListToAddView.frame.minY
+                self.toBuyListToAddView.transform = CGAffineTransform(translationX: 0, y: distance)
+            }else {
+                self.toBuyListToAddView.transform = .identity
             }
         }
-     
     }
     
-    @IBAction func tappedToBuyStepper(_ sender: UIStepper) {
+    @IBAction func tappedToBuyListToAddStepper(_ sender: UIStepper) {
         numberOfToBuy = Int(sender.value)
-        toBuyNumberLabel.text = String(numberOfToBuy)
+        toBuyListToAddNumberLabel.text = String(numberOfToBuy)
     }
     
     @IBAction func tappedCloseKeyboardButton(_ sender: Any) {
@@ -112,31 +125,30 @@ class MemoViewController: UIViewController {
     }
     
     //追加buttonを押したときはviewを閉じないようにする
-    @IBAction func tappedToBuyAddButton(_ sender: Any) {
-        if toBuyTextField.text != "" {
-            if let text = toBuyTextField.text {
+    @IBAction func tappedToBuyListToAddButton(_ sender: Any) {
+        if toBuyListToAddTextField.text != "" {
+            if let text = toBuyListToAddTextField.text {
                 toBuyListArray.append(text)
                 numberOfToBuyArray.append(numberOfToBuy)
             }
         }
-        
-        toBuyTextField.text = ""
-        toBuyNumberLabel.text = "1"
-        toBuyStepper.value = 1
+        toBuyListToAddTextField.text = ""
+        toBuyListToAddNumberLabel.text = "1"
+        toBuyListToAddStepper.value = 1
         numberOfToBuy = 1
     }
 }
 
-extension MemoViewController: UITableViewDelegate, UITableViewDataSource {
+extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toBuyListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as! ToBuyListTableViewCell
-        cell.toBuyTitleLabel.text = toBuyListArray[indexPath.row]
+        cell.toBuyListCellTitleLabel.text = toBuyListArray[indexPath.row]
         cell.numberOfToBuyLabel.text = "×\(numberOfToBuyArray[indexPath.row])"
-        
         return cell
     }
     
@@ -146,7 +158,7 @@ extension MemoViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension MemoViewController: UITextFieldDelegate {
+extension ToBuyListViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

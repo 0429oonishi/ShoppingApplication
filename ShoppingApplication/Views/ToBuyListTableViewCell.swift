@@ -4,15 +4,16 @@ import UIKit
 
 class ToBuyListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var toBuyTitleLabel: UILabel!
-    @IBOutlet weak var toBuyCheckButton: UIButton!
+    @IBOutlet weak var toBuyListCellTitleLabel: UILabel!
+    @IBOutlet weak var toBuyListCellCheckButton: UIButton!
     @IBOutlet weak var numberOfToBuyLabel: UILabel!
-    private var toBuyCheckButtonFlag = true
+    private var toBuyListCellCheckButtonFlag = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
         
+        selectionStyle = .none
+
         setToBuyListCellButtonImage("circle")
     }
 
@@ -21,37 +22,35 @@ class ToBuyListTableViewCell: UITableViewCell {
 
     }
     
-    @IBAction func tappedToBuyListCellButton(_ sender: Any) {
-        if toBuyCheckButtonFlag {
+    @IBAction func tappedToBuyListCellCheckButton(_ sender: Any) {
+        if toBuyListCellCheckButtonFlag {
             setToBuyListCellButtonImage("checkmark")
             strikethrough()
-            
         }else {
             setToBuyListCellButtonImage("circle")
             cancelStrikethrough()
-            
         }
-        toBuyCheckButtonFlag = !toBuyCheckButtonFlag
+        toBuyListCellCheckButtonFlag = !toBuyListCellCheckButtonFlag
     }
     
     private func setToBuyListCellButtonImage(_ imageName: String) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
         let checkmarkImage = UIImage(systemName: imageName, withConfiguration: largeConfig)
-        toBuyCheckButton.setImage(checkmarkImage, for: .normal)
+        toBuyListCellCheckButton.setImage(checkmarkImage, for: .normal)
     }
     
     private func strikethrough() {
-        guard let text = toBuyTitleLabel.text else { return }
+        guard let text = toBuyListCellTitleLabel.text else { return }
         let attributeString =  NSMutableAttributedString(string: text)
         attributeString.addAttribute(.font, value: UIFont.systemFont(ofSize: 25), range: NSMakeRange(0, attributeString.length))
         attributeString.addAttributes([.foregroundColor : UIColor.gray, .strikethroughStyle: 2], range: NSMakeRange(0, text.count))
-        toBuyTitleLabel.attributedText = attributeString
+        toBuyListCellTitleLabel.attributedText = attributeString
     }
     
     private func cancelStrikethrough() {
-        guard let text = toBuyTitleLabel.text else { return }
+        guard let text = toBuyListCellTitleLabel.text else { return }
         let attributeString =  NSMutableAttributedString(string: text)
         attributeString.removeAttribute(.font, range: NSMakeRange(0, attributeString.length))
-        toBuyTitleLabel.attributedText = attributeString
+        toBuyListCellTitleLabel.attributedText = attributeString
     }
 }

@@ -15,8 +15,8 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     func setupCell(cellSize: CGFloat) {
         backgroundColor = .red
         layer.cornerRadius = 30
-        
     }
+    
     @IBAction func tappedShoppingListTrashButton(_ sender: Any) {
     }
     
