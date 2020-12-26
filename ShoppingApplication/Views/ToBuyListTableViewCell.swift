@@ -7,13 +7,14 @@ class ToBuyListTableViewCell: UITableViewCell {
     @IBOutlet weak var toBuyListCellTitleLabel: UILabel!
     @IBOutlet weak var toBuyListCellCheckButton: UIButton!
     @IBOutlet weak var numberOfToBuyLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
     private var toBuyListCellCheckButtonFlag = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         selectionStyle = .none
-
+        separatorView.backgroundColor = .red
         setToBuyListCellButtonImage("circle")
     }
 

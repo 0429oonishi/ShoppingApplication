@@ -14,12 +14,18 @@ class ToBuyListViewController: UIViewController {
             toBuyListTableView.delegate = self
             toBuyListTableView.dataSource = self
             toBuyListTableView.register(UINib(nibName: "ToBuyListTableViewCell", bundle: nil), forCellReuseIdentifier: toBuyListCellId)
-            toBuyListTableView.separatorColor = .red
-            toBuyListTableView.tableFooterView = UIView()
         }
     }
     @IBOutlet weak var toBuyListToAddView: UIView! {
-        didSet { toBuyListToAddView.backgroundColor = .red }
+        didSet {
+            toBuyListToAddView.backgroundColor = .red
+            toBuyListToAddView.layer.borderWidth = 2
+            toBuyListToAddView.layer.borderColor = UIColor.white.cgColor
+            toBuyListToAddView.layer.shadowColor = UIColor.black.cgColor
+            toBuyListToAddView.layer.shadowOffset = CGSize(width: 5, height: -2)
+            toBuyListToAddView.layer.shadowRadius = 5
+            toBuyListToAddView.layer.shadowOpacity = 0.8
+        }
     }
     @IBOutlet weak var toBuyListToAddTextField: UITextField! {
         didSet { toBuyListToAddTextField.delegate = self }
@@ -28,6 +34,22 @@ class ToBuyListViewController: UIViewController {
         didSet { toBuyListToAddStepper.layer.cornerRadius = 8 }
     }
     @IBOutlet weak var toBuyListToAddNumberLabel: UILabel!
+    @IBOutlet weak var closeKeyboardButton: UIButton! {
+        didSet {
+            closeKeyboardButton.backgroundColor = .red
+            closeKeyboardButton.layer.borderWidth = 2
+            closeKeyboardButton.layer.borderColor = UIColor.white.cgColor
+            closeKeyboardButton.layer.cornerRadius = 10
+        }
+    }
+    @IBOutlet weak var toBuyListToAddButton: UIButton! {
+        didSet {
+            toBuyListToAddButton.backgroundColor = .red
+            toBuyListToAddButton.layer.borderWidth = 2
+            toBuyListToAddButton.layer.borderColor = UIColor.white.cgColor
+            toBuyListToAddButton.layer.cornerRadius = 10
+        }
+    }
     
     private var toBuyListArray: [String] = [] {
         didSet {
