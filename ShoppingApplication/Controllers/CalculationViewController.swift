@@ -6,6 +6,20 @@ import UIKit
 //合計個数とそれぞれの個数を追加する
 //.redのところは後でテーマカラーで変更できるようにする
 
+//enum actionTag: Int {
+//    case action0 = 0
+//    case action1 = 1
+//    case action2 = 2
+//    case action3 = 3
+//    case action4 = 4
+//    case action5 = 5
+//    case action6 = 6
+//    case action7 = 7
+//    case action8 = 8
+//    case action9 = 9
+//
+//}
+
 class CalculationViewController: UIViewController {
     
     private var taxRate = 1.10 {
@@ -68,35 +82,12 @@ class CalculationViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var taxIncludePriceLabel: UILabel!
     @IBOutlet weak var taxIncludeTaxRateLabel: UILabel!
-    @IBOutlet weak var calculator0Button: UIButton! {
-        didSet { buttonDesign(button: calculator0Button) }
-    }
-    @IBOutlet weak var calculator1Button: UIButton! {
-        didSet { buttonDesign(button: calculator1Button) }
-    }
-    @IBOutlet weak var calculator2Button: UIButton! {
-        didSet { buttonDesign(button: calculator2Button) }
-    }
-    @IBOutlet weak var calculator3Button: UIButton! {
-        didSet { buttonDesign(button: calculator3Button) }
-    }
-    @IBOutlet weak var calculator4Button: UIButton! {
-        didSet { buttonDesign(button: calculator4Button) }
-    }
-    @IBOutlet weak var calculator5Button: UIButton! {
-        didSet { buttonDesign(button: calculator5Button) }
-    }
-    @IBOutlet weak var calculator6Button: UIButton! {
-        didSet { buttonDesign(button: calculator6Button) }
-    }
-    @IBOutlet weak var calculator7Button: UIButton! {
-        didSet { buttonDesign(button: calculator7Button) }
-    }
-    @IBOutlet weak var calculator8Button: UIButton! {
-        didSet { buttonDesign(button: calculator8Button) }
-    }
-    @IBOutlet weak var calculator9Button: UIButton! {
-        didSet { buttonDesign(button: calculator9Button) }
+    @IBOutlet var calculatorButton: [UIButton]!  {
+        didSet {
+            for n in 0...9 {
+                buttonDesign(button: calculatorButton[n])
+            }
+        }
     }
     @IBOutlet weak var calculatorAddButton: UIButton! {
         didSet { buttonDesign(button: calculatorAddButton) }
@@ -176,46 +167,9 @@ class CalculationViewController: UIViewController {
         }
     }
     
-    @IBAction func tappedCalculator0Button(_ sender: Any) {
-        if priceLabelString != "" {
-            reflectToLabel(button: calculator0Button)
-        }
-    }
-    
-    @IBAction func tappedCalculator1Button(_ sender: Any) {
-        reflectToLabel(button: calculator1Button)
-    }
-    
-    @IBAction func tappedCalculator2Button(_ sender: Any) {
-        reflectToLabel(button: calculator2Button)
-    }
-    
-    @IBAction func tappedCalculator3Button(_ sender: Any) {
-        reflectToLabel(button: calculator3Button)
-    }
-    
-    @IBAction func tappedCalculator4Button(_ sender: Any) {
-        reflectToLabel(button: calculator4Button)
-    }
-    
-    @IBAction func tappedCalculator5Button(_ sender: Any) {
-        reflectToLabel(button: calculator5Button)
-    }
-    
-    @IBAction func tappedCalculator6Button(_ sender: Any) {
-        reflectToLabel(button: calculator6Button)
-    }
-    
-    @IBAction func tappedCalculator7Button(_ sender: Any) {
-        reflectToLabel(button: calculator7Button)
-    }
-    
-    @IBAction func tappedCalculator8Button(_ sender: Any) {
-        reflectToLabel(button: calculator8Button)
-    }
-    
-    @IBAction func tappedCalculator9Button(_ sender: Any) {
-        reflectToLabel(button: calculator9Button)
+    @IBAction func tappedCalculatorButton(_ sender: UIButton) {
+        guard let button = calculatorButton else { return }
+        reflectToLabel(button: button[sender.tag])
     }
     
     private func reflectToLabel(button: UIButton) {
