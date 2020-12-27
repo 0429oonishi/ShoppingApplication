@@ -13,6 +13,7 @@ class ToBuyListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        
         selectionStyle = .none
         separatorView.backgroundColor = .red
         setToBuyListCellButtonImage("circle")
@@ -33,11 +34,11 @@ class ToBuyListTableViewCell: UITableViewCell {
         }
         toBuyListCellCheckButtonFlag = !toBuyListCellCheckButtonFlag
     }
-    
+   
     private func setToBuyListCellButtonImage(_ imageName: String) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        let checkmarkImage = UIImage(systemName: imageName, withConfiguration: largeConfig)
-        toBuyListCellCheckButton.setImage(checkmarkImage, for: .normal)
+        let image = UIImage(systemName: imageName, withConfiguration: largeConfig)
+        toBuyListCellCheckButton.setImage(image, for: .normal)
     }
     
     private func strikethrough() {

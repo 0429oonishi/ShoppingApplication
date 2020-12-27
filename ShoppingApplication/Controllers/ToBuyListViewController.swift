@@ -1,5 +1,6 @@
 
 import UIKit
+import RealmSwift
 
 //.redのところは後でテーマカラーで変更できるようにする
 
@@ -50,27 +51,20 @@ class ToBuyListViewController: UIViewController {
             toBuyListToAddButton.layer.cornerRadius = 10
         }
     }
-    
-    private var toBuyListArray: [String] = [] {
-        didSet {
-            toBuyListTableView.reloadData()
-            if toBuyListArray.count != 0 {
-                toBuyRemainCountLabel.text = "残り\(toBuyListArray.count)個"
-            }else {
-                toBuyRemainCountLabel.text = ""
-            }
-        }
-    }
-    private var numberOfToBuyArray: [Int] = []
+
     private let toBuyListCellId = "toBuyListCellId"
     private var toggleKeyboardFlag = true
     private var numberOfToBuy = 1
-    
+    private var realm = try! Realm()
+    private var toBuyList = ToBuyList()
+    var objects: Results<ToBuyList>!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        objects = realm.objects(ToBuyList.self)
         
+        remainCount()
         self.view.backgroundColor = .red
-
         operateKeyboard()
     }
     
@@ -110,12 +104,20 @@ class ToBuyListViewController: UIViewController {
     
     //全て消去した後のバグを修正する
     @IBAction func toBuyListClearAll(_ sender: Any) {
-        if numberOfToBuyArray.count != 0 {
+        if objects.count != 0 {
             let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
             let alertDefaultAction = UIAlertAction(title: "メモを消去する", style: .default) { (_) in
                 //checkmarkついてるものだけ消去
-                self.toBuyListArray.removeAll()
-                self.numberOfToBuyArray.removeAll()
+                do {
+                    try self.realm.write {
+                        self.objects = self.realm.objects(ToBuyList.self)
+                        self.realm.delete(self.objects)
+                    }
+                }catch {
+                    print("error at toBuyListClearAll")
+                }
+                self.remainCount()
+                self.toBuyListTableView.reloadData()
             }
             let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
                 self.dismiss(animated: true, completion: nil)
@@ -150,27 +152,49 @@ class ToBuyListViewController: UIViewController {
     @IBAction func tappedToBuyListToAddButton(_ sender: Any) {
         if toBuyListToAddTextField.text != "" {
             if let text = toBuyListToAddTextField.text {
-                toBuyListArray.append(text)
-                numberOfToBuyArray.append(numberOfToBuy)
+                toBuyList = ToBuyList()
+                toBuyList.toBuyListName = text
+                toBuyList.toBuyLisNumber = numberOfToBuy
+                do {
+                    try realm.write {
+                        realm.add(toBuyList)
+                    }
+                }catch {
+                    print("DEBUG_PRINT: errror at tappedToBuyListToAddButton")
+                }
+                toBuyListTableView.reloadData()
+
             }
         }
+        
+        remainCount()
         toBuyListToAddTextField.text = ""
         toBuyListToAddNumberLabel.text = "1"
         toBuyListToAddStepper.value = 1
         numberOfToBuy = 1
+    }
+    
+    private func remainCount() {
+        if objects.count != 0 {
+            toBuyRemainCountLabel.text = "残り\(objects.count)個"
+        }else {
+            toBuyRemainCountLabel.text = ""
+        }
     }
 }
 
 extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toBuyListArray.count
+        return objects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as! ToBuyListTableViewCell
-        cell.toBuyListCellTitleLabel.text = toBuyListArray[indexPath.row]
-        cell.numberOfToBuyLabel.text = "×\(numberOfToBuyArray[indexPath.row])"
+
+        cell.toBuyListCellTitleLabel.text = objects[indexPath.row].toBuyListName
+        cell.numberOfToBuyLabel.text = "×\(objects[indexPath.row].toBuyLisNumber)"
+       
         return cell
     }
     
