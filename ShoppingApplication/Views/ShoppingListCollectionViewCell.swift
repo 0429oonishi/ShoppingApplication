@@ -15,12 +15,9 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        let sampleInt = 10000
-        let commaShoppingListLabel = addComma(String(sampleInt))
-        shoppingListLabel.text = "\(commaShoppingListLabel)円"
+        
     }
     
     func setupCell(cellSize: CGFloat) {

@@ -25,8 +25,6 @@
 		AB9711C92595B58D00AAA0E1 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */; };
 		AB9711CA2595B58D00AAA0E1 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */; };
 		AB9711CD2595BC8100AAA0E1 /* ThemeColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711CC2595BC8100AAA0E1 /* ThemeColorViewController.swift */; };
-		AB9711D62595C17200AAA0E1 /* ThemeColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711D42595C17200AAA0E1 /* ThemeColorCollectionViewCell.swift */; };
-		AB9711D72595C17200AAA0E1 /* ThemeColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9711D52595C17200AAA0E1 /* ThemeColorCollectionViewCell.xib */; };
 		AB9711E72596CA5900AAA0E1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711E62596CA5900AAA0E1 /* TabBarController.swift */; };
 		BF495BC36754661E352D68B8 /* Pods_ShoppingApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */; };
 /* End PBXBuildFile section */
@@ -53,8 +51,6 @@
 		AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		AB9711CC2595BC8100AAA0E1 /* ThemeColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorViewController.swift; sourceTree = "<group>"; };
-		AB9711D42595C17200AAA0E1 /* ThemeColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThemeColorCollectionViewCell.swift; path = ShoppingApplication/Views/ThemeColorCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		AB9711D52595C17200AAA0E1 /* ThemeColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ThemeColorCollectionViewCell.xib; path = ShoppingApplication/Views/ThemeColorCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-UIColor.swift"; sourceTree = "<group>"; };
 		AB9711E62596CA5900AAA0E1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,8 +141,6 @@
 				AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */,
 				AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */,
 				AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */,
-				AB9711D42595C17200AAA0E1 /* ThemeColorCollectionViewCell.swift */,
-				AB9711D52595C17200AAA0E1 /* ThemeColorCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,7 +215,6 @@
 			files = (
 				AB97117825950FC900AAA0E1 /* LaunchScreen.storyboard in Resources */,
 				AB97117525950FC900AAA0E1 /* Assets.xcassets in Resources */,
-				AB9711D72595C17200AAA0E1 /* ThemeColorCollectionViewCell.xib in Resources */,
 				AB9711CA2595B58D00AAA0E1 /* SettingTableViewCell.xib in Resources */,
 				AB971196259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib in Resources */,
 				AB971198259511B200AAA0E1 /* ToBuyListTableViewCell.xib in Resources */,
@@ -284,7 +277,6 @@
 				AB211A3A259BDF70002DAFBF /* Extension-UIColor.swift in Sources */,
 				AB971199259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift in Sources */,
 				AB9711C92595B58D00AAA0E1 /* SettingTableViewCell.swift in Sources */,
-				AB9711D62595C17200AAA0E1 /* ThemeColorCollectionViewCell.swift in Sources */,
 				AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */,
 				AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */,
 				AB97118A259511A100AAA0E1 /* MapViewController.swift in Sources */,

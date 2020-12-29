@@ -69,25 +69,11 @@ extension ThemeColorViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0: themeSelectedColor = themeColorArray[0]
-        case 1: themeSelectedColor = themeColorArray[1]
-        case 2: themeSelectedColor = themeColorArray[2]
-        case 3: themeSelectedColor = themeColorArray[3]
-        case 4: themeSelectedColor = themeColorArray[4]
-        case 5: themeSelectedColor = themeColorArray[5]
-        case 6: themeSelectedColor = themeColorArray[6]
-        case 7: themeSelectedColor = themeColorArray[7]
-        case 8: themeSelectedColor = themeColorArray[8]
-        case 9: themeSelectedColor = themeColorArray[9]
-        case 10: themeSelectedColor = themeColorArray[10]
-        case 11: themeSelectedColor = themeColorArray[11]
-        case 12: themeSelectedColor = themeColorArray[12]
-        case 13: themeSelectedColor = themeColorArray[13]
-        case 14: themeSelectedColor = themeColorArray[14]
-        case 15: themeSelectedColor = themeColorArray[15]
-        case 16: themeSelectedColor = themeColorArray[16]
-        default: return
+        for n in 0..<themeColorArray.count {
+            switch indexPath.row {
+            case n: themeSelectedColor = themeColorArray[n]
+            default: break
+            }
         }
         self.view.backgroundColor = themeSelectedColor
         themeColorNavigationBar.barTintColor = themeSelectedColor

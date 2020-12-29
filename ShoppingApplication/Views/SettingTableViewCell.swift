@@ -16,7 +16,6 @@ class SettingTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         selectionStyle = .none
         settingSeparatorView.backgroundColor = themeColor
     }
