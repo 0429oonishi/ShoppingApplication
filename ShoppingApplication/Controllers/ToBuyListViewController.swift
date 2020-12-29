@@ -47,7 +47,6 @@ class ToBuyListViewController: UIViewController {
     @IBOutlet weak var toBuyListToAddTextField: UITextField! {
         didSet {
             toBuyListToAddTextField.delegate = self
-            toBuyListToAddTextField.layer.borderColor = borderColor.cgColor
             toBuyListToAddTextField.layer.masksToBounds = true
             toBuyListToAddTextField.layer.borderWidth = 1
             toBuyListToAddTextField.layer.cornerRadius = 10
@@ -87,6 +86,7 @@ class ToBuyListViewController: UIViewController {
         toBuyListToAddView.backgroundColor = themeColor
         closeKeyboardButton.backgroundColor = themeColor
         toBuyListToAddButton.backgroundColor = themeColor
+        toBuyListToAddTextField.layer.borderColor = borderColor.cgColor
         toBuyListTableView.reloadData()
     }
     

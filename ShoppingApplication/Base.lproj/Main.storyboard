@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ykf-IQ-xtg">
-                                <rect key="frame" x="0.0" y="154" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="158" width="414" height="655"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GDF-bR-wDF">
                                     <size key="itemSize" width="128" height="128"/>
@@ -228,13 +228,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wv-jN-qAu">
                                         <rect key="frame" x="0.0" y="0.0" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqZ-xb-Cvt">
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqZ-xb-Cvt">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="7"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator7Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="mSA-i5-Zah"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="CJt-iq-38E"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -250,13 +250,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iu8-da-9UK">
                                         <rect key="frame" x="0.0" y="103.5" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3U-i3-AbZ">
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3U-i3-AbZ">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="4"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator4Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="fIa-uU-i0K"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="9oT-S8-gPv"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -273,13 +273,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-u0-FCs">
                                         <rect key="frame" x="0.0" y="207" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mD8-D9-9nQ">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mD8-D9-9nQ">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="1"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator1Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="pmh-aB-wfS"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="eR0-HM-23G"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -296,14 +296,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRP-eO-EDh">
                                         <rect key="frame" x="103.5" y="0.0" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNw-YY-9lz">
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNw-YY-9lz">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="8"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator8Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="L6g-ZI-7ve"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="NyO-Ns-sI6"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -320,14 +320,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeI-jJ-QwJ">
                                         <rect key="frame" x="103.5" y="103.5" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-NA-jwj">
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-NA-jwj">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="5"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator5Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="NVK-QM-Nd4"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="eNk-su-SP1"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -344,14 +344,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duU-ep-84a">
                                         <rect key="frame" x="103.5" y="207" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRE-tR-9Ku">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRE-tR-9Ku">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="2"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator2Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="1U0-Wh-t6x"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="A8d-1T-r6S"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -368,14 +368,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpI-jT-IhO">
                                         <rect key="frame" x="207" y="0.0" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSM-ic-mk8">
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSM-ic-mk8">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="9"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator9Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="c4p-C9-Ky6"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="9db-tM-do7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -391,14 +391,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-FO-th0">
                                         <rect key="frame" x="207" y="103.5" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhY-Gg-aMN">
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xhY-Gg-aMN">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="6"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator6Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="KbD-JV-szs"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="CaW-a4-U33"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -414,14 +414,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Un4-Nw-PwP">
                                         <rect key="frame" x="207" y="207" width="103.5" height="103.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k2-S1-wJ3">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k2-S1-wJ3">
                                                 <rect key="frame" x="15" y="15" width="73.5" height="73.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="3"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator3Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="IoC-cG-f6k"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="xnK-zo-7wW"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -489,7 +489,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="0"/>
                                                 <connections>
-                                                    <action selector="tappedCalculator0Button:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="kiM-6w-s2d"/>
+                                                    <action selector="tappedCalculatorButton:" destination="6ug-Tz-NwM" eventType="touchUpInside" id="bKg-95-p7B"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -551,10 +551,7 @@
                                 </constraints>
                             </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZSk-S5-2np">
-                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="9Ut-cF-ADc"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="合計 計算機" id="IPz-ou-YsZ">
                                         <rightBarButtonItems>
@@ -567,7 +564,7 @@
                                             <barButtonItem title="Item" image="trash.fill" catalog="system" id="e3F-Lo-7lT">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <action selector="clearAll:" destination="6ug-Tz-NwM" id="j4I-64-iYf"/>
+                                                    <action selector="clearAll:" destination="6ug-Tz-NwM" id="cwn-1w-bLV"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -650,7 +647,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kt8-7B-T61">
-                                <rect key="frame" x="0.0" y="84" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合計" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZB6-Jh-gf3">
                                         <rect key="frame" x="30" y="19" width="55" height="32.5"/>
@@ -706,16 +703,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="計算機" image="plus.slash.minus" catalog="system" id="pY9-T3-HCk"/>
                     <connections>
-                        <outlet property="calculator0Button" destination="moI-hl-jTo" id="obi-6V-Hsk"/>
-                        <outlet property="calculator1Button" destination="mD8-D9-9nQ" id="QiX-b1-9v8"/>
-                        <outlet property="calculator2Button" destination="dRE-tR-9Ku" id="Adq-JG-dup"/>
-                        <outlet property="calculator3Button" destination="1k2-S1-wJ3" id="V1Z-Qz-MhH"/>
-                        <outlet property="calculator4Button" destination="S3U-i3-AbZ" id="g14-lp-FfN"/>
-                        <outlet property="calculator5Button" destination="ggU-NA-jwj" id="YLm-S6-MrH"/>
-                        <outlet property="calculator6Button" destination="xhY-Gg-aMN" id="emW-5f-XmL"/>
-                        <outlet property="calculator7Button" destination="qqZ-xb-Cvt" id="87a-Br-yEd"/>
-                        <outlet property="calculator8Button" destination="sNw-YY-9lz" id="5MJ-HE-3QD"/>
-                        <outlet property="calculator9Button" destination="tSM-ic-mk8" id="xEd-Ge-6Dh"/>
                         <outlet property="calculatorAddButton" destination="83w-Og-P1I" id="NBH-fW-PxN"/>
                         <outlet property="calculatorClearButton" destination="LGv-Wd-Yhh" id="Ubc-Hj-X9Y"/>
                         <outlet property="calculatorNavigationBar" destination="ZSk-S5-2np" id="cVQ-ES-C6G"/>
@@ -725,11 +712,21 @@
                         <outlet property="includeTaxLabel" destination="FgX-uM-W7m" id="COv-ng-c10"/>
                         <outlet property="priceLabel" destination="IeT-jw-Nsw" id="vRP-0F-iEI"/>
                         <outlet property="shoppingListCollectionView" destination="Ykf-IQ-xtg" id="Sc2-Rz-GJD"/>
-                        <outlet property="taxIncludeOrNotButton" destination="FNw-lw-7AO" id="NON-H9-WDM"/>
+                        <outlet property="taxIncludeOrNotButton" destination="FNw-lw-7AO" id="PZF-wh-fKM"/>
                         <outlet property="taxIncludePriceLabel" destination="xkA-zO-r2M" id="ZHi-Ef-lDO"/>
                         <outlet property="taxIncludeTaxRateLabel" destination="oqE-ee-x2D" id="xn6-oq-1vd"/>
                         <outlet property="taxRateButton" destination="qXm-or-fFF" id="pUV-Du-2PW"/>
                         <outlet property="totalPriceLabel" destination="gbS-Bi-LgX" id="wyS-r9-X0d"/>
+                        <outletCollection property="calculatorButton" destination="moI-hl-jTo" collectionClass="NSMutableArray" id="Aps-2e-OhR"/>
+                        <outletCollection property="calculatorButton" destination="mD8-D9-9nQ" collectionClass="NSMutableArray" id="c6L-hk-HOe"/>
+                        <outletCollection property="calculatorButton" destination="dRE-tR-9Ku" collectionClass="NSMutableArray" id="ly3-Lj-Jzp"/>
+                        <outletCollection property="calculatorButton" destination="1k2-S1-wJ3" collectionClass="NSMutableArray" id="GGG-u8-wr0"/>
+                        <outletCollection property="calculatorButton" destination="S3U-i3-AbZ" collectionClass="NSMutableArray" id="Smk-Oi-9qV"/>
+                        <outletCollection property="calculatorButton" destination="ggU-NA-jwj" collectionClass="NSMutableArray" id="m8j-GC-rtF"/>
+                        <outletCollection property="calculatorButton" destination="xhY-Gg-aMN" collectionClass="NSMutableArray" id="sQh-Dr-A6U"/>
+                        <outletCollection property="calculatorButton" destination="qqZ-xb-Cvt" collectionClass="NSMutableArray" id="s8R-J0-0Lp"/>
+                        <outletCollection property="calculatorButton" destination="sNw-YY-9lz" collectionClass="NSMutableArray" id="g1s-Rc-0U5"/>
+                        <outletCollection property="calculatorButton" destination="tSM-ic-mk8" collectionClass="NSMutableArray" id="teV-Jy-Cpi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Jo-no-bM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -761,22 +758,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I51-5G-vvG">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <sections/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTl-oU-tur">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="アプリ設定" id="cls-Hh-6uu"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tu7-ry-UX9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="I51-5G-vvG" firstAttribute="top" secondItem="tu7-ry-UX9" secondAttribute="top" constant="100" id="8p8-JN-Umy"/>
+                            <constraint firstItem="I51-5G-vvG" firstAttribute="top" secondItem="xTl-oU-tur" secondAttribute="bottom" id="240-6H-xJm"/>
+                            <constraint firstItem="xTl-oU-tur" firstAttribute="top" secondItem="tu7-ry-UX9" secondAttribute="top" id="L6w-6G-D4o"/>
+                            <constraint firstItem="xTl-oU-tur" firstAttribute="trailing" secondItem="tu7-ry-UX9" secondAttribute="trailing" id="ahP-Q0-Dwc"/>
                             <constraint firstItem="tu7-ry-UX9" firstAttribute="bottom" secondItem="I51-5G-vvG" secondAttribute="bottom" id="hWv-wc-4Ds"/>
                             <constraint firstItem="tu7-ry-UX9" firstAttribute="trailing" secondItem="I51-5G-vvG" secondAttribute="trailing" id="ist-Mz-Ouq"/>
+                            <constraint firstItem="xTl-oU-tur" firstAttribute="leading" secondItem="tu7-ry-UX9" secondAttribute="leading" id="mU5-Pk-BWo"/>
                             <constraint firstItem="I51-5G-vvG" firstAttribute="leading" secondItem="tu7-ry-UX9" secondAttribute="leading" id="ydV-Se-xws"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="設定" image="gearshape" catalog="system" id="JLO-ac-Gm5"/>
                     <connections>
+                        <outlet property="settingNavigationBar" destination="xTl-oU-tur" id="lSS-0W-X5A"/>
                         <outlet property="settingTableView" destination="I51-5G-vvG" id="Yct-Dh-4Mw"/>
                     </connections>
                 </viewController>
@@ -840,6 +847,7 @@
                     <connections>
                         <outlet property="themeColorCollectionView" destination="RzQ-6h-pxX" id="d3b-mP-6op"/>
                         <outlet property="themeColorDecisionButton" destination="mqP-sr-XkG" id="tJb-E0-t9B"/>
+                        <outlet property="themeColorNavigationBar" destination="M3d-r6-CIc" id="Pk0-A8-0FR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rti-St-hdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
