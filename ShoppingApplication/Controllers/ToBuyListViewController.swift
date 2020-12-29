@@ -2,14 +2,31 @@
 import UIKit
 import RealmSwift
 
-//.redのところは後でテーマカラーで変更できるようにする
-
 class ToBuyListViewController: UIViewController {
     
-    @IBOutlet weak var toBuyRemainCountLabel: UILabel!
-    @IBOutlet weak var toBuyListNavigationBar: UINavigationBar! {
-        didSet { toBuyListNavigationBar.barTintColor = .red }
+    private let toBuyListCellId = "toBuyListCellId"
+    private var toggleKeyboardFlag = true
+    private var numberOfToBuy = 1
+    private var realm = try! Realm()
+    private var toBuyList = ToBuyList()
+    var objects: Results<ToBuyList>!
+    private var themeColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .white
+        }
     }
+    private var borderColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .black
+        }
+    }
+    
+    @IBOutlet weak var toBuyRemainCountLabel: UILabel!
+    @IBOutlet weak var toBuyListNavigationBar: UINavigationBar!
     @IBOutlet weak var toBuyListTableView: UITableView! {
         didSet {
             toBuyListTableView.delegate = self
@@ -19,7 +36,6 @@ class ToBuyListViewController: UIViewController {
     }
     @IBOutlet weak var toBuyListToAddView: UIView! {
         didSet {
-            toBuyListToAddView.backgroundColor = .red
             toBuyListToAddView.layer.borderWidth = 2
             toBuyListToAddView.layer.borderColor = UIColor.white.cgColor
             toBuyListToAddView.layer.shadowColor = UIColor.black.cgColor
@@ -29,7 +45,13 @@ class ToBuyListViewController: UIViewController {
         }
     }
     @IBOutlet weak var toBuyListToAddTextField: UITextField! {
-        didSet { toBuyListToAddTextField.delegate = self }
+        didSet {
+            toBuyListToAddTextField.delegate = self
+            toBuyListToAddTextField.layer.borderColor = borderColor.cgColor
+            toBuyListToAddTextField.layer.masksToBounds = true
+            toBuyListToAddTextField.layer.borderWidth = 1
+            toBuyListToAddTextField.layer.cornerRadius = 10
+        }
     }
     @IBOutlet weak var toBuyListToAddStepper: UIStepper! {
         didSet { toBuyListToAddStepper.layer.cornerRadius = 8 }
@@ -37,7 +59,6 @@ class ToBuyListViewController: UIViewController {
     @IBOutlet weak var toBuyListToAddNumberLabel: UILabel!
     @IBOutlet weak var closeKeyboardButton: UIButton! {
         didSet {
-            closeKeyboardButton.backgroundColor = .red
             closeKeyboardButton.layer.borderWidth = 2
             closeKeyboardButton.layer.borderColor = UIColor.white.cgColor
             closeKeyboardButton.layer.cornerRadius = 10
@@ -45,27 +66,28 @@ class ToBuyListViewController: UIViewController {
     }
     @IBOutlet weak var toBuyListToAddButton: UIButton! {
         didSet {
-            toBuyListToAddButton.backgroundColor = .red
             toBuyListToAddButton.layer.borderWidth = 2
             toBuyListToAddButton.layer.borderColor = UIColor.white.cgColor
             toBuyListToAddButton.layer.cornerRadius = 10
         }
     }
 
-    private let toBuyListCellId = "toBuyListCellId"
-    private var toggleKeyboardFlag = true
-    private var numberOfToBuy = 1
-    private var realm = try! Realm()
-    private var toBuyList = ToBuyList()
-    var objects: Results<ToBuyList>!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         objects = realm.objects(ToBuyList.self)
         
         remainCount()
-        self.view.backgroundColor = .red
         operateKeyboard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = themeColor
+        toBuyListNavigationBar.barTintColor = themeColor
+        toBuyListToAddView.backgroundColor = themeColor
+        closeKeyboardButton.backgroundColor = themeColor
+        toBuyListToAddButton.backgroundColor = themeColor
+        toBuyListTableView.reloadData()
     }
     
     private func operateKeyboard() {
@@ -194,14 +216,14 @@ extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.toBuyListCellTitleLabel.text = objects[indexPath.row].toBuyListName
         cell.numberOfToBuyLabel.text = "×\(objects[indexPath.row].toBuyLisNumber)"
-       
+        cell.separatorView.backgroundColor = borderColor
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return toBuyListTableView.frame.height / 10
     }
-    
 }
 
 extension ToBuyListViewController: UITextFieldDelegate {

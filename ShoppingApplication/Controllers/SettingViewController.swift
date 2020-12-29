@@ -8,9 +8,21 @@ class SettingViewController: UIViewController {
     private let settingCellId = "settingCellId"
     private let borderWidth: CGFloat = 2
     private let cellHeight: CGFloat = 100
-    @IBOutlet weak var settingNavigationBar: UINavigationBar! {
-        didSet { settingNavigationBar.barTintColor = .red }
+    private var themeColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .white
+        }
     }
+    private var borderColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .black
+        }
+    }
+    @IBOutlet weak var settingNavigationBar: UINavigationBar!
     @IBOutlet weak var settingTableView: UITableView! {
         didSet {
             settingTableView.delegate = self
@@ -24,8 +36,13 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .red
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+            self.view.backgroundColor = themeColor
+            settingNavigationBar.barTintColor = themeColor
+            settingTableView.reloadData()
     }
 }
 
@@ -38,6 +55,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = settingTableView.dequeueReusableCell(withIdentifier: settingCellId, for: indexPath) as! SettingTableViewCell
         cell.settingTitleLabel.text = settingTableViewArray[indexPath.section][indexPath.row]
+        cell.settingSeparatorView.backgroundColor = borderColor
         return cell
     }
     
@@ -71,14 +89,14 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         label.textAlignment = .center
         label.layer.cornerRadius = 10
         label.layer.borderWidth = borderWidth
-        label.layer.borderColor = UIColor.red.cgColor
+        label.layer.borderColor = borderColor.cgColor
         headerView.addSubview(label)
         let bottomBorder = CALayer()
         let bottomBorderX = label.frame.maxX + 20
         let bottomBorderY = label.frame.maxY - borderWidth
         let bottomBorderWidth = self.view.frame.size.width - bottomBorderX - 45
         bottomBorder.frame = CGRect(x: bottomBorderX, y: bottomBorderY, width: bottomBorderWidth, height: borderWidth)
-        bottomBorder.backgroundColor = UIColor.red.cgColor
+        bottomBorder.backgroundColor = borderColor.cgColor
         headerView.layer.addSublayer(bottomBorder)
         return headerView
     }
@@ -87,4 +105,3 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         return cellHeight
     }
 }
-

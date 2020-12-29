@@ -1,24 +1,7 @@
 
-
-
 import UIKit
 
 //合計個数とそれぞれの個数を追加する
-//.redのところは後でテーマカラーで変更できるようにする
-
-//enum actionTag: Int {
-//    case action0 = 0
-//    case action1 = 1
-//    case action2 = 2
-//    case action3 = 3
-//    case action4 = 4
-//    case action5 = 5
-//    case action6 = 6
-//    case action7 = 7
-//    case action8 = 8
-//    case action9 = 9
-//
-//}
 
 class CalculationViewController: UIViewController {
     
@@ -37,10 +20,22 @@ class CalculationViewController: UIViewController {
     }
     private var totalPriceLabelString = ""
     private var totalPriceLabelInt = 0
-
-    @IBOutlet weak var calculatorNavigationBar: UINavigationBar! {
-        didSet { calculatorNavigationBar.barTintColor = .red }
+    private var themeColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .white
+        }
     }
+    private var borderColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .black
+        }
+    }
+
+    @IBOutlet weak var calculatorNavigationBar: UINavigationBar!
     @IBOutlet weak var calculatorTotalPriceView: UIView! {
         didSet { viewDesign(view: calculatorTotalPriceView, shadowHeight: 2) }
     }
@@ -58,14 +53,12 @@ class CalculationViewController: UIViewController {
     }
     @IBOutlet weak var calculatorView: UIView! {
         didSet {
-            calculatorView.backgroundColor = .red
             calculatorView.layer.borderWidth = 2
             calculatorView.layer.borderColor = UIColor.white.cgColor
         }
     }
     @IBOutlet weak var taxRateButton: UIButton! {
         didSet {
-            taxRateButton.backgroundColor = .red
             taxRateButton.layer.borderWidth = 2
             taxRateButton.layer.borderColor = UIColor.white.cgColor
             taxRateButton.layer.cornerRadius = 10
@@ -73,7 +66,6 @@ class CalculationViewController: UIViewController {
     }
     @IBOutlet weak var taxIncludeOrNotButton: UIButton! {
         didSet {
-            taxIncludeOrNotButton.backgroundColor = .red
             taxIncludeOrNotButton.layer.borderWidth = 2
             taxIncludeOrNotButton.layer.borderColor = UIColor.white.cgColor
             taxIncludeOrNotButton.layer.cornerRadius = 10
@@ -98,10 +90,26 @@ class CalculationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .red
         taxIncludePriceLabel.text = ""
         taxIncludeTaxRateLabel.text = ""
         collectionViewFlowLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.view.backgroundColor = themeColor
+        calculatorNavigationBar.barTintColor = themeColor
+        calculatorView.backgroundColor = themeColor
+        taxRateButton.backgroundColor = themeColor
+        taxIncludeOrNotButton.backgroundColor = themeColor
+        calculatorTotalPriceView.backgroundColor = themeColor
+        calculatorPriceView.backgroundColor = themeColor
+        for n in 0...9 {
+            calculatorButton[n].backgroundColor = themeColor
+        }
+        calculatorAddButton.backgroundColor = themeColor
+        calculatorClearButton.backgroundColor = themeColor
+        shoppingListCollectionView.reloadData()
     }
     
     private func collectionViewFlowLayout() {
@@ -216,7 +224,6 @@ class CalculationViewController: UIViewController {
     }
     
     private func viewDesign(view: UIView, shadowHeight: Int) {
-        view.backgroundColor = .red
         view.layer.borderWidth = 2
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.shadowColor = UIColor.black.cgColor
@@ -226,7 +233,6 @@ class CalculationViewController: UIViewController {
     }
     
     private func buttonDesign(button: UIButton) {
-        button.backgroundColor = .red
         button.layer.cornerRadius = button.frame.size.width/2
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.white.cgColor
@@ -251,7 +257,8 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: shoppingListCellId, for: indexPath) as! ShoppingListCollectionViewCell
         let itemSize = shoppingListCollectionView.frame.size.width / 3 - 20
-        cell.setupCell(cellSize: itemSize) 
+        cell.setupCell(cellSize: itemSize)
+        cell.layer.borderColor = borderColor.cgColor
         return cell
     }
     

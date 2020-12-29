@@ -7,6 +7,14 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shoppingListLabel: UILabel!
     @IBOutlet weak var shoppingListTaxRateButton: UIButton!
     @IBOutlet weak var shoppingListIncludeTaxOrNotButton: UIButton!
+    private var themeColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .black
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,7 +25,7 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     
     func setupCell(cellSize: CGFloat) {
         layer.cornerRadius = 30
-        layer.borderColor = UIColor.red.cgColor
+        layer.borderColor = themeColor.cgColor
         layer.borderWidth = 2
     }
     

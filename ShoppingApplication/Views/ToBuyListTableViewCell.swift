@@ -9,13 +9,19 @@ class ToBuyListTableViewCell: UITableViewCell {
     @IBOutlet weak var numberOfToBuyLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
     private var toBuyListCellCheckButtonFlag = true
+    private var themeColor: UIColor {
+        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
+            return UIColor(code: themeColorString)
+        }else {
+            return .black
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
         selectionStyle = .none
-        separatorView.backgroundColor = .red
+        separatorView.backgroundColor = themeColor
         setToBuyListCellButtonImage("circle")
     }
 
