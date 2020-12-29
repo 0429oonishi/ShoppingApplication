@@ -20,7 +20,6 @@ class ThemeColorViewController: UIViewController {
                 
         themeColorCollectionView.delegate = self
         themeColorCollectionView.dataSource = self
-        themeColorCollectionView.register(UINib(nibName: "ThemeColorCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: themeColorCellId)
         
         themeColorNavigationBar.tintColor = .black
         
@@ -60,8 +59,7 @@ extension ThemeColorViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = themeColorCollectionView.dequeueReusableCell(withReuseIdentifier: themeColorCellId, for: indexPath) as! ThemeColorCollectionViewCell
-        
+        let cell = themeColorCollectionView.dequeueReusableCell(withReuseIdentifier: themeColorCellId, for: indexPath)
         cell.layer.cornerRadius = CGFloat(cellSize/2)
         cell.backgroundColor = themeColorArray[indexPath.row]
         
