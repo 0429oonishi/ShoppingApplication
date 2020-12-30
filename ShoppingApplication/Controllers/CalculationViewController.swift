@@ -1,7 +1,8 @@
 
 import UIKit
 
-//合計個数とそれぞれの個数を追加する
+// MARK: - todo それぞれの個数を追加する
+// MARK: - todo collectionでの操作も追加する
 
 class CalculationViewController: UIViewController {
     
@@ -13,13 +14,28 @@ class CalculationViewController: UIViewController {
     }
     private var toggleKeyboardFlag = true
     private let shoppingListCellId = "shoppingListCellId"
-    private var shoppingListArray: [String] = [] {
+    private var shoppingListPriceArray: [String] = [] {
         didSet {
             shoppingListCollectionView.reloadData()
+            if shoppingListPriceArray.count == 0 {
+                calculationRemainCountLabel.text = ""
+            }else {
+                calculationRemainCountLabel.text = "合計\(shoppingListPriceArray.count)個"
+            }
         }
     }
+    private var shoppingListTaxRateArray: [String] = []
+    private var shoppingListTaxIncludeOrNotArray: [String] = []
     private var totalPriceLabelString = ""
     private var totalPriceLabelInt = 0
+    private var totalPriceTaxSumDouble = 0.0
+    private var totalPriceTaxDouble: Double = 0.0 {
+        didSet {
+            totalPriceTaxSumDouble += totalPriceTaxDouble
+            let totalPriceTaxCommaString = addComma(String(Int(totalPriceTaxSumDouble)))
+            includeTaxLabel.text = "内消費税\(totalPriceTaxCommaString)円"
+        }
+    }
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
@@ -35,6 +51,7 @@ class CalculationViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var calculationRemainCountLabel: UILabel!
     @IBOutlet weak var calculatorNavigationBar: UINavigationBar!
     @IBOutlet weak var calculatorTotalPriceView: UIView! {
         didSet { viewDesign(view: calculatorTotalPriceView, shadowHeight: 2) }
@@ -43,7 +60,8 @@ class CalculationViewController: UIViewController {
     @IBOutlet weak var includeTaxLabel: UILabel!
     @IBOutlet weak var shoppingListCollectionView: UICollectionView! {
         didSet {
-            shoppingListCollectionView.register(UINib(nibName: "ShoppingListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: shoppingListCellId)
+            let nibName = UINib(nibName: "ShoppingListCollectionViewCell", bundle: nil)
+            shoppingListCollectionView.register(nibName, forCellWithReuseIdentifier: shoppingListCellId)
             shoppingListCollectionView.delegate = self
             shoppingListCollectionView.dataSource = self
         }
@@ -85,7 +103,8 @@ class CalculationViewController: UIViewController {
         didSet { buttonDesign(button: calculatorAddButton) }
     }
     @IBOutlet weak var calculatorClearButton: UIButton! {
-        didSet { buttonDesign(button: calculatorClearButton) }
+        didSet { buttonDesign(button:
+                                calculatorClearButton) }
     }
     
     override func viewDidLoad() {
@@ -121,6 +140,14 @@ class CalculationViewController: UIViewController {
     }
     
     @IBAction func clearAll(_ sender: Any) {
+        shoppingListPriceArray.removeAll()
+        shoppingListTaxIncludeOrNotArray.removeAll()
+        shoppingListTaxRateArray.removeAll()
+        totalPriceLabel.text = "0円"
+        includeTaxLabel.text = "内消費税0円"
+        totalPriceLabelInt = 0
+        totalPriceTaxSumDouble = 0
+        clearLabel()
     }
     
     @IBAction func toggleKeyboard(_ sender: Any) {
@@ -177,6 +204,16 @@ class CalculationViewController: UIViewController {
     
     @IBAction func tappedCalculatorButton(_ sender: UIButton) {
         guard let button = calculatorButton else { return }
+        let priceMaxCount = priceLabelString.count + 1
+        if priceMaxCount > 6 {
+            let alert = UIAlertController(title: "エラー", message: "金額が大きすぎます", preferredStyle: .actionSheet)
+            let closeAction = UIAlertAction(title: "閉じる", style: .default) { (_) in
+                self.clearLabel()
+            }
+            alert.addAction(closeAction)
+            present(alert, animated: true)
+            return
+        }
         reflectToLabel(button: button[sender.tag])
     }
     
@@ -191,24 +228,35 @@ class CalculationViewController: UIViewController {
             let includeTaxPrice = priceLabelDouble * taxRate
             var includeTaxPriceString = String(Int(includeTaxPrice))
             includeTaxPriceString = addComma(includeTaxPriceString)
-            taxIncludePriceLabel.text = "税込 \(includeTaxPriceString)円"
+            taxIncludePriceLabel.text = "税込 \(includeTaxPriceString)点"
         }
     }
     
     @IBAction func tappedCalculatorAddButton(_ sender: Any) {
-        if taxIncludeOrNotButton.currentTitle == "税込" {
-            shoppingListArray.append(priceLabelString)
-        }else {
-            guard let  priceLabelDouble = Double(priceLabelString) else { return }
-            let includeTaxPrice = Int(floor(priceLabelDouble * taxRate))
-            shoppingListArray.append(String(includeTaxPrice))
+        if priceLabelString != "" {
+            if taxIncludeOrNotButton.currentTitle == "税込" {
+                shoppingListPriceArray.append(priceLabelString)
+                shoppingListTaxIncludeOrNotArray.append("税込")
+            }else {
+                guard let  priceLabelDouble = Double(priceLabelString) else { return }
+                let includeTaxPrice = Int(floor(priceLabelDouble * taxRate))
+                shoppingListPriceArray.append(String(includeTaxPrice))
+                shoppingListTaxIncludeOrNotArray.append("税抜")
+            }
+            
+            if taxRateButton.currentTitle == "10%" {
+                shoppingListTaxRateArray.append("10%")
+            }else {
+                shoppingListTaxRateArray.append("8%")
+            }
+            
+            taxCalculation()
+            
+            totalPriceLabelInt += Int(shoppingListPriceArray.last!)!
+            let priceLabelCommaString = addComma(String(totalPriceLabelInt))
+            totalPriceLabel.text = "\(priceLabelCommaString)円"
+            clearLabel()
         }
-        
-        totalPriceLabelInt += Int(priceLabelString)!
-        let priceLabelCommaString = addComma(String(totalPriceLabelInt))
-        totalPriceLabel.text = "\(priceLabelCommaString)円"
-
-        clearLabel()
     }
     
     @IBAction func tappedCalculatorClearButton(_ sender: Any) {
@@ -220,6 +268,21 @@ class CalculationViewController: UIViewController {
         priceLabel.text = "0"
         if taxIncludeOrNotButton.currentTitle == "税抜" {
             taxIncludePriceLabel.text = "税込 0円"
+        }
+    }
+    
+    private func taxCalculation() {
+        let taxRateTitle = taxRateButton.currentTitle
+        let includeTaxTitle = taxIncludeOrNotButton.currentTitle
+        let priceLabelDouble = Double(priceLabelString)!
+        if taxRateTitle == "10%" && includeTaxTitle == "税込" {
+            totalPriceTaxDouble = priceLabelDouble * 10 / 110
+        }else if taxRateTitle == "10%" && includeTaxTitle == "税抜" {
+            totalPriceTaxDouble = priceLabelDouble * 10 / 100
+        }else if taxRateTitle == "8%" && includeTaxTitle == "税込" {
+            totalPriceTaxDouble = priceLabelDouble * 8 / 108
+        }else if taxRateTitle == "8%" && includeTaxTitle == "税抜" {
+            totalPriceTaxDouble = priceLabelDouble * 8 / 100
         }
     }
     
@@ -251,17 +314,18 @@ class CalculationViewController: UIViewController {
 extension CalculationViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return shoppingListPriceArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: shoppingListCellId, for: indexPath) as! ShoppingListCollectionViewCell
+        let shoppingListcommaPrice = addComma(shoppingListPriceArray[indexPath.row])
+        cell.shoppingListLabel.text = "\(shoppingListcommaPrice)円"
+        cell.shoppingListTaxRateButton.setTitle(shoppingListTaxRateArray[indexPath.row], for: .normal)
+        cell.shoppingListIncludeTaxOrNotButton.setTitle(shoppingListTaxIncludeOrNotArray[indexPath.row], for: .normal)
         let itemSize = shoppingListCollectionView.frame.size.width / 3 - 20
         cell.setupCell(cellSize: itemSize)
         cell.layer.borderColor = borderColor.cgColor
         return cell
     }
-    
-    
-    
 }
