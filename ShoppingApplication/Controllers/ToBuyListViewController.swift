@@ -56,13 +56,6 @@ class ToBuyListViewController: UIViewController {
         didSet { toBuyListToAddStepper.layer.cornerRadius = 8 }
     }
     @IBOutlet weak var toBuyListToAddNumberLabel: UILabel!
-    @IBOutlet weak var closeKeyboardButton: UIButton! {
-        didSet {
-            closeKeyboardButton.layer.borderWidth = 2
-            closeKeyboardButton.layer.borderColor = UIColor.white.cgColor
-            closeKeyboardButton.layer.cornerRadius = 10
-        }
-    }
     @IBOutlet weak var toBuyListToAddButton: UIButton! {
         didSet {
             toBuyListToAddButton.layer.borderWidth = 2
@@ -84,7 +77,6 @@ class ToBuyListViewController: UIViewController {
         self.view.backgroundColor = themeColor
         toBuyListNavigationBar.barTintColor = themeColor
         toBuyListToAddView.backgroundColor = themeColor
-        closeKeyboardButton.backgroundColor = themeColor
         toBuyListToAddButton.backgroundColor = themeColor
         toBuyListToAddTextField.layer.borderColor = borderColor.cgColor
         toBuyListTableView.reloadData()
@@ -166,17 +158,13 @@ class ToBuyListViewController: UIViewController {
         toBuyListToAddNumberLabel.text = String(numberOfToBuy)
     }
     
-    @IBAction func tappedCloseKeyboardButton(_ sender: Any) {
-        
-    }
-    
-    //追加buttonを押したときはviewを閉じないようにする
     @IBAction func tappedToBuyListToAddButton(_ sender: Any) {
         if toBuyListToAddTextField.text != "" {
             if let text = toBuyListToAddTextField.text {
                 toBuyList = ToBuyList()
                 toBuyList.toBuyListName = text
-                toBuyList.toBuyLisNumber = numberOfToBuy
+                toBuyList.toBuyListNumber = numberOfToBuy
+                toBuyList.toBuyListCheckFlag = false
                 do {
                     try realm.write {
                         realm.add(toBuyList)
@@ -185,7 +173,6 @@ class ToBuyListViewController: UIViewController {
                     print("DEBUG_PRINT: errror at tappedToBuyListToAddButton")
                 }
                 toBuyListTableView.reloadData()
-
             }
         }
         
@@ -215,9 +202,14 @@ extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as! ToBuyListTableViewCell
 
         cell.toBuyListCellTitleLabel.text = objects[indexPath.row].toBuyListName
-        cell.numberOfToBuyLabel.text = "×\(objects[indexPath.row].toBuyLisNumber)"
+        cell.numberOfToBuyLabel.text = "×\(objects[indexPath.row].toBuyListNumber)"
+        cell.toBuyListCellCheckButtonFlag = objects[indexPath.row].toBuyListCheckFlag
+        if objects[indexPath.row].toBuyListCheckFlag {
+            cell.setToBuyListCellButtonImage("checkmark")
+        }else {
+            cell.setToBuyListCellButtonImage("circle")
+        }
         cell.separatorView.backgroundColor = borderColor
-        
         return cell
     }
     
@@ -230,6 +222,7 @@ extension ToBuyListViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        return true
     }
     
 }

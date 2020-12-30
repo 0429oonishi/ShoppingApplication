@@ -70,6 +70,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5sC-ju-xJN">
                                         <rect key="frame" x="30" y="30" width="284" height="40"/>
+                                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SNz-MC-vp4"/>
                                         </constraints>
@@ -115,29 +116,13 @@
                                             <action selector="tappedToBuyListToAddButton:" destination="uVh-1w-t2b" eventType="touchUpInside" id="p0w-06-BCG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csx-if-WQD">
-                                        <rect key="frame" x="329" y="30" width="70" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="xVT-k7-fXx"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="閉じる">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedCloseKeyboardButton:" destination="uVh-1w-t2b" eventType="touchUpInside" id="3nd-8R-26d"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="csx-if-WQD" secondAttribute="trailing" constant="15" id="01Y-fF-Z2n"/>
                                     <constraint firstItem="QSy-jp-Cce" firstAttribute="leading" secondItem="Pat-1W-e81" secondAttribute="trailing" constant="30" id="3Hp-pQ-VAI"/>
                                     <constraint firstItem="I2Y-aY-8Nx" firstAttribute="leading" secondItem="dS7-PB-Tk8" secondAttribute="trailing" constant="20" id="9eP-vb-vAM"/>
-                                    <constraint firstItem="csx-if-WQD" firstAttribute="centerY" secondItem="5sC-ju-xJN" secondAttribute="centerY" id="K10-PD-QS6"/>
                                     <constraint firstItem="dS7-PB-Tk8" firstAttribute="bottom" secondItem="QSy-jp-Cce" secondAttribute="bottom" id="MbF-jM-G2I"/>
                                     <constraint firstItem="dS7-PB-Tk8" firstAttribute="top" secondItem="QSy-jp-Cce" secondAttribute="top" id="Oad-Nz-sDb"/>
                                     <constraint firstItem="5sC-ju-xJN" firstAttribute="top" secondItem="7S6-Ud-AeS" secondAttribute="top" constant="30" id="RVb-Kk-Gcj"/>
-                                    <constraint firstItem="csx-if-WQD" firstAttribute="leading" secondItem="5sC-ju-xJN" secondAttribute="trailing" constant="15" id="YAn-ON-c3N"/>
                                     <constraint firstAttribute="trailing" secondItem="5sC-ju-xJN" secondAttribute="trailing" constant="100" id="azF-6Y-doU"/>
                                     <constraint firstItem="5sC-ju-xJN" firstAttribute="leading" secondItem="7S6-Ud-AeS" secondAttribute="leading" constant="30" id="b8y-r8-P3P"/>
                                     <constraint firstItem="I2Y-aY-8Nx" firstAttribute="centerY" secondItem="Pat-1W-e81" secondAttribute="centerY" id="guc-ov-KgS"/>
@@ -179,7 +164,6 @@
                     <tabBarItem key="tabBarItem" title="メモ" image="square.and.pencil" catalog="system" id="Ocy-Ea-kFr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="closeKeyboardButton" destination="csx-if-WQD" id="D3C-uE-NFr"/>
                         <outlet property="toBuyListNavigationBar" destination="niG-YI-cWc" id="hIu-LX-bZS"/>
                         <outlet property="toBuyListTableView" destination="d2m-aN-1jj" id="Ql4-kD-hHT"/>
                         <outlet property="toBuyListToAddButton" destination="I2Y-aY-8Nx" id="nhv-MN-QCa"/>
