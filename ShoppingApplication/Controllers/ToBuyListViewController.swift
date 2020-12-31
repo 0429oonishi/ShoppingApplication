@@ -8,7 +8,6 @@ class ToBuyListViewController: UIViewController {
     private var toggleKeyboardFlag = true
     private var numberOfToBuy = 1
     private var realm = try! Realm()
-    private var toBuyList = ToBuyList()
     var objects: Results<ToBuyList>!
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
@@ -58,16 +57,17 @@ class ToBuyListViewController: UIViewController {
     @IBOutlet weak var toBuyListToAddNumberLabel: UILabel!
     @IBOutlet weak var toBuyListToAddButton: UIButton! {
         didSet {
-            toBuyListToAddButton.layer.borderWidth = 2
-            toBuyListToAddButton.layer.borderColor = UIColor.white.cgColor
+            toBuyListToAddButton.layer.borderWidth = 1
             toBuyListToAddButton.layer.cornerRadius = 10
+            toBuyListToAddButton.layer.shadowOffset = CGSize(width: 1, height: 1)
+            toBuyListToAddButton.layer.shadowRadius = 2
+            toBuyListToAddButton.layer.shadowOpacity = 1
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         objects = realm.objects(ToBuyList.self)
-        
         remainCount()
         operateKeyboard()
     }
@@ -79,6 +79,13 @@ class ToBuyListViewController: UIViewController {
         toBuyListToAddView.backgroundColor = themeColor
         toBuyListToAddButton.backgroundColor = themeColor
         toBuyListToAddTextField.layer.borderColor = borderColor.cgColor
+        if toBuyListToAddButton.backgroundColor == .white {
+            toBuyListToAddButton.layer.borderColor = UIColor.black.cgColor
+            toBuyListToAddButton.layer.shadowColor = UIColor.black.cgColor
+        }else {
+            toBuyListToAddButton.layer.borderColor = UIColor.white.cgColor
+            toBuyListToAddButton.layer.shadowColor = UIColor.white.cgColor
+        }
         toBuyListTableView.reloadData()
     }
     
@@ -116,19 +123,13 @@ class ToBuyListViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    //全て消去した後のバグを修正する
     @IBAction func toBuyListClearAll(_ sender: Any) {
         if objects.count != 0 {
             let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
             let alertDefaultAction = UIAlertAction(title: "メモを消去する", style: .default) { (_) in
-                //checkmarkついてるものだけ消去
-                do {
-                    try self.realm.write {
-                        self.objects = self.realm.objects(ToBuyList.self)
-                        self.realm.delete(self.objects)
-                    }
-                }catch {
-                    print("error at toBuyListClearAll")
+                try! self.realm.write {
+                    let checkObjects = self.realm.objects(ToBuyList.self).filter("toBuyListCheckFlag == true")
+                    self.realm.delete(checkObjects)
                 }
                 self.remainCount()
                 self.toBuyListTableView.reloadData()
@@ -161,16 +162,12 @@ class ToBuyListViewController: UIViewController {
     @IBAction func tappedToBuyListToAddButton(_ sender: Any) {
         if toBuyListToAddTextField.text != "" {
             if let text = toBuyListToAddTextField.text {
-                toBuyList = ToBuyList()
+                let toBuyList = ToBuyList()
                 toBuyList.toBuyListName = text
                 toBuyList.toBuyListNumber = numberOfToBuy
                 toBuyList.toBuyListCheckFlag = false
-                do {
-                    try realm.write {
-                        realm.add(toBuyList)
-                    }
-                }catch {
-                    print("DEBUG_PRINT: errror at tappedToBuyListToAddButton")
+                try! realm.write {
+                    realm.add(toBuyList)
                 }
                 toBuyListTableView.reloadData()
             }
@@ -200,16 +197,8 @@ extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as! ToBuyListTableViewCell
-
-        cell.toBuyListCellTitleLabel.text = objects[indexPath.row].toBuyListName
-        cell.numberOfToBuyLabel.text = "×\(objects[indexPath.row].toBuyListNumber)"
-        cell.toBuyListCellCheckButtonFlag = objects[indexPath.row].toBuyListCheckFlag
-        if objects[indexPath.row].toBuyListCheckFlag {
-            cell.setToBuyListCellButtonImage("checkmark")
-        }else {
-            cell.setToBuyListCellButtonImage("circle")
-        }
-        cell.separatorView.backgroundColor = borderColor
+        cell.indexPathRow = indexPath.row
+        cell.setCell(object: objects[indexPath.row])
         return cell
     }
     
