@@ -20,7 +20,7 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setupCell(cellSize: CGFloat) {
+    func setupCell() {
         layer.cornerRadius = 30
         layer.borderColor = themeColor.cgColor
         layer.borderWidth = 2
