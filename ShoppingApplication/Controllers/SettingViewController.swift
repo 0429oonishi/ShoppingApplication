@@ -1,5 +1,6 @@
 
 import UIKit
+import StoreKit
 
 class SettingViewController: UIViewController {
     
@@ -7,7 +8,7 @@ class SettingViewController: UIViewController {
     private let settingTableViewArray = [["テーマカラー変更"], ["このアプリを友達に紹介", "このアプリを評価", "ご意見、ご要望、不具合の報告"]]
     private let settingCellId = "settingCellId"
     private let borderWidth: CGFloat = 2
-    private let cellHeight: CGFloat = 100
+    private var cellHeight: CGFloat = 90
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
@@ -35,7 +36,6 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +43,34 @@ class SettingViewController: UIViewController {
             self.view.backgroundColor = themeColor
             settingNavigationBar.barTintColor = themeColor
             settingTableView.reloadData()
+    }
+    
+    private func transitionToThemeColorVC() {
+        let themeColorViewController = storyboard?.instantiateViewController(identifier: "themeColorVCId") as! ThemeColorViewController
+        themeColorViewController.modalPresentationStyle = .fullScreen
+        present(themeColorViewController, animated: true)
+    }
+    
+    private func introduceAppToFriend() {
+        let shareText = "おすすめのお買い物アプリです！\n買うものチェックリストや合計金額をお会計の前に計算できる計算機、お店を探せるマップが一つのアプリで完結します！\n「お買い物アプリ - MyCal(マイカル)」"
+        //アップストアのURLにかえる
+        let shareURL = URL(string: "AppStoreURL")!
+        let activityItems = [shareText, shareURL] as [Any]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        present(activityVC, animated: true)
+    }
+    
+    private func evaluateApp() {
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: scene)
+        }
+    }
+    
+    private func reportAboutApp() {
+        guard let reportURL = URL(string: "https://docs.google.com/forms/d/1qFKDnISWjCZ8QyBpsGMaNX-wSQRw30NIJU5TQqUpsro/edit") else { return }
+        if UIApplication.shared.canOpenURL(reportURL) {
+            UIApplication.shared.open(reportURL as URL)
+        }
     }
 }
 
@@ -64,10 +92,17 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath == [0, 0] {
-            let themeColorViewController = storyboard?.instantiateViewController(identifier: "themeColorVCId") as! ThemeColorViewController
-            themeColorViewController.modalPresentationStyle = .fullScreen
-            present(themeColorViewController, animated: true)
+        switch indexPath {
+        case [0, 0]:
+            transitionToThemeColorVC()
+        case [1, 0]:
+            introduceAppToFriend()
+        case [1, 1]:
+            evaluateApp()
+        case [1, 2]:
+            reportAboutApp()
+        default:
+            break
         }
     }
     
@@ -82,7 +117,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: settingTableView.frame.width, height: cellHeight))
         let label = UILabel()
-        label.frame = CGRect(x: 20, y: 60, width: 100, height: cellHeight - 60)
+        if section == 0 {
+            label.frame = CGRect(x: 20, y: 20 - borderWidth, width: 100, height: 40)
+        }else {
+            label.frame = CGRect(x: 20, y: 50 - borderWidth, width: 100, height: 40)
+        }
         label.text = sectionArray[section]
         label.textColor = .black
         label.font = label.font.withSize(20)
@@ -94,7 +133,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let bottomBorder = CALayer()
         let bottomBorderX = label.frame.maxX + 20
         let bottomBorderY = label.frame.maxY - borderWidth
-        let bottomBorderWidth = self.view.frame.size.width - bottomBorderX - 45
+        let bottomBorderWidth = self.view.frame.size.width - bottomBorderX - 30
         bottomBorder.frame = CGRect(x: bottomBorderX, y: bottomBorderY, width: bottomBorderWidth, height: borderWidth)
         bottomBorder.backgroundColor = borderColor.cgColor
         headerView.layer.addSublayer(bottomBorder)
@@ -102,6 +141,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellHeight
+        if section == 0 {
+            return 60 - borderWidth
+        }else {
+            return cellHeight - borderWidth
+        }
     }
 }
