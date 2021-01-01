@@ -4,7 +4,6 @@ import UIKit
 class SettingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var settingTitleLabel: UILabel!
-    @IBOutlet weak var settingArrowLabel: UILabel!
     @IBOutlet weak var settingSeparatorView: UIView!
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {

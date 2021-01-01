@@ -45,6 +45,7 @@ class ToBuyListTableViewCell: UITableViewCell {
     }
     
     func setCell(object: ToBuyList) {
+        separatorView.backgroundColor = themeColor
         toBuyListCellTitleLabel.text = object.toBuyListName
         numberOfToBuyLabel.text = "×\(object.toBuyListNumber)"
         if !object.toBuyListCheckFlag {
