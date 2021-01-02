@@ -1,6 +1,7 @@
 # Xcode (from gitignore.io)
 
 *.xcworkspace
+ios/*
 
 build/
 *.pbxuser

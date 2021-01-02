@@ -7,5 +7,6 @@ target 'ShoppingApplication' do
   
   # Pods for ShoppingApplication
   pod 'RealmSwift','5.1.0'
-
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 end
