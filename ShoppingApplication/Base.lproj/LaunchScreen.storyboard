@@ -16,29 +16,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アイコン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VrA-cV-E3O">
-                                <rect key="frame" x="66" y="406" width="282" height="84"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
-                                <nil key="textColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchBack" translatesAutoresizingMaskIntoConstraints="NO" id="9Qp-ZJ-J2o">
+                                <rect key="frame" x="0.0" y="-56" width="414" height="1018"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyCal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTh-i1-b87">
+                                <rect key="frame" x="0.0" y="141" width="414" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ONa-a1-YmG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="80"/>
+                                <color key="textColor" systemColor="systemPinkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ItunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="PYI-XA-f53">
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PYI-XA-f53" secondAttribute="height" multiplier="1:1" id="rad-py-8OV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="VrA-cV-E3O" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VpE-MB-FYd"/>
-                            <constraint firstItem="VrA-cV-E3O" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dG3-zn-Y4i"/>
+                            <constraint firstItem="9Qp-ZJ-J2o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5H0-u5-hLH"/>
+                            <constraint firstItem="9Qp-ZJ-J2o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-100" id="6DU-9h-JCA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OTh-i1-b87" secondAttribute="trailing" id="70C-Cw-XGG"/>
+                            <constraint firstItem="PYI-XA-f53" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7bh-KN-pQs"/>
+                            <constraint firstItem="OTh-i1-b87" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7wf-Bz-jVV"/>
+                            <constraint firstItem="PYI-XA-f53" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="BUQ-cq-QuP"/>
+                            <constraint firstItem="PYI-XA-f53" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="C7a-7n-AhZ"/>
+                            <constraint firstItem="OTh-i1-b87" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kx1-hz-Zfh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Qp-ZJ-J2o" secondAttribute="bottom" constant="-100" id="PmJ-hN-0k0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Qp-ZJ-J2o" secondAttribute="trailing" id="bmo-Jv-bbG"/>
+                            <constraint firstItem="PYI-XA-f53" firstAttribute="top" secondItem="OTh-i1-b87" secondAttribute="bottom" id="gOX-kL-n4p"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="ItunesArtwork" width="512" height="512"/>
+        <image name="launchBack" width="459" height="269"/>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
