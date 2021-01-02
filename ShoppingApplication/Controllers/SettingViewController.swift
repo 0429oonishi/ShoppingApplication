@@ -62,7 +62,11 @@ class SettingViewController: UIViewController {
     
     private func evaluateApp() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            SKStoreReviewController.requestReview(in: scene)
+            if #available(iOS 14.0, *) {
+                SKStoreReviewController.requestReview(in: scene)
+            } else {
+                SKStoreReviewController.requestReview()
+            }
         }
     }
     
