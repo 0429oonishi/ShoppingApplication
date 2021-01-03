@@ -9,4 +9,5 @@ target 'ShoppingApplication' do
   pod 'RealmSwift','5.1.0'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Firebase/AdMob'
 end

@@ -1,6 +1,7 @@
 
 import UIKit
 import RealmSwift
+import GoogleMobileAds
 
 class ToBuyListViewController: UIViewController {
     
@@ -64,12 +65,17 @@ class ToBuyListViewController: UIViewController {
             toBuyListToAddButton.layer.shadowOpacity = 1
         }
     }
-
+    @IBOutlet weak var adMobView: UIView!
+    private let adMobId = "ca-app-pub-5791981660348332/8471327283"
+    private let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
+    let AdMobTest: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         objects = realm.objects(ToBuyList.self)
         remainCount()
         operateKeyboard()
+        addAdMobView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +93,21 @@ class ToBuyListViewController: UIViewController {
             toBuyListToAddButton.layer.shadowColor = UIColor.white.cgColor
         }
         toBuyListTableView.reloadData()
+    }
+    
+    private func addAdMobView() {
+        var AdMobView = GADBannerView()
+        AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
+        AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
+        if AdMobTest {
+            AdMobView.adUnitID = TEST_ID
+        }
+        else{
+            AdMobView.adUnitID = adMobId
+        }
+        AdMobView.rootViewController = self
+        AdMobView.load(GADRequest())
+        adMobView.addSubview(AdMobView)
     }
     
     private func operateKeyboard() {

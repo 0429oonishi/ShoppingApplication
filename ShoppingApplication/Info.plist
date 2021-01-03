@@ -75,5 +75,7 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-5791981660348332~1898998313</string>
 </dict>
 </plist>

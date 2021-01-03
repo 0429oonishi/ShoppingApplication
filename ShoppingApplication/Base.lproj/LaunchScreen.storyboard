@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchBack" translatesAutoresizingMaskIntoConstraints="NO" id="9Qp-ZJ-J2o">
-                                <rect key="frame" x="0.0" y="-56" width="414" height="1018"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="9Qp-ZJ-J2o">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyCal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTh-i1-b87">
@@ -40,17 +41,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9Qp-ZJ-J2o" secondAttribute="bottom" id="5DY-8c-j8O"/>
                             <constraint firstItem="9Qp-ZJ-J2o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5H0-u5-hLH"/>
-                            <constraint firstItem="9Qp-ZJ-J2o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-100" id="6DU-9h-JCA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OTh-i1-b87" secondAttribute="trailing" id="70C-Cw-XGG"/>
                             <constraint firstItem="PYI-XA-f53" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7bh-KN-pQs"/>
                             <constraint firstItem="OTh-i1-b87" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7wf-Bz-jVV"/>
                             <constraint firstItem="PYI-XA-f53" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="BUQ-cq-QuP"/>
                             <constraint firstItem="PYI-XA-f53" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="C7a-7n-AhZ"/>
                             <constraint firstItem="OTh-i1-b87" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kx1-hz-Zfh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Qp-ZJ-J2o" secondAttribute="bottom" constant="-100" id="PmJ-hN-0k0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Qp-ZJ-J2o" secondAttribute="trailing" id="bmo-Jv-bbG"/>
                             <constraint firstItem="PYI-XA-f53" firstAttribute="top" secondItem="OTh-i1-b87" secondAttribute="bottom" id="gOX-kL-n4p"/>
+                            <constraint firstItem="9Qp-ZJ-J2o" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="tcQ-Yz-8pN"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -61,7 +62,7 @@
     </scenes>
     <resources>
         <image name="ItunesArtwork" width="512" height="512"/>
-        <image name="launchBack" width="459" height="269"/>
+        <image name="launch" width="459" height="269"/>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

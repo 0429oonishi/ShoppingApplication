@@ -1,11 +1,7 @@
-//
-//  AppDelegate.swift
-//  ShoppingApplication
-//
-//  Created by 大西玲音 on 2020/12/25.
-//
 
 import UIKit
+import Firebase
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,6 +9,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().isTranslucent = false
         sleep(1)
+        FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }
 
