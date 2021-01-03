@@ -37,8 +37,6 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var adMobView: UIView!
     
     private let adMobId = "ca-app-pub-5791981660348332/8471327283"
-    private let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
-    let AdMobTest: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +54,7 @@ class SettingViewController: UIViewController {
         var AdMobView = GADBannerView()
         AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
         AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
-        if AdMobTest {
-            AdMobView.adUnitID = TEST_ID
-        }
-        else{
-            AdMobView.adUnitID = adMobId
-        }
+        AdMobView.adUnitID = adMobId
         AdMobView.rootViewController = self
         AdMobView.load(GADRequest())
         adMobView.addSubview(AdMobView)
