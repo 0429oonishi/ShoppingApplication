@@ -14,7 +14,6 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     var realm = try! Realm()
     var calculation = Calculation()
     var objects: Results<Calculation>!
-    var indexPathRow = 0
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
@@ -27,12 +26,6 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         objects = realm.objects(Calculation.self)
     }
-    
-//    @IBAction func tappedShoppingListDiscountButton(_ sender: UIButton) {
-//        
-//        
-//        
-//    }
     
     @IBAction func tappedShoppingListNumberDecreaseButton(_ sender: UIButton) {
         if objects[sender.tag].shoppingListNumber > 1 {

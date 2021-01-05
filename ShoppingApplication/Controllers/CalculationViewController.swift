@@ -2,10 +2,7 @@
 import UIKit
 import RealmSwift
 
-// MARK: - todo それぞれの個数を追加する
-// MARK: - todo collectionでの操作も追加する
 // MARK: - todo 消費税もrealm
-// MARK: - todo 割引機能
 // MARK: - todo 使い方をまるℹ︎で作る
 
 class CalculationViewController: UIViewController {
@@ -97,12 +94,26 @@ class CalculationViewController: UIViewController {
     @IBOutlet var calculatorButtonView: [UIView]!
     @IBOutlet weak var discountView: UIView! {
         didSet {
-            self.discountView.transform = CGAffineTransform(translationX: 1000, y: 0)
+            discountView.transform = CGAffineTransform(translationX: 1000, y: 0)
+            discountView.layer.cornerRadius = 30
+            discountView.layer.borderWidth = 3
+            discountView.backgroundColor = .white
+            discountView.layer.shadowColor = UIColor.black.cgColor
+            discountView.layer.shadowRadius = 5
+            discountView.layer.shadowOpacity = 0.8
+            discountView.layer.shadowOffset = CGSize(width: 3, height: 3)
+
         }
     }
     @IBOutlet weak var discountLabel: UILabel!
-    @IBOutlet weak var discountSlider: UISlider!
-    
+    @IBOutlet weak var discountSlider: UISlider! {
+        didSet {
+            discountSlider.layer.borderWidth = 2
+            discountSlider.layer.borderColor = UIColor.black.cgColor
+        }
+    }
+    private var discountTappedButtonTag = 0
+    private var discountSelectedValue = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +121,11 @@ class CalculationViewController: UIViewController {
         taxIncludePriceLabel.text = ""
         taxIncludeTaxRateLabel.text = ""
         collectionViewFlowLayout()
+        calculateTotalPrice()
+        totalPriceTaxDouble = UserDefaults.standard.double(forKey: totalPriceTaxKey)
+        let totalPriceTaxCommaString = addComma(String(Int(totalPriceTaxDouble)))
+        includeTaxLabel.text = "(内消費税\(totalPriceTaxCommaString)円)"
+        shoppingListCollectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,6 +137,9 @@ class CalculationViewController: UIViewController {
         taxIncludeOrNotButton.backgroundColor = themeColor
         calculatorTotalPriceView.backgroundColor = themeColor
         calculatorPriceView.backgroundColor = themeColor
+        discountView.layer.borderColor = themeColor.cgColor
+        discountSlider.minimumTrackTintColor = themeColor
+
         for n in 0...11 {
             calculatorButton[n].backgroundColor = themeColor
             [calculatorButton[n].leadingAnchor.constraint(equalTo: calculatorButtonView[n].leadingAnchor, constant: 10),
@@ -130,26 +149,8 @@ class CalculationViewController: UIViewController {
             ].forEach { $0.isActive = true }
             buttonDesign(button: calculatorButton[n])
         }
-        shoppingListCollectionView.reloadData()
         calcRemainCount()
-        
-        if objects.count != 0 {
-            for n in 0...objects.count - 1 {
-                totalPriceLabelInt += Int(objects[n].calculationPrice)!
-            }
-            totalPriceLabel.text = "\(addComma(String(totalPriceLabelInt)))円"
-        }
-        
-        totalPriceLabelInt = 0
-        if objects.count != 0 {
-            for n in 0...objects.count - 1 {
-                totalPriceLabelInt += Int(objects[n].calculationPrice)!
-            }
-        }
-        
-        totalPriceTaxDouble = UserDefaults.standard.double(forKey: totalPriceTaxKey)
-        let totalPriceTaxCommaString = addComma(String(Int(totalPriceTaxDouble)))
-        includeTaxLabel.text = "(内消費税\(totalPriceTaxCommaString)円)"
+        shoppingListCollectionView.reloadData()
 
     }
     
@@ -270,6 +271,16 @@ class CalculationViewController: UIViewController {
         }
     }
     
+    private func calculateTotalPrice() {
+        if objects.count != 0 {
+            totalPriceLabelInt = 0
+            for n in 0...objects.count - 1 {
+                totalPriceLabelInt += Int(objects[n].calculationPrice)!
+            }
+            totalPriceLabel.text = "\(addComma(String(totalPriceLabelInt)))円"
+        }
+    }
+    
     @IBAction func tappedCalculatorAddButton(_ sender: Any) {
         if priceLabelString != "" {
             let calculation = Calculation()
@@ -282,7 +293,6 @@ class CalculationViewController: UIViewController {
                 shoppingListTaxIncludeOrNotArray.append("税抜")
                 calculation.calculationPrice = String(includeTaxPrice)
             }
-            shoppingListCollectionView.reloadData()
             
             if taxRateButton.currentTitle == "10%" {
                 shoppingListTaxRateArray.append("10%")
@@ -295,6 +305,8 @@ class CalculationViewController: UIViewController {
             try! realm.write {
                 realm.add(calculation)
             }
+            
+            shoppingListCollectionView.reloadData()
             
             totalPriceLabelInt = 0
             for n in 0...objects.count - 1 {
@@ -390,11 +402,20 @@ class CalculationViewController: UIViewController {
             }
         }
         
-       
+        try! realm.write {
+            objects[discountTappedButtonTag].shoppingListDiscount = discountSelectedValue
+        }
         
+        if let discountFloatText = Float(objects[discountTappedButtonTag].shoppingListDiscount) {
+            discountSlider.setValue(discountFloatText, animated: true)
+            discountLabel.text = "\(Int(discountFloatText))%引き"
+        }
+        
+        shoppingListCollectionView.reloadItems(at: [IndexPath(item: discountTappedButtonTag, section: 0)])
     }
     
     @IBAction func tappedDiscountSlider(_ sender: UISlider) {
+        discountSelectedValue = "\(Int(sender.value))"
         discountLabel.text = "\(Int(sender.value))%引き"
     }
     
@@ -410,7 +431,6 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: shoppingListCellId, for: indexPath) as! ShoppingListCollectionViewCell
         
-        cell.indexPathRow = indexPath.row
         cell.setupCell(object: objects[indexPath.row])
         
         cell.shoppingListDeleteButton.addTarget(self, action: #selector(tappedShoppingListDeleteButton), for: .touchUpInside)
@@ -419,8 +439,13 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
         cell.shoppingListDiscountButton.tag = indexPath.row
         cell.shoppingListNumberDecreaseButton.tag = indexPath.row
         cell.shoppingListNumberIncreaseButton.tag = indexPath.row
- 
         
+        if objects[indexPath.row].shoppingListDiscount != "" {
+            cell.shoppingListDiscountButton.setTitle("-\(objects[indexPath.row].shoppingListDiscount)%", for: .normal)
+        }else {
+            cell.shoppingListDiscountButton.setTitle("割引", for: .normal)
+        }
+ 
         return cell
     }
     
@@ -431,6 +456,8 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
                 self.objects[sender.tag].calculationDeleteFlag = true
                 let deletedObject = self.realm.objects(Calculation.self).filter("calculationDeleteFlag == true")
                 self.realm.delete(deletedObject)
+                self.calculateTotalPrice()
+                self.calcRemainCount()
             }
             self.shoppingListCollectionView.reloadData()
         }
@@ -446,6 +473,7 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
         UIView.animate(withDuration: 0.1) {
             self.discountView.transform = .identity
         }
+        discountTappedButtonTag = sender.tag
     }
 
 }
