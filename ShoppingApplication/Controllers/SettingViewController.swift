@@ -1,6 +1,7 @@
 
 import UIKit
 import StoreKit
+import GoogleMobileAds
 
 class SettingViewController: UIViewController {
     
@@ -33,9 +34,13 @@ class SettingViewController: UIViewController {
             settingTableView.isScrollEnabled = false
         }
     }
+    @IBOutlet weak var adMobView: UIView!
+    
+    private let adMobId = "ca-app-pub-5791981660348332/8471327283"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addAdMobView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +48,16 @@ class SettingViewController: UIViewController {
             self.view.backgroundColor = themeColor
             settingNavigationBar.barTintColor = themeColor
             settingTableView.reloadData()
+    }
+    
+    private func addAdMobView() {
+        var AdMobView = GADBannerView()
+        AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
+        AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
+        AdMobView.adUnitID = adMobId
+        AdMobView.rootViewController = self
+        AdMobView.load(GADRequest())
+        adMobView.addSubview(AdMobView)
     }
     
     private func transitionToThemeColorVC() {

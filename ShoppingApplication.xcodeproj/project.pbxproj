@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AB211A38259BDF5E002DAFBF /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB211A37259BDF5E002DAFBF /* RealmModel.swift */; };
 		AB211A3A259BDF70002DAFBF /* Extension-UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */; };
+		AB32762625A1409200FB8C2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB32762525A1409200FB8C2F /* GoogleService-Info.plist */; };
+		AB32764025A167D500FB8C2F /* Pods_ShoppingApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */; };
+		AB32764125A167D500FB8C2F /* Pods_ShoppingApplication.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
 		AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB97117125950FC600AAA0E1 /* Main.storyboard */; };
@@ -26,13 +29,32 @@
 		AB9711CA2595B58D00AAA0E1 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */; };
 		AB9711CD2595BC8100AAA0E1 /* ThemeColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711CC2595BC8100AAA0E1 /* ThemeColorViewController.swift */; };
 		AB9711E72596CA5900AAA0E1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711E62596CA5900AAA0E1 /* TabBarController.swift */; };
-		BF495BC36754661E352D68B8 /* Pods_ShoppingApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AB32763B25A167C300FB8C2F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AB32764125A167D500FB8C2F /* Pods_ShoppingApplication.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4D42455615181A2242F6F1DC /* Pods-ShoppingApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApplication.debug.xcconfig"; path = "Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		834375D080C12E75C0FF1AF3 /* Pods-ShoppingApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApplication.release.xcconfig"; path = "Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication.release.xcconfig"; sourceTree = "<group>"; };
 		AB211A37259BDF5E002DAFBF /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		AB32762525A1409200FB8C2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB32762C25A1669B00FB8C2F /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleUtilities.xcframework/ios-armv7_arm64/GoogleUtilities.framework"; sourceTree = "<group>"; };
+		AB32762F25A166E800FB8C2F /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7/GoogleMobileAds.framework"; sourceTree = "<group>"; };
+		AB32763225A1670300FB8C2F /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/nanopb.xcframework/ios-armv7_arm64/nanopb.framework"; sourceTree = "<group>"; };
+		AB32763525A1672100FB8C2F /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
+		AB32763825A167C300FB8C2F /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_i386_x86_64-simulator/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		AB97116825950FC600AAA0E1 /* ShoppingApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB97116B25950FC600AAA0E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF495BC36754661E352D68B8 /* Pods_ShoppingApplication.framework in Frameworks */,
+				AB32764025A167D500FB8C2F /* Pods_ShoppingApplication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +102,11 @@
 		837793C86D2E9DE5A1DEDEF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB32763825A167C300FB8C2F /* GoogleMobileAds.framework */,
+				AB32763525A1672100FB8C2F /* GoogleAppMeasurement.framework */,
+				AB32763225A1670300FB8C2F /* nanopb.framework */,
+				AB32762F25A166E800FB8C2F /* GoogleMobileAds.framework */,
+				AB32762C25A1669B00FB8C2F /* GoogleUtilities.framework */,
 				C533BC80D3CAE91D889628C7 /* Pods_ShoppingApplication.framework */,
 			);
 			name = Frameworks;
@@ -115,6 +142,7 @@
 				AB97117425950FC900AAA0E1 /* Assets.xcassets */,
 				AB97117625950FC900AAA0E1 /* LaunchScreen.storyboard */,
 				AB97117925950FC900AAA0E1 /* Info.plist */,
+				AB32762525A1409200FB8C2F /* GoogleService-Info.plist */,
 			);
 			path = ShoppingApplication;
 			sourceTree = "<group>";
@@ -167,6 +195,7 @@
 				AB97116625950FC600AAA0E1 /* Resources */,
 				DC15B44D2C22D41F996914E4 /* [CP] Embed Pods Frameworks */,
 				39A10588EEE674C0E83A6E4D /* [CP] Copy Pods Resources */,
+				AB32763B25A167C300FB8C2F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -220,6 +249,7 @@
 				AB971196259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib in Resources */,
 				AB971198259511B200AAA0E1 /* ToBuyListTableViewCell.xib in Resources */,
 				AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */,
+				AB32762625A1409200FB8C2F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +481,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 242KS3V77L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/GoogleUtilities.xcframework/ios-armv7_arm64",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/nanopb.xcframework/ios-armv7_arm64",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_i386_x86_64-simulator",
+				);
 				INFOPLIST_FILE = ShoppingApplication/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -471,6 +509,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 242KS3V77L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/GoogleUtilities.xcframework/ios-armv7_arm64",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/nanopb.xcframework/ios-armv7_arm64",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0",
+					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_i386_x86_64-simulator",
+				);
 				INFOPLIST_FILE = ShoppingApplication/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

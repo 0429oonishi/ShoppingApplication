@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,77 +12,97 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shoppingListCellId" id="gTV-IL-0wX" customClass="ShoppingListCollectionViewCell" customModule="ShoppingApplication" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
+            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
+                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="400円" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3j-WL-bce">
-                        <rect key="frame" x="25.5" y="40" width="65.5" height="27.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="400円" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3j-WL-bce">
+                        <rect key="frame" x="27.5" y="46.5" width="65.5" height="27.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JB9-Bn-UwE">
-                        <rect key="frame" x="45.5" y="9" width="25" height="25.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="25" id="b23-qa-3O8"/>
-                            <constraint firstAttribute="height" constant="25" id="c4Y-6S-bpc"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" backgroundImage="trash" catalog="system"/>
-                        <connections>
-                            <action selector="tappedShoppingListTrashButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nP1-8S-jnH"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9R-te-7B7">
-                        <rect key="frame" x="10.5" y="67.5" width="45" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="45" id="xeJ-oi-uRc"/>
-                        </constraints>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" title="10%"/>
-                        <connections>
-                            <action selector="tappedShoppingListTaxRateButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="E3F-hu-dQt"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tz-ca-Se7">
-                        <rect key="frame" x="60.5" y="67.5" width="45" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="45" id="7fx-YV-tcQ"/>
-                        </constraints>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" title="税込"/>
-                        <connections>
-                            <action selector="tappedShoppingListIncludeTaxOrNotButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="4Ef-pK-Xde"/>
-                        </connections>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zCl-2p-l3F">
+                        <rect key="frame" x="10" y="10" width="100" height="26.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pab-ok-kf3">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="26.5"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="multiply.square.fill" catalog="system" symbolScale="large"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdd-8s-uLC">
+                                <rect key="frame" x="50" y="0.0" width="50" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="割引"/>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FuC-a2-5F7">
+                        <rect key="frame" x="10" y="84" width="100" height="26"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yp9-gr-bYf">
+                                <rect key="frame" x="0.0" y="0.0" width="33.5" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="minus.square" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedShoppingListNumberDecreaseButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Qbc-JE-2Lq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chQ-xg-Yrv">
+                                <rect key="frame" x="33.5" y="0.0" width="33" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="plus.square" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedShoppingListNumberIncreaseButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="KLF-X1-9U7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-gD-JWv">
+                                <rect key="frame" x="66.5" y="0.0" width="33.5" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="T9R-te-7B7" firstAttribute="top" secondItem="g3j-WL-bce" secondAttribute="bottom" id="6qI-me-6OY"/>
-                <constraint firstItem="1tz-ca-Se7" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="25" id="IbO-BE-ZiA"/>
-                <constraint firstItem="T9R-te-7B7" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="-25" id="M9g-O8-ryH"/>
-                <constraint firstItem="JB9-Bn-UwE" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="bMx-tc-CmN"/>
-                <constraint firstItem="1tz-ca-Se7" firstAttribute="top" secondItem="g3j-WL-bce" secondAttribute="bottom" id="isO-SH-ed6"/>
-                <constraint firstItem="g3j-WL-bce" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="j5l-Xx-0Ge"/>
-                <constraint firstItem="g3j-WL-bce" firstAttribute="top" secondItem="JB9-Bn-UwE" secondAttribute="bottom" constant="5" id="joa-UY-Q8o"/>
-                <constraint firstItem="JB9-Bn-UwE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="qN2-wh-vxJ"/>
+                <constraint firstItem="FuC-a2-5F7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="8J2-Ry-Wan"/>
+                <constraint firstItem="g3j-WL-bce" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8gA-lO-YgL"/>
+                <constraint firstAttribute="bottom" secondItem="FuC-a2-5F7" secondAttribute="bottom" constant="10" id="AKa-OR-wNM"/>
+                <constraint firstItem="zCl-2p-l3F" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="FwN-ud-rgo"/>
+                <constraint firstAttribute="trailing" secondItem="FuC-a2-5F7" secondAttribute="trailing" constant="10" id="PBK-xp-nB8"/>
+                <constraint firstItem="zCl-2p-l3F" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="R1e-qj-Az4"/>
+                <constraint firstItem="g3j-WL-bce" firstAttribute="top" secondItem="zCl-2p-l3F" secondAttribute="bottom" constant="10" id="d3j-LS-iWp"/>
+                <constraint firstAttribute="trailing" secondItem="zCl-2p-l3F" secondAttribute="trailing" constant="10" id="jnj-ZW-qPn"/>
+                <constraint firstItem="g3j-WL-bce" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="m10-L3-hh3"/>
+                <constraint firstItem="FuC-a2-5F7" firstAttribute="top" secondItem="g3j-WL-bce" secondAttribute="bottom" constant="10" id="yAg-WT-aH7"/>
             </constraints>
-            <size key="customSize" width="162" height="148"/>
+            <size key="customSize" width="283" height="212"/>
             <connections>
-                <outlet property="shoppingListIncludeTaxOrNotButton" destination="1tz-ca-Se7" id="MZG-w7-tDT"/>
-                <outlet property="shoppingListLabel" destination="g3j-WL-bce" id="WNj-59-mhy"/>
-                <outlet property="shoppingListTaxRateButton" destination="T9R-te-7B7" id="CWm-0c-Cpb"/>
-                <outlet property="shoppingListTrashButton" destination="JB9-Bn-UwE" id="CDq-AF-4ks"/>
+                <outlet property="shoppingListDeleteButton" destination="Pab-ok-kf3" id="lQl-gX-AZU"/>
+                <outlet property="shoppingListDiscountButton" destination="xdd-8s-uLC" id="qF7-CD-PXp"/>
+                <outlet property="shoppingListNumberDecreaseButton" destination="Yp9-gr-bYf" id="ypR-yz-rAF"/>
+                <outlet property="shoppingListNumberIncreaseButton" destination="chQ-xg-Yrv" id="LX1-VT-hvf"/>
+                <outlet property="shoppingListNumberLabel" destination="hJg-gD-JWv" id="XSY-hn-ePu"/>
+                <outlet property="shoppingListPriceLabel" destination="g3j-WL-bce" id="2rm-Oo-sqz"/>
             </connections>
-            <point key="canvasLocation" x="218.84057971014494" y="149.33035714285714"/>
+            <point key="canvasLocation" x="397.10144927536237" y="39.508928571428569"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="minus.square" catalog="system" width="128" height="114"/>
+        <image name="multiply.square.fill" catalog="system" width="128" height="114"/>
+        <image name="plus.square" catalog="system" width="128" height="114"/>
     </resources>
 </document>

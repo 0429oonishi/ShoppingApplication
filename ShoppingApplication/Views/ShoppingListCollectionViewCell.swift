@@ -1,12 +1,20 @@
 
 import UIKit
+import RealmSwift
 
 class ShoppingListCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var shoppingListTrashButton: UIButton!
-    @IBOutlet weak var shoppingListLabel: UILabel!
-    @IBOutlet weak var shoppingListTaxRateButton: UIButton!
-    @IBOutlet weak var shoppingListIncludeTaxOrNotButton: UIButton!
+    
+    @IBOutlet weak var shoppingListDeleteButton: UIButton!
+    @IBOutlet weak var shoppingListDiscountButton: UIButton!
+    @IBOutlet weak var shoppingListPriceLabel: UILabel!
+    @IBOutlet weak var shoppingListNumberDecreaseButton: UIButton!
+    @IBOutlet weak var shoppingListNumberIncreaseButton: UIButton!
+    @IBOutlet weak var shoppingListNumberLabel: UILabel!
+    
+    var realm = try! Realm()
+    var calculation = Calculation()
+    var objects: Results<Calculation>!
+    var indexPathRow = 0
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
@@ -17,33 +25,41 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        objects = realm.objects(Calculation.self)
     }
     
-    func setupCell() {
+//    @IBAction func tappedShoppingListDiscountButton(_ sender: UIButton) {
+//        
+//        
+//        
+//    }
+    
+    @IBAction func tappedShoppingListNumberDecreaseButton(_ sender: UIButton) {
+        if objects[sender.tag].shoppingListNumber > 1 {
+            try! realm.write {
+                objects[sender.tag].shoppingListNumber -= 1
+            }
+        }
+        shoppingListNumberLabel.text = "×\(objects[sender.tag].shoppingListNumber)"
+    }
+    
+    @IBAction func tappedShoppingListNumberIncreaseButton(_ sender: UIButton) {
+        try! realm.write {
+            objects[sender.tag].shoppingListNumber += 1
+        }
+        shoppingListNumberLabel.text = "×\(objects[sender.tag].shoppingListNumber)"
+    }
+    
+    func setupCell(object: Calculation) {
+        shoppingListPriceLabel.text = "\(addComma(object.calculationPrice))円"
+        shoppingListNumberLabel.text = "×\(object.shoppingListNumber)"
+
         layer.cornerRadius = 30
         layer.borderColor = themeColor.cgColor
         layer.borderWidth = 2
     }
     
-    @IBAction func tappedShoppingListTrashButton(_ sender: Any) {
-    }
-    
-    @IBAction func tappedShoppingListTaxRateButton(_ sender: Any) {
-        if shoppingListTaxRateButton.currentTitle == "10%" {
-            shoppingListTaxRateButton.setTitle("8%", for: .normal)
-        }else {
-            shoppingListTaxRateButton.setTitle("10%", for: .normal)
-        }
-    }
-    
-    @IBAction func tappedShoppingListIncludeTaxOrNotButton(_ sender: Any) {
-        if shoppingListIncludeTaxOrNotButton.currentTitle == "税込" {
-            shoppingListIncludeTaxOrNotButton.setTitle("税抜", for: .normal)
-        }else {
-            shoppingListIncludeTaxOrNotButton.setTitle("税込", for: .normal)
-        }
-    }
+   
     
     private func addComma(_ wantToAddCommaString: String) -> String {
         let numberFormatter = NumberFormatter()
