@@ -1,29 +1,21 @@
-//
-//  Place.swift
-//  ShoppingApplication
-//
-//  Created by 大西玲音 on 2021/01/08.
-//
 
-import UIKit
+import Foundation
 
-class Place: UIViewController {
+class Place: Decodable {
+    let results: [PlaceResults]
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class PlaceResults: Decodable {
+    let geometry: Geometry
+    let name: String
+    let vicinity: String
+}
 
-        // Do any additional setup after loading the view.
-    }
-    
+class Geometry: Decodable {
+    let location: Location
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+class Location: Decodable {
+    let lat: Double
+    let lng: Double
 }

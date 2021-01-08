@@ -77,5 +77,7 @@
 	<string>Light</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-5791981660348332~1898998313</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>現在位置の表示や、ルート案内を行うために位置情報を利用します。</string>
 </dict>
 </plist>

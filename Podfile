@@ -10,4 +10,5 @@ target 'ShoppingApplication' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Firebase/AdMob'
+  pod 'Alamofire', '~> 5.2'
 end

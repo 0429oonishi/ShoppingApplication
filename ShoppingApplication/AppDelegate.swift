@@ -1,7 +1,9 @@
 
 import UIKit
 import Firebase
+import GoogleMaps
 import GoogleMobileAds
+import GooglePlaces
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sleep(1)
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GMSPlacesClient.provideAPIKey("AIzaSyA6zhP2dUBGYTQl1dJ8pjSJoyk67KnQil8")
+        GMSServices.provideAPIKey("AIzaSyA15EOFQw3HMJqU6NB9I0KSx6bxdaOq-zU")
         return true
     }
 

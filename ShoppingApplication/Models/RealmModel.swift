@@ -12,5 +12,5 @@ class Calculation: Object {
     @objc dynamic var calculationPrice: String = ""
     @objc dynamic var calculationDeleteFlag: Bool = false
     @objc dynamic var shoppingListNumber: Int = 1
-    @objc dynamic var shoppingListDiscount: String = ""
+    @objc dynamic var shoppingListDiscount: Int = 0
 }

@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.1)
   - Firebase/AdMob (7.3.0):
     - Firebase/CoreOnly
     - Google-Mobile-Ads-SDK (~> 7.66)
@@ -62,6 +63,7 @@ PODS:
     - Realm (= 5.1.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.2)
   - Firebase/AdMob
   - GoogleMaps
   - GooglePlaces
@@ -69,6 +71,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
@@ -85,6 +88,7 @@ SPEC REPOS:
     - RealmSwift
 
 SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
   FirebaseCoreDiagnostics: d50e11039e5984d92c8a512be2395f13df747350
@@ -100,6 +104,6 @@ SPEC CHECKSUMS:
   Realm: bdea546851e37b4cf0a2400cef115c7c26fda488
   RealmSwift: 70945aa168db93b215c460e9c8ef680261aa28af
 
-PODFILE CHECKSUM: c29525ddf22abcc96742d59fabd6373151e1ae1a
+PODFILE CHECKSUM: e0599474656bdbefa6347b59bc29e4c852a83afb
 
 COCOAPODS: 1.10.0
