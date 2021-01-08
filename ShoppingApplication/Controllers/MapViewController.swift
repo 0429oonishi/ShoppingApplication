@@ -6,19 +6,6 @@ import Alamofire
 
 class MapViewController: UIViewController {
     
-    @IBOutlet weak var mapSearchBar: UISearchBar! {
-        didSet {
-            mapSearchBar.delegate = self
-            mapSearchBar.backgroundImage = UIImage()
-            mapSearchBar.layer.cornerRadius = mapSearchBar.bounds.height / 2
-            mapSearchBar.layer.borderWidth = 2
-            mapSearchBar.layer.borderColor = UIColor.white.cgColor
-            mapSearchBar.layer.shadowColor = UIColor.black.cgColor
-            mapSearchBar.layer.shadowOffset = CGSize(width: 3, height: 3)
-            mapSearchBar.layer.shadowRadius = 4
-            mapSearchBar.layer.shadowOpacity = 0.8
-        }
-    }
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
@@ -33,6 +20,19 @@ class MapViewController: UIViewController {
     private var userLocationLng: Double = 139.7670594
     private let mapApiKey = "AIzaSyA6zhP2dUBGYTQl1dJ8pjSJoyk67KnQil8"
     private let mapBaseUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+    @IBOutlet weak var mapSearchBar: UISearchBar! {
+        didSet {
+            mapSearchBar.delegate = self
+            mapSearchBar.backgroundImage = UIImage()
+            mapSearchBar.layer.cornerRadius = mapSearchBar.bounds.height / 2
+            mapSearchBar.layer.borderWidth = 2
+            mapSearchBar.layer.borderColor = UIColor.white.cgColor
+            mapSearchBar.layer.shadowColor = UIColor.black.cgColor
+            mapSearchBar.layer.shadowOffset = CGSize(width: 3, height: 3)
+            mapSearchBar.layer.shadowRadius = 4
+            mapSearchBar.layer.shadowOpacity = 0.8
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,7 +9,7 @@ class ToBuyListViewController: UIViewController {
     private var toggleKeyboardFlag = true
     private var numberOfToBuy = 1
     private var realm = try! Realm()
-    var objects: Results<ToBuyList>!
+    private var objects: Results<ToBuyList>!
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
@@ -142,11 +142,6 @@ class ToBuyListViewController: UIViewController {
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-    
-    @IBAction func tappedHowToUseToBuyListButton(_ sender: Any) {
-        
-    }
-    
     
     @IBAction func toBuyListClearAll(_ sender: Any) {
         if objects.count != 0 {
