@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "HowToUseToBuyListImage3-2.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "HowToUseToBuyListImage3-1.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "HowToUseToBuyListImage3.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
