@@ -44,9 +44,10 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell(object: Calculation) {
-        shoppingListPriceLabel.text = "\(addComma(object.calculationPrice))円"
+        shoppingListPriceLabel.text = "\(addComma(String(object.calculationPrice)))円"
         shoppingListNumberLabel.text = "×\(object.shoppingListNumber)"
 
+        shoppingListDeleteButton.tintColor = themeColor
         layer.cornerRadius = 30
         layer.borderColor = themeColor.cgColor
         layer.borderWidth = 2

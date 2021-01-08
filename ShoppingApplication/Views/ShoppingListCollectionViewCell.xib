@@ -25,10 +25,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FuC-a2-5F7">
-                        <rect key="frame" x="10" y="84" width="100" height="26"/>
+                        <rect key="frame" x="15" y="79" width="90" height="31"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yp9-gr-bYf">
-                                <rect key="frame" x="0.0" y="0.0" width="33.5" height="26"/>
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
                                     <imageReference key="image" image="minus.square" catalog="system" symbolScale="large" renderingMode="original"/>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chQ-xg-Yrv">
-                                <rect key="frame" x="33.5" y="0.0" width="33" height="26"/>
+                                <rect key="frame" x="30" y="0.0" width="30" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
                                     <imageReference key="image" image="plus.square" catalog="system" symbolScale="large" renderingMode="original"/>
@@ -48,24 +48,24 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-gD-JWv">
-                                <rect key="frame" x="66.5" y="0.0" width="33.5" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="60" y="0.0" width="30" height="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdd-8s-uLC">
-                        <rect key="frame" x="40" y="15" width="70" height="30"/>
+                        <rect key="frame" x="45" y="16.5" width="70" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Qov-gw-hIl"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="割引"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pab-ok-kf3">
-                        <rect key="frame" x="10" y="15" width="30" height="30"/>
+                        <rect key="frame" x="15" y="16.5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="1mA-JL-lcG"/>
                             <constraint firstAttribute="width" constant="30" id="D0i-Ua-o1U"/>
@@ -79,17 +79,17 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="Pab-ok-kf3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="052-UT-K0m"/>
-                <constraint firstAttribute="trailing" secondItem="xdd-8s-uLC" secondAttribute="trailing" constant="10" id="0Je-Zq-Ca7"/>
-                <constraint firstItem="Pab-ok-kf3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="2ur-Nt-XeW"/>
-                <constraint firstItem="FuC-a2-5F7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="8J2-Ry-Wan"/>
+                <constraint firstAttribute="trailing" secondItem="xdd-8s-uLC" secondAttribute="trailing" constant="5" id="0Je-Zq-Ca7"/>
+                <constraint firstItem="Pab-ok-kf3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="2ur-Nt-XeW"/>
+                <constraint firstItem="FuC-a2-5F7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="8J2-Ry-Wan"/>
                 <constraint firstItem="g3j-WL-bce" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8gA-lO-YgL"/>
                 <constraint firstAttribute="bottom" secondItem="FuC-a2-5F7" secondAttribute="bottom" constant="10" id="AKa-OR-wNM"/>
-                <constraint firstAttribute="trailing" secondItem="FuC-a2-5F7" secondAttribute="trailing" constant="10" id="PBK-xp-nB8"/>
-                <constraint firstItem="xdd-8s-uLC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="XsG-gX-H84"/>
+                <constraint firstAttribute="trailing" secondItem="FuC-a2-5F7" secondAttribute="trailing" constant="15" id="PBK-xp-nB8"/>
+                <constraint firstItem="g3j-WL-bce" firstAttribute="top" secondItem="Pab-ok-kf3" secondAttribute="bottom" id="dDC-5T-v5J"/>
                 <constraint firstItem="xdd-8s-uLC" firstAttribute="leading" secondItem="Pab-ok-kf3" secondAttribute="trailing" id="dKv-cR-fm7"/>
                 <constraint firstItem="g3j-WL-bce" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="m10-L3-hh3"/>
-                <constraint firstItem="FuC-a2-5F7" firstAttribute="top" secondItem="g3j-WL-bce" secondAttribute="bottom" constant="10" id="yAg-WT-aH7"/>
+                <constraint firstItem="FuC-a2-5F7" firstAttribute="top" secondItem="g3j-WL-bce" secondAttribute="bottom" constant="5" id="yAg-WT-aH7"/>
+                <constraint firstItem="g3j-WL-bce" firstAttribute="top" secondItem="xdd-8s-uLC" secondAttribute="bottom" id="zD3-xX-8Z2"/>
             </constraints>
             <size key="customSize" width="283" height="212"/>
             <connections>

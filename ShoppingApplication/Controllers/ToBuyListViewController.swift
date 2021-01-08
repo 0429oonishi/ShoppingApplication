@@ -25,7 +25,7 @@ class ToBuyListViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var toBuyRemainCountLabel: UILabel!
+    @IBOutlet weak var toBuyListRemainCountButton: UIBarButtonItem!
     @IBOutlet weak var toBuyListNavigationBar: UINavigationBar!
     @IBOutlet weak var toBuyListTableView: UITableView! {
         didSet {
@@ -53,7 +53,12 @@ class ToBuyListViewController: UIViewController {
         }
     }
     @IBOutlet weak var toBuyListToAddStepper: UIStepper! {
-        didSet { toBuyListToAddStepper.layer.cornerRadius = 8 }
+        didSet {
+            toBuyListToAddStepper.layer.cornerRadius = 8
+            toBuyListToAddStepper.layer.borderColor = UIColor.white.cgColor
+            toBuyListToAddStepper.layer.borderWidth = 2
+            toBuyListToAddStepper.backgroundColor = .white
+        }
     }
     @IBOutlet weak var toBuyListToAddNumberLabel: UILabel!
     @IBOutlet weak var toBuyListToAddButton: UIButton! {
@@ -71,6 +76,7 @@ class ToBuyListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         objects = realm.objects(ToBuyList.self)
+        toBuyListRemainCountButton.title = ""
         remainCount()
         operateKeyboard()
         addAdMobView()
@@ -137,6 +143,11 @@ class ToBuyListViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @IBAction func tappedHowToUseToBuyListButton(_ sender: Any) {
+        
+    }
+    
+    
     @IBAction func toBuyListClearAll(_ sender: Any) {
         if objects.count != 0 {
             let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
@@ -196,9 +207,9 @@ class ToBuyListViewController: UIViewController {
     
     private func remainCount() {
         if objects.count != 0 {
-            toBuyRemainCountLabel.text = "残り\(objects.count)個"
+            toBuyListRemainCountButton.title = "残り\(objects.count)個"
         }else {
-            toBuyRemainCountLabel.text = ""
+            toBuyListRemainCountButton.title = ""
         }
     }
 }
@@ -217,7 +228,7 @@ extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return toBuyListTableView.frame.height / 10
+        return 80
     }
 }
 
