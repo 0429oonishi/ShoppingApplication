@@ -5,7 +5,10 @@ import GoogleMobileAds
 
 class ToBuyListViewController: UIViewController {
     
-    private let toBuyListCellId = "toBuyListCellId"
+    private enum Id: String {
+        case cellId = "toBuyListCellId"
+        case adMobId = "ca-app-pub-5791981660348332/8471327283"
+    }
     private var toggleKeyboardFlag = true
     private var numberOfToBuy = 1
     private var realm = try! Realm()
@@ -30,7 +33,7 @@ class ToBuyListViewController: UIViewController {
         didSet {
             toBuyListTableView.delegate = self
             toBuyListTableView.dataSource = self
-            toBuyListTableView.register(UINib(nibName: "ToBuyListTableViewCell", bundle: nil), forCellReuseIdentifier: toBuyListCellId)
+            toBuyListTableView.register(UINib(nibName: "ToBuyListTableViewCell", bundle: nil), forCellReuseIdentifier: Id.cellId.rawValue)
         }
     }
     @IBOutlet weak var toBuyListToAddView: UIView! {
@@ -70,7 +73,6 @@ class ToBuyListViewController: UIViewController {
         }
     }
     @IBOutlet weak var adMobView: UIView!
-    private let adMobId = "ca-app-pub-5791981660348332/8471327283"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +111,7 @@ class ToBuyListViewController: UIViewController {
         var AdMobView = GADBannerView()
         AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
         AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
-        AdMobView.adUnitID = adMobId
+        AdMobView.adUnitID = Id.adMobId.rawValue
         AdMobView.rootViewController = self
         AdMobView.load(GADRequest())
         adMobView.addSubview(AdMobView)
@@ -210,7 +212,7 @@ extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as! ToBuyListTableViewCell
+        let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: Id.cellId.rawValue, for: indexPath) as! ToBuyListTableViewCell
         cell.indexPathRow = indexPath.row
         cell.setCell(object: objects[indexPath.row])
         return cell

@@ -5,9 +5,16 @@ import GoogleMobileAds
 
 class SettingViewController: UIViewController {
     
+    private enum Id: String {
+        case cellId = "settingCellId"
+        case adMobId = "ca-app-pub-5791981660348332/8471327283"
+    }
+    private enum Url: String {
+        case shareUrl = "https://itunes.apple.com/jp/app/id1548230056?mt=8"
+        case reportUrl = "https://docs.google.com/forms/d/1qFKDnISWjCZ8QyBpsGMaNX-wSQRw30NIJU5TQqUpsro/edit"
+    }
     private let sectionArray = ["一般", "サポート"]
     private let settingTableViewArray = [["テーマカラー変更"], ["このアプリを友達に紹介", "このアプリを評価", "ご意見、ご要望、不具合の報告"]]
-    private let settingCellId = "settingCellId"
     private let borderWidth: CGFloat = 2
     private var cellHeight: CGFloat = 90
     private var themeColor: UIColor {
@@ -29,15 +36,13 @@ class SettingViewController: UIViewController {
         didSet {
             settingTableView.delegate = self
             settingTableView.dataSource = self
-            settingTableView.register(UINib(nibName: "SettingTableViewCell", bundle: nil), forCellReuseIdentifier: settingCellId)
+            settingTableView.register(UINib(nibName: "SettingTableViewCell", bundle: nil), forCellReuseIdentifier: Id.cellId.rawValue)
             settingTableView.tableFooterView = UIView()
             settingTableView.isScrollEnabled = false
         }
     }
     @IBOutlet weak var adMobView: UIView!
-    
-    private let adMobId = "ca-app-pub-5791981660348332/8471327283"
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         addAdMobView()
@@ -54,7 +59,7 @@ class SettingViewController: UIViewController {
         var AdMobView = GADBannerView()
         AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
         AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
-        AdMobView.adUnitID = adMobId
+        AdMobView.adUnitID = Id.adMobId.rawValue
         AdMobView.rootViewController = self
         AdMobView.load(GADRequest())
         adMobView.addSubview(AdMobView)
@@ -68,7 +73,7 @@ class SettingViewController: UIViewController {
     
     private func introduceAppToFriend() {
         let shareText = "おすすめのお買い物アプリです！\n買うものチェックリストや合計金額をお会計の前に計算できる計算機、お店を探せるマップが一つのアプリで完結します！\n「お買い物アプリ - MyCal(マイカル)」"
-        let shareURL = URL(string: "https://itunes.apple.com/jp/app/id1548230056?mt=8")!
+        let shareURL = URL(string: Url.shareUrl.rawValue)!
         let activityItems = [shareText, shareURL] as [Any]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         present(activityVC, animated: true)
@@ -85,7 +90,7 @@ class SettingViewController: UIViewController {
     }
     
     private func reportAboutApp() {
-        guard let reportURL = URL(string: "https://docs.google.com/forms/d/1qFKDnISWjCZ8QyBpsGMaNX-wSQRw30NIJU5TQqUpsro/edit") else { return }
+        guard let reportURL = URL(string: Url.reportUrl.rawValue) else { return }
         if UIApplication.shared.canOpenURL(reportURL) {
             UIApplication.shared.open(reportURL as URL)
         }
@@ -99,7 +104,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingTableView.dequeueReusableCell(withIdentifier: settingCellId, for: indexPath) as! SettingTableViewCell
+        let cell = settingTableView.dequeueReusableCell(withIdentifier: Id.cellId.rawValue, for: indexPath) as! SettingTableViewCell
         cell.settingTitleLabel.text = settingTableViewArray[indexPath.section][indexPath.row]
         cell.settingSeparatorView.backgroundColor = borderColor
         return cell

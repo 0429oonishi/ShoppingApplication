@@ -6,20 +6,21 @@ import Alamofire
 
 class MapViewController: UIViewController {
     
+    private enum Parameter: String {
+        case apiKey = "AIzaSyA6zhP2dUBGYTQl1dJ8pjSJoyk67KnQil8"
+        case baseURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+    }
     private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .white
         }
+        return UIColor(code: themeColorString)
     }
     private var currentLocation = CLLocationManager()
     private var mapView = GMSMapView()
     private var placeResults = [PlaceResults]()
     private var userLocationLat: Double = 35.6812226
     private var userLocationLng: Double = 139.7670594
-    private let mapApiKey = "AIzaSyA6zhP2dUBGYTQl1dJ8pjSJoyk67KnQil8"
-    private let mapBaseUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     @IBOutlet weak var mapSearchBar: UISearchBar! {
         didSet {
             mapSearchBar.delegate = self
@@ -77,7 +78,8 @@ extension MapViewController: UISearchBarDelegate {
         mapSearchBar.resignFirstResponder()
         mapView.clear()
         let searchKeyword: String = searchBar.text!
-        let urlString = "\(mapBaseUrl)?location=\(userLocationLat),\(userLocationLng)&language=ja&radius=2000&keyword=\(searchKeyword)&key=\(mapApiKey)"
+        let urlString = "\(Parameter.baseURL.rawValue)?location=\(userLocationLat),\(userLocationLng)&language=ja&radius=2000&keyword=\(searchKeyword)&key=\(Parameter.apiKey.rawValue)"
+        print(Parameter.apiKey)
         guard let encodeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         let request = AF.request(encodeUrlString)
         request.responseJSON { [self] (response) in

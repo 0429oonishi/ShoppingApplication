@@ -2,7 +2,17 @@
 import UIKit
 
 class HowToUseToBuyListViewController: UIViewController {
-    
+    private enum Image: String {
+        case image1 = "HowToUseToBuyListImage1"
+        case image2 = "HowToUseToBuyListImage2"
+        case image3 = "HowToUseToBuyListImage3"
+        case image4 = "HowToUseToBuyListImage4"
+        case image5 = "HowToUseToBuyListImage5"
+    }
+    private enum ButtonText: String {
+        case next = "次へ"
+        case close = "閉じる"
+    }
     private var scrollView: UIScrollView!
     private var pageControl: UIPageControl!
     private var button1: UIButton!
@@ -53,11 +63,11 @@ class HowToUseToBuyListViewController: UIViewController {
         }else {
             imageHeight = height
         }
-        let imageView1 = setImage(x: width*0, y: 0, width: width, height: imageHeight, image: "HowToUseToBuyListImage1")
-        let imageView2 = setImage(x: width*1, y: 0, width: width, height: imageHeight, image: "HowToUseToBuyListImage2")
-        let imageView3 = setImage(x: width*2, y: 0, width: width, height: imageHeight, image: "HowToUseToBuyListImage3")
-        let imageView4 = setImage(x: width*3, y: 0, width: width, height: imageHeight, image: "HowToUseToBuyListImage4")
-        let imageView5 = setImage(x: width*4, y: 0, width: width, height: imageHeight, image: "HowToUseToBuyListImage5")
+        let imageView1 = setImage(x: width*0, y: 0, width: width, height: imageHeight, image: Image.image1.rawValue)
+        let imageView2 = setImage(x: width*1, y: 0, width: width, height: imageHeight, image: Image.image2.rawValue)
+        let imageView3 = setImage(x: width*2, y: 0, width: width, height: imageHeight, image: Image.image3.rawValue)
+        let imageView4 = setImage(x: width*3, y: 0, width: width, height: imageHeight, image: Image.image4.rawValue)
+        let imageView5 = setImage(x: width*4, y: 0, width: width, height: imageHeight, image: Image.image5.rawValue)
         scrollView.addSubview(imageView1)
         scrollView.addSubview(imageView2)
         scrollView.addSubview(imageView3)
@@ -85,23 +95,23 @@ class HowToUseToBuyListViewController: UIViewController {
     private func setupButtonAction() {
         let buttonSize: CGFloat = 50
         button1 = UIButton(frame: CGRect(x: width*1 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button1, CGFloat(buttonSize), "次へ", 1)
+        setupButton(button1, CGFloat(buttonSize), ButtonText.next.rawValue, 1)
         button1.addTarget(self, action: #selector(tappedNextButton1), for: .touchUpInside)
         
         button2 = UIButton(frame: CGRect(x: width*2 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button2, CGFloat(buttonSize), "次へ", 1)
+        setupButton(button2, CGFloat(buttonSize), ButtonText.next.rawValue, 1)
         button2.addTarget(self, action: #selector(tappedNextButton2), for: .touchUpInside)
         
         button3 = UIButton(frame: CGRect(x: width*3 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button3, CGFloat(buttonSize), "次へ", 1)
+        setupButton(button3, CGFloat(buttonSize), ButtonText.next.rawValue, 1)
         button3.addTarget(self, action: #selector(tappedNextButton3), for: .touchUpInside)
         
         button4 = UIButton(frame: CGRect(x: width*4 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button4, CGFloat(buttonSize), "次へ", 1)
+        setupButton(button4, CGFloat(buttonSize), ButtonText.next.rawValue, 1)
         button4.addTarget(self, action: #selector(tappedNextButton4), for: .touchUpInside)
         
         button5 = UIButton(frame: CGRect(x: width*5 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button5, CGFloat(buttonSize), "閉じる", 1)
+        setupButton(button5, CGFloat(buttonSize), ButtonText.close.rawValue, 1)
         button5.addTarget(self, action: #selector(tappedNextButton5), for: .touchUpInside)
     }
 

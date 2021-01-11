@@ -25,10 +25,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="FuC-a2-5F7">
-                        <rect key="frame" x="15" y="79" width="90" height="31"/>
+                        <rect key="frame" x="13" y="79" width="97" height="31"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yp9-gr-bYf">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="31"/>
+                                <rect key="frame" x="0.0" y="0.0" width="32.5" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
                                     <imageReference key="image" image="minus.square" catalog="system" symbolScale="large" renderingMode="original"/>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chQ-xg-Yrv">
-                                <rect key="frame" x="30" y="0.0" width="30" height="31"/>
+                                <rect key="frame" x="32.5" y="0.0" width="32" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal">
                                     <imageReference key="image" image="plus.square" catalog="system" symbolScale="large" renderingMode="original"/>
@@ -48,8 +48,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJg-gD-JWv">
-                                <rect key="frame" x="60" y="0.0" width="30" height="31"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="64.5" y="0.0" width="32.5" height="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -81,10 +81,10 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="xdd-8s-uLC" secondAttribute="trailing" constant="5" id="0Je-Zq-Ca7"/>
                 <constraint firstItem="Pab-ok-kf3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="2ur-Nt-XeW"/>
-                <constraint firstItem="FuC-a2-5F7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="8J2-Ry-Wan"/>
+                <constraint firstItem="FuC-a2-5F7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="13" id="8J2-Ry-Wan"/>
                 <constraint firstItem="g3j-WL-bce" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="8gA-lO-YgL"/>
                 <constraint firstAttribute="bottom" secondItem="FuC-a2-5F7" secondAttribute="bottom" constant="10" id="AKa-OR-wNM"/>
-                <constraint firstAttribute="trailing" secondItem="FuC-a2-5F7" secondAttribute="trailing" constant="15" id="PBK-xp-nB8"/>
+                <constraint firstAttribute="trailing" secondItem="FuC-a2-5F7" secondAttribute="trailing" constant="10" id="PBK-xp-nB8"/>
                 <constraint firstItem="g3j-WL-bce" firstAttribute="top" secondItem="Pab-ok-kf3" secondAttribute="bottom" id="dDC-5T-v5J"/>
                 <constraint firstItem="xdd-8s-uLC" firstAttribute="leading" secondItem="Pab-ok-kf3" secondAttribute="trailing" id="dKv-cR-fm7"/>
                 <constraint firstItem="g3j-WL-bce" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="m10-L3-hh3"/>
