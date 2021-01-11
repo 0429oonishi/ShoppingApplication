@@ -6,11 +6,10 @@ class SettingTableViewCell: UITableViewCell {
     @IBOutlet weak var settingTitleLabel: UILabel!
     @IBOutlet weak var settingSeparatorView: UIView!
     private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
         }
+        return UIColor(code: themeColorString)
     }
     
     override func awakeFromNib() {

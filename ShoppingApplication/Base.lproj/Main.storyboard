@@ -59,7 +59,7 @@
                                                     <segue destination="Fnf-oq-pEK" kind="presentation" id="VBP-dA-HrK"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="残り0個" style="plain" id="9F4-mO-MHJ">
+                                            <barButtonItem title="残り0個" id="9F4-mO-MHJ">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -169,8 +169,8 @@
                             <constraint firstItem="niG-YI-cWc" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="cuJ-Tm-sFI"/>
                             <constraint firstItem="PKc-a3-RxI" firstAttribute="trailing" secondItem="NUH-Xa-5bf" secondAttribute="trailing" id="r2S-Co-CRP"/>
                             <constraint firstItem="d2m-aN-1jj" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="tPZ-DQ-lbT"/>
+                            <constraint firstItem="d2m-aN-1jj" firstAttribute="top" secondItem="NUH-Xa-5bf" secondAttribute="bottom" id="tyh-q0-B6s"/>
                             <constraint firstItem="7S6-Ud-AeS" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="u2Z-G5-HKW"/>
-                            <constraint firstItem="d2m-aN-1jj" firstAttribute="top" secondItem="NUH-Xa-5bf" secondAttribute="bottom" id="yaZ-ZC-yCy"/>
                             <constraint firstItem="niG-YI-cWc" firstAttribute="trailing" secondItem="PKc-a3-RxI" secondAttribute="trailing" id="zCW-zn-Ock"/>
                         </constraints>
                     </view>
@@ -550,7 +550,7 @@
                                                     <segue destination="ed2-sO-2J2" kind="presentation" id="Nqv-Ai-9Nh"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="予算" style="plain" id="rxc-3J-PSq">
+                                            <barButtonItem title="予算" id="rxc-3J-PSq">
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <connections>
                                                     <action selector="tappedBudgetButton:" destination="6ug-Tz-NwM" id="Tgd-Hh-rW4"/>

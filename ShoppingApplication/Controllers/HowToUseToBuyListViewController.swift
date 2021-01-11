@@ -14,11 +14,10 @@ class HowToUseToBuyListViewController: UIViewController {
     private var height: CGFloat { UIScreen.main.bounds.height }
     private let pageSize: CGFloat = 5
     private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
         }
+        return UIColor(code: themeColorString)
     }
     
     override func viewDidLoad() {
@@ -47,7 +46,7 @@ class HowToUseToBuyListViewController: UIViewController {
         self.view.addSubview(pageControl)
     }
     
-    private func setupImage() {        
+    private func setupImage() {
         var imageHeight: CGFloat = 0
         if height > 800 {
             imageHeight = height - 130
@@ -139,3 +138,5 @@ extension HowToUseToBuyListViewController: UIScrollViewDelegate {
         pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }
+
+

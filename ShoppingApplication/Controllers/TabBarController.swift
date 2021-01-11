@@ -3,11 +3,10 @@ import UIKit
 class TabBarController: UITabBarController {
     
     private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
         }
+        return UIColor(code: themeColorString)
     }
     
     override func viewDidLoad() {

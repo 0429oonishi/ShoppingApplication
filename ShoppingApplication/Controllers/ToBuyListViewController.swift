@@ -10,19 +10,18 @@ class ToBuyListViewController: UIViewController {
     private var numberOfToBuy = 1
     private var realm = try! Realm()
     private var objects: Results<ToBuyList>!
+    private var toBuyListToken: NotificationToken!
     private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .white
         }
+        return UIColor(code: themeColorString)
     }
     private var borderColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
         }
+        return UIColor(code: themeColorString)
     }
     
     @IBOutlet weak var toBuyListRemainCountButton: UIBarButtonItem!
@@ -76,10 +75,17 @@ class ToBuyListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         objects = realm.objects(ToBuyList.self)
-        toBuyListRemainCountButton.title = ""
-        remainCount()
         operateKeyboard()
         addAdMobView()
+        
+        toBuyListToken = objects.observe { [self] (notification) in
+            toBuyListRemainCountButton.title = ""
+            if objects.count != 0 {
+                toBuyListRemainCountButton.title = "残り\(objects.count)個"
+            }else {
+                toBuyListRemainCountButton.title = ""
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +132,7 @@ class ToBuyListViewController: UIViewController {
             UIView.animate(withDuration: 0.1) {
                 self.toBuyListToAddView.transform = CGAffineTransform(translationX: 0, y: -distance)
             }
-            toggleKeyboardFlag = false
+            toggleKeyboardFlag = !toggleKeyboardFlag
         }
     }
     
@@ -135,7 +141,7 @@ class ToBuyListViewController: UIViewController {
             UIView.animate(withDuration: 0.1) {
                 self.toBuyListToAddView.transform = .identity
             }
-            toggleKeyboardFlag = true
+            toggleKeyboardFlag = !toggleKeyboardFlag
         }
     }
     
@@ -146,13 +152,12 @@ class ToBuyListViewController: UIViewController {
     @IBAction func toBuyListClearAll(_ sender: Any) {
         if objects.count != 0 {
             let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
-            let alertDefaultAction = UIAlertAction(title: "メモを消去する", style: .default) { (_) in
-                try! self.realm.write {
-                    let checkObjects = self.realm.objects(ToBuyList.self).filter("toBuyListCheckFlag == true")
-                    self.realm.delete(checkObjects)
+            let alertDefaultAction = UIAlertAction(title: "メモを消去する", style: .default) { [self] (_) in
+                try! realm.write {
+                    let checkObjects = realm.objects(ToBuyList.self).filter("toBuyListCheckFlag == true")
+                    realm.delete(checkObjects)
                 }
-                self.remainCount()
-                self.toBuyListTableView.reloadData()
+                toBuyListTableView.reloadData()
             }
             let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
                 self.dismiss(animated: true, completion: nil)
@@ -164,12 +169,12 @@ class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func toggleKeyboard(_ sender: Any) {
-        UIView.animate(withDuration: 0.1) {
-            if self.toggleKeyboardFlag {
-                let distance = self.view.frame.maxY - self.toBuyListToAddView.frame.minY
-                self.toBuyListToAddView.transform = CGAffineTransform(translationX: 0, y: distance)
+        UIView.animate(withDuration: 0.1) { [self] in
+            if toggleKeyboardFlag {
+                let distance = view.frame.maxY - toBuyListToAddView.frame.minY
+                toBuyListToAddView.transform = CGAffineTransform(translationX: 0, y: distance)
             }else {
-                self.toBuyListToAddView.transform = .identity
+                toBuyListToAddView.transform = .identity
             }
         }
     }
@@ -181,31 +186,20 @@ class ToBuyListViewController: UIViewController {
     
     @IBAction func tappedToBuyListToAddButton(_ sender: Any) {
         if toBuyListToAddTextField.text != "" {
-            if let text = toBuyListToAddTextField.text {
-                let toBuyList = ToBuyList()
-                toBuyList.toBuyListName = text
-                toBuyList.toBuyListNumber = numberOfToBuy
-                toBuyList.toBuyListCheckFlag = false
-                try! realm.write {
-                    realm.add(toBuyList)
-                }
-                toBuyListTableView.reloadData()
+            guard let text = toBuyListToAddTextField.text else { return }
+            let toBuyList = ToBuyList()
+            toBuyList.toBuyListName = text
+            toBuyList.toBuyListNumber = numberOfToBuy
+            toBuyList.toBuyListCheckFlag = false
+            try! realm.write {
+                realm.add(toBuyList)
             }
+            toBuyListTableView.reloadData()
         }
-        
-        remainCount()
         toBuyListToAddTextField.text = ""
         toBuyListToAddNumberLabel.text = "1"
         toBuyListToAddStepper.value = 1
         numberOfToBuy = 1
-    }
-    
-    private func remainCount() {
-        if objects.count != 0 {
-            toBuyListRemainCountButton.title = "残り\(objects.count)個"
-        }else {
-            toBuyListRemainCountButton.title = ""
-        }
     }
 }
 
@@ -231,7 +225,6 @@ extension ToBuyListViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
-        return true
     }
     
 }

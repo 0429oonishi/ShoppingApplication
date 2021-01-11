@@ -68,8 +68,7 @@ class SettingViewController: UIViewController {
     
     private func introduceAppToFriend() {
         let shareText = "おすすめのお買い物アプリです！\n買うものチェックリストや合計金額をお会計の前に計算できる計算機、お店を探せるマップが一つのアプリで完結します！\n「お買い物アプリ - MyCal(マイカル)」"
-        //アップストアのURLにかえる
-        let shareURL = URL(string: "AppStoreURL")!
+        let shareURL = URL(string: "https://itunes.apple.com/jp/app/id1548230056?mt=8")!
         let activityItems = [shareText, shareURL] as [Any]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         present(activityVC, animated: true)

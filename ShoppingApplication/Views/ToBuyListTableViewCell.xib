@@ -77,7 +77,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="numberOfToBuyLabel" destination="F61-XU-7La" id="kWq-lT-Pri"/>
-                <outlet property="separatorView" destination="HEH-95-eSk" id="R1H-gf-6TQ"/>
+                <outlet property="separatorView" destination="HEH-95-eSk" id="xTu-9t-i9Y"/>
                 <outlet property="toBuyListCellCheckButton" destination="h2c-6x-Nzn" id="txT-cC-aQX"/>
                 <outlet property="toBuyListCellTitleLabel" destination="SQK-mE-FT3" id="hiY-MH-W6o"/>
             </connections>

@@ -2,6 +2,11 @@
 import UIKit
 import RealmSwift
 
+enum CellButtonImage: String {
+    case circle = "circle"
+    case checkmark = "checkmark"
+}
+
 class ToBuyListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var toBuyListCellTitleLabel: UILabel!
@@ -10,23 +15,21 @@ class ToBuyListTableViewCell: UITableViewCell {
     @IBOutlet weak var separatorView: UIView!
     private var realm = try! Realm()
     private var toBuyList = ToBuyList()
-    var objects: Results<ToBuyList>!
+    private var objects: Results<ToBuyList>!
     var indexPathRow: Int = 0 {
         didSet { cancelStrikethrough() }
     }
     private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
         }
+        return UIColor(code: themeColorString)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         objects = realm.objects(ToBuyList.self)
         selectionStyle = .none
-        separatorView.backgroundColor = themeColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,9 +38,9 @@ class ToBuyListTableViewCell: UITableViewCell {
     
     @IBAction func tappedToBuyListCellCheckButton(_ sender: Any) {
         if !objects[indexPathRow].toBuyListCheckFlag {
-            setToBuyListCellButtonImage("checkmark")
+            setToBuyListCellButtonImage(CellButtonImage.checkmark.rawValue)
         }else {
-            setToBuyListCellButtonImage("circle")
+            setToBuyListCellButtonImage(CellButtonImage.circle.rawValue)
         }
         try! realm.write {
             objects[indexPathRow].toBuyListCheckFlag = !objects[indexPathRow].toBuyListCheckFlag
@@ -49,24 +52,24 @@ class ToBuyListTableViewCell: UITableViewCell {
         toBuyListCellTitleLabel.text = object.toBuyListName
         numberOfToBuyLabel.text = "×\(object.toBuyListNumber)"
         if !object.toBuyListCheckFlag {
-            setToBuyListCellButtonImage("circle")
+            setToBuyListCellButtonImage(CellButtonImage.circle.rawValue)
         }else {
-            setToBuyListCellButtonImage("checkmark")
+            setToBuyListCellButtonImage(CellButtonImage.checkmark.rawValue)
         }
     }
    
-    func setToBuyListCellButtonImage(_ imageName: String) {
+    private func setToBuyListCellButtonImage(_ imageName: String) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
         let image = UIImage(systemName: imageName, withConfiguration: largeConfig)
         toBuyListCellCheckButton.setImage(image, for: .normal)
-        if imageName == "circle" {
+        if imageName == CellButtonImage.circle.rawValue {
             cancelStrikethrough()
         }else {
             strikethrough()
         }
     }
     
-    func strikethrough() {
+    private func strikethrough() {
         guard let text = toBuyListCellTitleLabel.text else { return }
         let attributeString =  NSMutableAttributedString(string: text)
         attributeString.addAttribute(.font, value: UIFont.systemFont(ofSize: 25), range: NSMakeRange(0, attributeString.length))
@@ -74,7 +77,7 @@ class ToBuyListTableViewCell: UITableViewCell {
         toBuyListCellTitleLabel.attributedText = attributeString
     }
     
-    func cancelStrikethrough() {
+    private func cancelStrikethrough() {
         guard let text = toBuyListCellTitleLabel.text else { return }
         let attributeString =  NSMutableAttributedString(string: text)
         attributeString.removeAttribute(.font, range: NSMakeRange(0, attributeString.length))
