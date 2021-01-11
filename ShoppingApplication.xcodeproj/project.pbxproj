@@ -15,7 +15,6 @@
 		AB80719925A8BA3B00E1F550 /* HowToUseCalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */; };
 		AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */; };
 		AB8FCD7C25AC0D8A00B673F5 /* Pods_ShoppingApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C673B26F9789BCE661218BEE /* Pods_ShoppingApplication.framework */; };
-		AB8FCD7D25AC0D8A00B673F5 /* Pods_ShoppingApplication.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C673B26F9789BCE661218BEE /* Pods_ShoppingApplication.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
 		AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB97117125950FC600AAA0E1 /* Main.storyboard */; };
@@ -43,7 +42,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				AB32764125A167D500FB8C2F /* (null) in Embed Frameworks */,
-				AB8FCD7D25AC0D8A00B673F5 /* Pods_ShoppingApplication.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;

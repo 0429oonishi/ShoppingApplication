@@ -4,9 +4,17 @@ import RealmSwift
 
 class CalculationViewController: UIViewController {
     
+    private enum Tax: String {
+        case taxIncluded = "税込"
+        case taxExcluded = "税抜"
+    }
+    private enum TaxRate: String {
+        case ten = "10%"
+        case eight = "8%"
+    }
     private var totalPriceToken: NotificationToken!
     private var totalNumberToken: NotificationToken!
-    private var totalPriceInt = 0
+    private var totalPriceDouble: Double = 0.0
     private var objects: Results<Calculation>!
     private var realm = try! Realm()
     private var calculation = Calculation()
@@ -18,7 +26,6 @@ class CalculationViewController: UIViewController {
     }
     private var toggleKeyboardFlag = true
     private let shoppingListCellId = "shoppingListCellId"
-    private let totalPriceTaxKey = "totalPriceTaxKey"
     private let budgetKey = "budgetKey"
     private var pickerCompo1 = 0
     private var pickerCompo2 = 0
@@ -31,18 +38,16 @@ class CalculationViewController: UIViewController {
     private var budgetPickerArray = [Int](0...9)
     private var totalPriceLabelInt = 0
     private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .white
         }
+        return UIColor(code: themeColorString)
     }
     private var borderColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        }else {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
         }
+        return UIColor(code: themeColorString)
     }
     
     @IBOutlet weak var calculationRemainCountLabel: UILabel!
@@ -202,52 +207,50 @@ class CalculationViewController: UIViewController {
     }
     
     @IBAction func toggleKeyboard(_ sender: Any) {
-        if toggleKeyboardFlag {
-            UIView.animate(withDuration: 0.15) {
-                let distance = self.view.frame.maxY - self.calculatorPriceView.frame.minY
-                self.calculatorPriceView.transform = CGAffineTransform(translationX: 0, y: distance)
-                self.calculatorView.transform = CGAffineTransform(translationX: 0, y: distance)
-            }
-        }else {
-            UIView.animate(withDuration: 0.15) {
-                self.calculatorPriceView.transform = .identity
-                self.calculatorView.transform = .identity
+        UIView.animate(withDuration: 0.15) { [self] in
+            if toggleKeyboardFlag {
+                let distance = view.frame.maxY - calculatorPriceView.frame.minY
+                calculatorPriceView.transform = CGAffineTransform(translationX: 0, y: distance)
+                calculatorView.transform = CGAffineTransform(translationX: 0, y: distance)
+            }else {
+                calculatorPriceView.transform = .identity
+                calculatorView.transform = .identity
             }
         }
         toggleKeyboardFlag = !toggleKeyboardFlag
     }
     
     @IBAction func tappedTaxRateButton(_ sender: Any) {
-        if taxRateButton.currentTitle == "10%" {
-            taxRateButton.setTitle("8%", for: .normal)
-            if taxIncludeOrNotButton.currentTitle == "税抜" {
-                taxIncludeTaxRateLabel.text = "(8%)"
+        if taxRateButton.currentTitle == TaxRate.ten.rawValue {
+            taxRateButton.setTitle(TaxRate.eight.rawValue, for: .normal)
+            if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
+                taxIncludeTaxRateLabel.text = "(\(TaxRate.eight.rawValue))"
             }
             taxRate = 1.08
         }else {
-            taxRateButton.setTitle("10%", for: .normal)
-            if taxIncludeOrNotButton.currentTitle == "税抜" {
-                taxIncludeTaxRateLabel.text = "(10%)"
+            taxRateButton.setTitle(TaxRate.ten.rawValue, for: .normal)
+            if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
+                taxIncludeTaxRateLabel.text = "(\(TaxRate.ten.rawValue))"
             }
             taxRate = 1.10
         }
     }
     
     @IBAction func tappedTaxIncludeOrNotButton(_ sender: Any) {
-        if taxIncludeOrNotButton.currentTitle == "税込" {
-            taxIncludeOrNotButton.setTitle("税抜", for: .normal)
+        if taxIncludeOrNotButton.currentTitle == Tax.taxIncluded.rawValue {
+            taxIncludeOrNotButton.setTitle(Tax.taxExcluded.rawValue, for: .normal)
             if priceLabelString == "" {
-                taxIncludePriceLabel.text = "税込 0円"
+                taxIncludePriceLabel.text = "\(Tax.taxIncluded.rawValue) 0円"
             }else {
                 tappedTaxRateOrTaxIncludeOrNotButton()
             }
             if taxRate == 1.10 {
-                taxIncludeTaxRateLabel.text = "(10%)"
+                taxIncludeTaxRateLabel.text = "(\(TaxRate.ten.rawValue))"
             }else {
-                taxIncludeTaxRateLabel.text = "(8%)"
+                taxIncludeTaxRateLabel.text = "(\(TaxRate.eight.rawValue))"
             }
         }else {
-            taxIncludeOrNotButton.setTitle("税込", for: .normal)
+            taxIncludeOrNotButton.setTitle("\(Tax.taxIncluded.rawValue)", for: .normal)
             taxIncludePriceLabel.text = ""
             taxIncludeTaxRateLabel.text = ""
         }
@@ -273,15 +276,15 @@ class CalculationViewController: UIViewController {
     
     private func calculateTotalPrice() {
         totalPriceToken = objects.observe { [self] (notification) in
-            totalPriceInt = 0
+            totalPriceDouble = 0.0
             if objects.count != 0 {
                 for n in 0...objects.count - 1 {
-                    let totalPrice = Int(objects[n].calculationPrice)!
-                    let totalNumber = objects[n].shoppingListNumber
-                    let totalDiscount = objects[n].shoppingListDiscount
-                    totalPriceInt += totalPrice * (100 - totalDiscount) / 100 * totalNumber
+                    let totalPrice: Double = Double(objects[n].calculationPrice)!
+                    let totalNumber: Double = Double(objects[n].shoppingListNumber)
+                    let totalDiscount: Double = Double(objects[n].shoppingListDiscount)
+                    totalPriceDouble += totalPrice * (1 - totalDiscount / 100) * totalNumber
                 }
-                totalPriceLabel.text = "\(addComma(String(totalPriceInt)))円"
+                totalPriceLabel.text = "\(addComma(String(Int(totalPriceDouble))))円"
             }else {
                 totalPriceLabel.text = "0円"
             }
@@ -291,7 +294,7 @@ class CalculationViewController: UIViewController {
     private func calculateTotalNumber() {
         totalNumberToken = objects.observe { [self] (notification) in
             if objects.count != 0 {
-                var totalNumber = 0
+                var totalNumber  = 0
                 for n in 0...objects.count - 1 {
                     totalNumber += objects[n].shoppingListNumber
                 }
@@ -310,18 +313,18 @@ class CalculationViewController: UIViewController {
     
     private func tappedTaxRateOrTaxIncludeOrNotButton() {
         guard let  priceLabelDouble = Double(priceLabelString) else { return }
-        if taxIncludeOrNotButton.currentTitle == "税抜" {
+        if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
             let includeTaxPrice = priceLabelDouble * taxRate
             var includeTaxPriceString = String(Int(includeTaxPrice))
             includeTaxPriceString = addComma(includeTaxPriceString)
-            taxIncludePriceLabel.text = "税込 \(includeTaxPriceString)円"
+            taxIncludePriceLabel.text = "\(Tax.taxIncluded.rawValue) \(includeTaxPriceString)円"
         }
     }
     
     @IBAction func tappedCalculatorAddButton(_ sender: Any) {
         if priceLabelString != "" {
             let calculation = Calculation()
-            if taxIncludeOrNotButton.currentTitle == "税込" {
+            if taxIncludeOrNotButton.currentTitle == "\(Tax.taxIncluded.rawValue)" {
                 calculation.calculationPrice = priceLabelString
             }else {
                 guard let  priceLabelDouble = Double(priceLabelString) else { return }
@@ -358,8 +361,8 @@ class CalculationViewController: UIViewController {
         priceLabelString = ""
         priceLabel.text = "0"
         priceLabel.font = .systemFont(ofSize: 25)
-        if taxIncludeOrNotButton.currentTitle == "税抜" {
-            taxIncludePriceLabel.text = "税込 0円"
+        if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
+            taxIncludePriceLabel.text = "\(Tax.taxIncluded.rawValue) 0円"
         }
     }
     
