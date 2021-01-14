@@ -79,7 +79,7 @@ class ToBuyListViewController: UIViewController {
         objects = realm.objects(ToBuyList.self)
         operateKeyboard()
         addAdMobView()
-        
+
         toBuyListToken = objects.observe { [self] (notification) in
             toBuyListRemainCountButton.title = ""
             if objects.count != 0 {
@@ -88,6 +88,16 @@ class ToBuyListViewController: UIViewController {
                 toBuyListRemainCountButton.title = ""
             }
         }
+    }
+    
+    private func addAdMobView() {
+        var AdMobView = GADBannerView()
+        AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
+        AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
+        AdMobView.adUnitID = Id.adMobId.rawValue
+        AdMobView.rootViewController = self
+        AdMobView.load(GADRequest())
+        adMobView.addSubview(AdMobView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,16 +115,6 @@ class ToBuyListViewController: UIViewController {
             toBuyListToAddButton.layer.shadowColor = UIColor.white.cgColor
         }
         toBuyListTableView.reloadData()
-    }
-    
-    private func addAdMobView() {
-        var AdMobView = GADBannerView()
-        AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
-        AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
-        AdMobView.adUnitID = Id.adMobId.rawValue
-        AdMobView.rootViewController = self
-        AdMobView.load(GADRequest())
-        adMobView.addSubview(AdMobView)
     }
     
     private func operateKeyboard() {

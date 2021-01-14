@@ -14,7 +14,6 @@
 		AB80719725A8B9ED00E1F550 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719625A8B9ED00E1F550 /* Place.swift */; };
 		AB80719925A8BA3B00E1F550 /* HowToUseCalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */; };
 		AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */; };
-		AB8FCD7C25AC0D8A00B673F5 /* Pods_ShoppingApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C673B26F9789BCE661218BEE /* Pods_ShoppingApplication.framework */; };
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
 		AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB97117125950FC600AAA0E1 /* Main.storyboard */; };
@@ -32,6 +31,7 @@
 		AB9711CA2595B58D00AAA0E1 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */; };
 		AB9711CD2595BC8100AAA0E1 /* ThemeColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711CC2595BC8100AAA0E1 /* ThemeColorViewController.swift */; };
 		AB9711E72596CA5900AAA0E1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711E62596CA5900AAA0E1 /* TabBarController.swift */; };
+		F0F9906C409275E1DBC4D4FD /* Pods_ShoppingApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7B8E2DFA26FA08F771DC4 /* Pods_ShoppingApplication.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,14 +52,13 @@
 		18F3E129915F4B0509A221BD /* Pods-ShoppingApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApplication.debug.xcconfig"; path = "Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		AB211A37259BDF5E002DAFBF /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		AB32762525A1409200FB8C2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AB32762C25A1669B00FB8C2F /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleUtilities.xcframework/ios-armv7_arm64/GoogleUtilities.framework"; sourceTree = "<group>"; };
-		AB32762F25A166E800FB8C2F /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7/GoogleMobileAds.framework"; sourceTree = "<group>"; };
-		AB32763225A1670300FB8C2F /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/nanopb.xcframework/ios-armv7_arm64/nanopb.framework"; sourceTree = "<group>"; };
-		AB32763525A1672100FB8C2F /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
-		AB32763825A167C300FB8C2F /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_i386_x86_64-simulator/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		AB80719625A8B9ED00E1F550 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToUseCalculationViewController.swift; sourceTree = "<group>"; };
 		AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseToBuyListViewController.swift; sourceTree = "<group>"; };
+		AB8FCD8E25AD790C00B673F5 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7/GoogleMobileAds.framework"; sourceTree = "<group>"; };
+		AB8FCD9025AD791D00B673F5 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
+		AB8FCD9225AD793600B673F5 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleUtilities.xcframework/ios-armv7_arm64/GoogleUtilities.framework"; sourceTree = "<group>"; };
+		AB8FCD9425AD794300B673F5 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/nanopb.xcframework/ios-armv7_arm64/nanopb.framework"; sourceTree = "<group>"; };
 		AB97116825950FC600AAA0E1 /* ShoppingApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB97116B25950FC600AAA0E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +80,7 @@
 		AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-UIColor.swift"; sourceTree = "<group>"; };
 		AB9711E62596CA5900AAA0E1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B5DB2BBA3BF31377673DC6EB /* Pods-ShoppingApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApplication.release.xcconfig"; path = "Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication.release.xcconfig"; sourceTree = "<group>"; };
-		C673B26F9789BCE661218BEE /* Pods_ShoppingApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0F7B8E2DFA26FA08F771DC4 /* Pods_ShoppingApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8FCD7C25AC0D8A00B673F5 /* Pods_ShoppingApplication.framework in Frameworks */,
+				F0F9906C409275E1DBC4D4FD /* Pods_ShoppingApplication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,12 +107,11 @@
 		837793C86D2E9DE5A1DEDEF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AB32763825A167C300FB8C2F /* GoogleMobileAds.framework */,
-				AB32763525A1672100FB8C2F /* GoogleAppMeasurement.framework */,
-				AB32763225A1670300FB8C2F /* nanopb.framework */,
-				AB32762F25A166E800FB8C2F /* GoogleMobileAds.framework */,
-				AB32762C25A1669B00FB8C2F /* GoogleUtilities.framework */,
-				C673B26F9789BCE661218BEE /* Pods_ShoppingApplication.framework */,
+				AB8FCD9425AD794300B673F5 /* nanopb.framework */,
+				AB8FCD9225AD793600B673F5 /* GoogleUtilities.framework */,
+				AB8FCD9025AD791D00B673F5 /* GoogleAppMeasurement.framework */,
+				AB8FCD8E25AD790C00B673F5 /* GoogleMobileAds.framework */,
+				C0F7B8E2DFA26FA08F771DC4 /* Pods_ShoppingApplication.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -203,8 +201,8 @@
 				AB97116525950FC600AAA0E1 /* Frameworks */,
 				AB97116625950FC600AAA0E1 /* Resources */,
 				AB32763B25A167C300FB8C2F /* Embed Frameworks */,
-				2059D4F2CF3B7ABB58633F52 /* [CP] Embed Pods Frameworks */,
-				A3AF6E0F884F2120B3EDC28D /* [CP] Copy Pods Resources */,
+				F5C8AD4D509760B7F61DAF10 /* [CP] Embed Pods Frameworks */,
+				9C641B11E1C41136A9C2F2DD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,23 +263,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2059D4F2CF3B7ABB58633F52 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		78E8DE2BC5D45D4BB0362229 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,7 +285,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A3AF6E0F884F2120B3EDC28D /* [CP] Copy Pods Resources */ = {
+		9C641B11E1C41136A9C2F2DD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -319,6 +300,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5C8AD4D509760B7F61DAF10 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -424,6 +422,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -478,6 +477,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -507,6 +507,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = oonishireon.ShoppingApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -536,6 +537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = oonishireon.ShoppingApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

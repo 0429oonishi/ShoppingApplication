@@ -1,6 +1,5 @@
 
 import UIKit
-import Firebase
 import GoogleMaps
 import GoogleMobileAds
 import GooglePlaces
@@ -11,7 +10,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().isTranslucent = false
         sleep(1)
-        FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         GMSPlacesClient.provideAPIKey("AIzaSyA6zhP2dUBGYTQl1dJ8pjSJoyk67KnQil8")
         GMSServices.provideAPIKey("AIzaSyA15EOFQw3HMJqU6NB9I0KSx6bxdaOq-zU")

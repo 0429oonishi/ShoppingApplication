@@ -148,11 +148,11 @@
                                     <constraint firstItem="Pat-1W-e81" firstAttribute="top" secondItem="5sC-ju-xJN" secondAttribute="bottom" constant="30" id="zkC-rm-N3h"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUH-Xa-5bf">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP7-lX-T1T">
                                 <rect key="frame" x="0.0" y="88" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="evd-vw-8fj"/>
+                                    <constraint firstAttribute="height" constant="50" id="aUi-lZ-T1k"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -162,14 +162,14 @@
                             <constraint firstItem="PKc-a3-RxI" firstAttribute="trailing" secondItem="d2m-aN-1jj" secondAttribute="trailing" id="5Pe-57-re8"/>
                             <constraint firstItem="PKc-a3-RxI" firstAttribute="bottom" secondItem="7S6-Ud-AeS" secondAttribute="bottom" id="8N7-WN-e4D"/>
                             <constraint firstItem="PKc-a3-RxI" firstAttribute="bottom" secondItem="d2m-aN-1jj" secondAttribute="bottom" id="ICt-gP-jXM"/>
-                            <constraint firstItem="NUH-Xa-5bf" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="OD1-9f-Exk"/>
+                            <constraint firstItem="d2m-aN-1jj" firstAttribute="top" secondItem="gP7-lX-T1T" secondAttribute="bottom" id="MDL-Tv-VVY"/>
                             <constraint firstItem="PKc-a3-RxI" firstAttribute="trailing" secondItem="7S6-Ud-AeS" secondAttribute="trailing" id="Ovy-nS-aft"/>
+                            <constraint firstItem="gP7-lX-T1T" firstAttribute="top" secondItem="niG-YI-cWc" secondAttribute="bottom" id="Ppf-g4-maY"/>
                             <constraint firstItem="niG-YI-cWc" firstAttribute="top" secondItem="PKc-a3-RxI" secondAttribute="top" id="RcH-Gr-p8G"/>
-                            <constraint firstItem="NUH-Xa-5bf" firstAttribute="top" secondItem="niG-YI-cWc" secondAttribute="bottom" id="TjK-yt-35H"/>
+                            <constraint firstItem="gP7-lX-T1T" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="Slb-UR-haB"/>
                             <constraint firstItem="niG-YI-cWc" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="cuJ-Tm-sFI"/>
-                            <constraint firstItem="PKc-a3-RxI" firstAttribute="trailing" secondItem="NUH-Xa-5bf" secondAttribute="trailing" id="r2S-Co-CRP"/>
+                            <constraint firstItem="gP7-lX-T1T" firstAttribute="trailing" secondItem="PKc-a3-RxI" secondAttribute="trailing" id="jJb-1J-bGB"/>
                             <constraint firstItem="d2m-aN-1jj" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="tPZ-DQ-lbT"/>
-                            <constraint firstItem="d2m-aN-1jj" firstAttribute="top" secondItem="NUH-Xa-5bf" secondAttribute="bottom" id="tyh-q0-B6s"/>
                             <constraint firstItem="7S6-Ud-AeS" firstAttribute="leading" secondItem="PKc-a3-RxI" secondAttribute="leading" id="u2Z-G5-HKW"/>
                             <constraint firstItem="niG-YI-cWc" firstAttribute="trailing" secondItem="PKc-a3-RxI" secondAttribute="trailing" id="zCW-zn-Ock"/>
                         </constraints>
@@ -177,7 +177,7 @@
                     <tabBarItem key="tabBarItem" title="メモ" image="square.and.pencil" catalog="system" id="Ocy-Ea-kFr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="adMobView" destination="NUH-Xa-5bf" id="4LA-cO-LQN"/>
+                        <outlet property="adMobView" destination="gP7-lX-T1T" id="KB4-8l-mdZ"/>
                         <outlet property="toBuyListNavigationBar" destination="niG-YI-cWc" id="hIu-LX-bZS"/>
                         <outlet property="toBuyListRemainCountButton" destination="9F4-mO-MHJ" id="tO2-g3-1BG"/>
                         <outlet property="toBuyListTableView" destination="d2m-aN-1jj" id="Ql4-kD-hHT"/>
