@@ -2,12 +2,10 @@
 import UIKit
 import GoogleMobileAds
 
-class ThemeColorViewController: UIViewController {
-    
-    private enum Id: String {
-        case cellId = "themeColorCellId"
-        case adMobId = "ca-app-pub-5791981660348332/8471327283"
-    }
+final class ThemeColorViewController: UIViewController {
+
+    private let CELL_ID = "themeColorCellId"
+    private let AD_MOB_ID = "ca-app-pub-5791981660348332/8471327283"
     @IBOutlet weak var themeColorNavigationBar: UINavigationBar! {
         didSet { themeColorNavigationBar.tintColor = .black }
     }
@@ -43,7 +41,7 @@ class ThemeColorViewController: UIViewController {
         var AdMobView = GADBannerView()
         AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
         AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
-        AdMobView.adUnitID = Id.adMobId.rawValue
+        AdMobView.adUnitID = AD_MOB_ID
         AdMobView.rootViewController = self
         AdMobView.load(GADRequest())
         adMobView.addSubview(AdMobView)
@@ -71,7 +69,7 @@ extension ThemeColorViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = themeColorCollectionView.dequeueReusableCell(withReuseIdentifier: Id.cellId.rawValue, for: indexPath)
+        let cell = themeColorCollectionView.dequeueReusableCell(withReuseIdentifier: CELL_ID, for: indexPath)
         cell.layer.cornerRadius = CGFloat(cellSize/2)
         cell.backgroundColor = themeColorArray[indexPath.row]
         return cell

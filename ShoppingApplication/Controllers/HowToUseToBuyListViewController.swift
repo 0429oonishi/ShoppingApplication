@@ -1,7 +1,7 @@
 
 import UIKit
 
-class HowToUseToBuyListViewController: UIViewController {
+final class HowToUseToBuyListViewController: UIViewController {
     private enum Image: String {
         case image1 = "HowToUseToBuyListImage1"
         case image2 = "HowToUseToBuyListImage2"

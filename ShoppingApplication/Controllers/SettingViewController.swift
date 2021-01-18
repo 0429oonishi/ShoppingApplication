@@ -3,16 +3,15 @@ import UIKit
 import StoreKit
 import GoogleMobileAds
 
-class SettingViewController: UIViewController {
+final class SettingViewController: UIViewController {
     
-    private enum Id: String {
-        case cellId = "settingCellId"
-        case adMobId = "ca-app-pub-5791981660348332/8471327283"
-    }
     private enum Url: String {
         case shareUrl = "https://itunes.apple.com/jp/app/id1548230056?mt=8"
         case reportUrl = "https://docs.google.com/forms/d/1qFKDnISWjCZ8QyBpsGMaNX-wSQRw30NIJU5TQqUpsro/edit"
     }
+    private let CELL_ID = String(describing: SettingTableViewCell.self)
+    private let CELL_NIB_NAME = "SettingTableViewCell"
+    private let AD_MOB_ID = "ca-app-pub-5791981660348332/8471327283"
     private let sectionArray = ["一般", "サポート"]
     private let settingTableViewArray = [["テーマカラー変更"], ["このアプリを友達に紹介", "このアプリを評価", "ご意見、ご要望、不具合の報告"]]
     private let borderWidth: CGFloat = 2
@@ -36,7 +35,8 @@ class SettingViewController: UIViewController {
         didSet {
             settingTableView.delegate = self
             settingTableView.dataSource = self
-            settingTableView.register(UINib(nibName: "SettingTableViewCell", bundle: nil), forCellReuseIdentifier: Id.cellId.rawValue)
+            let cellNIB = UINib(nibName: CELL_NIB_NAME, bundle: nil)
+            settingTableView.register(cellNIB, forCellReuseIdentifier: CELL_ID)
             settingTableView.tableFooterView = UIView()
             settingTableView.isScrollEnabled = false
         }
@@ -59,7 +59,7 @@ class SettingViewController: UIViewController {
         var AdMobView = GADBannerView()
         AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
         AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
-        AdMobView.adUnitID = Id.adMobId.rawValue
+        AdMobView.adUnitID = AD_MOB_ID
         AdMobView.rootViewController = self
         AdMobView.load(GADRequest())
         adMobView.addSubview(AdMobView)
@@ -104,9 +104,13 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = settingTableView.dequeueReusableCell(withIdentifier: Id.cellId.rawValue, for: indexPath) as! SettingTableViewCell
-        cell.settingTitleLabel.text = settingTableViewArray[indexPath.section][indexPath.row]
-        cell.settingSeparatorView.backgroundColor = borderColor
+        guard
+            let cell = settingTableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as? SettingTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        let text = settingTableViewArray[indexPath.section][indexPath.row]
+        cell.setupCell(text: text)
         return cell
     }
     

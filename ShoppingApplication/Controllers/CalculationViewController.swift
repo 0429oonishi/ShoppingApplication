@@ -2,7 +2,7 @@
 import UIKit
 import RealmSwift
 
-class CalculationViewController: UIViewController {
+final class CalculationViewController: UIViewController {
     
     private enum Tax: String {
         case taxIncluded = "税込"
@@ -25,7 +25,8 @@ class CalculationViewController: UIViewController {
         didSet { tappedTaxRateOrTaxIncludeOrNotButton() }
     }
     private var toggleKeyboardFlag = true
-    private let shoppingListCellId = "shoppingListCellId"
+    private let CELL_ID = String(describing: ShoppingListCollectionViewCell.self)
+    private let CELL_NIB_NAME = String(describing: ShoppingListCollectionViewCell.self)
     private let budgetKey = "budgetKey"
     private var pickerCompo1 = 0
     private var pickerCompo2 = 0
@@ -58,8 +59,8 @@ class CalculationViewController: UIViewController {
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var shoppingListCollectionView: UICollectionView! {
         didSet {
-            let nibName = UINib(nibName: "ShoppingListCollectionViewCell", bundle: nil)
-            shoppingListCollectionView.register(nibName, forCellWithReuseIdentifier: shoppingListCellId)
+            let nibName = UINib(nibName: CELL_NIB_NAME, bundle: nil)
+            shoppingListCollectionView.register(nibName, forCellWithReuseIdentifier: CELL_ID)
             shoppingListCollectionView.delegate = self
             shoppingListCollectionView.dataSource = self
         }
@@ -427,7 +428,7 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: shoppingListCellId, for: indexPath) as! ShoppingListCollectionViewCell
+        let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: CELL_ID, for: indexPath) as! ShoppingListCollectionViewCell
         
         cell.setupCell(object: objects[indexPath.row])
         

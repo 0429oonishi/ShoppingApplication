@@ -1,6 +1,6 @@
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     
     private var themeColor: UIColor {
         guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {

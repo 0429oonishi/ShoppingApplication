@@ -3,8 +3,8 @@ import UIKit
 
 class SettingTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var settingTitleLabel: UILabel!
-    @IBOutlet weak var settingSeparatorView: UIView!
+    @IBOutlet private weak var settingTitleLabel: UILabel!
+    @IBOutlet private weak var settingSeparatorView: UIView!
     private var themeColor: UIColor {
         guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
@@ -20,6 +20,10 @@ class SettingTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func setupCell(text: String) {
+        settingTitleLabel.text = text
     }
     
 }
