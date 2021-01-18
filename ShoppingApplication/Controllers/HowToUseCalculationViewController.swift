@@ -1,7 +1,7 @@
 
 import UIKit
 
-class HowToUseCalculationViewController: UIViewController {
+final class HowToUseCalculationViewController: UIViewController {
     private enum Image: String {
         case image1 = "HowToUseCalculationImage1"
         case image2 = "HowToUseCalculationImage2"

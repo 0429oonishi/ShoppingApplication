@@ -116,6 +116,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB8A683D25B5366300D08D16 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		AB97115F25950FC600AAA0E1 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +145,7 @@
 		AB97116A25950FC600AAA0E1 /* ShoppingApplication */ = {
 			isa = PBXGroup;
 			children = (
+				AB8A683D25B5366300D08D16 /* Extension */,
 				AB9711C32595B4A600AAA0E1 /* Models */,
 				AB971190259511A900AAA0E1 /* Views */,
 				AB9711822595116600AAA0E1 /* Controllers */,
@@ -184,7 +193,6 @@
 			children = (
 				AB211A37259BDF5E002DAFBF /* RealmModel.swift */,
 				AB80719625A8B9ED00E1F550 /* Place.swift */,
-				AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

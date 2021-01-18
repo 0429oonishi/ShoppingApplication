@@ -4,7 +4,7 @@ import GoogleMaps
 import GooglePlaces
 import Alamofire
 
-class MapViewController: UIViewController {
+final class MapViewController: UIViewController {
     
     private enum Parameter: String {
         case apiKey = "AIzaSyA6zhP2dUBGYTQl1dJ8pjSJoyk67KnQil8"

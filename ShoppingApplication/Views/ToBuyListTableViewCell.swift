@@ -2,17 +2,15 @@
 import UIKit
 import RealmSwift
 
-enum CellButtonImage: String {
-    case circle = "circle"
-    case checkmark = "checkmark"
-}
-
 class ToBuyListTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var toBuyListCellTitleLabel: UILabel!
-    @IBOutlet weak var toBuyListCellCheckButton: UIButton!
-    @IBOutlet weak var numberOfToBuyLabel: UILabel!
-    @IBOutlet weak var separatorView: UIView!
+    private enum CellButtonImage: String {
+        case circle = "circle"
+        case checkmark = "checkmark"
+    }
+    @IBOutlet private weak var toBuyListCellTitleLabel: UILabel!
+    @IBOutlet private weak var toBuyListCellCheckButton: UIButton!
+    @IBOutlet private weak var numberOfToBuyLabel: UILabel!
+    @IBOutlet private weak var separatorView: UIView!
     private var realm = try! Realm()
     private var toBuyList = ToBuyList()
     private var objects: Results<ToBuyList>!

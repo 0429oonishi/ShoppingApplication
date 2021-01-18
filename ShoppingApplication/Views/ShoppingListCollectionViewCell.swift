@@ -11,9 +11,9 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var shoppingListNumberIncreaseButton: UIButton!
     @IBOutlet weak var shoppingListNumberLabel: UILabel!
     
-    var realm = try! Realm()
-    var calculation = Calculation()
-    var objects: Results<Calculation>!
+    private var realm = try! Realm()
+    private var calculation = Calculation()
+    private var objects: Results<Calculation>!
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
@@ -46,14 +46,11 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     func setupCell(object: Calculation) {
         shoppingListPriceLabel.text = "\(addComma(String(object.calculationPrice)))円"
         shoppingListNumberLabel.text = "×\(object.shoppingListNumber)"
-
         shoppingListDeleteButton.tintColor = themeColor
         layer.cornerRadius = 30
         layer.borderColor = themeColor.cgColor
         layer.borderWidth = 2
     }
-    
-   
     
     private func addComma(_ wantToAddCommaString: String) -> String {
         let numberFormatter = NumberFormatter()
