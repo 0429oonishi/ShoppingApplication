@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="342" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQK-mE-FT3">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQK-mE-FT3">
                         <rect key="frame" x="57" y="2" width="215" height="64"/>
                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                         <nil key="textColor"/>
@@ -37,7 +37,7 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                         </state>
                         <connections>
-                            <action selector="tappedToBuyListCellCheckButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u5M-VI-G8I"/>
+                            <action selector="cellCheckButtonDidTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u5M-VI-G8I"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F61-XU-7La">
@@ -76,10 +76,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cellCheckButton" destination="h2c-6x-Nzn" id="txT-cC-aQX"/>
+                <outlet property="cellTitleLabel" destination="SQK-mE-FT3" id="hiY-MH-W6o"/>
                 <outlet property="numberOfToBuyLabel" destination="F61-XU-7La" id="kWq-lT-Pri"/>
                 <outlet property="separatorView" destination="HEH-95-eSk" id="xTu-9t-i9Y"/>
-                <outlet property="toBuyListCellCheckButton" destination="h2c-6x-Nzn" id="txT-cC-aQX"/>
-                <outlet property="toBuyListCellTitleLabel" destination="SQK-mE-FT3" id="hiY-MH-W6o"/>
             </connections>
             <point key="canvasLocation" x="-62.318840579710148" y="141.29464285714286"/>
         </tableViewCell>

@@ -5,7 +5,6 @@ import RealmSwift
 //themeColorを共通化
 //adMobViewをViewに切り分け
 //realmの処理を切り分ける
-//
 
 final class ToBuyListViewController: UIViewController {
     
@@ -127,14 +126,14 @@ final class ToBuyListViewController: UIViewController {
         let toBuyViewMaxY = addView.frame.maxY
         let keyboardMinY = keyboardFrame.minY
         let distance = toBuyViewMaxY - keyboardMinY
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.2) {
             self.addView.transform = CGAffineTransform(translationX: 0, y: -distance)
         }
         isKeyboardAppeared = !isKeyboardAppeared
     }
     
     @objc func hideKeyboard() {
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.2) {
             self.addView.transform = .identity
         }
         isKeyboardAppeared = !isKeyboardAppeared
@@ -152,7 +151,7 @@ final class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func toggleKeyboardButtonDidTapped(_ sender: Any) {
-        UIView.animate(withDuration: 0.1) { [self] in
+        UIView.animate(withDuration: 0.2) { [self] in
             let distance = self.view.frame.maxY - addView.frame.minY
             addView.transform = isAddViewAppeared ? CGAffineTransform(translationX: 0, y: distance) : .identity
             isAddViewAppeared = !isAddViewAppeared
@@ -169,7 +168,7 @@ final class ToBuyListViewController: UIViewController {
             let toBuyList = ToBuyList()
             toBuyList.toBuyListName = text
             toBuyList.toBuyListNumber = numberOfToBuy
-            toBuyList.isToBuyListCheck = false
+            toBuyList.isButtonChecked = false
             try! realm.write {
                 realm.add(toBuyList)
             }
@@ -184,7 +183,7 @@ final class ToBuyListViewController: UIViewController {
         let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "メモを消去する", style: .destructive) { [self] (_) in
             try! realm.write {
-                let checkObjects = realm.objects(ToBuyList.self).filter("isToBuyListCheck == true")
+                let checkObjects = realm.objects(ToBuyList.self).filter("isButtonChecked == true")
                 realm.delete(checkObjects)
             }
             tableView.reloadData()
@@ -220,7 +219,7 @@ extension ToBuyListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let object = objects[indexPath.row]
-        cell.setCell(object: object)
+        cell.setupCell(object: object)
         cell.index = indexPath.row
         return cell
     }

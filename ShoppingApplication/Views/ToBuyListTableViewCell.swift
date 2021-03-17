@@ -2,15 +2,24 @@
 import UIKit
 import RealmSwift
 
+//themeColorを共通化
+//realmの処理を切り分ける
+
 class ToBuyListTableViewCell: UITableViewCell {
-    private enum CellButtonImage: String {
-        case circle = "circle"
-        case checkmark = "checkmark"
+    private enum CellButtonType {
+        case circle
+        case checkmark
+        var imageName: String {
+            switch self {
+            case .circle: return "circle"
+            case .checkmark: return "checkmark"
+            }
+        }
     }
-    @IBOutlet private weak var toBuyListCellTitleLabel: UILabel!
-    @IBOutlet private weak var toBuyListCellCheckButton: UIButton!
-    @IBOutlet private weak var numberOfToBuyLabel: UILabel!
-    @IBOutlet private weak var separatorView: UIView!
+    @IBOutlet weak private var cellTitleLabel: UILabel!
+    @IBOutlet weak private var cellCheckButton: UIButton!
+    @IBOutlet weak private var numberOfToBuyLabel: UILabel!
+    @IBOutlet weak private var separatorView: UIView!
     private var realm = try! Realm()
     private var toBuyList = ToBuyList()
     private var objects: Results<ToBuyList>!
@@ -27,56 +36,42 @@ class ToBuyListTableViewCell: UITableViewCell {
         objects = realm.objects(ToBuyList.self)
         selectionStyle = .none
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
-    @IBAction func tappedToBuyListCellCheckButton(_ sender: Any) {
-        if !objects[index].isToBuyListCheck {
-            setToBuyListCellButtonImage(CellButtonImage.checkmark.rawValue)
-        }else {
-            setToBuyListCellButtonImage(CellButtonImage.circle.rawValue)
-        }
+    @IBAction func cellCheckButtonDidTapped(_ sender: Any) {
+        let buttonType: CellButtonType = objects[index].isButtonChecked ? .circle : .checkmark
+        setImageToCellCheckButton(buttonType)
         try! realm.write {
-            objects[index].isToBuyListCheck = !objects[index].isToBuyListCheck
+            objects[index].isButtonChecked = !objects[index].isButtonChecked
         }
     }
     
-    func setCell(object: ToBuyList) {
+    func setupCell(object: ToBuyList) {
         separatorView.backgroundColor = themeColor
-        toBuyListCellTitleLabel.text = object.toBuyListName
+        cellTitleLabel.text = object.toBuyListName
         numberOfToBuyLabel.text = "×\(object.toBuyListNumber)"
-        if !object.isToBuyListCheck {
-            setToBuyListCellButtonImage(CellButtonImage.circle.rawValue)
-        }else {
-            setToBuyListCellButtonImage(CellButtonImage.checkmark.rawValue)
-        }
+        let buttonType: CellButtonType = object.isButtonChecked ? .checkmark : .circle
+        setImageToCellCheckButton(buttonType)
     }
    
-    private func setToBuyListCellButtonImage(_ imageName: String) {
+    private func setImageToCellCheckButton(_ imageType: CellButtonType) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        let image = UIImage(systemName: imageName, withConfiguration: largeConfig)
-        toBuyListCellCheckButton.setImage(image, for: .normal)
-        if imageName == CellButtonImage.circle.rawValue {
-            cancelStrikethrough()
-        }else {
-            strikethrough()
-        }
+        let image = UIImage(systemName: imageType.imageName, withConfiguration: largeConfig)
+        cellCheckButton.setImage(image, for: .normal)
+        imageType == .circle ? cancelStrikethrough() : strikethrough()
     }
     
     private func strikethrough() {
-        guard let text = toBuyListCellTitleLabel.text else { return }
+        guard let text = cellTitleLabel.text else { return }
         let attributeString =  NSMutableAttributedString(string: text)
         attributeString.addAttribute(.font, value: UIFont.systemFont(ofSize: 25), range: NSMakeRange(0, attributeString.length))
         attributeString.addAttributes([.foregroundColor : UIColor.gray, .strikethroughStyle: 2], range: NSMakeRange(0, text.count))
-        toBuyListCellTitleLabel.attributedText = attributeString
+        cellTitleLabel.attributedText = attributeString
     }
     
     private func cancelStrikethrough() {
-        guard let text = toBuyListCellTitleLabel.text else { return }
+        guard let text = cellTitleLabel.text else { return }
         let attributeString =  NSMutableAttributedString(string: text)
         attributeString.removeAttribute(.font, range: NSMakeRange(0, attributeString.length))
-        toBuyListCellTitleLabel.attributedText = attributeString
+        cellTitleLabel.attributedText = attributeString
     }
 }

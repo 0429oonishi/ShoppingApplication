@@ -5,7 +5,7 @@ import RealmSwift
 class ToBuyList: Object {
     @objc dynamic var toBuyListName: String = ""
     @objc dynamic var toBuyListNumber: Int = 0
-    @objc dynamic var isToBuyListCheck: Bool = false
+    @objc dynamic var isButtonChecked: Bool = false
 }
 
 class Calculation: Object {
