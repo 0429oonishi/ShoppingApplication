@@ -79,7 +79,7 @@ final class ToBuyListViewController: UIViewController {
         objects = realm.objects(ToBuyList.self)
         operateKeyboard()
         addAdMobView()
-
+        
         toBuyListToken = objects.observe { [self] (notification) in
             toBuyListRemainCountButton.title = ""
             if objects.count != 0 {

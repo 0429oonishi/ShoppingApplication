@@ -272,7 +272,9 @@ final class CalculationViewController: UIViewController {
             present(alert, animated: true)
             return
         }
-        reflectToLabel(button: button[sender.tag])
+        if !(priceLabelString == "" && sender.tag == 0) {
+            reflectToLabel(button: button[sender.tag])
+        }
     }
     
     private func calculateTotalPrice() {

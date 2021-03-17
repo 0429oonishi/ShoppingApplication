@@ -15,7 +15,6 @@ class SettingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        settingSeparatorView.backgroundColor = themeColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,6 +23,7 @@ class SettingTableViewCell: UITableViewCell {
     
     func setupCell(text: String) {
         settingTitleLabel.text = text
+        settingSeparatorView.backgroundColor = themeColor
     }
     
 }
