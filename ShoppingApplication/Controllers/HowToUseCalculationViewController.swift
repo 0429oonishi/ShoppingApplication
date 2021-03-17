@@ -113,42 +113,42 @@ final class HowToUseCalculationViewController: UIViewController {
         let buttonSize: CGFloat = 50
         button1 = UIButton(frame: CGRect(x: width*1 - 80, y: 30, width: buttonSize, height: buttonSize))
         setupButton(button: button1, buttonSize: buttonSize, buttonTextType: .next, page: 1)
-        button1.addTarget(self, action: #selector(tappedNextButton1), for: .touchUpInside)
+        button1.addTarget(self, action: #selector(button1DidTapped), for: .touchUpInside)
         
         button2 = UIButton(frame: CGRect(x: width*2 - 80, y: 30, width: buttonSize, height: buttonSize))
         setupButton(button: button2, buttonSize: buttonSize, buttonTextType: .next, page: 2)
-        button2.addTarget(self, action: #selector(tappedNextButton2), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(button2DidTapped), for: .touchUpInside)
         
         button3 = UIButton(frame: CGRect(x: width*3 - 80, y: 30, width: buttonSize, height: buttonSize))
         setupButton(button: button3, buttonSize: buttonSize, buttonTextType: .next, page: 3)
-        button3.addTarget(self, action: #selector(tappedNextButton3), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(button3DidTapped), for: .touchUpInside)
         
         button4 = UIButton(frame: CGRect(x: width*4 - 80, y: 30, width: buttonSize, height: buttonSize))
         setupButton(button: button4, buttonSize: buttonSize, buttonTextType: .next, page: 4)
-        button4.addTarget(self, action: #selector(tappedNextButton4), for: .touchUpInside)
+        button4.addTarget(self, action: #selector(button4DidTapped), for: .touchUpInside)
         
         button5 = UIButton(frame: CGRect(x: width*5 - 80, y: 30, width: buttonSize, height: buttonSize))
         setupButton(button: button5, buttonSize: buttonSize, buttonTextType: .close, page: 5)
-        button5.addTarget(self, action: #selector(tappedNextButton5), for: .touchUpInside)
+        button5.addTarget(self, action: #selector(button5DidTapped), for: .touchUpInside)
     }
 
-    @objc func tappedNextButton1() {
+    @objc func button1DidTapped() {
         scrollToPage(page: 1)
     }
     
-    @objc func tappedNextButton2() {
+    @objc func button2DidTapped() {
         scrollToPage(page: 2)
     }
     
-    @objc func tappedNextButton3() {
+    @objc func button3DidTapped() {
         scrollToPage(page: 3)
     }
     
-    @objc func tappedNextButton4() {
+    @objc func button4DidTapped() {
         scrollToPage(page: 4)
     }
     
-    @objc func tappedNextButton5() {
+    @objc func button5DidTapped() {
         dismiss(animated: true)
     }
     
