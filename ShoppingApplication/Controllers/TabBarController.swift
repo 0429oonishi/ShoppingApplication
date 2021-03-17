@@ -1,5 +1,7 @@
 import UIKit
 
+//themeColorを共通化
+
 final class TabBarController: UITabBarController {
     
     private var themeColor: UIColor {
@@ -7,10 +9,6 @@ final class TabBarController: UITabBarController {
             return .black
         }
         return UIColor(code: themeColorString)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
