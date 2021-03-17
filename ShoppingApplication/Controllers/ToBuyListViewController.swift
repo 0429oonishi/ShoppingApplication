@@ -5,14 +5,14 @@ import GoogleMobileAds
 
 final class ToBuyListViewController: UIViewController {
     
-    private let CELL_ID = String(describing: ToBuyListTableViewCell.self)
-    private let CELL_NIB_NAME = "ToBuyListTableViewCell"
-    private let AD_MOB_ID = "ca-app-pub-5791981660348332/8471327283"
-    private var toggleKeyboardFlag = true
+    private let toBuyListCellId = String(describing: ToBuyListTableViewCell.self)
+    private let toBuyListCellNibName = "ToBuyListTableViewCell"
+    private let AdMobId = "ca-app-pub-5791981660348332/8471327283"
+    private var isKeyboardAppeared = true
     private var numberOfToBuy = 1
     private var realm = try! Realm()
     private var objects: Results<ToBuyList>!
-    private var toBuyListToken: NotificationToken!
+    private var token: NotificationToken!
     private var themeColor: UIColor {
         guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .white
@@ -26,66 +26,68 @@ final class ToBuyListViewController: UIViewController {
         return UIColor(code: themeColorString)
     }
     
-    @IBOutlet weak var toBuyListRemainCountButton: UIBarButtonItem!
-    @IBOutlet weak var toBuyListNavigationBar: UINavigationBar!
-    @IBOutlet weak var toBuyListTableView: UITableView! {
+    @IBOutlet weak private var remainCountButton: UIBarButtonItem!
+    @IBOutlet weak private var navigationBar: UINavigationBar!
+    @IBOutlet weak private var tableView: UITableView! {
         didSet {
-            toBuyListTableView.delegate = self
-            toBuyListTableView.dataSource = self
-            let cellNIB = UINib(nibName: CELL_NIB_NAME, bundle: nil)
-            toBuyListTableView.register(cellNIB, forCellReuseIdentifier: CELL_ID)
+            let cellNIB = UINib(nibName: toBuyListCellNibName, bundle: nil)
+            tableView.register(cellNIB, forCellReuseIdentifier: toBuyListCellId)
         }
     }
-    @IBOutlet weak var toBuyListToAddView: UIView! {
+    @IBOutlet weak private var addView: UIView! {
         didSet {
-            toBuyListToAddView.layer.borderWidth = 2
-            toBuyListToAddView.layer.borderColor = UIColor.white.cgColor
-            toBuyListToAddView.layer.shadowColor = UIColor.black.cgColor
-            toBuyListToAddView.layer.shadowOffset = CGSize(width: 5, height: -2)
-            toBuyListToAddView.layer.shadowRadius = 5
-            toBuyListToAddView.layer.shadowOpacity = 0.8
+            addView.layer.borderWidth = 2
+            addView.layer.borderColor = UIColor.white.cgColor
+            addView.layer.shadowColor = UIColor.black.cgColor
+            addView.layer.shadowOffset = CGSize(width: 5, height: -2)
+            addView.layer.shadowRadius = 5
+            addView.layer.shadowOpacity = 0.8
         }
     }
-    @IBOutlet weak var toBuyListToAddTextField: UITextField! {
+    @IBOutlet weak private var addTextField: UITextField! {
         didSet {
-            toBuyListToAddTextField.delegate = self
-            toBuyListToAddTextField.layer.masksToBounds = true
-            toBuyListToAddTextField.layer.borderWidth = 1
-            toBuyListToAddTextField.layer.cornerRadius = 10
+            addTextField.layer.masksToBounds = true
+            addTextField.layer.borderWidth = 1
+            addTextField.layer.cornerRadius = 10
         }
     }
-    @IBOutlet weak var toBuyListToAddStepper: UIStepper! {
+    @IBOutlet weak private var addStepper: UIStepper! {
         didSet {
-            toBuyListToAddStepper.layer.cornerRadius = 8
-            toBuyListToAddStepper.layer.borderColor = UIColor.white.cgColor
-            toBuyListToAddStepper.layer.borderWidth = 2
-            toBuyListToAddStepper.backgroundColor = .white
+            addStepper.layer.cornerRadius = 8
+            addStepper.layer.borderColor = UIColor.white.cgColor
+            addStepper.layer.borderWidth = 2
+            addStepper.backgroundColor = .white
         }
     }
-    @IBOutlet weak var toBuyListToAddNumberLabel: UILabel!
-    @IBOutlet weak var toBuyListToAddButton: UIButton! {
+    @IBOutlet weak private var addNumberLabel: UILabel!
+    @IBOutlet private weak var addButton: UIButton! {
         didSet {
-            toBuyListToAddButton.layer.borderWidth = 1
-            toBuyListToAddButton.layer.cornerRadius = 10
-            toBuyListToAddButton.layer.shadowOffset = CGSize(width: 1, height: 1)
-            toBuyListToAddButton.layer.shadowRadius = 2
-            toBuyListToAddButton.layer.shadowOpacity = 1
+            addButton.layer.borderWidth = 1
+            addButton.layer.cornerRadius = 10
+            addButton.layer.shadowOffset = CGSize(width: 1, height: 1)
+            addButton.layer.shadowRadius = 2
+            addButton.layer.shadowOpacity = 1
         }
     }
-    @IBOutlet weak var adMobView: UIView!
+    @IBOutlet weak private var adMobView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        addTextField.delegate = self
+
         objects = realm.objects(ToBuyList.self)
         operateKeyboard()
         addAdMobView()
         
-        toBuyListToken = objects.observe { [self] (notification) in
-            toBuyListRemainCountButton.title = ""
+        token = objects.observe { [self] (notification) in
+            remainCountButton.title = ""
             if objects.count != 0 {
-                toBuyListRemainCountButton.title = "残り\(objects.count)個"
-            }else {
-                toBuyListRemainCountButton.title = ""
+                remainCountButton.title = "残り\(objects.count)個"
+            } else {
+                remainCountButton.title = ""
             }
         }
     }
@@ -94,7 +96,7 @@ final class ToBuyListViewController: UIViewController {
         var AdMobView = GADBannerView()
         AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
         AdMobView.frame.size = CGSize(width: self.view.frame.size.width, height: adMobView.frame.size.height)
-        AdMobView.adUnitID = AD_MOB_ID
+        AdMobView.adUnitID = AdMobId
         AdMobView.rootViewController = self
         AdMobView.load(GADRequest())
         adMobView.addSubview(AdMobView)
@@ -103,18 +105,18 @@ final class ToBuyListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.backgroundColor = themeColor
-        toBuyListNavigationBar.barTintColor = themeColor
-        toBuyListToAddView.backgroundColor = themeColor
-        toBuyListToAddButton.backgroundColor = themeColor
-        toBuyListToAddTextField.layer.borderColor = borderColor.cgColor
-        if toBuyListToAddButton.backgroundColor == .white {
-            toBuyListToAddButton.layer.borderColor = UIColor.black.cgColor
-            toBuyListToAddButton.layer.shadowColor = UIColor.black.cgColor
-        }else {
-            toBuyListToAddButton.layer.borderColor = UIColor.white.cgColor
-            toBuyListToAddButton.layer.shadowColor = UIColor.white.cgColor
+        navigationBar.barTintColor = themeColor
+        addView.backgroundColor = themeColor
+        addButton.backgroundColor = themeColor
+        addTextField.layer.borderColor = borderColor.cgColor
+        if addButton.backgroundColor == .white {
+            addButton.layer.borderColor = UIColor.black.cgColor
+            addButton.layer.shadowColor = UIColor.black.cgColor
+        }  else {
+            addButton.layer.borderColor = UIColor.white.cgColor
+            addButton.layer.shadowColor = UIColor.white.cgColor
         }
-        toBuyListTableView.reloadData()
+        tableView.reloadData()
     }
     
     private func operateKeyboard() {
@@ -127,23 +129,23 @@ final class ToBuyListViewController: UIViewController {
     
     @objc func showKeyboard(notification: Notification) {
         guard let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue else { return }
-        let toBuyViewMaxY = toBuyListToAddView.frame.maxY
+        let toBuyViewMaxY = addView.frame.maxY
         let keyboardMinY = keyboardFrame.minY
         let distance = toBuyViewMaxY - keyboardMinY
-        if toggleKeyboardFlag {
+        if isKeyboardAppeared {
             UIView.animate(withDuration: 0.1) {
-                self.toBuyListToAddView.transform = CGAffineTransform(translationX: 0, y: -distance)
+                self.addView.transform = CGAffineTransform(translationX: 0, y: -distance)
             }
-            toggleKeyboardFlag = !toggleKeyboardFlag
+            isKeyboardAppeared = !isKeyboardAppeared
         }
     }
     
     @objc func hideKeyboard() {
-        if !toggleKeyboardFlag {
+        if !isKeyboardAppeared {
             UIView.animate(withDuration: 0.1) {
-                self.toBuyListToAddView.transform = .identity
+                self.addView.transform = .identity
             }
-            toggleKeyboardFlag = !toggleKeyboardFlag
+            isKeyboardAppeared = !isKeyboardAppeared
         }
     }
     
@@ -151,15 +153,16 @@ final class ToBuyListViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @IBAction func toBuyListClearAll(_ sender: Any) {
+    @IBAction func clearAllButtonDidTapped(_ sender: Any) {
         if objects.count != 0 {
             let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
             let alertDefaultAction = UIAlertAction(title: "メモを消去する", style: .default) { [self] (_) in
                 try! realm.write {
+                    //toBuyListCheckFlagは変わらないことに注意
                     let checkObjects = realm.objects(ToBuyList.self).filter("toBuyListCheckFlag == true")
                     realm.delete(checkObjects)
                 }
-                toBuyListTableView.reloadData()
+                tableView.reloadData()
             }
             let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
                 self.dismiss(animated: true, completion: nil)
@@ -170,25 +173,25 @@ final class ToBuyListViewController: UIViewController {
         }
     }
     
-    @IBAction func toggleKeyboard(_ sender: Any) {
+    @IBAction func toggleKeyboardButtonDidTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.1) { [self] in
-            if toggleKeyboardFlag {
-                let distance = view.frame.maxY - toBuyListToAddView.frame.minY
-                toBuyListToAddView.transform = CGAffineTransform(translationX: 0, y: distance)
-            }else {
-                toBuyListToAddView.transform = .identity
+            if isKeyboardAppeared {
+                let distance = view.frame.maxY - addView.frame.minY
+                addView.transform = CGAffineTransform(translationX: 0, y: distance)
+            } else {
+                addView.transform = .identity
             }
         }
     }
     
-    @IBAction func tappedToBuyListToAddStepper(_ sender: UIStepper) {
+    @IBAction func addStepperDidTapped(_ sender: UIStepper) {
         numberOfToBuy = Int(sender.value)
-        toBuyListToAddNumberLabel.text = String(numberOfToBuy)
+        addNumberLabel.text = String(numberOfToBuy)
     }
     
-    @IBAction func tappedToBuyListToAddButton(_ sender: Any) {
-        if toBuyListToAddTextField.text != "" {
-            guard let text = toBuyListToAddTextField.text else { return }
+    @IBAction func addButtonDidTapped(_ sender: Any) {
+        if addTextField.text != "" {
+            guard let text = addTextField.text else { return }
             let toBuyList = ToBuyList()
             toBuyList.toBuyListName = text
             toBuyList.toBuyListNumber = numberOfToBuy
@@ -196,24 +199,32 @@ final class ToBuyListViewController: UIViewController {
             try! realm.write {
                 realm.add(toBuyList)
             }
-            toBuyListTableView.reloadData()
+            tableView.reloadData()
         }
-        toBuyListToAddTextField.text = ""
-        toBuyListToAddNumberLabel.text = "1"
-        toBuyListToAddStepper.value = 1
+        addTextField.text = ""
+        addNumberLabel.text = "1"
+        addStepper.value = 1
         numberOfToBuy = 1
     }
 }
 
-extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ToBuyListViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
+}
+
+extension ToBuyListViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = toBuyListTableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as? ToBuyListTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as? ToBuyListTableViewCell
         else {
             return UITableViewCell()
         }
@@ -223,9 +234,6 @@ extension ToBuyListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
 }
 
 extension ToBuyListViewController: UITextFieldDelegate {

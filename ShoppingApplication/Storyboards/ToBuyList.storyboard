@@ -43,12 +43,12 @@
                                         <rightBarButtonItems>
                                             <barButtonItem image="keyboard.chevron.compact.down" catalog="system" id="Ktp-wS-GJE">
                                                 <connections>
-                                                    <action selector="toggleKeyboard:" destination="lwl-mK-bGX" id="x3N-bo-lTw"/>
+                                                    <action selector="toggleKeyboardButtonDidTapped:" destination="lwl-mK-bGX" id="x3N-bo-lTw"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem image="trash.fill" catalog="system" id="6eC-6E-L3q">
                                                 <connections>
-                                                    <action selector="toBuyListClearAll:" destination="lwl-mK-bGX" id="cTP-Vj-viA"/>
+                                                    <action selector="clearAllButtonDidTapped:" destination="lwl-mK-bGX" id="cTP-Vj-viA"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -90,7 +90,7 @@
                                         <rect key="frame" x="30" y="100" width="94" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="tappedToBuyListToAddStepper:" destination="lwl-mK-bGX" eventType="valueChanged" id="Otj-a3-FVv"/>
+                                            <action selector="addStepperDidTapped:" destination="lwl-mK-bGX" eventType="valueChanged" id="Otj-a3-FVv"/>
                                         </connections>
                                     </stepper>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBn-Ug-S3J">
@@ -105,7 +105,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedToBuyListToAddButton:" destination="lwl-mK-bGX" eventType="touchUpInside" id="Qd6-DJ-kBy"/>
+                                            <action selector="addButtonDidTapped:" destination="lwl-mK-bGX" eventType="touchUpInside" id="Qd6-DJ-kBy"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -155,14 +155,14 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="adMobView" destination="bTt-X2-1vq" id="tY4-WO-tgR"/>
-                        <outlet property="toBuyListNavigationBar" destination="qfY-eg-xYf" id="Pc1-Zh-NFF"/>
-                        <outlet property="toBuyListRemainCountButton" destination="Kkt-UI-tnL" id="5Za-uo-mNb"/>
-                        <outlet property="toBuyListTableView" destination="73Y-pn-iJd" id="TNB-2p-y5x"/>
-                        <outlet property="toBuyListToAddButton" destination="QBn-Ug-S3J" id="WLj-T8-gnB"/>
-                        <outlet property="toBuyListToAddNumberLabel" destination="iFW-2T-FZe" id="J5q-eA-JhN"/>
-                        <outlet property="toBuyListToAddStepper" destination="xbG-qC-155" id="WMi-Wy-wmY"/>
-                        <outlet property="toBuyListToAddTextField" destination="E3o-es-urE" id="zmp-eu-dRR"/>
-                        <outlet property="toBuyListToAddView" destination="4Y9-Hf-7lb" id="OWt-P5-tgF"/>
+                        <outlet property="addButton" destination="QBn-Ug-S3J" id="WLj-T8-gnB"/>
+                        <outlet property="addNumberLabel" destination="iFW-2T-FZe" id="J5q-eA-JhN"/>
+                        <outlet property="addStepper" destination="xbG-qC-155" id="WMi-Wy-wmY"/>
+                        <outlet property="addTextField" destination="E3o-es-urE" id="zmp-eu-dRR"/>
+                        <outlet property="addView" destination="4Y9-Hf-7lb" id="OWt-P5-tgF"/>
+                        <outlet property="navigationBar" destination="qfY-eg-xYf" id="Pc1-Zh-NFF"/>
+                        <outlet property="remainCountButton" destination="Kkt-UI-tnL" id="5Za-uo-mNb"/>
+                        <outlet property="tableView" destination="73Y-pn-iJd" id="TNB-2p-y5x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsc-IZ-m2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
