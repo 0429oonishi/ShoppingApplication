@@ -453,8 +453,8 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
         let alert = UIAlertController(title: "これを消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
         let alertDefaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
             try! self.realm.write {
-                self.objects[sender.tag].calculationDeleteFlag = true
-                let deletedObject = self.realm.objects(Calculation.self).filter("calculationDeleteFlag == true")
+                self.objects[sender.tag].isCalculationDelete = true
+                let deletedObject = self.realm.objects(Calculation.self).filter("isCalculationDelete == true")
                 self.realm.delete(deletedObject)
             }
             self.shoppingListCollectionView.reloadData()

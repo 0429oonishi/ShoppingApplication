@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB211A38259BDF5E002DAFBF /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB211A37259BDF5E002DAFBF /* RealmModel.swift */; };
-		AB211A3A259BDF70002DAFBF /* Extension-UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */; };
+		AB211A3A259BDF70002DAFBF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711E22595CA2E00AAA0E1 /* UIColor+Extension.swift */; };
 		AB32762625A1409200FB8C2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB32762525A1409200FB8C2F /* GoogleService-Info.plist */; };
 		AB32764125A167D500FB8C2F /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB80719725A8B9ED00E1F550 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719625A8B9ED00E1F550 /* Place.swift */; };
@@ -20,6 +20,7 @@
 		AB8683212602600500529952 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683202602600500529952 /* Map.storyboard */; };
 		AB8683232602600F00529952 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683222602600F00529952 /* Setting.storyboard */; };
 		AB8683252602601800529952 /* ThemeColor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683242602601800529952 /* ThemeColor.storyboard */; };
+		AB86832726026F8000529952 /* AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB86832626026F8000529952 /* AdMob.swift */; };
 		AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */; };
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
@@ -68,6 +69,7 @@
 		AB8683202602600500529952 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		AB8683222602600F00529952 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		AB8683242602601800529952 /* ThemeColor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemeColor.storyboard; sourceTree = "<group>"; };
+		AB86832626026F8000529952 /* AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMob.swift; sourceTree = "<group>"; };
 		AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseToBuyListViewController.swift; sourceTree = "<group>"; };
 		AB8FCD8E25AD790C00B673F5 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		AB8FCD9025AD791D00B673F5 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
@@ -91,7 +93,7 @@
 		AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		AB9711CC2595BC8100AAA0E1 /* ThemeColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorViewController.swift; sourceTree = "<group>"; };
-		AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-UIColor.swift"; sourceTree = "<group>"; };
+		AB9711E22595CA2E00AAA0E1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		AB9711E62596CA5900AAA0E1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B5DB2BBA3BF31377673DC6EB /* Pods-ShoppingApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApplication.release.xcconfig"; path = "Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication.release.xcconfig"; sourceTree = "<group>"; };
 		C0F7B8E2DFA26FA08F771DC4 /* Pods_ShoppingApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +150,7 @@
 		AB8A683D25B5366300D08D16 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				AB9711E22595CA2E00AAA0E1 /* Extension-UIColor.swift */,
+				AB9711E22595CA2E00AAA0E1 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -174,6 +176,7 @@
 		AB97116A25950FC600AAA0E1 /* ShoppingApplication */ = {
 			isa = PBXGroup;
 			children = (
+				AB86832626026F8000529952 /* AdMob.swift */,
 				AB8A683D25B5366300D08D16 /* Extension */,
 				AB86831526025F0700529952 /* Storyboards */,
 				AB9711C32595B4A600AAA0E1 /* Models */,
@@ -373,13 +376,14 @@
 				AB9711CD2595BC8100AAA0E1 /* ThemeColorViewController.swift in Sources */,
 				AB97118C259511A100AAA0E1 /* SettingViewController.swift in Sources */,
 				AB97118B259511A100AAA0E1 /* ToBuyListViewController.swift in Sources */,
-				AB211A3A259BDF70002DAFBF /* Extension-UIColor.swift in Sources */,
+				AB211A3A259BDF70002DAFBF /* UIColor+Extension.swift in Sources */,
 				AB971199259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift in Sources */,
 				AB9711C92595B58D00AAA0E1 /* SettingTableViewCell.swift in Sources */,
 				AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */,
 				AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */,
 				AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */,
 				AB80719925A8BA3B00E1F550 /* HowToUseCalculationViewController.swift in Sources */,
+				AB86832726026F8000529952 /* AdMob.swift in Sources */,
 				AB80719725A8B9ED00E1F550 /* Place.swift in Sources */,
 				AB97118A259511A100AAA0E1 /* MapViewController.swift in Sources */,
 				AB9711E72596CA5900AAA0E1 /* TabBarController.swift in Sources */,

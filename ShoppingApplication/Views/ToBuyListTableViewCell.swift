@@ -14,9 +14,7 @@ class ToBuyListTableViewCell: UITableViewCell {
     private var realm = try! Realm()
     private var toBuyList = ToBuyList()
     private var objects: Results<ToBuyList>!
-    var indexPathRow: Int = 0 {
-        didSet { cancelStrikethrough() }
-    }
+    var index: Int = 0
     private var themeColor: UIColor {
         guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
@@ -35,13 +33,13 @@ class ToBuyListTableViewCell: UITableViewCell {
     }
     
     @IBAction func tappedToBuyListCellCheckButton(_ sender: Any) {
-        if !objects[indexPathRow].toBuyListCheckFlag {
+        if !objects[index].isToBuyListCheck {
             setToBuyListCellButtonImage(CellButtonImage.checkmark.rawValue)
         }else {
             setToBuyListCellButtonImage(CellButtonImage.circle.rawValue)
         }
         try! realm.write {
-            objects[indexPathRow].toBuyListCheckFlag = !objects[indexPathRow].toBuyListCheckFlag
+            objects[index].isToBuyListCheck = !objects[index].isToBuyListCheck
         }
     }
     
@@ -49,7 +47,7 @@ class ToBuyListTableViewCell: UITableViewCell {
         separatorView.backgroundColor = themeColor
         toBuyListCellTitleLabel.text = object.toBuyListName
         numberOfToBuyLabel.text = "×\(object.toBuyListNumber)"
-        if !object.toBuyListCheckFlag {
+        if !object.isToBuyListCheck {
             setToBuyListCellButtonImage(CellButtonImage.circle.rawValue)
         }else {
             setToBuyListCellButtonImage(CellButtonImage.checkmark.rawValue)
