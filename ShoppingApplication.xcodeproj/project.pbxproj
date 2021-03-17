@@ -13,6 +13,13 @@
 		AB32764125A167D500FB8C2F /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB80719725A8B9ED00E1F550 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719625A8B9ED00E1F550 /* Place.swift */; };
 		AB80719925A8BA3B00E1F550 /* HowToUseCalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */; };
+		AB86831926025FC900529952 /* ToBuyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB86831826025FC900529952 /* ToBuyList.storyboard */; };
+		AB86831B26025FD600529952 /* HowToUseToBuyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB86831A26025FD600529952 /* HowToUseToBuyList.storyboard */; };
+		AB86831D26025FE900529952 /* Calculation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB86831C26025FE900529952 /* Calculation.storyboard */; };
+		AB86831F26025FFC00529952 /* HowToUseCalculation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB86831E26025FFC00529952 /* HowToUseCalculation.storyboard */; };
+		AB8683212602600500529952 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683202602600500529952 /* Map.storyboard */; };
+		AB8683232602600F00529952 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683222602600F00529952 /* Setting.storyboard */; };
+		AB8683252602601800529952 /* ThemeColor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683242602601800529952 /* ThemeColor.storyboard */; };
 		AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */; };
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
@@ -54,6 +61,13 @@
 		AB32762525A1409200FB8C2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB80719625A8B9ED00E1F550 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToUseCalculationViewController.swift; sourceTree = "<group>"; };
+		AB86831826025FC900529952 /* ToBuyList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ToBuyList.storyboard; sourceTree = "<group>"; };
+		AB86831A26025FD600529952 /* HowToUseToBuyList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HowToUseToBuyList.storyboard; sourceTree = "<group>"; };
+		AB86831C26025FE900529952 /* Calculation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calculation.storyboard; sourceTree = "<group>"; };
+		AB86831E26025FFC00529952 /* HowToUseCalculation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HowToUseCalculation.storyboard; sourceTree = "<group>"; };
+		AB8683202602600500529952 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		AB8683222602600F00529952 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		AB8683242602601800529952 /* ThemeColor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemeColor.storyboard; sourceTree = "<group>"; };
 		AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseToBuyListViewController.swift; sourceTree = "<group>"; };
 		AB8FCD8E25AD790C00B673F5 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		AB8FCD9025AD791D00B673F5 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
@@ -116,6 +130,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB86831526025F0700529952 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AB97117125950FC600AAA0E1 /* Main.storyboard */,
+				AB86831826025FC900529952 /* ToBuyList.storyboard */,
+				AB86831A26025FD600529952 /* HowToUseToBuyList.storyboard */,
+				AB86831C26025FE900529952 /* Calculation.storyboard */,
+				AB86831E26025FFC00529952 /* HowToUseCalculation.storyboard */,
+				AB8683202602600500529952 /* Map.storyboard */,
+				AB8683222602600F00529952 /* Setting.storyboard */,
+				AB8683242602601800529952 /* ThemeColor.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		AB8A683D25B5366300D08D16 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,13 +174,13 @@
 		AB97116A25950FC600AAA0E1 /* ShoppingApplication */ = {
 			isa = PBXGroup;
 			children = (
+				AB86831526025F0700529952 /* Storyboards */,
 				AB8A683D25B5366300D08D16 /* Extension */,
 				AB9711C32595B4A600AAA0E1 /* Models */,
 				AB971190259511A900AAA0E1 /* Views */,
 				AB9711822595116600AAA0E1 /* Controllers */,
 				AB97116B25950FC600AAA0E1 /* AppDelegate.swift */,
 				AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */,
-				AB97117125950FC600AAA0E1 /* Main.storyboard */,
 				AB97117425950FC900AAA0E1 /* Assets.xcassets */,
 				AB97117625950FC900AAA0E1 /* LaunchScreen.storyboard */,
 				AB97117925950FC900AAA0E1 /* Info.plist */,
@@ -258,13 +287,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB86831B26025FD600529952 /* HowToUseToBuyList.storyboard in Resources */,
+				AB86831D26025FE900529952 /* Calculation.storyboard in Resources */,
 				AB97117825950FC900AAA0E1 /* LaunchScreen.storyboard in Resources */,
 				AB97117525950FC900AAA0E1 /* Assets.xcassets in Resources */,
 				AB9711CA2595B58D00AAA0E1 /* SettingTableViewCell.xib in Resources */,
 				AB971196259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib in Resources */,
+				AB86831F26025FFC00529952 /* HowToUseCalculation.storyboard in Resources */,
+				AB86831926025FC900529952 /* ToBuyList.storyboard in Resources */,
+				AB8683252602601800529952 /* ThemeColor.storyboard in Resources */,
+				AB8683232602600F00529952 /* Setting.storyboard in Resources */,
 				AB971198259511B200AAA0E1 /* ToBuyListTableViewCell.xib in Resources */,
 				AB97117325950FC600AAA0E1 /* Main.storyboard in Resources */,
 				AB32762625A1409200FB8C2F /* GoogleService-Info.plist in Resources */,
+				AB8683212602600500529952 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

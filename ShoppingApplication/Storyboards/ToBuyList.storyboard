@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lwl-mK-bGX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--メモ-->
+        <scene sceneID="C2G-7c-EDE">
+            <objects>
+                <viewController id="lwl-mK-bGX" customClass="ToBuyListViewController" customModule="ShoppingApplication" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yfR-E8-qDo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="73Y-pn-iJd">
+                                <rect key="frame" x="0.0" y="138" width="414" height="675"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfY-eg-xYf">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="買うものメモ" id="MZM-wh-Fsh">
+                                        <leftBarButtonItems>
+                                            <barButtonItem id="s80-PI-6ga">
+                                                <imageReference key="image" image="info.circle" catalog="system" symbolScale="large"/>
+                                                <connections>
+                                                    <segue destination="l9M-PS-AHp" kind="presentation" id="L0n-44-Xp2"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="残り0個" id="Kkt-UI-tnL">
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
+                                        <rightBarButtonItems>
+                                            <barButtonItem image="keyboard.chevron.compact.down" catalog="system" id="Ktp-wS-GJE">
+                                                <connections>
+                                                    <action selector="toggleKeyboard:" destination="lwl-mK-bGX" id="x3N-bo-lTw"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem image="trash.fill" catalog="system" id="6eC-6E-L3q">
+                                                <connections>
+                                                    <action selector="toBuyListClearAll:" destination="lwl-mK-bGX" id="cTP-Vj-viA"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Y9-Hf-7lb">
+                                <rect key="frame" x="0.0" y="653" width="414" height="160"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E3o-es-urE">
+                                        <rect key="frame" x="30" y="30" width="284" height="40"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="V13-dE-5Qs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="個数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOO-7F-pjq">
+                                        <rect key="frame" x="144" y="98" width="62" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="XAo-I6-4Qf"/>
+                                            <constraint firstAttribute="width" constant="62" id="ct6-g4-IcN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFW-2T-FZe">
+                                        <rect key="frame" x="221" y="98" width="40" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="mEQ-wl-q7c"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xbG-qC-155">
+                                        <rect key="frame" x="30" y="100" width="94" height="32"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="tappedToBuyListToAddStepper:" destination="lwl-mK-bGX" eventType="valueChanged" id="Otj-a3-FVv"/>
+                                        </connections>
+                                    </stepper>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBn-Ug-S3J">
+                                        <rect key="frame" x="334" y="30" width="60" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Nw5-4m-8Dv"/>
+                                            <constraint firstAttribute="width" constant="60" id="g8T-I2-oX3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <state key="normal" title="追加">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedToBuyListToAddButton:" destination="lwl-mK-bGX" eventType="touchUpInside" id="Qd6-DJ-kBy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="iFW-2T-FZe" firstAttribute="leading" secondItem="DOO-7F-pjq" secondAttribute="trailing" constant="15" id="5Gs-ft-8Wg"/>
+                                    <constraint firstItem="E3o-es-urE" firstAttribute="top" secondItem="4Y9-Hf-7lb" secondAttribute="top" constant="30" id="6kH-1e-Tfa"/>
+                                    <constraint firstItem="QBn-Ug-S3J" firstAttribute="leading" secondItem="E3o-es-urE" secondAttribute="trailing" constant="20" id="8iA-wI-ctn"/>
+                                    <constraint firstItem="xbG-qC-155" firstAttribute="leading" secondItem="E3o-es-urE" secondAttribute="leading" id="9fd-bC-Q08"/>
+                                    <constraint firstItem="QBn-Ug-S3J" firstAttribute="centerY" secondItem="E3o-es-urE" secondAttribute="centerY" id="DPz-dr-Did"/>
+                                    <constraint firstItem="xbG-qC-155" firstAttribute="top" secondItem="E3o-es-urE" secondAttribute="bottom" constant="30" id="ELg-e8-PAq"/>
+                                    <constraint firstItem="E3o-es-urE" firstAttribute="leading" secondItem="4Y9-Hf-7lb" secondAttribute="leading" constant="30" id="QC2-Fi-fqn"/>
+                                    <constraint firstAttribute="height" constant="160" id="RHO-8c-n2N"/>
+                                    <constraint firstItem="E3o-es-urE" firstAttribute="width" secondItem="4Y9-Hf-7lb" secondAttribute="width" constant="-130" id="SIK-tn-Xat"/>
+                                    <constraint firstItem="DOO-7F-pjq" firstAttribute="centerY" secondItem="xbG-qC-155" secondAttribute="centerY" id="Z4Z-fR-8NG"/>
+                                    <constraint firstItem="iFW-2T-FZe" firstAttribute="top" secondItem="DOO-7F-pjq" secondAttribute="top" id="aYq-lM-RBQ"/>
+                                    <constraint firstItem="iFW-2T-FZe" firstAttribute="bottom" secondItem="DOO-7F-pjq" secondAttribute="bottom" id="lAQ-vg-jA0"/>
+                                    <constraint firstItem="DOO-7F-pjq" firstAttribute="leading" secondItem="xbG-qC-155" secondAttribute="trailing" constant="20" id="zY8-u6-z9P"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTt-X2-1vq">
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6qd-TT-F2W"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9Tl-16-08P"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="73Y-pn-iJd" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="003-Vi-zGb"/>
+                            <constraint firstItem="73Y-pn-iJd" firstAttribute="top" secondItem="bTt-X2-1vq" secondAttribute="bottom" id="3Pg-uD-I1r"/>
+                            <constraint firstItem="9Tl-16-08P" firstAttribute="bottom" secondItem="4Y9-Hf-7lb" secondAttribute="bottom" id="3gZ-l0-Kk0"/>
+                            <constraint firstItem="bTt-X2-1vq" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="5LQ-sY-oz3"/>
+                            <constraint firstItem="9Tl-16-08P" firstAttribute="trailing" secondItem="73Y-pn-iJd" secondAttribute="trailing" id="DsQ-ZE-8Nw"/>
+                            <constraint firstItem="qfY-eg-xYf" firstAttribute="trailing" secondItem="9Tl-16-08P" secondAttribute="trailing" id="Dyv-Gg-IHU"/>
+                            <constraint firstItem="bTt-X2-1vq" firstAttribute="trailing" secondItem="9Tl-16-08P" secondAttribute="trailing" id="IZK-Io-VaL"/>
+                            <constraint firstItem="bTt-X2-1vq" firstAttribute="top" secondItem="qfY-eg-xYf" secondAttribute="bottom" id="K0G-ry-Ekd"/>
+                            <constraint firstItem="qfY-eg-xYf" firstAttribute="top" secondItem="9Tl-16-08P" secondAttribute="top" id="QSV-M2-45a"/>
+                            <constraint firstItem="4Y9-Hf-7lb" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="Wyh-7Z-sg1"/>
+                            <constraint firstItem="qfY-eg-xYf" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="hGu-iK-6nt"/>
+                            <constraint firstItem="9Tl-16-08P" firstAttribute="trailing" secondItem="4Y9-Hf-7lb" secondAttribute="trailing" id="pJb-vj-ISs"/>
+                            <constraint firstItem="9Tl-16-08P" firstAttribute="bottom" secondItem="73Y-pn-iJd" secondAttribute="bottom" id="rIk-N3-hrM"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="メモ" image="square.and.pencil" catalog="system" id="55q-h6-ijs"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="adMobView" destination="bTt-X2-1vq" id="tY4-WO-tgR"/>
+                        <outlet property="toBuyListNavigationBar" destination="qfY-eg-xYf" id="Pc1-Zh-NFF"/>
+                        <outlet property="toBuyListRemainCountButton" destination="Kkt-UI-tnL" id="5Za-uo-mNb"/>
+                        <outlet property="toBuyListTableView" destination="73Y-pn-iJd" id="TNB-2p-y5x"/>
+                        <outlet property="toBuyListToAddButton" destination="QBn-Ug-S3J" id="WLj-T8-gnB"/>
+                        <outlet property="toBuyListToAddNumberLabel" destination="iFW-2T-FZe" id="J5q-eA-JhN"/>
+                        <outlet property="toBuyListToAddStepper" destination="xbG-qC-155" id="WMi-Wy-wmY"/>
+                        <outlet property="toBuyListToAddTextField" destination="E3o-es-urE" id="zmp-eu-dRR"/>
+                        <outlet property="toBuyListToAddView" destination="4Y9-Hf-7lb" id="OWt-P5-tgF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jsc-IZ-m2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-68.115942028985515" y="969.64285714285711"/>
+        </scene>
+        <!--HowToUseToBuyList-->
+        <scene sceneID="pu2-wq-uCe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HowToUseToBuyList" id="l9M-PS-AHp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dVU-2v-e0K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="660" y="970"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="keyboard.chevron.compact.down" catalog="system" width="128" height="102"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -66,9 +66,10 @@ final class SettingViewController: UIViewController {
     }
     
     private func transitionToThemeColorVC() {
-        let themeColorViewController = storyboard?.instantiateViewController(identifier: "themeColorVCId") as! ThemeColorViewController
-        themeColorViewController.modalPresentationStyle = .fullScreen
-        present(themeColorViewController, animated: true)
+        let storyboard = UIStoryboard(name: "ThemeColor", bundle: nil)
+        let themeColorVC = storyboard.instantiateViewController(identifier: "themeColorVCId") as! ThemeColorViewController
+        themeColorVC.modalPresentationStyle = .fullScreen
+        present(themeColorVC, animated: true)
     }
     
     private func introduceAppToFriend() {
