@@ -51,7 +51,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="7"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="UBn-WH-fG6"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="UBn-WH-fG6"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -71,7 +71,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="4"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="8wf-t8-UXr"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="8wf-t8-UXr"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -92,7 +92,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="1"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="gKD-pE-Lg2"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="gKD-pE-Lg2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -114,7 +114,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="8"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="CfY-vl-1dV"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="CfY-vl-1dV"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -136,7 +136,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="5"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="QSP-RV-ZO2"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="QSP-RV-ZO2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -158,7 +158,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="2"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="Hpe-7Y-l2o"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="Hpe-7Y-l2o"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -180,7 +180,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="9"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="8jB-aF-j52"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="8jB-aF-j52"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -201,7 +201,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="6"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="GdV-QA-Csf"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="GdV-QA-Csf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -222,7 +222,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="3"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="85A-8a-FNf"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="85A-8a-FNf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -243,7 +243,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="消去"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorClearButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="KnG-2U-RUX"/>
+                                                    <action selector="calculatorClearButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="KnG-2U-RUX"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -264,7 +264,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="追加"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorAddButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="GIR-jA-BCY"/>
+                                                    <action selector="calculatorAddButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="GIR-jA-BCY"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -284,7 +284,7 @@
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="0"/>
                                                 <connections>
-                                                    <action selector="tappedCalculatorButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="8PN-2D-BlT"/>
+                                                    <action selector="calculatorButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="8PN-2D-BlT"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -357,7 +357,7 @@
                                             <barButtonItem title="予算" id="RQk-s9-svf">
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <connections>
-                                                    <action selector="tappedBudgetButton:" destination="5tk-Zd-CUk" id="w4z-q8-SEN"/>
+                                                    <action selector="budgetButtonDidTapped:" destination="5tk-Zd-CUk" id="w4z-q8-SEN"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
@@ -365,13 +365,13 @@
                                             <barButtonItem title="Item" image="keyboard.chevron.compact.down" catalog="system" id="yb3-t4-vzd">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <action selector="toggleKeyboard:" destination="5tk-Zd-CUk" id="BG4-9I-WFz"/>
+                                                    <action selector="toggleCalculatorButtonDidTapped:" destination="5tk-Zd-CUk" id="BG4-9I-WFz"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Item" image="trash.fill" catalog="system" id="42a-is-Jj3">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <action selector="clearAll:" destination="5tk-Zd-CUk" id="kXm-Fi-BYc"/>
+                                                    <action selector="clearAllButtonDidTapped:" destination="5tk-Zd-CUk" id="kXm-Fi-BYc"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -399,7 +399,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedTaxRateButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="KrK-ib-tNz"/>
+                                            <action selector="taxRateButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="KrK-ib-tNz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsI-CY-Uj4">
@@ -414,7 +414,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedTaxIncludeOrNotButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="LxW-j3-J6B"/>
+                                            <action selector="taxIncludeOrNotButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="LxW-j3-J6B"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="税込 0円" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyt-5T-uYJ">
@@ -499,7 +499,7 @@
                                         <color key="maximumTrackTintColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="tappedDiscountSlider:" destination="5tk-Zd-CUk" eventType="valueChanged" id="8VX-2o-i5L"/>
+                                            <action selector="discountSliderDidTapped:" destination="5tk-Zd-CUk" eventType="valueChanged" id="8VX-2o-i5L"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%引き" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqo-Oq-ce8">
@@ -520,7 +520,7 @@
                                             <imageReference key="image" image="arrow.up.and.down.and.arrow.left.and.right" catalog="system" symbolScale="large" renderingMode="original"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedDiscountViewCloseButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="csu-Os-fZc"/>
+                                            <action selector="discountViewCloseButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="csu-Os-fZc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -546,7 +546,7 @@
                                             <imageReference key="image" image="arrow.up.square" catalog="system" symbolScale="large" renderingMode="original"/>
                                         </state>
                                         <connections>
-                                            <action selector="tappedBudgetBackButton:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="wwk-3V-qf5"/>
+                                            <action selector="budgetBackButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="wwk-3V-qf5"/>
                                         </connections>
                                     </button>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrQ-h2-BDv">
@@ -607,21 +607,21 @@
                         <outlet property="budgetButton" destination="RQk-s9-svf" id="Xba-Ml-qGk"/>
                         <outlet property="budgetPickerView" destination="HrQ-h2-BDv" id="gjC-iC-QL1"/>
                         <outlet property="budgetView" destination="mBd-iU-to2" id="ccZ-ls-fK8"/>
-                        <outlet property="calculationRemainCountLabel" destination="xee-Lk-Ehk" id="lTT-e9-H0k"/>
-                        <outlet property="calculatorNavigationBar" destination="jpd-oS-xOB" id="2Z3-pE-BFP"/>
                         <outlet property="calculatorPriceView" destination="meC-3v-TX3" id="g8g-uW-gY7"/>
-                        <outlet property="calculatorTotalPriceView" destination="QdS-gS-bMb" id="wdH-mW-WCp"/>
                         <outlet property="calculatorView" destination="cCt-0d-NF2" id="b34-Rl-M0f"/>
+                        <outlet property="collectionView" destination="1b3-zl-HXQ" id="Gkl-O9-X4D"/>
                         <outlet property="discountLabel" destination="qqo-Oq-ce8" id="hlc-i7-CYW"/>
                         <outlet property="discountSlider" destination="Azo-Ac-7Uh" id="rAK-re-HSk"/>
                         <outlet property="discountView" destination="dFx-Wl-tYY" id="saW-dL-tOM"/>
+                        <outlet property="navigationBar" destination="jpd-oS-xOB" id="2Z3-pE-BFP"/>
                         <outlet property="priceLabel" destination="tf7-4f-yOg" id="Plv-Ib-DHN"/>
-                        <outlet property="shoppingListCollectionView" destination="1b3-zl-HXQ" id="Gkl-O9-X4D"/>
+                        <outlet property="remainCountLabel" destination="xee-Lk-Ehk" id="lTT-e9-H0k"/>
                         <outlet property="taxIncludeOrNotButton" destination="UsI-CY-Uj4" id="aJN-YO-9Vu"/>
                         <outlet property="taxIncludePriceLabel" destination="uyt-5T-uYJ" id="P4t-37-fW1"/>
                         <outlet property="taxIncludeTaxRateLabel" destination="eXU-hM-GOw" id="sDK-SC-7E1"/>
                         <outlet property="taxRateButton" destination="Q8X-9R-4TH" id="wb5-E4-DCd"/>
                         <outlet property="totalPriceLabel" destination="tc8-gY-VHe" id="mXD-8P-Yhl"/>
+                        <outlet property="totalPriceView" destination="QdS-gS-bMb" id="wdH-mW-WCp"/>
                         <outletCollection property="calculatorButton" destination="U83-jA-vga" collectionClass="NSMutableArray" id="WJG-Sj-Rkv"/>
                         <outletCollection property="calculatorButton" destination="7wv-bq-9rX" collectionClass="NSMutableArray" id="urn-Dz-ksn"/>
                         <outletCollection property="calculatorButton" destination="7Mm-l4-vvL" collectionClass="NSMutableArray" id="eIS-Rr-eBA"/>

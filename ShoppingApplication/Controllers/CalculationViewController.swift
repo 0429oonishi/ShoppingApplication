@@ -2,42 +2,52 @@
 import UIKit
 import RealmSwift
 
+//themeColorを共通化
+//realmを分離させる
+
 final class CalculationViewController: UIViewController {
     
-    private enum Tax: String {
-        case taxIncluded = "税込"
-        case taxExcluded = "税抜"
-    }
-    private enum TaxRate: String {
-        case ten = "10%"
-        case eight = "8%"
+    private enum Tax {
+        case included
+        case excluded
+        var text: String {
+            switch self {
+            case .included: return "税込"
+            case .excluded: return "税抜"
+            }
+        }
+        enum Rate {
+            case ten
+            case eight
+            var text: String {
+                switch self {
+                case .ten: return "10%"
+                case .eight: return "8%"
+                }
+            }
+            var value: Double {
+                switch self {
+                case .ten: return 1.10
+                case .eight: return 1.08
+                }
+            }
+        }
     }
     private var totalPriceToken: NotificationToken!
     private var totalNumberToken: NotificationToken!
-    private var totalPriceDouble: Double = 0.0
     private var objects: Results<Calculation>!
     private var realm = try! Realm()
-    private var calculation = Calculation()
-    private var taxRate = 1.10 {
-        didSet { tappedTaxRateOrTaxIncludeOrNotButton() }
+    private var taxRate: Tax.Rate = .ten {
+        didSet { taxRateButtonOrTaxIncludeOrNotButtonDidTapped() }
     }
     private var priceLabelString = "" {
-        didSet { tappedTaxRateOrTaxIncludeOrNotButton() }
+        didSet { taxRateButtonOrTaxIncludeOrNotButtonDidTapped() }
     }
-    private var toggleKeyboardFlag = true
-    private let CELL_ID = String(describing: ShoppingListCollectionViewCell.self)
-    private let CELL_NIB_NAME = String(describing: ShoppingListCollectionViewCell.self)
+    private var isCalculatorAppeared = true
+    private let cellId = String(describing: ShoppingListCollectionViewCell.self)
     private let budgetKey = "budgetKey"
-    private var pickerCompo1 = 0
-    private var pickerCompo2 = 0
-    private var pickerCompo3 = 0
-    private var pickerCompo4 = 0
-    private var pickerCompo5 = 0
-    private var itemSize: CGFloat {
-        (UIScreen.main.bounds.width - 15 * 4 ) / 3
-    }
     private var budgetPickerArray = [Int](0...9)
-    private var totalPriceLabelInt = 0
+    private var pickerComponents = Array(repeating: 0, count: 5)
     private var themeColor: UIColor {
         guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .white
@@ -51,25 +61,21 @@ final class CalculationViewController: UIViewController {
         return UIColor(code: themeColorString)
     }
     
-    @IBOutlet weak var calculationRemainCountLabel: UILabel!
-    @IBOutlet weak var calculatorNavigationBar: UINavigationBar!
-    @IBOutlet weak var calculatorTotalPriceView: UIView! {
-        didSet { viewDesign(view: calculatorTotalPriceView, shadowHeight: 2) }
+    @IBOutlet weak private var remainCountLabel: UILabel!
+    @IBOutlet weak private var navigationBar: UINavigationBar!
+    @IBOutlet weak private var totalPriceView: UIView! {
+        didSet { viewDesign(view: totalPriceView, shadowHeight: 2) }
     }
-    @IBOutlet weak var totalPriceLabel: UILabel!
-    @IBOutlet weak var shoppingListCollectionView: UICollectionView! {
+    @IBOutlet weak private var totalPriceLabel: UILabel!
+    @IBOutlet weak private var collectionView: UICollectionView! {
         didSet {
-            let nibName = UINib(nibName: CELL_NIB_NAME, bundle: nil)
-            shoppingListCollectionView.register(nibName, forCellWithReuseIdentifier: CELL_ID)
-            shoppingListCollectionView.delegate = self
-            shoppingListCollectionView.dataSource = self
+            let cellNibName = String(describing: ShoppingListCollectionViewCell.self)
+            let nibName = UINib(nibName: cellNibName, bundle: nil)
+            collectionView.register(nibName, forCellWithReuseIdentifier: cellId)
         }
     }
-    
-    @IBOutlet weak var budgetPickerView: UIPickerView! {
-        didSet { budgetPickerView.delegate = self }
-    }
-    @IBOutlet weak var budgetView: UIView! {
+    @IBOutlet weak private var budgetPickerView: UIPickerView!
+    @IBOutlet weak private var budgetView: UIView! {
         didSet {
             budgetView.transform = CGAffineTransform(translationX: 0, y: -1000)
             budgetView.backgroundColor = .white
@@ -81,46 +87,41 @@ final class CalculationViewController: UIViewController {
             budgetView.layer.shadowColor = UIColor.black.cgColor
         }
     }
-    @IBOutlet weak var budgetButton: UIBarButtonItem! {
+    @IBOutlet weak private var budgetButton: UIBarButtonItem! {
         didSet {
             let budgetInt = UserDefaults.standard.integer(forKey: budgetKey)
-            if budgetInt == 0 {
-                budgetButton.title = "予算"
-            }else {
-                budgetButton.title = "\(addComma(String(budgetInt)))円"
-            }
+            budgetButton.title = (budgetInt == 0) ? "予算" : "\(String(budgetInt).addComma())円"
         }
     }
-    
-    @IBOutlet weak var calculatorPriceView: UIView! {
+    @IBOutlet weak private var calculatorPriceView: UIView! {
         didSet { viewDesign(view: calculatorPriceView, shadowHeight: -2) }
     }
-    @IBOutlet weak var calculatorView: UIView! {
+    @IBOutlet weak private var calculatorView: UIView! {
         didSet {
             calculatorView.layer.borderWidth = 2
             calculatorView.layer.borderColor = UIColor.white.cgColor
         }
     }
-    @IBOutlet weak var taxRateButton: UIButton! {
+    @IBOutlet weak private var taxRateButton: UIButton! {
         didSet {
             taxRateButton.layer.borderWidth = 2
             taxRateButton.layer.borderColor = UIColor.white.cgColor
             taxRateButton.layer.cornerRadius = 10
         }
     }
-    @IBOutlet weak var taxIncludeOrNotButton: UIButton! {
+    @IBOutlet weak private var taxIncludeOrNotButton: UIButton! {
         didSet {
             taxIncludeOrNotButton.layer.borderWidth = 2
             taxIncludeOrNotButton.layer.borderColor = UIColor.white.cgColor
             taxIncludeOrNotButton.layer.cornerRadius = 10
         }
     }
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var taxIncludePriceLabel: UILabel!
-    @IBOutlet weak var taxIncludeTaxRateLabel: UILabel!
-    @IBOutlet var calculatorButton: [UIButton]!
-    @IBOutlet var calculatorButtonView: [UIView]!
-    @IBOutlet weak var discountView: UIView! {
+    @IBOutlet weak private var priceLabel: UILabel!
+    @IBOutlet weak private var taxIncludePriceLabel: UILabel!
+    @IBOutlet weak private var taxIncludeTaxRateLabel: UILabel!
+    @IBOutlet private var calculatorButton: [UIButton]!
+    @IBOutlet private var calculatorButtonView: [UIView]!
+    @IBOutlet weak private var discountView: UIView! {
         didSet {
             discountView.transform = CGAffineTransform(translationX: 1000, y: 0)
             discountView.layer.cornerRadius = 30
@@ -130,38 +131,41 @@ final class CalculationViewController: UIViewController {
             discountView.layer.shadowRadius = 5
             discountView.layer.shadowOpacity = 0.8
             discountView.layer.shadowOffset = CGSize(width: 3, height: 3)
-            
         }
     }
-    @IBOutlet weak var discountLabel: UILabel!
-    @IBOutlet weak var discountSlider: UISlider! {
+    @IBOutlet weak private var discountLabel: UILabel!
+    @IBOutlet weak private var discountSlider: UISlider! {
         didSet {
             discountSlider.layer.borderWidth = 2
             discountSlider.layer.borderColor = UIColor.black.cgColor
         }
     }
     private var discountTappedButtonTag = 0
-    private var discountSelectedValue = 0
+    private var selectedDiscountValue = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.dataSource = self
+        budgetPickerView.delegate = self
+
         objects = realm.objects(Calculation.self)
         taxIncludePriceLabel.text = ""
         taxIncludeTaxRateLabel.text = ""
         collectionViewFlowLayout()
-        shoppingListCollectionView.reloadData()
+        collectionView.reloadData()
         calculateTotalPrice()
         calculateTotalNumber()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.view.backgroundColor = themeColor
-        calculatorNavigationBar.barTintColor = themeColor
+        navigationBar.barTintColor = themeColor
         calculatorView.backgroundColor = themeColor
         taxRateButton.backgroundColor = themeColor
         taxIncludeOrNotButton.backgroundColor = themeColor
-        calculatorTotalPriceView.backgroundColor = themeColor
+        totalPriceView.backgroundColor = themeColor
         calculatorPriceView.backgroundColor = themeColor
         discountView.layer.borderColor = themeColor.cgColor
         discountSlider.minimumTrackTintColor = themeColor
@@ -176,88 +180,81 @@ final class CalculationViewController: UIViewController {
             ].forEach { $0.isActive = true }
             buttonDesign(button: calculatorButton[n])
         }
-        shoppingListCollectionView.reloadData()
+        
+        collectionView.reloadData()
         
     }
     
     private func collectionViewFlowLayout() {
+        let itemSize = (UIScreen.main.bounds.width - 15 * 4 ) / 3
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
         layout.sectionInset = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
-        shoppingListCollectionView.collectionViewLayout = layout
+        collectionView.collectionViewLayout = layout
     }
     
-    @IBAction func clearAll(_ sender: Any) {
+    @IBAction func clearAllButtonDidTapped(_ sender: Any) {
         if objects.count != 0 {
             let alert = UIAlertController(title: "全て消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
-            let alertDefaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
+            let defaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
                 try! self.realm.write {
-                    let removeObjects = self.realm.objects(Calculation.self)
-                    self.realm.delete(removeObjects)
+                    let objects = self.realm.objects(Calculation.self)
+                    self.realm.delete(objects)
                 }
-                self.shoppingListCollectionView.reloadData()
+                self.collectionView.reloadData()
                 self.clearLabel()
             }
-            let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
                 self.dismiss(animated: true, completion: nil)
             }
-            alert.addAction(alertDefaultAction)
-            alert.addAction(alertCancelAction)
+            alert.addAction(defaultAction)
+            alert.addAction(cancelAction)
             present(alert, animated: true)
         }
     }
     
-    @IBAction func toggleKeyboard(_ sender: Any) {
+    @IBAction func toggleCalculatorButtonDidTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.15) { [self] in
-            if toggleKeyboardFlag {
-                let distance = view.frame.maxY - calculatorPriceView.frame.minY
-                calculatorPriceView.transform = CGAffineTransform(translationX: 0, y: distance)
-                calculatorView.transform = CGAffineTransform(translationX: 0, y: distance)
-            }else {
-                calculatorPriceView.transform = .identity
-                calculatorView.transform = .identity
-            }
+            let distance = view.frame.maxY - calculatorPriceView.frame.minY
+            calculatorPriceView.transform = isCalculatorAppeared ? CGAffineTransform(translationX: 0, y: distance) : .identity
+            calculatorView.transform = isCalculatorAppeared ? CGAffineTransform(translationX: 0, y: distance) : .identity
         }
-        toggleKeyboardFlag = !toggleKeyboardFlag
+        isCalculatorAppeared = !isCalculatorAppeared
     }
     
-    @IBAction func tappedTaxRateButton(_ sender: Any) {
-        if taxRateButton.currentTitle == TaxRate.ten.rawValue {
-            taxRateButton.setTitle(TaxRate.eight.rawValue, for: .normal)
-            if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
-                taxIncludeTaxRateLabel.text = "(\(TaxRate.eight.rawValue))"
+    @IBAction func taxRateButtonDidTapped(_ sender: Any) {
+        if taxRateButton.currentTitle == Tax.Rate.ten.text {
+            taxRateButton.setTitle(Tax.Rate.eight.text, for: .normal)
+            if taxIncludeOrNotButton.currentTitle == Tax.excluded.text {
+                taxIncludeTaxRateLabel.text = "(\(Tax.Rate.eight.text))"
             }
-            taxRate = 1.08
-        }else {
-            taxRateButton.setTitle(TaxRate.ten.rawValue, for: .normal)
-            if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
-                taxIncludeTaxRateLabel.text = "(\(TaxRate.ten.rawValue))"
+            taxRate = .eight
+        } else {
+            taxRateButton.setTitle(Tax.Rate.ten.text, for: .normal)
+            if taxIncludeOrNotButton.currentTitle == Tax.excluded.text {
+                taxIncludeTaxRateLabel.text = "(\(Tax.Rate.ten.text))"
             }
-            taxRate = 1.10
+            taxRate = .ten
         }
     }
     
-    @IBAction func tappedTaxIncludeOrNotButton(_ sender: Any) {
-        if taxIncludeOrNotButton.currentTitle == Tax.taxIncluded.rawValue {
-            taxIncludeOrNotButton.setTitle(Tax.taxExcluded.rawValue, for: .normal)
+    @IBAction func taxIncludeOrNotButtonDidTapped(_ sender: Any) {
+        if taxIncludeOrNotButton.currentTitle == Tax.included.text {
+            taxIncludeOrNotButton.setTitle(Tax.excluded.text, for: .normal)
             if priceLabelString == "" {
-                taxIncludePriceLabel.text = "\(Tax.taxIncluded.rawValue) 0円"
-            }else {
-                tappedTaxRateOrTaxIncludeOrNotButton()
+                taxIncludePriceLabel.text = "\(Tax.included.text) 0円"
+            } else {
+                taxRateButtonOrTaxIncludeOrNotButtonDidTapped()
             }
-            if taxRate == 1.10 {
-                taxIncludeTaxRateLabel.text = "(\(TaxRate.ten.rawValue))"
-            }else {
-                taxIncludeTaxRateLabel.text = "(\(TaxRate.eight.rawValue))"
-            }
-        }else {
-            taxIncludeOrNotButton.setTitle("\(Tax.taxIncluded.rawValue)", for: .normal)
+            taxIncludeTaxRateLabel.text = (taxRate == .ten) ? "(\(Tax.Rate.ten.text))" : "(\(Tax.Rate.eight.text))"
+        } else {
+            taxIncludeOrNotButton.setTitle(Tax.included.text, for: .normal)
             taxIncludePriceLabel.text = ""
             taxIncludeTaxRateLabel.text = ""
         }
     }
     
-    @IBAction func tappedCalculatorButton(_ sender: UIButton) {
+    @IBAction func calculatorButtonDidTapped(_ sender: UIButton) {
         guard let button = calculatorButton else { return }
         let priceMaxCount = priceLabelString.count + 1
         if priceMaxCount > 5 && UIScreen.main.bounds.width < 380 {
@@ -265,10 +262,10 @@ final class CalculationViewController: UIViewController {
         }
         if priceMaxCount > 6 {
             let alert = UIAlertController(title: "エラー", message: "金額が大きすぎます", preferredStyle: .actionSheet)
-            let closeAction = UIAlertAction(title: "閉じる", style: .default) { (_) in
+            let defaultAction = UIAlertAction(title: "閉じる", style: .default) { (_) in
                 self.clearLabel()
             }
-            alert.addAction(closeAction)
+            alert.addAction(defaultAction)
             present(alert, animated: true)
             return
         }
@@ -279,16 +276,16 @@ final class CalculationViewController: UIViewController {
     
     private func calculateTotalPrice() {
         totalPriceToken = objects.observe { [self] (notification) in
-            totalPriceDouble = 0.0
+            var totalPriceDouble = 0.0
             if objects.count != 0 {
                 for n in 0...objects.count - 1 {
-                    let totalPrice: Double = Double(objects[n].calculationPrice)!
-                    let totalNumber: Double = Double(objects[n].shoppingListNumber)
-                    let totalDiscount: Double = Double(objects[n].shoppingListDiscount)
+                    let totalPrice = Double(objects[n].calculationPrice)!
+                    let totalNumber = Double(objects[n].shoppingListNumber)
+                    let totalDiscount = Double(objects[n].shoppingListDiscount)
                     totalPriceDouble += totalPrice * (1 - totalDiscount / 100) * totalNumber
                 }
-                totalPriceLabel.text = "\(addComma(String(Int(totalPriceDouble))))円"
-            }else {
+                totalPriceLabel.text = "\(String(Int(totalPriceDouble)).addComma())円"
+            } else {
                 totalPriceLabel.text = "0円"
             }
         }
@@ -296,76 +293,72 @@ final class CalculationViewController: UIViewController {
     
     private func calculateTotalNumber() {
         totalNumberToken = objects.observe { [self] (notification) in
+            var totalNumber  = 0
             if objects.count != 0 {
-                var totalNumber  = 0
                 for n in 0...objects.count - 1 {
                     totalNumber += objects[n].shoppingListNumber
                 }
-                calculationRemainCountLabel.text = "(\(totalNumber)個)"
-            }else {
-                calculationRemainCountLabel.text = "(0個)"
             }
+            remainCountLabel.text = "(\(totalNumber)個)"
         }
     }
-    
     
     private func reflectToLabel(button: UIButton) {
         priceLabelString += button.currentTitle!
-        priceLabel.text = addComma(priceLabelString)
+        priceLabel.text = priceLabelString.addComma()
     }
     
-    private func tappedTaxRateOrTaxIncludeOrNotButton() {
-        guard let  priceLabelDouble = Double(priceLabelString) else { return }
-        if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
-            let includeTaxPrice = priceLabelDouble * taxRate
-            var includeTaxPriceString = String(Int(includeTaxPrice))
-            includeTaxPriceString = addComma(includeTaxPriceString)
-            taxIncludePriceLabel.text = "\(Tax.taxIncluded.rawValue) \(includeTaxPriceString)円"
+    private func taxRateButtonOrTaxIncludeOrNotButtonDidTapped() {
+        guard let priceLabelDouble = Double(priceLabelString) else { return }
+        if taxIncludeOrNotButton.currentTitle == Tax.excluded.text {
+            let includeTaxPrice = priceLabelDouble * taxRate.value
+            let includeTaxPriceString = String(Int(includeTaxPrice)).addComma()
+            taxIncludePriceLabel.text = "\(Tax.included.text) \(includeTaxPriceString)円"
         }
     }
     
-    @IBAction func tappedCalculatorAddButton(_ sender: Any) {
+    @IBAction func calculatorAddButtonDidTapped(_ sender: Any) {
         if priceLabelString != "" {
             let calculation = Calculation()
-            if taxIncludeOrNotButton.currentTitle == "\(Tax.taxIncluded.rawValue)" {
+            if taxIncludeOrNotButton.currentTitle == Tax.included.text {
                 calculation.calculationPrice = priceLabelString
-            }else {
-                guard let  priceLabelDouble = Double(priceLabelString) else { return }
-                let includeTaxPrice = Int(floor(priceLabelDouble * taxRate))
+            } else {
+                guard let priceLabelDouble = Double(priceLabelString) else { return }
+                let includeTaxPrice = Int(floor(priceLabelDouble * taxRate.value))
                 calculation.calculationPrice = String(includeTaxPrice)
             }
             try! realm.write {
                 realm.add(calculation)
             }
-            shoppingListCollectionView.reloadData()
+            collectionView.reloadData()
             clearLabel()
         }
     }
     
-    @IBAction func tappedBudgetButton(_ sender: Any) {
+    @IBAction func calculatorClearButtonDidTapped(_ sender: Any) {
+        clearLabel()
+    }
+    
+    @IBAction func budgetButtonDidTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.2) { [self] in
             budgetView.transform = .identity
-            budgetView.transform = CGAffineTransform(translationX: 0, y: calculatorTotalPriceView.frame.maxY - budgetView.frame.maxY)
+            budgetView.transform = CGAffineTransform(translationX: 0, y: totalPriceView.frame.maxY - budgetView.frame.maxY)
         }
     }
     
-    @IBAction func tappedBudgetBackButton(_ sender: Any) {
+    @IBAction func budgetBackButtonDidTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.2) { [self] in
             budgetView.transform = .identity
             budgetView.transform = CGAffineTransform(translationX: 0, y: -1000)
         }
     }
     
-    @IBAction func tappedCalculatorClearButton(_ sender: Any) {
-        clearLabel()
-    }
-    
     private func clearLabel() {
         priceLabelString = ""
         priceLabel.text = "0"
         priceLabel.font = .systemFont(ofSize: 25)
-        if taxIncludeOrNotButton.currentTitle == Tax.taxExcluded.rawValue {
-            taxIncludePriceLabel.text = "\(Tax.taxIncluded.rawValue) 0円"
+        if taxIncludeOrNotButton.currentTitle == Tax.excluded.text {
+            taxIncludePriceLabel.text = "\(Tax.included.text) 0円"
         }
     }
     
@@ -385,16 +378,7 @@ final class CalculationViewController: UIViewController {
         button.layer.borderColor = UIColor.white.cgColor
     }
     
-    private func addComma(_ wantToAddCommaString: String) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.groupingSeparator = ","
-        numberFormatter.groupingSize = 3
-        let commaPrice = numberFormatter.string(from: NSNumber(integerLiteral: Int(wantToAddCommaString)!)) ?? "\(wantToAddCommaString)"
-        return commaPrice
-    }
-    
-    @IBAction func tappedDiscountViewCloseButton(_ sender: Any) {
+    @IBAction func discountViewCloseButtonDidTapped(_ sender: Any) {
         discountSlider.value = 0
         discountLabel.text = "0%引き"
         UIView.animate(withDuration: 0.15) { [self] in
@@ -403,34 +387,35 @@ final class CalculationViewController: UIViewController {
             case 2: discountView.transform = CGAffineTransform(translationX: -1000, y: 0)
             case 3: discountView.transform = CGAffineTransform(translationX: 0, y: 1000)
             case 4: discountView.transform = CGAffineTransform(translationX: 0, y: -1000)
-            default: return
+            default: break
             }
         }
         
         try! realm.write {
-            objects[discountTappedButtonTag].shoppingListDiscount = discountSelectedValue
+            objects[discountTappedButtonTag].shoppingListDiscount = selectedDiscountValue
         }
         
         let discountFloatText = Float(objects[discountTappedButtonTag].shoppingListDiscount)
         discountSlider.setValue(discountFloatText, animated: true)
         discountLabel.text = "\(Int(discountFloatText))%引き"
-        shoppingListCollectionView.reloadItems(at: [IndexPath(item: discountTappedButtonTag, section: 0)])
+        collectionView.reloadItems(at: [IndexPath(item: discountTappedButtonTag, section: 0)])
     }
     
-    @IBAction func tappedDiscountSlider(_ sender: UISlider) {
-        discountSelectedValue = Int(sender.value)
+    @IBAction func discountSliderDidTapped(_ sender: UISlider) {
+        selectedDiscountValue = Int(sender.value)
         discountLabel.text = "\(Int(sender.value))%引き"
     }
+    
 }
 
-extension CalculationViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CalculationViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return objects.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = shoppingListCollectionView.dequeueReusableCell(withReuseIdentifier: CELL_ID, for: indexPath) as! ShoppingListCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ShoppingListCollectionViewCell
         
         cell.setupCell(object: objects[indexPath.row])
         
@@ -443,7 +428,7 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
         
         if objects[indexPath.row].shoppingListDiscount != 0 {
             cell.shoppingListDiscountButton.setTitle("-\(objects[indexPath.row].shoppingListDiscount)%", for: .normal)
-        }else {
+        } else {
             cell.shoppingListDiscountButton.setTitle("割引", for: .normal)
         }
         return cell
@@ -457,7 +442,7 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
                 let deletedObject = self.realm.objects(Calculation.self).filter("isCalculationDelete == true")
                 self.realm.delete(deletedObject)
             }
-            self.shoppingListCollectionView.reloadData()
+            self.collectionView.reloadData()
         }
         let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
             self.dismiss(animated: true, completion: nil)
@@ -476,14 +461,7 @@ extension CalculationViewController: UICollectionViewDelegate, UICollectionViewD
     
 }
 
-extension CalculationViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 5
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return budgetPickerArray.count
-    }
+extension CalculationViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel()
@@ -495,21 +473,23 @@ extension CalculationViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch component {
-        case 0: pickerCompo1 = budgetPickerArray[row]
-        case 1: pickerCompo2 = budgetPickerArray[row]
-        case 2: pickerCompo3 = budgetPickerArray[row]
-        case 3: pickerCompo4 = budgetPickerArray[row]
-        case 4: pickerCompo5 = budgetPickerArray[row]
-        default: return
-        }
-        let budgetString = "\(pickerCompo1)" + "\(pickerCompo2)" + "\(pickerCompo3)" + "\(pickerCompo4)" + "\(pickerCompo5)"
-        let budgetInt = Int(budgetString)!
-        UserDefaults.standard.set(budgetInt, forKey: budgetKey)
-        if budgetInt == 0 {
-            budgetButton.title = "予算"
-        }else {
-            budgetButton.title = "\(addComma(String(budgetInt)))円"
-        }
+        pickerComponents[component] = budgetPickerArray[row]
+        let budgetString = pickerComponents.map { String($0) }.reduce("") { $0 + $1 }
+        let budgetValue = Int(budgetString)!
+        UserDefaults.standard.set(budgetValue, forKey: budgetKey)
+        budgetButton.title = (budgetValue == 0) ? "予算" : "\(String(budgetValue).addComma())円"
     }
+    
+}
+
+extension CalculationViewController: UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return pickerComponents.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return budgetPickerArray.count
+    }
+    
 }
