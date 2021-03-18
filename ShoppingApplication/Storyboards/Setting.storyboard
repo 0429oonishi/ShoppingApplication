@@ -54,8 +54,8 @@
                     <tabBarItem key="tabBarItem" title="設定" image="gearshape" catalog="system" id="iAG-n2-hWk"/>
                     <connections>
                         <outlet property="adMobView" destination="Q9L-SV-3fv" id="Feo-UL-Ezv"/>
-                        <outlet property="settingNavigationBar" destination="kuE-KB-A2Y" id="kfh-uT-zne"/>
-                        <outlet property="settingTableView" destination="gNG-TS-bSM" id="d6j-vd-DBq"/>
+                        <outlet property="navigationBar" destination="kuE-KB-A2Y" id="HAx-E0-eh0"/>
+                        <outlet property="tableView" destination="gNG-TS-bSM" id="0dY-Fl-ETv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xol-yp-Y7I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

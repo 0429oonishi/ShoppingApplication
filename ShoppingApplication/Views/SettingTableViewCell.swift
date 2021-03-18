@@ -1,10 +1,13 @@
 
 import UIKit
 
+//themeColorを共通化
+
 class SettingTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var settingTitleLabel: UILabel!
-    @IBOutlet private weak var settingSeparatorView: UIView!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var separatorView: UIView!
+    
     private var themeColor: UIColor {
         guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .black
@@ -16,14 +19,10 @@ class SettingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     func setupCell(text: String) {
-        settingTitleLabel.text = text
-        settingSeparatorView.backgroundColor = themeColor
+        titleLabel.text = text
+        separatorView.backgroundColor = themeColor
     }
     
 }

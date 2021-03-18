@@ -57,8 +57,8 @@
             <viewLayoutGuide key="safeArea" id="xmN-0f-66r"/>
             <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
-                <outlet property="settingSeparatorView" destination="nWW-b8-LTh" id="xdZ-KQ-8fk"/>
-                <outlet property="settingTitleLabel" destination="Rvp-nF-RrX" id="FCv-Dy-7gQ"/>
+                <outlet property="separatorView" destination="nWW-b8-LTh" id="xdZ-KQ-8fk"/>
+                <outlet property="titleLabel" destination="Rvp-nF-RrX" id="FCv-Dy-7gQ"/>
             </connections>
             <point key="canvasLocation" x="74" y="57"/>
         </tableViewCell>
