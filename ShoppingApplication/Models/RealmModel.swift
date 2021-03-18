@@ -9,8 +9,8 @@ class ToBuyList: Object {
 }
 
 class Calculation: Object {
-    @objc dynamic var calculationPrice: String = ""
-    @objc dynamic var isCalculationDelete: Bool = false
-    @objc dynamic var shoppingListNumber: Int = 1
+    @objc dynamic var price: String = ""
+    @objc dynamic var isCalculationDeleted: Bool = false
+    @objc dynamic var shoppingListCount: Int = 1
     @objc dynamic var shoppingListDiscount: Int = 0
 }

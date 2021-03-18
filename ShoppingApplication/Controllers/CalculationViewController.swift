@@ -33,21 +33,22 @@ final class CalculationViewController: UIViewController {
             }
         }
     }
-    private var totalPriceToken: NotificationToken!
-    private var totalNumberToken: NotificationToken!
-    private var objects: Results<Calculation>!
-    private var realm = try! Realm()
     private var taxRate: Tax.Rate = .ten {
         didSet { taxRateButtonOrTaxIncludeOrNotButtonDidTapped() }
     }
     private var priceLabelString = "" {
         didSet { taxRateButtonOrTaxIncludeOrNotButtonDidTapped() }
     }
-    private var isCalculatorAppeared = true
     private let cellId = String(describing: ShoppingListCollectionViewCell.self)
+    private var isCalculatorAppeared = true
+    private var totalPriceToken: NotificationToken!
+    private var totalNumberToken: NotificationToken!
+    private var objects: Results<Calculation>!
+    private var realm = try! Realm()
     private let budgetKey = "budgetKey"
     private var budgetPickerArray = [Int](0...9)
     private var pickerComponents = Array(repeating: 0, count: 5)
+    
     private var themeColor: UIColor {
         guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
             return .white
@@ -147,7 +148,7 @@ final class CalculationViewController: UIViewController {
         super.viewDidLoad()
         collectionView.dataSource = self
         budgetPickerView.delegate = self
-
+        
         objects = realm.objects(Calculation.self)
         taxIncludePriceLabel.text = ""
         taxIncludeTaxRateLabel.text = ""
@@ -279,8 +280,8 @@ final class CalculationViewController: UIViewController {
             var totalPriceDouble = 0.0
             if objects.count != 0 {
                 for n in 0...objects.count - 1 {
-                    let totalPrice = Double(objects[n].calculationPrice)!
-                    let totalNumber = Double(objects[n].shoppingListNumber)
+                    let totalPrice = Double(objects[n].price)!
+                    let totalNumber = Double(objects[n].shoppingListCount)
                     let totalDiscount = Double(objects[n].shoppingListDiscount)
                     totalPriceDouble += totalPrice * (1 - totalDiscount / 100) * totalNumber
                 }
@@ -296,7 +297,7 @@ final class CalculationViewController: UIViewController {
             var totalNumber  = 0
             if objects.count != 0 {
                 for n in 0...objects.count - 1 {
-                    totalNumber += objects[n].shoppingListNumber
+                    totalNumber += objects[n].shoppingListCount
                 }
             }
             remainCountLabel.text = "(\(totalNumber)個)"
@@ -321,11 +322,11 @@ final class CalculationViewController: UIViewController {
         if priceLabelString != "" {
             let calculation = Calculation()
             if taxIncludeOrNotButton.currentTitle == Tax.included.text {
-                calculation.calculationPrice = priceLabelString
+                calculation.price = priceLabelString
             } else {
                 guard let priceLabelDouble = Double(priceLabelString) else { return }
                 let includeTaxPrice = Int(floor(priceLabelDouble * taxRate.value))
-                calculation.calculationPrice = String(includeTaxPrice)
+                calculation.price = String(includeTaxPrice)
             }
             try! realm.write {
                 realm.add(calculation)
@@ -416,47 +417,11 @@ extension CalculationViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ShoppingListCollectionViewCell
-        
-        cell.setupCell(object: objects[indexPath.row])
-        
-        cell.shoppingListDeleteButton.addTarget(self, action: #selector(deleteButtonDidTapped), for: .touchUpInside)
-        cell.shoppingListDiscountButton.addTarget(self, action: #selector(discountButtonDidTapped), for: .touchUpInside)
-        cell.shoppingListDeleteButton.tag = indexPath.row
-        cell.shoppingListDiscountButton.tag = indexPath.row
-        cell.shoppingListNumberDecreaseButton.tag = indexPath.row
-        cell.shoppingListNumberIncreaseButton.tag = indexPath.row
-        
-        if objects[indexPath.row].shoppingListDiscount != 0 {
-            cell.shoppingListDiscountButton.setTitle("-\(objects[indexPath.row].shoppingListDiscount)%", for: .normal)
-        } else {
-            cell.shoppingListDiscountButton.setTitle("割引", for: .normal)
-        }
+        let object = objects[indexPath.row]
+        cell.setupCell(object: object)
+        cell.setTag(index: indexPath.row)
+        cell.delegate = self
         return cell
-    }
-    
-    @objc func deleteButtonDidTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "これを消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
-        let alertDefaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
-            try! self.realm.write {
-                self.objects[sender.tag].isCalculationDelete = true
-                let deletedObject = self.realm.objects(Calculation.self).filter("isCalculationDelete == true")
-                self.realm.delete(deletedObject)
-            }
-            self.collectionView.reloadData()
-        }
-        let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        alert.addAction(alertDefaultAction)
-        alert.addAction(alertCancelAction)
-        present(alert, animated: true)
-    }
-    
-    @objc func discountButtonDidTapped(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.1) {
-            self.discountView.transform = .identity
-        }
-        discountTappedButtonTag = sender.tag
     }
     
 }
@@ -492,4 +457,32 @@ extension CalculationViewController: UIPickerViewDataSource {
         return budgetPickerArray.count
     }
     
+}
+
+extension CalculationViewController: ShoppingListCollectionViewCellDelegate {
+    
+    func deleteButtonDidTapped(_ tag: Int) {
+        let alert = UIAlertController(title: "これを消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
+        let alertDefaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
+            try! self.realm.write {
+                self.objects[tag].isCalculationDeleted = true
+                let deletedObject = self.realm.objects(Calculation.self).filter("isCalculationDeleted == true")
+                self.realm.delete(deletedObject)
+            }
+            self.collectionView.reloadData()
+        }
+        let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(alertDefaultAction)
+        alert.addAction(alertCancelAction)
+        present(alert, animated: true)
+    }
+    
+    func discountButtonDidTapped(_ tag: Int) {
+        UIView.animate(withDuration: 0.1) {
+            self.discountView.transform = .identity
+        }
+        discountTappedButtonTag = tag
+    }
 }
