@@ -77,7 +77,7 @@ final class HowToUseToBuyListViewController: UIViewController {
         var imageHeight: CGFloat = 0
         if height > 800 {
             imageHeight = height - 130
-        }else {
+        } else {
             imageHeight = height
         }
         let imageView1 = setImage(x: width*0, y: 0, width: width, height: imageHeight, imageType: .image1)

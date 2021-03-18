@@ -19,14 +19,14 @@ final class SettingViewController: UIViewController {
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
-        }else {
+        } else {
             return .white
         }
     }
     private var borderColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
-        }else {
+        } else {
             return .black
         }
     }
@@ -147,7 +147,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         if section == 0 {
             label.frame = CGRect(x: 20, y: 20 - borderWidth, width: 100, height: 40)
-        }else {
+        } else {
             label.frame = CGRect(x: 20, y: 50 - borderWidth, width: 100, height: 40)
         }
         label.text = sectionArray[section]
@@ -171,7 +171,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 60 - borderWidth
-        }else {
+        } else {
             return cellHeight - borderWidth
         }
     }
