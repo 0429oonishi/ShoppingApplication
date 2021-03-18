@@ -2,22 +2,24 @@
 import UIKit
 import RealmSwift
 
+//themeColorを分離
+
 class ShoppingListCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var shoppingListDeleteButton: UIButton!
-    @IBOutlet weak var shoppingListDiscountButton: UIButton!
-    @IBOutlet weak var shoppingListPriceLabel: UILabel!
-    @IBOutlet weak var shoppingListNumberDecreaseButton: UIButton!
-    @IBOutlet weak var shoppingListNumberIncreaseButton: UIButton!
-    @IBOutlet weak var shoppingListNumberLabel: UILabel!
+    @IBOutlet weak private var deleteButton: UIButton!
+    @IBOutlet weak private var discountButton: UIButton!
+    @IBOutlet weak private var priceLabel: UILabel!
+    @IBOutlet weak private var numberDecreaseButton: UIButton!
+    @IBOutlet weak private var numberIncreaseButton: UIButton!
+    @IBOutlet weak private var numberLabel: UILabel!
     
     private var realm = try! Realm()
-    private var calculation = Calculation()
     private var objects: Results<Calculation>!
+    
     private var themeColor: UIColor {
         if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
             return UIColor(code: themeColorString)
-        }else {
+        } else {
             return .black
         }
     }
@@ -27,37 +29,29 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
         objects = realm.objects(Calculation.self)
     }
     
-    @IBAction func tappedShoppingListNumberDecreaseButton(_ sender: UIButton) {
+    @IBAction func numberDecreaseButtonDidTapped(_ sender: UIButton) {
         if objects[sender.tag].shoppingListNumber > 1 {
             try! realm.write {
                 objects[sender.tag].shoppingListNumber -= 1
             }
         }
-        shoppingListNumberLabel.text = "×\(objects[sender.tag].shoppingListNumber)"
+        numberLabel.text = "×\(objects[sender.tag].shoppingListNumber)"
     }
     
-    @IBAction func tappedShoppingListNumberIncreaseButton(_ sender: UIButton) {
+    @IBAction func numberIncreaseButtonDidTapped(_ sender: UIButton) {
         try! realm.write {
             objects[sender.tag].shoppingListNumber += 1
         }
-        shoppingListNumberLabel.text = "×\(objects[sender.tag].shoppingListNumber)"
+        numberLabel.text = "×\(objects[sender.tag].shoppingListNumber)"
     }
     
     func setupCell(object: Calculation) {
-        shoppingListPriceLabel.text = "\(addComma(String(object.calculationPrice)))円"
-        shoppingListNumberLabel.text = "×\(object.shoppingListNumber)"
-        shoppingListDeleteButton.tintColor = themeColor
+        priceLabel.text = "\(String(object.calculationPrice).addComma())円"
+        numberLabel.text = "×\(object.shoppingListNumber)"
+        deleteButton.tintColor = themeColor
         layer.cornerRadius = 30
         layer.borderColor = themeColor.cgColor
         layer.borderWidth = 2
     }
     
-    private func addComma(_ wantToAddCommaString: String) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.groupingSeparator = ","
-        numberFormatter.groupingSize = 3
-        let commaPrice = numberFormatter.string(from: NSNumber(integerLiteral: Int(wantToAddCommaString)!)) ?? "\(wantToAddCommaString)"
-        return commaPrice
-    }
 }

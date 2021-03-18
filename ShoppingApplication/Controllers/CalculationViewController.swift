@@ -419,8 +419,8 @@ extension CalculationViewController: UICollectionViewDataSource {
         
         cell.setupCell(object: objects[indexPath.row])
         
-        cell.shoppingListDeleteButton.addTarget(self, action: #selector(tappedShoppingListDeleteButton), for: .touchUpInside)
-        cell.shoppingListDiscountButton.addTarget(self, action: #selector(tappedShoppingListDiscountButton), for: .touchUpInside)
+        cell.shoppingListDeleteButton.addTarget(self, action: #selector(deleteButtonDidTapped), for: .touchUpInside)
+        cell.shoppingListDiscountButton.addTarget(self, action: #selector(discountButtonDidTapped), for: .touchUpInside)
         cell.shoppingListDeleteButton.tag = indexPath.row
         cell.shoppingListDiscountButton.tag = indexPath.row
         cell.shoppingListNumberDecreaseButton.tag = indexPath.row
@@ -434,7 +434,7 @@ extension CalculationViewController: UICollectionViewDataSource {
         return cell
     }
     
-    @objc func tappedShoppingListDeleteButton(_ sender: UIButton) {
+    @objc func deleteButtonDidTapped(_ sender: UIButton) {
         let alert = UIAlertController(title: "これを消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
         let alertDefaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
             try! self.realm.write {
@@ -452,7 +452,7 @@ extension CalculationViewController: UICollectionViewDataSource {
         present(alert, animated: true)
     }
     
-    @objc func tappedShoppingListDiscountButton(_ sender: UIButton) {
+    @objc func discountButtonDidTapped(_ sender: UIButton) {
         UIView.animate(withDuration: 0.1) {
             self.discountView.transform = .identity
         }
