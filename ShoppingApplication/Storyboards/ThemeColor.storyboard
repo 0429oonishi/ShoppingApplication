@@ -75,9 +75,9 @@
                     </view>
                     <connections>
                         <outlet property="adMobView" destination="kdB-RS-yLI" id="hqY-T4-hxj"/>
-                        <outlet property="themeColorCollectionView" destination="EZf-kU-Xpp" id="gNo-le-fGq"/>
-                        <outlet property="themeColorDecisionButton" destination="de7-Hd-yeT" id="xQF-tZ-Dnf"/>
-                        <outlet property="themeColorNavigationBar" destination="9yR-KI-c6R" id="Lex-ic-CDn"/>
+                        <outlet property="collectionView" destination="EZf-kU-Xpp" id="gNo-le-fGq"/>
+                        <outlet property="decisionButton" destination="de7-Hd-yeT" id="xQF-tZ-Dnf"/>
+                        <outlet property="navigationBar" destination="9yR-KI-c6R" id="Lex-ic-CDn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0U-Cb-koc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
