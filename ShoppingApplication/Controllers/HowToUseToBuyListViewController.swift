@@ -1,8 +1,6 @@
 
 import UIKit
 
-//themeColorを共通化
-
 final class HowToUseToBuyListViewController: UIViewController {
     private enum ImageType {
         case image1
@@ -40,12 +38,6 @@ final class HowToUseToBuyListViewController: UIViewController {
     private var width: CGFloat { UIScreen.main.bounds.width }
     private var height: CGFloat { UIScreen.main.bounds.height }
     private let pageSize: CGFloat = 5
-    private var themeColor: UIColor {
-        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
-            return .black
-        }
-        return UIColor(code: themeColorString)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +61,7 @@ final class HowToUseToBuyListViewController: UIViewController {
         pageControl = UIPageControl(frame: CGRect(x: 0, y: height - 100, width: width, height: 30))
         pageControl.numberOfPages = Int(pageSize)
         pageControl.pageIndicatorTintColor = .black
-        pageControl.currentPageIndicatorTintColor = themeColor
+        pageControl.currentPageIndicatorTintColor = UIColor.black.themeColor
         self.view.addSubview(pageControl)
     }
     
@@ -101,7 +93,7 @@ final class HowToUseToBuyListViewController: UIViewController {
     
     private func setupButton(button: UIButton, buttonSize: CGFloat, buttonTextType: ButtonTextType, page: Int) {
         button.setTitle(buttonTextType.title, for: .normal)
-        button.setTitleColor(themeColor, for: .normal)
+        button.setTitleColor(UIColor.black.themeColor, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.backgroundColor = .white

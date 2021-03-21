@@ -2,7 +2,6 @@
 import UIKit
 import RealmSwift
 
-//themeColorを共通化
 //realmの処理を切り分ける
 
 class ToBuyListTableViewCell: UITableViewCell {
@@ -24,12 +23,6 @@ class ToBuyListTableViewCell: UITableViewCell {
     private var toBuyList = ToBuyList()
     private var objects: Results<ToBuyList>!
     var index: Int = 0
-    private var themeColor: UIColor {
-        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
-            return .black
-        }
-        return UIColor(code: themeColorString)
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,7 +39,7 @@ class ToBuyListTableViewCell: UITableViewCell {
     }
     
     func setupCell(object: ToBuyList) {
-        separatorView.backgroundColor = themeColor
+        separatorView.backgroundColor = UIColor.black.themeColor
         cellTitleLabel.text = object.toBuyListName
         numberOfToBuyLabel.text = "×\(object.toBuyListNumber)"
         let buttonType: CellButtonType = object.isButtonChecked ? .checkmark : .circle

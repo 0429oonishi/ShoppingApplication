@@ -24,4 +24,15 @@ extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: 1.0)
     }
     
+    var themeColor: UIColor {
+        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
+            if self == .black {
+                return .black
+            } else {
+                return .white
+            }
+        }
+        return UIColor(code: themeColorString)
+    }
+ 
 }

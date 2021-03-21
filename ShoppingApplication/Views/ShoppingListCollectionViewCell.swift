@@ -2,8 +2,6 @@
 import UIKit
 import RealmSwift
 
-//themeColorを共通化
-
 protocol ShoppingListCollectionViewCellDelegate: class {
     func deleteButtonDidTapped(_ tag: Int)
     func discountButtonDidTapped(_ tag: Int)
@@ -22,14 +20,6 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     private var objects: Results<Calculation>!
     
     var delegate: ShoppingListCollectionViewCellDelegate?
-    
-    private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        } else {
-            return .black
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -67,9 +57,9 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
         discountButton.setTitle(discountButtonTitle, for: .normal)
         priceLabel.text = "\(String(object.price).addComma())円"
         numberLabel.text = "×\(object.shoppingListCount)"
-        deleteButton.tintColor = themeColor
+        deleteButton.tintColor = UIColor.black.themeColor
         layer.cornerRadius = 30
-        layer.borderColor = themeColor.cgColor
+        layer.borderColor = UIColor.black.themeColor.cgColor
         layer.borderWidth = 2
     }
     

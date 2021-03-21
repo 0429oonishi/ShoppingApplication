@@ -4,6 +4,7 @@ import UIKit
 final class ThemeColorViewController: UIViewController {
 
     private let cellId = "themeColorCellId"
+    
     @IBOutlet weak private var navigationBar: UINavigationBar! {
         didSet { navigationBar.tintColor = .black }
     }

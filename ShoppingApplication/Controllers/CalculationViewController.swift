@@ -2,7 +2,6 @@
 import UIKit
 import RealmSwift
 
-//themeColorを共通化
 //realmを分離させる
 
 final class CalculationViewController: UIViewController {
@@ -48,19 +47,6 @@ final class CalculationViewController: UIViewController {
     private let budgetKey = "budgetKey"
     private var budgetPickerArray = [Int](0...9)
     private var pickerComponents = Array(repeating: 0, count: 5)
-    
-    private var themeColor: UIColor {
-        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
-            return .white
-        }
-        return UIColor(code: themeColorString)
-    }
-    private var borderColor: UIColor {
-        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
-            return .black
-        }
-        return UIColor(code: themeColorString)
-    }
     
     @IBOutlet weak private var remainCountLabel: UILabel!
     @IBOutlet weak private var navigationBar: UINavigationBar!
@@ -161,19 +147,10 @@ final class CalculationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view.backgroundColor = themeColor
-        navigationBar.barTintColor = themeColor
-        calculatorView.backgroundColor = themeColor
-        taxRateButton.backgroundColor = themeColor
-        taxIncludeOrNotButton.backgroundColor = themeColor
-        totalPriceView.backgroundColor = themeColor
-        calculatorPriceView.backgroundColor = themeColor
-        discountView.layer.borderColor = themeColor.cgColor
-        discountSlider.minimumTrackTintColor = themeColor
-        budgetView.layer.borderColor = themeColor.cgColor
+        setupThemeColor()
         
         for n in 0...11 {
-            calculatorButton[n].backgroundColor = themeColor
+            calculatorButton[n].backgroundColor = UIColor.white.themeColor
             [calculatorButton[n].leadingAnchor.constraint(equalTo: calculatorButtonView[n].leadingAnchor, constant: 10),
              calculatorButton[n].trailingAnchor.constraint(equalTo: calculatorButtonView[n].trailingAnchor, constant: -10),
              calculatorButton[n].topAnchor.constraint(equalTo: calculatorButtonView[n].topAnchor, constant: 10),
@@ -184,6 +161,19 @@ final class CalculationViewController: UIViewController {
         
         collectionView.reloadData()
         
+    }
+    
+    private func setupThemeColor() {
+        self.view.backgroundColor = UIColor.white.themeColor
+        navigationBar.barTintColor = UIColor.white.themeColor
+        calculatorView.backgroundColor = UIColor.white.themeColor
+        taxRateButton.backgroundColor = UIColor.white.themeColor
+        taxIncludeOrNotButton.backgroundColor = UIColor.white.themeColor
+        totalPriceView.backgroundColor = UIColor.white.themeColor
+        calculatorPriceView.backgroundColor = UIColor.white.themeColor
+        discountView.layer.borderColor = UIColor.white.themeColor.cgColor
+        discountSlider.minimumTrackTintColor = UIColor.white.themeColor
+        budgetView.layer.borderColor = UIColor.white.themeColor.cgColor
     }
     
     private func collectionViewFlowLayout() {

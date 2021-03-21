@@ -2,8 +2,6 @@
 import UIKit
 import StoreKit
 
-//themeColorを共通化
-
 final class SettingViewController: UIViewController {
     
     private enum Url {
@@ -46,21 +44,6 @@ final class SettingViewController: UIViewController {
     private let borderWidth: CGFloat = 2
     private var cellHeight: CGFloat = 90
     
-    private var themeColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        } else {
-            return .white
-        }
-    }
-    private var borderColor: UIColor {
-        if let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") {
-            return UIColor(code: themeColorString)
-        } else {
-            return .black
-        }
-    }
-    
     @IBOutlet weak private var navigationBar: UINavigationBar!
     @IBOutlet weak private var tableView: UITableView! {
         didSet {
@@ -89,8 +72,8 @@ final class SettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view.backgroundColor = themeColor
-        navigationBar.barTintColor = themeColor
+        self.view.backgroundColor = UIColor.white.themeColor
+        navigationBar.barTintColor = UIColor.white.themeColor
         tableView.reloadData()
         
     }
@@ -161,14 +144,14 @@ extension SettingViewController: UITableViewDelegate {
         label.textAlignment = .center
         label.layer.cornerRadius = 10
         label.layer.borderWidth = borderWidth
-        label.layer.borderColor = borderColor.cgColor
+        label.layer.borderColor = UIColor.black.themeColor.cgColor
         headerView.addSubview(label)
         let bottomBorder = CALayer()
         let bottomBorderX = label.frame.maxX + 20
         let bottomBorderY = label.frame.maxY - borderWidth
         let bottomBorderWidth = self.view.frame.size.width - bottomBorderX - 30
         bottomBorder.frame = CGRect(x: bottomBorderX, y: bottomBorderY, width: bottomBorderWidth, height: borderWidth)
-        bottomBorder.backgroundColor = borderColor.cgColor
+        bottomBorder.backgroundColor = UIColor.black.themeColor.cgColor
         headerView.layer.addSublayer(bottomBorder)
         return headerView
     }

@@ -3,16 +3,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-//themeColorを共通化
-
 final class MapViewController: UIViewController {
-    
-    private var themeColor: UIColor {
-        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
-            return .white
-        }
-        return UIColor(code: themeColorString)
-    }
     
     private var currentLocation = CLLocationManager()
     private var mapView = GMSMapView()
@@ -44,8 +35,8 @@ final class MapViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view.backgroundColor = themeColor
-        mapSearchBar.backgroundColor = themeColor
+        self.view.backgroundColor = UIColor.white.themeColor
+        mapSearchBar.backgroundColor = UIColor.white.themeColor
         
     }
     

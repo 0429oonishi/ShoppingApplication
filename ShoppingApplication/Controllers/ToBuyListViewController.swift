@@ -2,8 +2,6 @@
 import UIKit
 import RealmSwift
 
-//themeColorを共通化
-//adMobViewをViewに切り分け
 //realmの処理を切り分ける
 
 final class ToBuyListViewController: UIViewController {
@@ -19,19 +17,7 @@ final class ToBuyListViewController: UIViewController {
     private var realm = try! Realm()
     private var objects: Results<ToBuyList>!
     private var token: NotificationToken!
-    private var themeColor: UIColor {
-        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
-            return .white
-        }
-        return UIColor(code: themeColorString)
-    }
-    private var borderColor: UIColor {
-        guard let themeColorString = UserDefaults.standard.string(forKey: "themeColorKey") else {
-            return .black
-        }
-        return UIColor(code: themeColorString)
-    }
-    
+  
     @IBOutlet weak private var remainCountButton: UIBarButtonItem!
     @IBOutlet weak private var navigationBar: UINavigationBar!
     @IBOutlet weak private var tableView: UITableView! {
@@ -102,15 +88,19 @@ final class ToBuyListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view.backgroundColor = themeColor
-        navigationBar.barTintColor = themeColor
-        addView.backgroundColor = themeColor
-        addButton.backgroundColor = themeColor
-        addTextField.layer.borderColor = borderColor.cgColor
-        addButton.layer.borderColor = (addButton.backgroundColor == .white) ? UIColor.black.cgColor : UIColor.white.cgColor
-        addButton.layer.shadowColor = (addButton.backgroundColor == .white) ? UIColor.black.cgColor : UIColor.white.cgColor
+        setupThemeColor()
         tableView.reloadData()
         
+    }
+    
+    private func setupThemeColor() {
+        self.view.backgroundColor = UIColor.white.themeColor
+        navigationBar.barTintColor = UIColor.white.themeColor
+        addView.backgroundColor = UIColor.white.themeColor
+        addButton.backgroundColor = UIColor.white.themeColor
+        addTextField.layer.borderColor = UIColor.black.themeColor.cgColor
+        addButton.layer.borderColor = (addButton.backgroundColor == .white) ? UIColor.black.cgColor : UIColor.white.cgColor
+        addButton.layer.shadowColor = (addButton.backgroundColor == .white) ? UIColor.black.cgColor : UIColor.white.cgColor
     }
     
     private func operateKeyboard() {
