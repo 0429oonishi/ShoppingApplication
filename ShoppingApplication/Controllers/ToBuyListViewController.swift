@@ -2,8 +2,6 @@
 import UIKit
 import RealmSwift
 
-//realmの処理を切り分ける
-
 final class ToBuyListViewController: UIViewController {
     
     private let toBuyListCellId = String(describing: ToBuyListTableViewCell.self)
@@ -14,8 +12,7 @@ final class ToBuyListViewController: UIViewController {
             addNumberLabel.text = "\(numberOfToBuy)"
         }
     }
-    private var realm = try! Realm()
-    private var objects: Results<ToBuyList>!
+    private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.objects }
     private var token: NotificationToken!
   
     @IBOutlet weak private var remainCountButton: UIBarButtonItem!
@@ -78,7 +75,6 @@ final class ToBuyListViewController: UIViewController {
                            height: adMobView.frame.size.height,
                            viewController: self)
         
-        objects = realm.objects(ToBuyList.self)
         token = objects.observe { [self] (notification) in
             remainCountButton.title = (objects.count != 0) ? "残り\(objects.count)個" : ""
         }
@@ -159,9 +155,8 @@ final class ToBuyListViewController: UIViewController {
             toBuyList.toBuyListName = text
             toBuyList.toBuyListNumber = numberOfToBuy
             toBuyList.isButtonChecked = false
-            try! realm.write {
-                realm.add(toBuyList)
-            }
+            ToBuyListRealmRepository.shared.add(toBuyList)
+            
             tableView.reloadData()
             addTextField.text = ""
             addStepper.value = 1
@@ -172,10 +167,8 @@ final class ToBuyListViewController: UIViewController {
     private func showAlert() {
         let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "メモを消去する", style: .destructive) { [self] (_) in
-            try! realm.write {
-                let checkObjects = realm.objects(ToBuyList.self).filter("isButtonChecked == true")
-                realm.delete(checkObjects)
-            }
+            let checkedObjects = ToBuyListRealmRepository.shared.filter("isButtonChecked == true")
+            ToBuyListRealmRepository.shared.delete(checkedObjects)
             tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [self] (_) in

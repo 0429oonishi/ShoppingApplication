@@ -2,8 +2,6 @@
 import UIKit
 import RealmSwift
 
-//realmの処理を切り分ける
-
 class ToBuyListTableViewCell: UITableViewCell {
     private enum CellButtonType {
         case circle
@@ -19,21 +17,18 @@ class ToBuyListTableViewCell: UITableViewCell {
     @IBOutlet weak private var cellCheckButton: UIButton!
     @IBOutlet weak private var numberOfToBuyLabel: UILabel!
     @IBOutlet weak private var separatorView: UIView!
-    private var realm = try! Realm()
-    private var toBuyList = ToBuyList()
-    private var objects: Results<ToBuyList>!
+    private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.objects }
     var index: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        objects = realm.objects(ToBuyList.self)
         selectionStyle = .none
     }
     
     @IBAction func cellCheckButtonDidTapped(_ sender: Any) {
         let buttonType: CellButtonType = objects[index].isButtonChecked ? .circle : .checkmark
         setImageToCellCheckButton(buttonType)
-        try! realm.write {
+        ToBuyListRealmRepository.shared.update {
             objects[index].isButtonChecked = !objects[index].isButtonChecked
         }
     }

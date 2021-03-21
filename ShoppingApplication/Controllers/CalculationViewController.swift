@@ -2,8 +2,6 @@
 import UIKit
 import RealmSwift
 
-//realmを分離させる
-
 final class CalculationViewController: UIViewController {
     
     private enum Tax {
@@ -42,8 +40,7 @@ final class CalculationViewController: UIViewController {
     private var isCalculatorAppeared = true
     private var totalPriceToken: NotificationToken!
     private var totalNumberToken: NotificationToken!
-    private var objects: Results<Calculation>!
-    private var realm = try! Realm()
+    private var objects: Results<Calculation>! { CalculationRealmRepository.shared.objects }
     private let budgetKey = "budgetKey"
     private var budgetPickerArray = [Int](0...9)
     private var pickerComponents = Array(repeating: 0, count: 5)
@@ -132,10 +129,10 @@ final class CalculationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         collectionView.dataSource = self
         budgetPickerView.delegate = self
         
-        objects = realm.objects(Calculation.self)
         taxIncludePriceLabel.text = ""
         taxIncludeTaxRateLabel.text = ""
         collectionViewFlowLayout()
@@ -188,10 +185,7 @@ final class CalculationViewController: UIViewController {
         if objects.count != 0 {
             let alert = UIAlertController(title: "全て消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
-                try! self.realm.write {
-                    let objects = self.realm.objects(Calculation.self)
-                    self.realm.delete(objects)
-                }
+                CalculationRealmRepository.shared.delete(self.objects)
                 self.collectionView.reloadData()
                 self.clearLabel()
             }
@@ -268,17 +262,13 @@ final class CalculationViewController: UIViewController {
     private func calculateTotalPrice() {
         totalPriceToken = objects.observe { [self] (notification) in
             var totalPriceDouble = 0.0
-            if objects.count != 0 {
-                for n in 0...objects.count - 1 {
-                    let totalPrice = Double(objects[n].price)!
-                    let totalNumber = Double(objects[n].shoppingListCount)
-                    let totalDiscount = Double(objects[n].shoppingListDiscount)
-                    totalPriceDouble += totalPrice * (1 - totalDiscount / 100) * totalNumber
-                }
-                totalPriceLabel.text = "\(String(Int(totalPriceDouble)).addComma())円"
-            } else {
-                totalPriceLabel.text = "0円"
+            for n in 0...objects.count - 1 {
+                let totalPrice = Double(objects[n].price)!
+                let totalNumber = Double(objects[n].shoppingListCount)
+                let totalDiscount = Double(objects[n].shoppingListDiscount)
+                totalPriceDouble += totalPrice * (1 - totalDiscount / 100) * totalNumber
             }
+            totalPriceLabel.text = (objects.count != 0) ? "\(String(Int(totalPriceDouble)).addComma())円" : "0円"
         }
     }
     
@@ -311,16 +301,10 @@ final class CalculationViewController: UIViewController {
     @IBAction func calculatorAddButtonDidTapped(_ sender: Any) {
         if priceLabelString != "" {
             let calculation = Calculation()
-            if taxIncludeOrNotButton.currentTitle == Tax.included.text {
-                calculation.price = priceLabelString
-            } else {
-                guard let priceLabelDouble = Double(priceLabelString) else { return }
-                let includeTaxPrice = Int(floor(priceLabelDouble * taxRate.value))
-                calculation.price = String(includeTaxPrice)
-            }
-            try! realm.write {
-                realm.add(calculation)
-            }
+            guard let priceLabelDouble = Double(priceLabelString) else { return }
+            let includeTaxPrice = Int(floor(priceLabelDouble * taxRate.value))
+            calculation.price = (taxIncludeOrNotButton.currentTitle == Tax.included.text) ? priceLabelString : String(includeTaxPrice)
+            CalculationRealmRepository.shared.add(calculation)
             collectionView.reloadData()
             clearLabel()
         }
@@ -382,7 +366,7 @@ final class CalculationViewController: UIViewController {
             }
         }
         
-        try! realm.write {
+        CalculationRealmRepository.shared.update {
             objects[discountTappedButtonTag].shoppingListDiscount = selectedDiscountValue
         }
         
@@ -454,11 +438,11 @@ extension CalculationViewController: ShoppingListCollectionViewCellDelegate {
     func deleteButtonDidTapped(_ tag: Int) {
         let alert = UIAlertController(title: "これを消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
         let alertDefaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
-            try! self.realm.write {
+            CalculationRealmRepository.shared.update {
                 self.objects[tag].isCalculationDeleted = true
-                let deletedObject = self.realm.objects(Calculation.self).filter("isCalculationDeleted == true")
-                self.realm.delete(deletedObject)
             }
+            let deletedObjects = CalculationRealmRepository.shared.filter("isCalculationDeleted == true")
+            CalculationRealmRepository.shared.delete(deletedObjects)
             self.collectionView.reloadData()
         }
         let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in

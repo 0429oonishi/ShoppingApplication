@@ -16,17 +16,9 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var numberIncreaseButton: UIButton!
     @IBOutlet weak private var numberLabel: UILabel!
     
-    private var realm = try! Realm()
-    private var objects: Results<Calculation>!
+    private var objects: Results<Calculation>! { CalculationRealmRepository.shared.objects }
     
     var delegate: ShoppingListCollectionViewCellDelegate?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        objects = realm.objects(Calculation.self)
-
-    }
     
     @IBAction func deleteButtonDidTapped(_ sender: UIButton) {
         delegate?.deleteButtonDidTapped(sender.tag)
@@ -38,7 +30,7 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     
     @IBAction func numberDecreaseButtonDidTapped(_ sender: UIButton) {
         if objects[sender.tag].shoppingListCount > 1 {
-            try! realm.write {
+            CalculationRealmRepository.shared.update {
                 objects[sender.tag].shoppingListCount -= 1
             }
         }
@@ -46,7 +38,7 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func numberIncreaseButtonDidTapped(_ sender: UIButton) {
-        try! realm.write {
+        CalculationRealmRepository.shared.update {
             objects[sender.tag].shoppingListCount += 1
         }
         numberLabel.text = "×\(objects[sender.tag].shoppingListCount)"

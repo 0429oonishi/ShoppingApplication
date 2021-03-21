@@ -11,7 +11,7 @@ final class MapViewController: UIViewController {
     private var userLocationLat: Double = 35.6812226
     private var userLocationLng: Double = 139.7670594
     
-    @IBOutlet weak var mapSearchBar: UISearchBar! {
+    @IBOutlet weak private var mapSearchBar: UISearchBar! {
         didSet {
             mapSearchBar.backgroundImage = UIImage()
             mapSearchBar.layer.cornerRadius = mapSearchBar.bounds.height / 2
