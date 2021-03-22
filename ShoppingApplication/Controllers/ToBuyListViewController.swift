@@ -178,7 +178,7 @@ final class ToBuyListViewController: UIViewController {
             ToBuyListRealmRepository.shared.delete(checkedObjects)
             tableView.reloadData()
         }
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [unowned self] (_) in
+        let cancelAction = UIAlertAction(title: .cancel, style: .cancel) { [unowned self] (_) in
             dismiss(animated: true, completion: nil)
         }
         alert.addAction(defaultAction)

@@ -141,12 +141,12 @@ final class CalculationViewController: UIViewController {
             let alert = UIAlertController(title: "全て消去しますか？",
                                           message: "消去したものは元に戻せません。",
                                           preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
+            let defaultAction = UIAlertAction(title: .delete, style: .default) { (_) in
                 CalculationRealmRepository.shared.delete(self.calculations)
                 self.collectionView.reloadData()
                 self.clearLabel()
             }
-            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
+            let cancelAction = UIAlertAction(title: .cancel, style: .cancel) { (_) in
                 self.dismiss(animated: true, completion: nil)
             }
             alert.addAction(defaultAction)
@@ -206,7 +206,7 @@ final class CalculationViewController: UIViewController {
             let alert = UIAlertController(title: "エラー",
                                           message: "金額が大きすぎます",
                                           preferredStyle: .actionSheet)
-            let defaultAction = UIAlertAction(title: "閉じる", style: .default) { (_) in
+            let defaultAction = UIAlertAction(title: .close, style: .default) { (_) in
                 self.clearLabel()
             }
             alert.addAction(defaultAction)
@@ -407,7 +407,7 @@ extension CalculationViewController: ShoppingListCollectionViewCellDelegate {
     
     func deleteButtonDidTapped(_ tag: Int) {
         let alert = UIAlertController(title: "これを消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
-        let alertDefaultAction = UIAlertAction(title: "消去する", style: .default) { (_) in
+        let alertDefaultAction = UIAlertAction(title: .delete, style: .destructive) { (_) in
             CalculationRealmRepository.shared.update {
                 self.calculations[tag].isCalculationDeleted = true
             }
@@ -415,7 +415,7 @@ extension CalculationViewController: ShoppingListCollectionViewCellDelegate {
             CalculationRealmRepository.shared.delete(deletedObjects)
             self.collectionView.reloadData()
         }
-        let alertCancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (_) in
+        let alertCancelAction = UIAlertAction(title: .cancel, style: .cancel) { (_) in
             self.dismiss(animated: true, completion: nil)
         }
         alert.addAction(alertDefaultAction)

@@ -18,4 +18,16 @@ extension String {
         return numberFormatter.string(from: NSNumber(integerLiteral: number))!
     }
     
+    static var delete: String {
+        return "消去する"
+    }
+    
+    static var cancel: String {
+        return "キャンセル"
+    }
+    
+    static var close: String {
+        return "閉じる"
+    }
+    
 }
