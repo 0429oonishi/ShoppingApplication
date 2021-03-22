@@ -10,7 +10,7 @@ final class ToBuyListViewController: UIViewController {
     private var numberOfToBuy = 1 {
         didSet { addNumberLabel.text = "\(numberOfToBuy)" }
     }
-    private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.objects }
+    private var toDoLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
     private var token: NotificationToken!
   
     @IBOutlet weak private var remainCountButton: UIBarButtonItem!
@@ -73,8 +73,8 @@ final class ToBuyListViewController: UIViewController {
                            height: adMobView.frame.size.height,
                            viewController: self)
         
-        token = objects.observe { [unowned self] (notification) in
-            remainCountButton.title = (objects.count != 0) ? "残り\(objects.count)個" : ""
+        token = toDoLists.observe { [unowned self] (notification) in
+            remainCountButton.title = (toDoLists.count != 0) ? "残り\(toDoLists.count)個" : ""
         }
         
     }
@@ -136,7 +136,7 @@ final class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func clearAllButtonDidTapped(_ sender: Any) {
-        if objects.count != 0 {
+        if toDoLists.count != 0 {
             showAlert()
         }
     }
@@ -199,14 +199,14 @@ extension ToBuyListViewController: UITableViewDelegate {
 extension ToBuyListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return toDoLists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as? ToBuyListTableViewCell else {
             return UITableViewCell()
         }
-        let object = objects[indexPath.row]
+        let object = toDoLists[indexPath.row]
         cell.configure(object: object)
         cell.index = indexPath.row
         return cell

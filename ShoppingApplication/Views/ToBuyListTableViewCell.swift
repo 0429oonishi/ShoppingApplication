@@ -14,7 +14,7 @@ class ToBuyListTableViewCell: UITableViewCell {
             }
         }
     }
-    private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.objects }
+    private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
     var index: Int = 0
     
     @IBOutlet weak private var titleLabel: UILabel!

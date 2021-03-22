@@ -13,7 +13,7 @@ class ToBuyListRealmRepository {
     private init() {}
     
     let realm = try! Realm()
-    lazy var objects: Results<ToBuyList> = realm.objects(ToBuyList.self)
+    lazy var toDoLists: Results<ToBuyList> = realm.objects(ToBuyList.self)
     
     func add(_ toBuyList: ToBuyList) {
         try! realm.write {
@@ -29,7 +29,7 @@ class ToBuyListRealmRepository {
     
     func filter(_ toBuyListTerm: String) -> Results<ToBuyList> {
         try! realm.write {
-            return objects.filter(toBuyListTerm)
+            return toDoLists.filter(toBuyListTerm)
         }
     }
     

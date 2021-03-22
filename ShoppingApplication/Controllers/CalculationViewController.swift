@@ -250,7 +250,6 @@ final class CalculationViewController: UIViewController {
     
     @IBAction func discountViewCloseButtonDidTapped(_ sender: Any) {
         discountSlider.value = 0
-        discountValue = 0
         UIView.animate(withDuration: 0.15) { [unowned self] in
             switch Int.random(in: 1 ... 4) {
             case 1: discountView.transform = CGAffineTransform(translationX: 1000, y: 0)
@@ -302,7 +301,7 @@ final class CalculationViewController: UIViewController {
     }
     
     private func collectionViewFlowLayout() {
-        // (画面サイズ - mergin 4つ) / 一行のセルの数
+        // (画面サイズ - mergin * 4つ) / 一行のセルの数
         let itemSize = (UIScreen.main.bounds.width - 15 * 4 ) / 3
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
