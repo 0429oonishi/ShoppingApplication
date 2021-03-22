@@ -84,7 +84,15 @@ extension MapViewController: UISearchBarDelegate {
                            lat: userLocationLat,
                            lng: userLocationLng) { placeResults in
             self.placeResults = placeResults
-            if !self.placeResults.isEmpty {
+
+            if self.placeResults.isEmpty {
+                let alert = UIAlertController(title: "周辺で探した結果",
+                                              message: "検索結果は0です",
+                                              preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "閉じる", style: .cancel)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true)
+            } else {
                 for n in 0...placeResults.count - 1 {
                     let latitude = placeResults[n].geometry.location.lat
                     let longitude = placeResults[n].geometry.location.lng
@@ -96,13 +104,6 @@ extension MapViewController: UISearchBarDelegate {
                     marker.tracksViewChanges = true
                     marker.map = self.mapView
                 }
-            } else {
-                let alert = UIAlertController(title: "周辺で探した結果",
-                                              message: "検索結果は0です",
-                                              preferredStyle: .alert)
-                let closeAction = UIAlertAction(title: "閉じる", style: .cancel)
-                alert.addAction(closeAction)
-                self.present(alert, animated: true)
             }
         }
     }

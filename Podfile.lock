@@ -3,7 +3,7 @@ PODS:
   - Google-Mobile-Ads-SDK (8.2.0.1):
     - GoogleAppMeasurement (~> 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
-  - GoogleAppMeasurement (7.8.1):
+  - GoogleAppMeasurement (7.9.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
     - GoogleUtilities/Network (~> 7.0)
@@ -73,7 +73,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Google-Mobile-Ads-SDK: b48fb7dc45b2e442a217dd96875586fda7d5e553
-  GoogleAppMeasurement: 50a254ee92c1b94fbe2abea7e3da35e4c6dedce0
+  GoogleAppMeasurement: 120eec8803fe65a4a7475fb3d3d59a61d0e1a866
   GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
   GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca

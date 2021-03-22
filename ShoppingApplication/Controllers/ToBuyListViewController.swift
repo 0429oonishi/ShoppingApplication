@@ -138,9 +138,8 @@ final class ToBuyListViewController: UIViewController {
     }
 
     @IBAction private func clearAllButtonDidTapped(_ sender: Any) {
-        if !toDoLists.isEmpty {
-            showAlert()
-        }
+        guard !toDoLists.isEmpty else { return }
+        showAlert()
     }
 
     @IBAction private func toggleKeyboardButtonDidTapped(_ sender: Any) {
@@ -150,11 +149,11 @@ final class ToBuyListViewController: UIViewController {
             isAddViewAppeared.toggle()
         }
     }
-    
+
     @IBAction private func addStepperDidTapped(_ sender: UIStepper) {
         numberOfToBuy = Int(sender.value)
     }
-    
+
     @IBAction private func addButtonDidTapped(_ sender: Any) {
         guard let text = addTextField.text, !text.isEmpty else { return }
         let toBuyList = ToBuyList()
@@ -162,13 +161,13 @@ final class ToBuyListViewController: UIViewController {
         toBuyList.toBuyListNumber = numberOfToBuy
         toBuyList.isButtonChecked = false
         ToBuyListRealmRepository.shared.add(toBuyList)
-        
+
         tableView.reloadData()
         addTextField.text = ""
         addStepper.value = 1
         numberOfToBuy = 1
     }
-    
+
     private func showAlert() {
         let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？",
                                       message: "消去したものは元に戻せません。",

@@ -8,13 +8,13 @@
 import RealmSwift
 
 final class ToBuyListRealmRepository {
-    
+
     static let shared = ToBuyListRealmRepository()
     private init() {}
-    
+
     let realm = try! Realm()
     lazy var toDoLists: Results<ToBuyList> = realm.objects(ToBuyList.self)
-    
+
     func add(_ toBuyList: ToBuyList) {
         try! realm.write {
             realm.add(toBuyList)

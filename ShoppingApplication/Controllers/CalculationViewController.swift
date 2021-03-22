@@ -136,22 +136,21 @@ final class CalculationViewController: UIViewController {
     }
 
     @IBAction private func clearAllButtonDidTapped(_ sender: Any) {
-        if !calculations.isEmpty {
-            let alert = UIAlertController(title: "全て消去しますか？",
-                                          message: "消去したものは元に戻せません。",
-                                          preferredStyle: .alert)
-            let deleteAction = UIAlertAction(title: "消去する", style: .default) { _ in
-                CalculationRealmRepository.shared.delete(self.calculations)
-                self.collectionView.reloadData()
-                self.clearLabel()
-            }
-            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in
-                self.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(deleteAction)
-            alert.addAction(cancelAction)
-            present(alert, animated: true)
+        guard !calculations.isEmpty else { return }
+        let alert = UIAlertController(title: "全て消去しますか？",
+                                      message: "消去したものは元に戻せません。",
+                                      preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "消去する", style: .default) { _ in
+            CalculationRealmRepository.shared.delete(self.calculations)
+            self.collectionView.reloadData()
+            self.clearLabel()
         }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 
     @IBAction private func toggleCalculatorButtonDidTapped(_ sender: Any) {
