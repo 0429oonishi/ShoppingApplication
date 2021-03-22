@@ -136,9 +136,8 @@ final class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func clearAllButtonDidTapped(_ sender: Any) {
-        if toDoLists.count != 0 {
-            showAlert()
-        }
+        guard toDoLists.count != 0 else { return }
+        showAlert()
     }
     
     @IBAction func toggleKeyboardButtonDidTapped(_ sender: Any) {
