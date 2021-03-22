@@ -150,27 +150,25 @@ final class ToBuyListViewController: UIViewController {
             isAddViewAppeared.toggle()
         }
     }
-
+    
     @IBAction private func addStepperDidTapped(_ sender: UIStepper) {
         numberOfToBuy = Int(sender.value)
     }
-
+    
     @IBAction private func addButtonDidTapped(_ sender: Any) {
         guard let text = addTextField.text, !text.isEmpty else { return }
-
         let toBuyList = ToBuyList()
         toBuyList.toBuyListName = text
         toBuyList.toBuyListNumber = numberOfToBuy
         toBuyList.isButtonChecked = false
         ToBuyListRealmRepository.shared.add(toBuyList)
-
+        
         tableView.reloadData()
         addTextField.text = ""
         addStepper.value = 1
         numberOfToBuy = 1
-
     }
-
+    
     private func showAlert() {
         let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？",
                                       message: "消去したものは元に戻せません。",

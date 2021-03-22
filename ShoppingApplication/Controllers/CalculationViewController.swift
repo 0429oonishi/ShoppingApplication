@@ -219,15 +219,13 @@ final class CalculationViewController: UIViewController {
 
     @IBAction private func calculatorAddButtonDidTapped(_ sender: Any) {
         guard !priceLabelString.isEmpty else { return }
-
-        let calculation = Calculation()
         guard let priceLabelDouble = Double(priceLabelString) else { return }
+        let calculation = Calculation()
         let includeTaxPrice = Int(floor(priceLabelDouble * taxRate.value))
         calculation.price = (taxIncludeOrNotButton.currentTitle == Tax.included.text) ? priceLabelString : String(includeTaxPrice)
         CalculationRealmRepository.shared.add(calculation)
         collectionView.reloadData()
         clearLabel()
-
     }
 
     @IBAction private func calculatorClearButtonDidTapped(_ sender: Any) {
