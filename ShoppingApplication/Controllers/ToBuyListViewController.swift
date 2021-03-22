@@ -154,19 +154,19 @@ final class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func addButtonDidTapped(_ sender: Any) {
-        guard let text = addTextField.text else { return }
-        if text != "" {
-            let toBuyList = ToBuyList()
-            toBuyList.toBuyListName = text
-            toBuyList.toBuyListNumber = numberOfToBuy
-            toBuyList.isButtonChecked = false
-            ToBuyListRealmRepository.shared.add(toBuyList)
-            
-            tableView.reloadData()
-            addTextField.text = ""
-            addStepper.value = 1
-            numberOfToBuy = 1
-        }
+        guard let text = addTextField.text, text != "" else { return }
+        
+        let toBuyList = ToBuyList()
+        toBuyList.toBuyListName = text
+        toBuyList.toBuyListNumber = numberOfToBuy
+        toBuyList.isButtonChecked = false
+        ToBuyListRealmRepository.shared.add(toBuyList)
+        
+        tableView.reloadData()
+        addTextField.text = ""
+        addStepper.value = 1
+        numberOfToBuy = 1
+        
     }
     
     private func showAlert() {
