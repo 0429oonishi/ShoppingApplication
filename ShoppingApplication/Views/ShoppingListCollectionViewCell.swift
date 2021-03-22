@@ -9,16 +9,15 @@ protocol ShoppingListCollectionViewCellDelegate: class {
 
 class ShoppingListCollectionViewCell: UICollectionViewCell {
     
+    private var objects: Results<Calculation>! { CalculationRealmRepository.shared.calculations }
+    var delegate: ShoppingListCollectionViewCellDelegate?
+    
     @IBOutlet weak private var deleteButton: UIButton!
     @IBOutlet weak private var discountButton: UIButton!
     @IBOutlet weak private var priceLabel: UILabel!
     @IBOutlet weak private var numberDecreaseButton: UIButton!
     @IBOutlet weak private var numberIncreaseButton: UIButton!
     @IBOutlet weak private var numberLabel: UILabel!
-    
-    private var objects: Results<Calculation>! { CalculationRealmRepository.shared.objects }
-    
-    var delegate: ShoppingListCollectionViewCellDelegate?
     
     @IBAction func deleteButtonDidTapped(_ sender: UIButton) {
         delegate?.deleteButtonDidTapped(sender.tag)
@@ -44,10 +43,11 @@ class ShoppingListCollectionViewCell: UICollectionViewCell {
         numberLabel.text = "×\(objects[sender.tag].shoppingListCount)"
     }
     
-    func setupCell(object: Calculation) {
-        let discountButtonTitle = (object.shoppingListDiscount != 0) ? "-\(object.shoppingListDiscount)%" : "割引"
+    func configure(object: Calculation) {
+        let discount = object.shoppingListDiscount
+        let discountButtonTitle = (discount != 0) ? "-\(discount)%" : "割引"
         discountButton.setTitle(discountButtonTitle, for: .normal)
-        priceLabel.text = "\(String(object.price).addComma())円"
+        priceLabel.text = "\(String(object.price).commaFormated)円"
         numberLabel.text = "×\(object.shoppingListCount)"
         deleteButton.tintColor = UIColor.black.themeColor
         layer.cornerRadius = 30

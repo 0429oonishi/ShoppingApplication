@@ -46,7 +46,7 @@ class CalculationRealmRepository {
     private init() {}
     
     let realm = try! Realm()
-    lazy var objects: Results<Calculation> = realm.objects(Calculation.self)
+    lazy var calculations: Results<Calculation> = realm.objects(Calculation.self)
     
     func add(_ calculation: Calculation) {
         try! realm.write {
@@ -62,7 +62,7 @@ class CalculationRealmRepository {
     
     func filter(_ calculationTerm: String) -> Results<Calculation> {
         try! realm.write {
-            return objects.filter(calculationTerm)
+            return calculations.filter(calculationTerm)
         }
     }
     

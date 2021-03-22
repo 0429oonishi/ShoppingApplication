@@ -11,7 +11,7 @@ class SettingTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
-    func setupCell(text: String) {
+    func configure(text: String) {
         titleLabel.text = text
         separatorView.backgroundColor = UIColor.black.themeColor
     }

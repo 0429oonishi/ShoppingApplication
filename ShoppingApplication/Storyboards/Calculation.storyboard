@@ -509,15 +509,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtl-NA-zga">
-                                        <rect key="frame" x="288.5" y="15" width="27.5" height="30"/>
+                                        <rect key="frame" x="286" y="15" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="H58-KP-fNn"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal">
+                                        <state key="normal" title="×">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <imageReference key="image" image="arrow.up.and.down.and.arrow.left.and.right" catalog="system" symbolScale="large" renderingMode="original"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                         </state>
                                         <connections>
                                             <action selector="discountViewCloseButtonDidTapped:" destination="5tk-Zd-CUk" eventType="touchUpInside" id="csu-Os-fZc"/>
@@ -622,30 +622,30 @@
                         <outlet property="taxRateButton" destination="Q8X-9R-4TH" id="wb5-E4-DCd"/>
                         <outlet property="totalPriceLabel" destination="tc8-gY-VHe" id="mXD-8P-Yhl"/>
                         <outlet property="totalPriceView" destination="QdS-gS-bMb" id="wdH-mW-WCp"/>
-                        <outletCollection property="calculatorButton" destination="U83-jA-vga" collectionClass="NSMutableArray" id="WJG-Sj-Rkv"/>
-                        <outletCollection property="calculatorButton" destination="7wv-bq-9rX" collectionClass="NSMutableArray" id="urn-Dz-ksn"/>
-                        <outletCollection property="calculatorButton" destination="7Mm-l4-vvL" collectionClass="NSMutableArray" id="eIS-Rr-eBA"/>
-                        <outletCollection property="calculatorButton" destination="6qK-Ul-xVe" collectionClass="NSMutableArray" id="w6g-wz-Di2"/>
-                        <outletCollection property="calculatorButton" destination="LDs-lR-l28" collectionClass="NSMutableArray" id="uHK-eN-YAs"/>
-                        <outletCollection property="calculatorButton" destination="GGW-dK-fbX" collectionClass="NSMutableArray" id="KxL-SI-G0s"/>
-                        <outletCollection property="calculatorButton" destination="ViE-9o-hjq" collectionClass="NSMutableArray" id="W0V-WQ-nJ6"/>
-                        <outletCollection property="calculatorButton" destination="Q3P-CP-Y8U" collectionClass="NSMutableArray" id="gEE-tn-5v9"/>
-                        <outletCollection property="calculatorButton" destination="KKg-3V-sEo" collectionClass="NSMutableArray" id="cLw-Zi-65q"/>
-                        <outletCollection property="calculatorButton" destination="S4W-72-pPI" collectionClass="NSMutableArray" id="J1b-Fw-hf4"/>
-                        <outletCollection property="calculatorButtonView" destination="hNk-ad-eBt" collectionClass="NSMutableArray" id="TDF-ou-KRF"/>
-                        <outletCollection property="calculatorButtonView" destination="Dgq-Ul-myK" collectionClass="NSMutableArray" id="Htm-aT-Jy4"/>
-                        <outletCollection property="calculatorButtonView" destination="OfP-CX-6db" collectionClass="NSMutableArray" id="Bea-f4-jqQ"/>
-                        <outletCollection property="calculatorButtonView" destination="NDO-Xz-NEr" collectionClass="NSMutableArray" id="8sG-20-PK2"/>
-                        <outletCollection property="calculatorButtonView" destination="jA2-Sa-86s" collectionClass="NSMutableArray" id="rlK-X8-ozQ"/>
-                        <outletCollection property="calculatorButtonView" destination="bmj-OJ-s1r" collectionClass="NSMutableArray" id="fNb-Qv-HHa"/>
-                        <outletCollection property="calculatorButtonView" destination="XGy-ol-7ZC" collectionClass="NSMutableArray" id="13b-cv-hcd"/>
-                        <outletCollection property="calculatorButtonView" destination="V5g-sn-52S" collectionClass="NSMutableArray" id="W9q-aO-Ot5"/>
-                        <outletCollection property="calculatorButtonView" destination="T27-fM-afS" collectionClass="NSMutableArray" id="ZJo-nH-TQz"/>
-                        <outletCollection property="calculatorButtonView" destination="khs-CB-f5j" collectionClass="NSMutableArray" id="VdN-cc-TOu"/>
-                        <outletCollection property="calculatorButtonView" destination="axk-50-76s" collectionClass="NSMutableArray" id="LSU-5P-S8H"/>
-                        <outletCollection property="calculatorButtonView" destination="XvE-Pw-F37" collectionClass="NSMutableArray" id="aFC-Is-d9C"/>
-                        <outletCollection property="calculatorButton" destination="adT-0J-TKC" collectionClass="NSMutableArray" id="j4E-pV-9mc"/>
-                        <outletCollection property="calculatorButton" destination="Afz-9Z-Edw" collectionClass="NSMutableArray" id="Vya-Tt-LgX"/>
+                        <outletCollection property="calculatorButtons" destination="U83-jA-vga" collectionClass="NSMutableArray" id="WJG-Sj-Rkv"/>
+                        <outletCollection property="calculatorButtons" destination="7wv-bq-9rX" collectionClass="NSMutableArray" id="urn-Dz-ksn"/>
+                        <outletCollection property="calculatorButtons" destination="7Mm-l4-vvL" collectionClass="NSMutableArray" id="eIS-Rr-eBA"/>
+                        <outletCollection property="calculatorButtons" destination="6qK-Ul-xVe" collectionClass="NSMutableArray" id="w6g-wz-Di2"/>
+                        <outletCollection property="calculatorButtons" destination="LDs-lR-l28" collectionClass="NSMutableArray" id="uHK-eN-YAs"/>
+                        <outletCollection property="calculatorButtons" destination="GGW-dK-fbX" collectionClass="NSMutableArray" id="KxL-SI-G0s"/>
+                        <outletCollection property="calculatorButtons" destination="ViE-9o-hjq" collectionClass="NSMutableArray" id="W0V-WQ-nJ6"/>
+                        <outletCollection property="calculatorButtons" destination="Q3P-CP-Y8U" collectionClass="NSMutableArray" id="gEE-tn-5v9"/>
+                        <outletCollection property="calculatorButtons" destination="KKg-3V-sEo" collectionClass="NSMutableArray" id="cLw-Zi-65q"/>
+                        <outletCollection property="calculatorButtons" destination="S4W-72-pPI" collectionClass="NSMutableArray" id="J1b-Fw-hf4"/>
+                        <outletCollection property="calculatorButtonViews" destination="hNk-ad-eBt" collectionClass="NSMutableArray" id="TDF-ou-KRF"/>
+                        <outletCollection property="calculatorButtonViews" destination="Dgq-Ul-myK" collectionClass="NSMutableArray" id="Htm-aT-Jy4"/>
+                        <outletCollection property="calculatorButtonViews" destination="OfP-CX-6db" collectionClass="NSMutableArray" id="Bea-f4-jqQ"/>
+                        <outletCollection property="calculatorButtonViews" destination="NDO-Xz-NEr" collectionClass="NSMutableArray" id="8sG-20-PK2"/>
+                        <outletCollection property="calculatorButtonViews" destination="jA2-Sa-86s" collectionClass="NSMutableArray" id="rlK-X8-ozQ"/>
+                        <outletCollection property="calculatorButtonViews" destination="bmj-OJ-s1r" collectionClass="NSMutableArray" id="fNb-Qv-HHa"/>
+                        <outletCollection property="calculatorButtonViews" destination="XGy-ol-7ZC" collectionClass="NSMutableArray" id="13b-cv-hcd"/>
+                        <outletCollection property="calculatorButtonViews" destination="V5g-sn-52S" collectionClass="NSMutableArray" id="W9q-aO-Ot5"/>
+                        <outletCollection property="calculatorButtonViews" destination="T27-fM-afS" collectionClass="NSMutableArray" id="ZJo-nH-TQz"/>
+                        <outletCollection property="calculatorButtonViews" destination="khs-CB-f5j" collectionClass="NSMutableArray" id="VdN-cc-TOu"/>
+                        <outletCollection property="calculatorButtonViews" destination="axk-50-76s" collectionClass="NSMutableArray" id="LSU-5P-S8H"/>
+                        <outletCollection property="calculatorButtonViews" destination="XvE-Pw-F37" collectionClass="NSMutableArray" id="aFC-Is-d9C"/>
+                        <outletCollection property="calculatorButtons" destination="adT-0J-TKC" collectionClass="NSMutableArray" id="j4E-pV-9mc"/>
+                        <outletCollection property="calculatorButtons" destination="Afz-9Z-Edw" collectionClass="NSMutableArray" id="Vya-Tt-LgX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlS-U3-4k2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -662,7 +662,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.up.and.down.and.arrow.left.and.right" catalog="system" width="128" height="122"/>
         <image name="arrow.up.square" catalog="system" width="128" height="114"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="keyboard.chevron.compact.down" catalog="system" width="128" height="102"/>

@@ -134,7 +134,10 @@ extension SettingViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: cellHeight))
+        let headerView = UIView.init(frame: CGRect(x: 0,
+                                                   y: 0,
+                                                   width: tableView.frame.width,
+                                                   height: cellHeight))
         let label = UILabel()
         let y = (section == 0) ? 20 - borderWidth : 50 - borderWidth
         label.frame = CGRect(x: 20, y: y, width: 100, height: 40)
@@ -150,7 +153,10 @@ extension SettingViewController: UITableViewDelegate {
         let bottomBorderX = label.frame.maxX + 20
         let bottomBorderY = label.frame.maxY - borderWidth
         let bottomBorderWidth = self.view.frame.size.width - bottomBorderX - 30
-        bottomBorder.frame = CGRect(x: bottomBorderX, y: bottomBorderY, width: bottomBorderWidth, height: borderWidth)
+        bottomBorder.frame = CGRect(x: bottomBorderX,
+                                    y: bottomBorderY,
+                                    width: bottomBorderWidth,
+                                    height: borderWidth)
         bottomBorder.backgroundColor = UIColor.black.themeColor.cgColor
         headerView.layer.addSublayer(bottomBorder)
         return headerView
@@ -175,7 +181,7 @@ extension SettingViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let text = rowTypes[indexPath.section][indexPath.row].text
-        cell.setupCell(text: text)
+        cell.configure(text: text)
         return cell
     }
     

@@ -29,7 +29,6 @@ final class ThemeColorViewController: UIViewController {
                            width: self.view.frame.size.width,
                            height: adMobView.frame.size.height,
                            viewController: self)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -42,7 +42,11 @@ final class MapViewController: UIViewController {
     
     private func setupMapView() {
         let camera = GMSCameraPosition.camera(withLatitude: userLocationLat, longitude: userLocationLng, zoom: 17.0)
-        mapView = GMSMapView.map(withFrame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height), camera: camera)
+        mapView = GMSMapView.map(withFrame: CGRect(x: 0.0,
+                                                   y: 0.0,
+                                                   width: self.view.frame.width,
+                                                   height: self.view.frame.height),
+                                 camera: camera)
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         currentLocation.delegate = self
@@ -62,7 +66,9 @@ extension MapViewController: CLLocationManagerDelegate {
         let userLocation = locations.last
         userLocationLat = Double(userLocation!.coordinate.latitude)
         userLocationLng = Double(userLocation!.coordinate.longitude)
-        let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude, longitude: userLocation!.coordinate.longitude, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: userLocation!.coordinate.latitude,
+                                              longitude: userLocation!.coordinate.longitude,
+                                              zoom: 17.0)
         self.mapView.animate(to: camera)
         currentLocation.stopUpdatingLocation()
     }
@@ -75,7 +81,8 @@ extension MapViewController: UISearchBarDelegate {
         mapSearchBar.resignFirstResponder()
         mapView.clear()
         
-        API.shared.request(searchKeyword: searchBar.text!, lat: userLocationLat, lng: userLocationLng) { placeResults in
+        API.shared.request(searchKeyword: searchBar.text!,
+                           lat: userLocationLat, lng: userLocationLng) { placeResults in  
             self.placeResults = placeResults
             if self.placeResults.count != 0 {
                 for n in 0...placeResults.count - 1 {
@@ -90,7 +97,9 @@ extension MapViewController: UISearchBarDelegate {
                     marker.map = self.mapView
                 }
             } else {
-                let alert = UIAlertController(title: "周辺で探した結果", message: "検索結果は0です", preferredStyle: .alert)
+                let alert = UIAlertController(title: "周辺で探した結果",
+                                              message: "検索結果は0です",
+                                              preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "閉じる", style: .cancel)
                 alert.addAction(cancelAction)
                 self.present(alert, animated: true)

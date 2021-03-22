@@ -8,9 +8,7 @@ final class ToBuyListViewController: UIViewController {
     private var isKeyboardAppeared = false
     private var isAddViewAppeared = true
     private var numberOfToBuy = 1 {
-        didSet {
-            addNumberLabel.text = "\(numberOfToBuy)"
-        }
+        didSet { addNumberLabel.text = "\(numberOfToBuy)" }
     }
     private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.objects }
     private var token: NotificationToken!
@@ -75,7 +73,7 @@ final class ToBuyListViewController: UIViewController {
                            height: adMobView.frame.size.height,
                            viewController: self)
         
-        token = objects.observe { [self] (notification) in
+        token = objects.observe { [unowned self] (notification) in
             remainCountButton.title = (objects.count != 0) ? "残り\(objects.count)個" : ""
         }
         
@@ -100,9 +98,16 @@ final class ToBuyListViewController: UIViewController {
     }
     
     private func operateKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showKeyboard),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(hideKeyboard),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(dismissKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -137,7 +142,7 @@ final class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func toggleKeyboardButtonDidTapped(_ sender: Any) {
-        UIView.animate(withDuration: 0.2) { [self] in
+        UIView.animate(withDuration: 0.2) { [unowned self] in
             let distance = self.view.frame.maxY - addView.frame.minY
             addView.transform = isAddViewAppeared ? CGAffineTransform(translationX: 0, y: distance) : .identity
             isAddViewAppeared = !isAddViewAppeared
@@ -165,13 +170,15 @@ final class ToBuyListViewController: UIViewController {
     }
     
     private func showAlert() {
-        let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "メモを消去する", style: .destructive) { [self] (_) in
+        let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？",
+                                      message: "消去したものは元に戻せません。",
+                                      preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "メモを消去する", style: .destructive) { [unowned self] (_) in
             let checkedObjects = ToBuyListRealmRepository.shared.filter("isButtonChecked == true")
             ToBuyListRealmRepository.shared.delete(checkedObjects)
             tableView.reloadData()
         }
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [self] (_) in
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [unowned self] (_) in
             dismiss(animated: true, completion: nil)
         }
         alert.addAction(defaultAction)
@@ -196,13 +203,11 @@ extension ToBuyListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as? ToBuyListTableViewCell
-        else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as? ToBuyListTableViewCell else {
             return UITableViewCell()
         }
         let object = objects[indexPath.row]
-        cell.setupCell(object: object)
+        cell.configure(object: object)
         cell.index = indexPath.row
         return cell
     }

@@ -3,7 +3,8 @@ import UIKit
 import RealmSwift
 
 class ToBuyListTableViewCell: UITableViewCell {
-    private enum CellButtonType {
+    
+    private enum ButtonType {
         case circle
         case checkmark
         var imageName: String {
@@ -13,53 +14,40 @@ class ToBuyListTableViewCell: UITableViewCell {
             }
         }
     }
-    @IBOutlet weak private var cellTitleLabel: UILabel!
-    @IBOutlet weak private var cellCheckButton: UIButton!
-    @IBOutlet weak private var numberOfToBuyLabel: UILabel!
-    @IBOutlet weak private var separatorView: UIView!
     private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.objects }
     var index: Int = 0
     
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var checkButton: UIButton!
+    @IBOutlet weak private var numberOfToBuyLabel: UILabel!
+    @IBOutlet weak private var separatorView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
     }
     
-    @IBAction func cellCheckButtonDidTapped(_ sender: Any) {
-        let buttonType: CellButtonType = objects[index].isButtonChecked ? .circle : .checkmark
+    @IBAction func checkButtonDidTapped(_ sender: Any) {
+        let buttonType: ButtonType = objects[index].isButtonChecked ? .circle : .checkmark
         setImageToCellCheckButton(buttonType)
         ToBuyListRealmRepository.shared.update {
             objects[index].isButtonChecked = !objects[index].isButtonChecked
         }
     }
     
-    func setupCell(object: ToBuyList) {
+    func configure(object: ToBuyList) {
         separatorView.backgroundColor = UIColor.black.themeColor
-        cellTitleLabel.text = object.toBuyListName
+        titleLabel.text = object.toBuyListName
         numberOfToBuyLabel.text = "×\(object.toBuyListNumber)"
-        let buttonType: CellButtonType = object.isButtonChecked ? .checkmark : .circle
+        let buttonType: ButtonType = object.isButtonChecked ? .checkmark : .circle
         setImageToCellCheckButton(buttonType)
     }
    
-    private func setImageToCellCheckButton(_ imageType: CellButtonType) {
+    private func setImageToCellCheckButton(_ buttonType: ButtonType) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        let image = UIImage(systemName: imageType.imageName, withConfiguration: largeConfig)
-        cellCheckButton.setImage(image, for: .normal)
-        imageType == .circle ? cancelStrikethrough() : strikethrough()
+        let image = UIImage(systemName: buttonType.imageName, withConfiguration: largeConfig)
+        checkButton.setImage(image, for: .normal)
+        guard let text = titleLabel.text else { return }
+        titleLabel.attributedText = (buttonType == .circle) ? cancelStrikethrough(text) : strikethrough(text)
     }
     
-    private func strikethrough() {
-        guard let text = cellTitleLabel.text else { return }
-        let attributeString =  NSMutableAttributedString(string: text)
-        attributeString.addAttribute(.font, value: UIFont.systemFont(ofSize: 25), range: NSMakeRange(0, attributeString.length))
-        attributeString.addAttributes([.foregroundColor : UIColor.gray, .strikethroughStyle: 2], range: NSMakeRange(0, text.count))
-        cellTitleLabel.attributedText = attributeString
-    }
-    
-    private func cancelStrikethrough() {
-        guard let text = cellTitleLabel.text else { return }
-        let attributeString =  NSMutableAttributedString(string: text)
-        attributeString.removeAttribute(.font, range: NSMakeRange(0, attributeString.length))
-        cellTitleLabel.attributedText = attributeString
-    }
 }
