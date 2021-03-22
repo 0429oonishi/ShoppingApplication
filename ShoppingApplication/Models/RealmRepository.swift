@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class ToBuyListRealmRepository {
+final class ToBuyListRealmRepository {
     
     static let shared = ToBuyListRealmRepository()
     private init() {}
@@ -40,7 +40,7 @@ class ToBuyListRealmRepository {
     }
 }
 
-class CalculationRealmRepository {
+final class CalculationRealmRepository {
     
     static let shared = CalculationRealmRepository()
     private init() {}
