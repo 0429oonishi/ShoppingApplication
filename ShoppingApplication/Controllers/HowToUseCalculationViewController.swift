@@ -30,11 +30,11 @@ final class HowToUseCalculationViewController: UIViewController {
     }
     private var scrollView: UIScrollView!
     private var pageControl: UIPageControl!
-    private var button1: UIButton!
-    private var button2: UIButton!
-    private var button3: UIButton!
-    private var button4: UIButton!
-    private var button5: UIButton!
+    private var firstPageNextButton: UIButton!
+    private var secondPageNextButton: UIButton!
+    private var thirdPageNextButton: UIButton!
+    private var fourthPageNextButton: UIButton!
+    private var fifthPageCloseButton: UIButton!
     private var width: CGFloat { UIScreen.main.bounds.width }
     private var height: CGFloat { UIScreen.main.bounds.height }
     private let pageSize: CGFloat = 5
@@ -103,44 +103,44 @@ final class HowToUseCalculationViewController: UIViewController {
     
     private func setupButtonAction() {
         let buttonSize: CGFloat = 50
-        button1 = UIButton(frame: CGRect(x: width*1 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button: button1, buttonSize: buttonSize, buttonTextType: .next, page: 1)
-        button1.addTarget(self, action: #selector(button1DidTapped), for: .touchUpInside)
+        firstPageNextButton = UIButton(frame: CGRect(x: width*1 - 80, y: 30, width: buttonSize, height: buttonSize))
+        setupButton(button: firstPageNextButton, buttonSize: buttonSize, buttonTextType: .next, page: 1)
+        firstPageNextButton.addTarget(self, action: #selector(firstPageNextButtonDidTapped), for: .touchUpInside)
         
-        button2 = UIButton(frame: CGRect(x: width*2 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button: button2, buttonSize: buttonSize, buttonTextType: .next, page: 2)
-        button2.addTarget(self, action: #selector(button2DidTapped), for: .touchUpInside)
+        secondPageNextButton = UIButton(frame: CGRect(x: width*2 - 80, y: 30, width: buttonSize, height: buttonSize))
+        setupButton(button: secondPageNextButton, buttonSize: buttonSize, buttonTextType: .next, page: 2)
+        secondPageNextButton.addTarget(self, action: #selector(secondPageNextButtonDidTapped), for: .touchUpInside)
         
-        button3 = UIButton(frame: CGRect(x: width*3 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button: button3, buttonSize: buttonSize, buttonTextType: .next, page: 3)
-        button3.addTarget(self, action: #selector(button3DidTapped), for: .touchUpInside)
+        thirdPageNextButton = UIButton(frame: CGRect(x: width*3 - 80, y: 30, width: buttonSize, height: buttonSize))
+        setupButton(button: thirdPageNextButton, buttonSize: buttonSize, buttonTextType: .next, page: 3)
+        thirdPageNextButton.addTarget(self, action: #selector(thirdPageNextButtonDidTapped), for: .touchUpInside)
         
-        button4 = UIButton(frame: CGRect(x: width*4 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button: button4, buttonSize: buttonSize, buttonTextType: .next, page: 4)
-        button4.addTarget(self, action: #selector(button4DidTapped), for: .touchUpInside)
+        fourthPageNextButton = UIButton(frame: CGRect(x: width*4 - 80, y: 30, width: buttonSize, height: buttonSize))
+        setupButton(button: fourthPageNextButton, buttonSize: buttonSize, buttonTextType: .next, page: 4)
+        fourthPageNextButton.addTarget(self, action: #selector(fourthPageNextButtonDidTapped), for: .touchUpInside)
         
-        button5 = UIButton(frame: CGRect(x: width*5 - 80, y: 30, width: buttonSize, height: buttonSize))
-        setupButton(button: button5, buttonSize: buttonSize, buttonTextType: .close, page: 5)
-        button5.addTarget(self, action: #selector(button5DidTapped), for: .touchUpInside)
+        fifthPageCloseButton = UIButton(frame: CGRect(x: width*5 - 80, y: 30, width: buttonSize, height: buttonSize))
+        setupButton(button: fifthPageCloseButton, buttonSize: buttonSize, buttonTextType: .close, page: 5)
+        fifthPageCloseButton.addTarget(self, action: #selector(fifthPageNextButtonDidTapped), for: .touchUpInside)
     }
 
-    @objc func button1DidTapped() {
+    @objc func firstPageNextButtonDidTapped() {
         scrollToPage(page: 1)
     }
     
-    @objc func button2DidTapped() {
+    @objc func secondPageNextButtonDidTapped() {
         scrollToPage(page: 2)
     }
     
-    @objc func button3DidTapped() {
+    @objc func thirdPageNextButtonDidTapped() {
         scrollToPage(page: 3)
     }
     
-    @objc func button4DidTapped() {
+    @objc func fourthPageNextButtonDidTapped() {
         scrollToPage(page: 4)
     }
     
-    @objc func button5DidTapped() {
+    @objc func fifthPageNextButtonDidTapped() {
         dismiss(animated: true)
     }
     
