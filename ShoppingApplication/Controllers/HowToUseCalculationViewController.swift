@@ -3,18 +3,18 @@ import UIKit
 
 final class HowToUseCalculationViewController: UIViewController {
     private enum ImageType {
-        case image1
-        case image2
-        case image3
-        case image4
-        case image5
+        case firstPageImage
+        case secondPageImage
+        case thirdPageImage
+        case fourthPageImage
+        case fifthPageImage
         var name: String {
             switch self {
-            case .image1: return "HowToUseCalculationImage1"
-            case .image2: return "HowToUseCalculationImage2"
-            case .image3: return "HowToUseCalculationImage3"
-            case .image4: return "HowToUseCalculationImage4"
-            case .image5: return "HowToUseCalculationImage5"
+            case .firstPageImage: return "HowToUseCalculationImage1"
+            case .secondPageImage: return "HowToUseCalculationImage2"
+            case .thirdPageImage: return "HowToUseCalculationImage3"
+            case .fourthPageImage: return "HowToUseCalculationImage4"
+            case .fifthPageImage: return "HowToUseCalculationImage5"
             }
         }
     }
@@ -72,11 +72,11 @@ final class HowToUseCalculationViewController: UIViewController {
         } else {
             imageHeight = height
         }
-        let imageView1 = setImage(x: width*0, y: 0, width: width, height: imageHeight, imageType: .image1)
-        let imageView2 = setImage(x: width*1, y: 0, width: width, height: imageHeight, imageType: .image2)
-        let imageView3 = setImage(x: width*2, y: 0, width: width, height: imageHeight, imageType: .image3)
-        let imageView4 = setImage(x: width*3, y: 0, width: width, height: imageHeight, imageType: .image4)
-        let imageView5 = setImage(x: width*4, y: 0, width: width, height: imageHeight, imageType: .image5)
+        let imageView1 = setImage(x: width*0, y: 0, width: width, height: imageHeight, imageType: .firstPageImage)
+        let imageView2 = setImage(x: width*1, y: 0, width: width, height: imageHeight, imageType: .secondPageImage)
+        let imageView3 = setImage(x: width*2, y: 0, width: width, height: imageHeight, imageType: .thirdPageImage)
+        let imageView4 = setImage(x: width*3, y: 0, width: width, height: imageHeight, imageType: .fourthPageImage)
+        let imageView5 = setImage(x: width*4, y: 0, width: width, height: imageHeight, imageType: .fifthPageImage)
         scrollView.addSubview(imageView1)
         scrollView.addSubview(imageView2)
         scrollView.addSubview(imageView3)
