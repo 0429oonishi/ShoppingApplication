@@ -74,7 +74,7 @@ final class ToBuyListViewController: UIViewController {
                            viewController: self)
         
         token = toDoLists.observe { [unowned self] (notification) in
-            remainCountButton.title = (toDoLists.count != 0) ? "残り\(toDoLists.count)個" : ""
+            remainCountButton.title = toDoLists.isEmpty ? "" : "残り\(toDoLists.count)個"
         }
         
     }
@@ -136,7 +136,7 @@ final class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func clearAllButtonDidTapped(_ sender: Any) {
-        guard toDoLists.count != 0 else { return }
+        guard !toDoLists.isEmpty else { return }
         showAlert()
     }
     
@@ -153,7 +153,7 @@ final class ToBuyListViewController: UIViewController {
     }
     
     @IBAction func addButtonDidTapped(_ sender: Any) {
-        guard let text = addTextField.text, text != "" else { return }
+        guard let text = addTextField.text, !text.isEmpty else { return }
         
         let toBuyList = ToBuyList()
         toBuyList.toBuyListName = text

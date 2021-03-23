@@ -137,7 +137,7 @@ final class CalculationViewController: UIViewController {
     }
     
     @IBAction func clearAllButtonDidTapped(_ sender: Any) {
-        guard calculations.count != 0 else { return }
+        guard !calculations.isEmpty else { return }
         
         let alert = UIAlertController(title: "全て消去しますか？",
                                       message: "消去したものは元に戻せません。",
@@ -184,7 +184,7 @@ final class CalculationViewController: UIViewController {
     @IBAction func taxIncludeOrNotButtonDidTapped(_ sender: Any) {
         if taxIncludeOrNotButton.currentTitle == Tax.included.text {
             taxIncludeOrNotButton.setTitle(Tax.excluded.text, for: .normal)
-            if priceLabelString == "" {
+            if priceLabelString.isEmpty {
                 taxIncludePriceLabel.text = "\(Tax.included.text) 0円"
             } else {
                 taxRateButtonOrTaxIncludeOrNotButtonDidTapped()
@@ -214,22 +214,20 @@ final class CalculationViewController: UIViewController {
             present(alert, animated: true)
             return
         }
-        if !(priceLabelString == "" && sender.tag == 0) {
+        if !(priceLabelString.isEmpty && sender.tag == 0) {
             reflectToLabel(button: button[sender.tag])
         }
     }
     
     @IBAction func calculatorAddButtonDidTapped(_ sender: Any) {
-        guard priceLabelString != "" else { return }
-        
-        let calculation = Calculation()
+        guard !priceLabelString.isEmpty else { return }
         guard let priceLabelDouble = Double(priceLabelString) else { return }
+        let calculation = Calculation()
         let includeTaxPrice = Int(floor(priceLabelDouble * taxRate.value))
         calculation.price = (taxIncludeOrNotButton.currentTitle == Tax.included.text) ? priceLabelString : String(includeTaxPrice)
         CalculationRealmRepository.shared.add(calculation)
         collectionView.reloadData()
         clearLabel()
-        
     }
     
     @IBAction func calculatorClearButtonDidTapped(_ sender: Any) {
@@ -319,7 +317,7 @@ final class CalculationViewController: UIViewController {
                 let totalDiscount = Double(element.shoppingListDiscount)
                 return result + totalPrice * (1 - totalDiscount / 100) * totalNumber
             }
-            totalPriceLabel.text = (calculations.count != 0) ? "\(String(Int(totalPriceDouble)).commaFormated)円" : "0円"
+            totalPriceLabel.text = calculations.isEmpty ? "0円" : "\(String(Int(totalPriceDouble)).commaFormated)円"
         }
     }
     
