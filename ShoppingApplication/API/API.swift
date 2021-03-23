@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 final class API {
-    
+
     static let shared = API()
     private init() { }
 
@@ -26,38 +26,5 @@ final class API {
             completion?(place.results)
         }
     }
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

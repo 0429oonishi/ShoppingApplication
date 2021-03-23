@@ -1,17 +1,16 @@
-
 import UIKit
 import GoogleMaps
 import GooglePlaces
 
 final class MapViewController: UIViewController {
-    
+
     private var currentLocation = CLLocationManager()
     private var mapView = GMSMapView()
     private var placeResults = [PlaceResults]()
     private var userLocationLat: Double = 35.6812226
     private var userLocationLng: Double = 139.7670594
-    
-    @IBOutlet weak private var mapSearchBar: UISearchBar! {
+
+    @IBOutlet private weak var mapSearchBar: UISearchBar! {
         didSet {
             mapSearchBar.backgroundImage = UIImage()
             mapSearchBar.layer.cornerRadius = mapSearchBar.bounds.height / 2
@@ -23,23 +22,23 @@ final class MapViewController: UIViewController {
             mapSearchBar.layer.shadowOpacity = 0.8
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         mapSearchBar.delegate = self
         setupMapView()
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.view.backgroundColor = UIColor.white.themeColor
         mapSearchBar.backgroundColor = UIColor.white.themeColor
-        
+
     }
-    
+
     private func setupMapView() {
         let camera = GMSCameraPosition.camera(withLatitude: userLocationLat, longitude: userLocationLng, zoom: 17.0)
         mapView = GMSMapView.map(withFrame: CGRect(x: 0.0,
@@ -57,11 +56,11 @@ final class MapViewController: UIViewController {
         self.view.bringSubviewToFront(mapView)
         self.view.addSubview(mapSearchBar)
     }
-    
+
 }
 
 extension MapViewController: CLLocationManagerDelegate {
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation = locations.last
         userLocationLat = Double(userLocation!.coordinate.latitude)
@@ -72,19 +71,28 @@ extension MapViewController: CLLocationManagerDelegate {
         self.mapView.animate(to: camera)
         currentLocation.stopUpdatingLocation()
     }
-    
+
 }
 
 extension MapViewController: UISearchBarDelegate {
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         mapSearchBar.resignFirstResponder()
         mapView.clear()
-        
+
         API.shared.request(searchKeyword: searchBar.text!,
-                           lat: userLocationLat, lng: userLocationLng) { placeResults in  
+                           lat: userLocationLat,
+                           lng: userLocationLng) { placeResults in
             self.placeResults = placeResults
-            if self.placeResults.count != 0 {
+
+            if self.placeResults.isEmpty {
+                let alert = UIAlertController(title: .resultFoundInSurrounding,
+                                              message: .searchResultIsZero,
+                                              preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: .close, style: .cancel)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true)
+            } else {
                 for n in 0...placeResults.count - 1 {
                     let latitude = placeResults[n].geometry.location.lat
                     let longitude = placeResults[n].geometry.location.lng
@@ -96,15 +104,8 @@ extension MapViewController: UISearchBarDelegate {
                     marker.tracksViewChanges = true
                     marker.map = self.mapView
                 }
-            } else {
-                let alert = UIAlertController(title: "周辺で探した結果",
-                                              message: "検索結果は0です",
-                                              preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "閉じる", style: .cancel)
-                alert.addAction(cancelAction)
-                self.present(alert, animated: true)
             }
         }
     }
-    
+
 }

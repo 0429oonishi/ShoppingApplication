@@ -274,6 +274,7 @@
 				AB32763B25A167C300FB8C2F /* Embed Frameworks */,
 				F5C8AD4D509760B7F61DAF10 /* [CP] Embed Pods Frameworks */,
 				9C641B11E1C41136A9C2F2DD /* [CP] Copy Pods Resources */,
+				AB23EFBC260983E3000AE6CB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -379,6 +380,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		AB23EFBC260983E3000AE6CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint autocorrect --format\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		F5C8AD4D509760B7F61DAF10 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
