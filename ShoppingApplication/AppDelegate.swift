@@ -3,6 +3,7 @@ import GoogleMaps
 import GoogleMobileAds
 import GooglePlaces
 
+@available(iOS 13.0, *)
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
