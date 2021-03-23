@@ -6,7 +6,6 @@ final class MapViewController: UIViewController {
 
     private var currentLocation = CLLocationManager()
     private var mapView = GMSMapView()
-    private var placeResults = [PlaceResults]()
     private var userLocationLat: Double = 35.6812226
     private var userLocationLng: Double = 139.7670594
 
@@ -83,27 +82,30 @@ extension MapViewController: UISearchBarDelegate {
         API.shared.request(searchKeyword: searchBar.text!,
                            lat: userLocationLat,
                            lng: userLocationLng) { placeResults in
-            self.placeResults = placeResults
-
-            if self.placeResults.isEmpty {
-                let alert = UIAlertController(title: .resultFoundInSurrounding,
-                                              message: .searchResultIsZero,
-                                              preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: .close, style: .cancel)
-                alert.addAction(cancelAction)
-                self.present(alert, animated: true)
-            } else {
-                for n in 0...placeResults.count - 1 {
-                    let latitude = placeResults[n].geometry.location.lat
-                    let longitude = placeResults[n].geometry.location.lng
-                    let marker = GMSMarker()
-                    marker.icon = GMSMarker.markerImage(with: .red)
-                    marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                    marker.title = placeResults[n].name
-                    marker.snippet = placeResults[n].vicinity
-                    marker.tracksViewChanges = true
-                    marker.map = self.mapView
+            switch placeResults {
+            case .success(let placeResults):
+                if placeResults.isEmpty {
+                    let alert = UIAlertController(title: .resultFoundInSurrounding,
+                                                  message: .searchResultIsZero,
+                                                  preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: .close, style: .cancel)
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true)
+                } else {
+                    placeResults.forEach { placeResult in
+                        let latitude = placeResult.geometry.location.lat
+                        let longitude = placeResult.geometry.location.lng
+                        let marker = GMSMarker()
+                        marker.icon = GMSMarker.markerImage(with: .red)
+                        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                        marker.title = placeResult.name
+                        marker.snippet = placeResult.vicinity
+                        marker.tracksViewChanges = true
+                        marker.map = self.mapView
+                    }
                 }
+            case .failure(let error):
+                print(error)
             }
         }
     }
