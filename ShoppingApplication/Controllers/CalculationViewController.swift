@@ -138,8 +138,8 @@ final class CalculationViewController: UIViewController {
     
     @IBAction func clearAllButtonDidTapped(_ sender: Any) {
         if calculations.count != 0 {
-            let alert = UIAlertController(title: "全て消去しますか？",
-                                          message: "消去したものは元に戻せません。",
+            let alert = UIAlertController(title: .deleteAll,
+                                          message: .deleteAttention,
                                           preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: .delete, style: .default) { (_) in
                 CalculationRealmRepository.shared.delete(self.calculations)
@@ -203,8 +203,8 @@ final class CalculationViewController: UIViewController {
             priceLabel.font = .systemFont(ofSize: 20)
         }
         if priceMaxCount > 6 {
-            let alert = UIAlertController(title: "エラー",
-                                          message: "金額が大きすぎます",
+            let alert = UIAlertController(title: .error,
+                                          message: .priceTooLarge,
                                           preferredStyle: .actionSheet)
             let defaultAction = UIAlertAction(title: .close, style: .default) { (_) in
                 self.clearLabel()
@@ -406,7 +406,7 @@ extension CalculationViewController: UIPickerViewDataSource {
 extension CalculationViewController: ShoppingListCollectionViewCellDelegate {
     
     func deleteButtonDidTapped(_ tag: Int) {
-        let alert = UIAlertController(title: "これを消去しますか？", message: "消去したものは元に戻せません。", preferredStyle: .alert)
+        let alert = UIAlertController(title: .deleteList, message: .deleteAttention, preferredStyle: .alert)
         let alertDefaultAction = UIAlertAction(title: .delete, style: .destructive) { (_) in
             CalculationRealmRepository.shared.update {
                 self.calculations[tag].isCalculationDeleted = true

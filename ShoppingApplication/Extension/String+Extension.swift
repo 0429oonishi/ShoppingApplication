@@ -19,7 +19,23 @@ extension String {
     }
     
     static var delete: String {
-        return "消去する"
+        return "消去"
+    }
+    
+    static var deleteAll: String {
+        return "全て消去する"
+    }
+    
+    static var deleteMemo: String {
+        return "チェックしたメモを\n消去しますか？"
+    }
+    
+    static var deleteList: String {
+        return "これを消去しますか？"
+    }
+    
+    static var deleteAttention: String {
+        return "消去したものは元に戻せません。"
     }
     
     static var cancel: String {
@@ -28,6 +44,22 @@ extension String {
     
     static var close: String {
         return "閉じる"
+    }
+    
+    static var error: String {
+        return "エラー"
+    }
+    
+    static var priceTooLarge: String {
+        return "金額が大きすぎます"
+    }
+    
+    static var resultFoundInSurrounding: String {
+        return "周辺で探した結果"
+    }
+    
+    static var searchResultIsZero: String {
+        return "検索結果は0です"
     }
     
 }

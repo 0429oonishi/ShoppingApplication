@@ -170,15 +170,15 @@ final class ToBuyListViewController: UIViewController {
     }
     
     private func showAlert() {
-        let alert = UIAlertController(title: "チェックしたメモを\n消去しますか？",
-                                      message: "消去したものは元に戻せません。",
+        let alert = UIAlertController(title: .deleteMemo,
+                                      message: .deleteAttention,
                                       preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "メモを消去する", style: .destructive) { [unowned self] (_) in
+        let defaultAction = UIAlertAction(title: .delete, style: .destructive) { [unowned self] (_) in
             let checkedObjects = ToBuyListRealmRepository.shared.filter("isButtonChecked == true")
             ToBuyListRealmRepository.shared.delete(checkedObjects)
             tableView.reloadData()
         }
-        let cancelAction = UIAlertAction(title: .cancel, style: .cancel) { [unowned self] (_) in
+        let cancelAction = UIAlertAction(title: .cancel, style: .cancel) { [unowned self] (_) in 
             dismiss(animated: true, completion: nil)
         }
         alert.addAction(defaultAction)
