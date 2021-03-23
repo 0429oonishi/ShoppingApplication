@@ -86,10 +86,10 @@ extension MapViewController: UISearchBarDelegate {
             self.placeResults = placeResults
 
             if self.placeResults.isEmpty {
-                let alert = UIAlertController(title: "周辺で探した結果",
-                                              message: "検索結果は0です",
+                let alert = UIAlertController(title: .resultFoundInSurrounding,
+                                              message: .searchResultIsZero,
                                               preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "閉じる", style: .cancel)
+                let cancelAction = UIAlertAction(title: .close, style: .cancel)
                 alert.addAction(cancelAction)
                 self.present(alert, animated: true)
             } else {
