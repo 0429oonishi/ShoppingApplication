@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingTableViewCell: UITableViewCell {
+final class SettingTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var separatorView: UIView!

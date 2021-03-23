@@ -6,7 +6,7 @@ protocol ShoppingListCollectionViewCellDelegate: class {
     func discountButtonDidTapped(_ tag: Int)
 }
 
-class ShoppingListCollectionViewCell: UICollectionViewCell {
+final class ShoppingListCollectionViewCell: UICollectionViewCell {
 
     private var objects: Results<Calculation>! { CalculationRealmRepository.shared.calculations }
     weak var delegate: ShoppingListCollectionViewCellDelegate?

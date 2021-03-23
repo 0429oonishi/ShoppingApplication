@@ -1,7 +1,7 @@
 import UIKit
 import RealmSwift
 
-class ToBuyListTableViewCell: UITableViewCell {
+final class ToBuyListTableViewCell: UITableViewCell {
 
     private enum ButtonType {
         case circle
