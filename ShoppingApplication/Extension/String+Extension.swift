@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    
+
     var commaFormated: String {
         guard let number = Int(self) else { return self }
         let numberFormatter = NumberFormatter()
@@ -17,5 +17,5 @@ extension String {
         numberFormatter.groupingSize = 3
         return numberFormatter.string(from: NSNumber(integerLiteral: number))!
     }
-    
+
 }

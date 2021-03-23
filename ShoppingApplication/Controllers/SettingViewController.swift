@@ -1,9 +1,8 @@
-
 import UIKit
 import StoreKit
 
 final class SettingViewController: UIViewController {
-    
+
     private enum Url {
         case shareUrl
         case reportUrl
@@ -43,9 +42,9 @@ final class SettingViewController: UIViewController {
     private let rowTypes: [[RowType]] = [[.change], [.introduce, .evaluate, .report]]
     private let borderWidth: CGFloat = 2
     private var cellHeight: CGFloat = 90
-    
-    @IBOutlet weak private var navigationBar: UINavigationBar!
-    @IBOutlet weak private var tableView: UITableView! {
+
+    @IBOutlet private weak var navigationBar: UINavigationBar!
+    @IBOutlet private weak var tableView: UITableView! {
         didSet {
             let cellNibName = String(describing: SettingTableViewCell.self)
             let cellNIB = UINib(nibName: cellNibName, bundle: nil)
@@ -54,37 +53,37 @@ final class SettingViewController: UIViewController {
             tableView.isScrollEnabled = false
         }
     }
-    @IBOutlet weak private var adMobView: UIView!
-    
+    @IBOutlet private weak var adMobView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         AdMob.addAdMobView(adMobView: adMobView,
                            width: self.view.frame.size.width,
                            height: adMobView.frame.size.height,
                            viewController: self)
-        
+
         tableView.delegate = self
         tableView.dataSource = self
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.view.backgroundColor = UIColor.white.themeColor
         navigationBar.barTintColor = UIColor.white.themeColor
         tableView.reloadData()
-        
+
     }
-    
+
     private func transitionToThemeColorVC() {
         let storyboard = UIStoryboard(name: "ThemeColor", bundle: nil)
-        let themeColorVC = storyboard.instantiateViewController(identifier: "themeColorVCId") as! ThemeColorViewController
+        guard let themeColorVC = storyboard.instantiateViewController(identifier: "themeColorVCId") as? ThemeColorViewController else { return }
         themeColorVC.modalPresentationStyle = .fullScreen
         present(themeColorVC, animated: true)
     }
-    
+
     private func introduceAppToFriend() {
         let shareText = "おすすめのお買い物アプリです！\n買うものチェックリストや合計金額をお会計の前に計算できる計算機、お店を探せるマップが一つのアプリで完結します！\n「お買い物アプリ - MyCal(マイカル)」"
         guard let shareURL = URL(string: Url.shareUrl.text) else { return }
@@ -92,7 +91,7 @@ final class SettingViewController: UIViewController {
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         present(activityVC, animated: true)
     }
-    
+
     private func evaluateApp() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if #available(iOS 14.0, *) {
@@ -102,22 +101,22 @@ final class SettingViewController: UIViewController {
             }
         }
     }
-    
+
     private func reportAboutApp() {
         guard let reportURL = URL(string: Url.reportUrl.text) else { return }
         if UIApplication.shared.canOpenURL(reportURL) {
             UIApplication.shared.open(reportURL as URL)
         }
     }
-    
+
 }
 
 extension SettingViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
         case [0, 0]:
@@ -134,10 +133,10 @@ extension SettingViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect(x: 0,
-                                                   y: 0,
-                                                   width: tableView.frame.width,
-                                                   height: cellHeight))
+        let headerView = UIView(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: tableView.frame.width,
+                                              height: cellHeight))
         let label = UILabel()
         let y = (section == 0) ? 20 - borderWidth : 50 - borderWidth
         label.frame = CGRect(x: 20, y: y, width: 100, height: 40)
@@ -161,19 +160,19 @@ extension SettingViewController: UITableViewDelegate {
         headerView.layer.addSublayer(bottomBorder)
         return headerView
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return (section == 0) ? (60 - borderWidth) : (cellHeight - borderWidth)
     }
-    
+
 }
 
 extension SettingViewController: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rowTypes[section].count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? SettingTableViewCell
@@ -184,13 +183,13 @@ extension SettingViewController: UITableViewDataSource {
         cell.configure(text: text)
         return cell
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionTypes.count
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTypes[section].text
     }
-    
+
 }

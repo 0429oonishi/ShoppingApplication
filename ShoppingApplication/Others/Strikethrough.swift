@@ -8,14 +8,14 @@
 import UIKit
 
 func strikethrough(_ text: String) -> NSMutableAttributedString {
-    let attributeString =  NSMutableAttributedString(string: text)
-    attributeString.addAttribute(.font, value: UIFont.systemFont(ofSize: 25), range: NSMakeRange(0, attributeString.length))
-    attributeString.addAttributes([.foregroundColor : UIColor.gray, .strikethroughStyle: 2], range: NSMakeRange(0, text.count))
+    let attributeString = NSMutableAttributedString(string: text)
+    attributeString.addAttribute(.font, value: UIFont.systemFont(ofSize: 25), range: NSRange(location: 0, length: attributeString.length))
+    attributeString.addAttributes([.foregroundColor: UIColor.gray, .strikethroughStyle: 2], range: NSRange(location: 0, length: text.count))
     return attributeString
 }
 
 func cancelStrikethrough(_ text: String) -> NSMutableAttributedString {
-    let attributeString =  NSMutableAttributedString(string: text)
-    attributeString.removeAttribute(.font, range: NSMakeRange(0, attributeString.length))
+    let attributeString = NSMutableAttributedString(string: text)
+    attributeString.removeAttribute(.font, range: NSRange(location: 0, length: attributeString.length))
     return attributeString
 }
