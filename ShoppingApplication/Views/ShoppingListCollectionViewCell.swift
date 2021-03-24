@@ -8,7 +8,7 @@ protocol ShoppingListCollectionViewCellDelegate: class {
 
 final class ShoppingListCollectionViewCell: UICollectionViewCell {
 
-    private var objects: Results<Calculation>! { CalculationRealmRepository.shared.calculations }
+    private var calculations: Results<Calculation>! { CalculationRealmRepository.shared.calculations }
     weak var delegate: ShoppingListCollectionViewCellDelegate?
 
     @IBOutlet private weak var deleteButton: UIButton!
@@ -27,19 +27,19 @@ final class ShoppingListCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction private func numberDecreaseButtonDidTapped(_ sender: UIButton) {
-        if objects[sender.tag].shoppingListCount > 1 {
+        if calculations[sender.tag].shoppingListCount > 1 {
             CalculationRealmRepository.shared.update {
-                objects[sender.tag].shoppingListCount -= 1
+                calculations[sender.tag].shoppingListCount -= 1
             }
         }
-        numberLabel.text = "×\(objects[sender.tag].shoppingListCount)"
+        numberLabel.text = "×\(calculations[sender.tag].shoppingListCount)"
     }
 
     @IBAction private func numberIncreaseButtonDidTapped(_ sender: UIButton) {
         CalculationRealmRepository.shared.update {
-            objects[sender.tag].shoppingListCount += 1
+            calculations[sender.tag].shoppingListCount += 1
         }
-        numberLabel.text = "×\(objects[sender.tag].shoppingListCount)"
+        numberLabel.text = "×\(calculations[sender.tag].shoppingListCount)"
     }
 
     func configure(object: Calculation) {

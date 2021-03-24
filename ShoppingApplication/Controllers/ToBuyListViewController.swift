@@ -174,8 +174,8 @@ final class ToBuyListViewController: UIViewController {
                                       message: .deleteAttention,
                                       preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: .delete, style: .destructive) { [unowned self] _ in
-            let checkedObjects = ToBuyListRealmRepository.shared.filter("isButtonChecked == true")
-            ToBuyListRealmRepository.shared.delete(checkedObjects)
+            let checkedToBuyLists = ToBuyListRealmRepository.shared.filter("isButtonChecked == true")
+            ToBuyListRealmRepository.shared.delete(checkedToBuyLists)
             tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: .cancel, style: .cancel) { [unowned self] _ in

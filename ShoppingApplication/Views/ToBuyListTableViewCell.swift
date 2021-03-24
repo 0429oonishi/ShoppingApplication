@@ -14,7 +14,7 @@ final class ToBuyListTableViewCell: UITableViewCell {
             }
         }
     }
-    private var objects: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
+    private var toBuyLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
     var index: Int = 0
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -27,10 +27,10 @@ final class ToBuyListTableViewCell: UITableViewCell {
     }
 
     @IBAction private func checkButtonDidTapped(_ sender: Any) {
-        let buttonType: ButtonType = objects[index].isButtonChecked ? .circle : .checkmark
+        let buttonType: ButtonType = toBuyLists[index].isButtonChecked ? .circle : .checkmark
         setImageToCellCheckButton(buttonType)
         ToBuyListRealmRepository.shared.update {
-            objects[index].isButtonChecked = !objects[index].isButtonChecked
+            toBuyLists[index].isButtonChecked = !toBuyLists[index].isButtonChecked
         }
     }
 

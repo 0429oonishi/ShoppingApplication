@@ -408,8 +408,8 @@ extension CalculationViewController: ShoppingListCollectionViewCellDelegate {
             CalculationRealmRepository.shared.update {
                 self.calculations[tag].isCalculationDeleted = true
             }
-            let deletedObjects = CalculationRealmRepository.shared.filter("isCalculationDeleted == true")
-            CalculationRealmRepository.shared.delete(deletedObjects)
+            let deletedCalculations = CalculationRealmRepository.shared.filter("isCalculationDeleted == true")
+            CalculationRealmRepository.shared.delete(deletedCalculations)
             self.collectionView.reloadData()
         }
         let cancelAction = UIAlertAction(title: .cancel, style: .cancel) { _ in
