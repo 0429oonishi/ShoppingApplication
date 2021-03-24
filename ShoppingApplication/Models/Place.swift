@@ -1,20 +1,20 @@
 import Foundation
 
-final class Place: Decodable {
+struct Place: Decodable {
     let results: [PlaceResults]
 }
 
-final class PlaceResults: Decodable {
+struct PlaceResults: Decodable {
     let geometry: Geometry
     let name: String
     let vicinity: String
 }
 
-final class Geometry: Decodable {
+struct Geometry: Decodable {
     let location: Location
 }
 
-final class Location: Decodable {
+struct Location: Decodable {
     let lat: Double
     let lng: Double
 }
