@@ -1,7 +1,6 @@
 import UIKit
 import RealmSwift
 
-@available(iOS 13.0, *)
 final class ToBuyListViewController: UIViewController {
 
     private let toBuyListCellId = String(describing: ToBuyListTableViewCell.self)
@@ -17,7 +16,7 @@ final class ToBuyListViewController: UIViewController {
     @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            let cellNibName = String(describing: ToBuyListTableViewCell.self) 
+            let cellNibName = String(describing: ToBuyListTableViewCell.self)
             let cellNib = UINib(nibName: cellNibName, bundle: nil)
             tableView.register(cellNib, forCellReuseIdentifier: toBuyListCellId)
         }
@@ -188,7 +187,6 @@ final class ToBuyListViewController: UIViewController {
 
 }
 
-@available(iOS 13.0, *)
 extension ToBuyListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -197,7 +195,6 @@ extension ToBuyListViewController: UITableViewDelegate {
 
 }
 
-@available(iOS 13.0, *)
 extension ToBuyListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -216,7 +213,6 @@ extension ToBuyListViewController: UITableViewDataSource {
 
 }
 
-@available(iOS 13.0, *)
 extension ToBuyListViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

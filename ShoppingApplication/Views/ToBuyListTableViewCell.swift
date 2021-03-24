@@ -1,9 +1,8 @@
 import UIKit
 import RealmSwift
 
-@available(iOS 13.0, *)
 final class ToBuyListTableViewCell: UITableViewCell {
- 
+
     private enum ButtonType {
         case circle
         case checkmark

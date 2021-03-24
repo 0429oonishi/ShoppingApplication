@@ -1,7 +1,6 @@
 import UIKit
 import StoreKit
 
-@available(iOS 13.0, *)
 final class SettingViewController: UIViewController {
 
     private enum Url {
@@ -112,7 +111,6 @@ final class SettingViewController: UIViewController {
 
 }
 
-@available(iOS 13.0, *)
 extension SettingViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -169,7 +167,6 @@ extension SettingViewController: UITableViewDelegate {
 
 }
 
-@available(iOS 13.0, *)
 extension SettingViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
