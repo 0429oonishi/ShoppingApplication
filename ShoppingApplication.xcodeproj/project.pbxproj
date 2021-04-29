@@ -14,6 +14,7 @@
 		AB23EF4926071F82000AE6CB /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23EF4826071F82000AE6CB /* RealmRepository.swift */; };
 		AB23EF59260801B0000AE6CB /* Designs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23EF58260801B0000AE6CB /* Designs.swift */; };
 		AB23EF6B260823BD000AE6CB /* Strikethrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23EF6A260823BD000AE6CB /* Strikethrough.swift */; };
+		AB23F092260A7F7E000AE6CB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23F091260A7F7E000AE6CB /* NetworkError.swift */; };
 		AB32762625A1409200FB8C2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB32762525A1409200FB8C2F /* GoogleService-Info.plist */; };
 		AB32764125A167D500FB8C2F /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB80719725A8B9ED00E1F550 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719625A8B9ED00E1F550 /* Place.swift */; };
@@ -69,6 +70,7 @@
 		AB23EF4826071F82000AE6CB /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		AB23EF58260801B0000AE6CB /* Designs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designs.swift; sourceTree = "<group>"; };
 		AB23EF6A260823BD000AE6CB /* Strikethrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strikethrough.swift; sourceTree = "<group>"; };
+		AB23F091260A7F7E000AE6CB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AB32762525A1409200FB8C2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB80719625A8B9ED00E1F550 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToUseCalculationViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		AB23F090260A7F67000AE6CB /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				AB23F091260A7F7E000AE6CB /* NetworkError.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		AB86831526025F0700529952 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +215,7 @@
 		AB97116A25950FC600AAA0E1 /* ShoppingApplication */ = {
 			isa = PBXGroup;
 			children = (
+				AB23F090260A7F67000AE6CB /* Enums */,
 				AB23EF5D260809A8000AE6CB /* API */,
 				AB23EF5C260809A0000AE6CB /* Others */,
 				AB8A683D25B5366300D08D16 /* Extension */,
@@ -274,6 +285,7 @@
 				AB32763B25A167C300FB8C2F /* Embed Frameworks */,
 				F5C8AD4D509760B7F61DAF10 /* [CP] Embed Pods Frameworks */,
 				9C641B11E1C41136A9C2F2DD /* [CP] Copy Pods Resources */,
+				AB23EFBC260983E3000AE6CB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -380,6 +392,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AB23EFBC260983E3000AE6CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint autocorrect --format\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		F5C8AD4D509760B7F61DAF10 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,6 +435,7 @@
 			files = (
 				AB9711CD2595BC8100AAA0E1 /* ThemeColorViewController.swift in Sources */,
 				AB23EF6B260823BD000AE6CB /* Strikethrough.swift in Sources */,
+				AB23F092260A7F7E000AE6CB /* NetworkError.swift in Sources */,
 				AB02A23F2603EE950021ADE0 /* API.swift in Sources */,
 				AB97118C259511A100AAA0E1 /* SettingViewController.swift in Sources */,
 				AB97118B259511A100AAA0E1 /* ToBuyListViewController.swift in Sources */,

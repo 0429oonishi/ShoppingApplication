@@ -9,7 +9,7 @@ import GoogleMobileAds
 
 struct AdMob {
     static let AdMobId = "ca-app-pub-5791981660348332/8471327283"
-    
+
     static func addAdMobView(adMobView: UIView, width: CGFloat, height: CGFloat, viewController: UIViewController) {
         var AdMobView = GADBannerView()
         AdMobView = GADBannerView(adSize: kGADAdSizeBanner)

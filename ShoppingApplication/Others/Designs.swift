@@ -29,7 +29,7 @@ func viewDesign(view: UIView, x: CGFloat, y: CGFloat) {
 
 func setButtonLayout(button: UIButton) {
     let buttonWidth = (UIScreen.main.bounds.width - 80) / 4
-    button.layer.cornerRadius = buttonWidth/2
+    button.layer.cornerRadius = buttonWidth / 2
     button.layer.borderWidth = 2
     button.layer.borderColor = UIColor.white.cgColor
 }
