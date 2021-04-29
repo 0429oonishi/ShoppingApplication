@@ -3,7 +3,6 @@ import RealmSwift
 
 final class ToBuyListViewController: UIViewController {
 
-    private let toBuyListCellId = String(describing: ToBuyListTableViewCell.self)
     private var isKeyboardAppeared = false
     private var isAddViewAppeared = true
     private var numberOfToBuy = 1 {
@@ -14,13 +13,7 @@ final class ToBuyListViewController: UIViewController {
 
     @IBOutlet private weak var remainCountButton: UIBarButtonItem!
     @IBOutlet private weak var navigationBar: UINavigationBar!
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            let cellNibName = String(describing: ToBuyListTableViewCell.self)
-            let cellNib = UINib(nibName: cellNibName, bundle: nil)
-            tableView.register(cellNib, forCellReuseIdentifier: toBuyListCellId)
-        }
-    }
+    @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addView: UIView! {
         didSet {
             addView.layer.borderWidth = 2
@@ -63,6 +56,9 @@ final class ToBuyListViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(ToBuyListTableViewCell.nib,
+                           forCellReuseIdentifier: ToBuyListTableViewCell.identifier)
+
         addTextField.delegate = self
 
         operateKeyboard()
@@ -202,9 +198,9 @@ extension ToBuyListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: toBuyListCellId, for: indexPath) as? ToBuyListTableViewCell else {
-            return UITableViewCell()
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ToBuyListTableViewCell.identifier,
+                                                       for: indexPath) as? ToBuyListTableViewCell
+        else { return UITableViewCell() }
         let object = toDoLists[indexPath.row]
         cell.configure(object: object)
         cell.index = indexPath.row

@@ -35,7 +35,6 @@ final class CalculationViewController: UIViewController {
     private var priceLabelString = "" {
         didSet { taxRateButtonOrTaxIncludeOrNotButtonDidTapped() }
     }
-    private let cellId = String(describing: ShoppingListCollectionViewCell.self)
     private var isCalculatorAppeared = true
     private var totalPriceToken: NotificationToken!
     private var totalNumberToken: NotificationToken!
@@ -54,13 +53,7 @@ final class CalculationViewController: UIViewController {
         didSet { viewDesign(view: totalPriceView, shadowHeight: 2) }
     }
     @IBOutlet private weak var totalPriceLabel: UILabel!
-    @IBOutlet private weak var collectionView: UICollectionView! {
-        didSet {
-            let cellNibName = String(describing: ShoppingListCollectionViewCell.self)
-            let nibName = UINib(nibName: cellNibName, bundle: nil)
-            collectionView.register(nibName, forCellWithReuseIdentifier: cellId)
-        }
-    }
+    @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var budgetPickerView: UIPickerView!
     @IBOutlet private weak var budgetView: UIView! {
         didSet { viewDesign(view: budgetView, x: 0, y: -1000) }
@@ -114,6 +107,10 @@ final class CalculationViewController: UIViewController {
         super.viewDidLoad()
 
         collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(ShoppingListCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: ShoppingListCollectionViewCell.identifier)
+
         budgetPickerView.delegate = self
 
         taxIncludePriceLabel.text = ""
@@ -350,6 +347,10 @@ final class CalculationViewController: UIViewController {
 
 }
 
+extension CalculationViewController: UICollectionViewDelegate {
+
+}
+
 extension CalculationViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -357,7 +358,9 @@ extension CalculationViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ShoppingListCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShoppingListCollectionViewCell.identifier,
+                                                            for: indexPath) as? ShoppingListCollectionViewCell
+        else { return UICollectionViewCell() }
         let object = calculations[indexPath.row]
         cell.configure(object: object)
         cell.setTag(index: indexPath.row)

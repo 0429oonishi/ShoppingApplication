@@ -37,22 +37,13 @@ final class SettingViewController: UIViewController {
             }
         }
     }
-    private let cellId = String(describing: SettingTableViewCell.self)
     private let sectionTypes: [SectionType] = [.general, .support]
     private let rowTypes: [[RowType]] = [[.change], [.introduce, .evaluate, .report]]
     private let borderWidth: CGFloat = 2
     private var cellHeight: CGFloat = 90
 
     @IBOutlet private weak var navigationBar: UINavigationBar!
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            let cellNibName = String(describing: SettingTableViewCell.self)
-            let cellNIB = UINib(nibName: cellNibName, bundle: nil)
-            tableView.register(cellNIB, forCellReuseIdentifier: cellId)
-            tableView.tableFooterView = UIView()
-            tableView.isScrollEnabled = false
-        }
-    }
+    @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var adMobView: UIView!
 
     override func viewDidLoad() {
@@ -65,6 +56,10 @@ final class SettingViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(SettingTableViewCell.nib,
+                           forCellReuseIdentifier: SettingTableViewCell.identifier)
+        tableView.tableFooterView = UIView()
+        tableView.isScrollEnabled = false
 
     }
 
@@ -79,7 +74,7 @@ final class SettingViewController: UIViewController {
 
     private func transitionToThemeColorVC() {
         let storyboard = UIStoryboard(name: "ThemeColor", bundle: nil)
-        guard let themeColorVC = storyboard.instantiateViewController(identifier: "themeColorVCId") as? ThemeColorViewController else { return }
+        guard let themeColorVC = storyboard.instantiateViewController(identifier: ThemeColorViewController.identifier) as? ThemeColorViewController else { return }
         themeColorVC.modalPresentationStyle = .fullScreen
         present(themeColorVC, animated: true)
     }
@@ -174,11 +169,8 @@ extension SettingViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? SettingTableViewCell
-        else {
-            return UITableViewCell()
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as? SettingTableViewCell
+        else { return UITableViewCell() }
         let text = rowTypes[indexPath.section][indexPath.row].text
         cell.configure(text: text)
         return cell

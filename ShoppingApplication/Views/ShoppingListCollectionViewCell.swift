@@ -1,7 +1,7 @@
 import UIKit
 import RealmSwift
 
-protocol ShoppingListCollectionViewCellDelegate: class {
+protocol ShoppingListCollectionViewCellDelegate: AnyObject {
     func deleteButtonDidTapped(_ tag: Int)
     func discountButtonDidTapped(_ tag: Int)
 }

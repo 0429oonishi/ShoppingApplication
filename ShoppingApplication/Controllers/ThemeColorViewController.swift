@@ -2,8 +2,6 @@ import UIKit
 
 final class ThemeColorViewController: UIViewController {
 
-    private let cellId = "themeColorCellId"
-
     @IBOutlet private weak var navigationBar: UINavigationBar! {
         didSet { navigationBar.tintColor = .black }
     }
@@ -78,7 +76,7 @@ extension ThemeColorViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThemeColorViewController.identifier, for: indexPath)
         cell.layer.cornerRadius = CGFloat(cellSize / 2)
         cell.backgroundColor = themeColors[indexPath.row]
         return cell
