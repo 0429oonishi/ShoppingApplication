@@ -193,7 +193,7 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		AB8A683D25B5366300D08D16 /* Extension */ = {
+		AB8A683D25B5366300D08D16 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				AB9711E22595CA2E00AAA0E1 /* UIColor+Extension.swift */,
@@ -203,7 +203,7 @@
 				ABD66287263AC44A00027589 /* UICollectionViewCell+Extension.swift */,
 				ABD66289263AC46F00027589 /* UIStoryboard+Extension.swift */,
 			);
-			path = Extension;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		AB97115F25950FC600AAA0E1 = {
@@ -230,8 +230,7 @@
 				AB23F090260A7F67000AE6CB /* Enums */,
 				AB23EF5D260809A8000AE6CB /* API */,
 				AB23EF5C260809A0000AE6CB /* Others */,
-				AB8A683D25B5366300D08D16 /* Extension */,
-				AB86831526025F0700529952 /* Storyboards */,
+				AB8A683D25B5366300D08D16 /* Extensions */,
 				AB9711C32595B4A600AAA0E1 /* Models */,
 				AB971190259511A900AAA0E1 /* Views */,
 				AB9711822595116600AAA0E1 /* Controllers */,
@@ -263,12 +262,9 @@
 		AB971190259511A900AAA0E1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */,
-				AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */,
-				AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */,
-				AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */,
-				AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */,
-				AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */,
+				ABFF8D562651FE36002140E3 /* Cells */,
+				ABFF8D552651FE28002140E3 /* Xibs */,
+				AB86831526025F0700529952 /* Storyboards */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,6 +277,26 @@
 				AB80719625A8B9ED00E1F550 /* Place.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		ABFF8D552651FE28002140E3 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */,
+				AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */,
+				AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		ABFF8D562651FE36002140E3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */,
+				AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */,
+				AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

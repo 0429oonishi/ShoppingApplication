@@ -3,14 +3,6 @@ import RealmSwift
 
 final class ToBuyListViewController: UIViewController {
 
-    private var isKeyboardAppeared = false
-    private var isAddViewAppeared = true
-    private var numberOfToBuy = 1 {
-        didSet { addNumberLabel.text = "\(numberOfToBuy)" }
-    }
-    private var toDoLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
-    private var token: NotificationToken!
-
     @IBOutlet private weak var remainCountButton: UIBarButtonItem!
     @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var tableView: UITableView!
@@ -50,6 +42,12 @@ final class ToBuyListViewController: UIViewController {
         }
     }
     @IBOutlet private weak var adMobView: UIView!
+    
+    private var isKeyboardAppeared = false
+    private var isAddViewAppeared = true
+    private var numberOfToBuy = 1
+    private var toDoLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
+    private var token: NotificationToken!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,8 +105,7 @@ final class ToBuyListViewController: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
 
-    @objc
-    func showKeyboard(notification: Notification) {
+    @objc private func showKeyboard(notification: Notification) {
         guard let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue else { return }
         let toBuyViewMaxY = addView.frame.maxY
         let keyboardMinY = keyboardFrame.minY
@@ -119,16 +116,14 @@ final class ToBuyListViewController: UIViewController {
         isKeyboardAppeared.toggle()
     }
 
-    @objc
-    func hideKeyboard() {
+    @objc private func hideKeyboard() {
         UIView.animate(withDuration: 0.2) {
             self.addView.transform = .identity
         }
         isKeyboardAppeared.toggle()
     }
 
-    @objc
-    func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         self.view.endEditing(true)
         isKeyboardAppeared = true
     }
@@ -148,6 +143,7 @@ final class ToBuyListViewController: UIViewController {
 
     @IBAction private func addStepperDidTapped(_ sender: UIStepper) {
         numberOfToBuy = Int(sender.value)
+        addNumberLabel.text = "\(numberOfToBuy)"
     }
 
     @IBAction private func addButtonDidTapped(_ sender: Any) {
@@ -162,6 +158,7 @@ final class ToBuyListViewController: UIViewController {
         addTextField.text = ""
         addStepper.value = 1
         numberOfToBuy = 1
+        addNumberLabel.text = "\(numberOfToBuy)"
     }
 
     private func showAlert() {
@@ -201,8 +198,8 @@ extension ToBuyListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToBuyListTableViewCell.identifier,
                                                        for: indexPath) as? ToBuyListTableViewCell
         else { return UITableViewCell() }
-        let object = toDoLists[indexPath.row]
-        cell.configure(object: object)
+        let toDoList = toDoLists[indexPath.row]
+        cell.configure(toDoList: toDoList)
         cell.index = indexPath.row
         return cell
     }
