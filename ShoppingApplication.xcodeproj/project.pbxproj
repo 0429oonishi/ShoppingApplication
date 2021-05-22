@@ -263,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				ABFF8D562651FE36002140E3 /* Cells */,
-				ABFF8D552651FE28002140E3 /* Xibs */,
 				AB86831526025F0700529952 /* Storyboards */,
 			);
 			path = Views;
@@ -279,22 +278,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		ABFF8D552651FE28002140E3 /* Xibs */ = {
-			isa = PBXGroup;
-			children = (
-				AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */,
-				AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */,
-				AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */,
-			);
-			path = Xibs;
-			sourceTree = "<group>";
-		};
 		ABFF8D562651FE36002140E3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				AB971193259511B200AAA0E1 /* ToBuyListTableViewCell.swift */,
+				AB971194259511B200AAA0E1 /* ToBuyListTableViewCell.xib */,
 				AB971195259511B200AAA0E1 /* ShoppingListCollectionViewCell.swift */,
+				AB971192259511B200AAA0E1 /* ShoppingListCollectionViewCell.xib */,
 				AB9711C72595B58D00AAA0E1 /* SettingTableViewCell.swift */,
+				AB9711C82595B58D00AAA0E1 /* SettingTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
