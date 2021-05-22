@@ -36,7 +36,7 @@
                                                     <segue destination="l9M-PS-AHp" kind="presentation" id="L0n-44-Xp2"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="残り0個" id="Kkt-UI-tnL">
+                                            <barButtonItem id="Kkt-UI-tnL">
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </barButtonItem>
                                         </leftBarButtonItems>

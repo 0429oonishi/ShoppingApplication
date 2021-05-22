@@ -53,7 +53,7 @@ final class ToBuyListViewController: UIViewController {
     private var isKeyboardAppeared = false
     private var isAddViewAppeared = true
     private var numberOfToBuy = 1
-    private var toDoLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
+    private var toBuyLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
     private var token: NotificationToken!
 
     override func viewDidLoad() {
@@ -63,15 +63,12 @@ final class ToBuyListViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ToBuyListTableViewCell.nib,
                            forCellReuseIdentifier: ToBuyListTableViewCell.identifier)
-
         addTextField.delegate = self
-
         operateKeyboard()
-
         AdMob().load(to: adMobView, rootVC: self)
-
-        token = toDoLists.observe { [unowned self] _ in
-            remainCountButton.title = toDoLists.isEmpty ? "" : "残り\(toDoLists.count)個"
+        token = toBuyLists.observe { [weak self] _ in
+            guard let self = self else { return }
+            self.remainCountButton.title = self.toBuyLists.isEmpty ? "" : "残り\(self.toBuyLists.count)個"
         }
 
     }
@@ -79,69 +76,37 @@ final class ToBuyListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        setupThemeColor()
+        configureThemeColor()
         tableView.reloadData()
 
     }
 
-    private func setupThemeColor() {
+    private func configureThemeColor() {
         self.view.backgroundColor = UIColor.white.themeColor
         navigationBar.barTintColor = UIColor.white.themeColor
         addView.backgroundColor = UIColor.white.themeColor
         addButton.backgroundColor = UIColor.white.themeColor
         addTextField.layer.borderColor = UIColor.black.themeColor.cgColor
-        addButton.layer.borderColor = (addButton.backgroundColor == .white) ? UIColor.black.cgColor : UIColor.white.cgColor
-        addButton.layer.shadowColor = (addButton.backgroundColor == .white) ? UIColor.black.cgColor : UIColor.white.cgColor
-    }
-
-    private func operateKeyboard() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(showKeyboard),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(hideKeyboard),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                          action: #selector(dismissKeyboard))
-        tapGestureRecognizer.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tapGestureRecognizer)
-    }
-
-    @objc private func showKeyboard(notification: Notification) {
-        guard let keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue else { return }
-        let toBuyViewMaxY = addView.frame.maxY
-        let keyboardMinY = keyboardFrame.minY
-        let distance = toBuyViewMaxY - keyboardMinY
-        UIView.animate(withDuration: 0.2) {
-            self.addView.transform = CGAffineTransform(translationX: 0, y: -distance)
+        if addButton.backgroundColor == .white {
+            addButton.layer.borderColor = UIColor.black.cgColor
+            addButton.layer.shadowColor = UIColor.black.cgColor
+        } else {
+            addButton.layer.borderColor = UIColor.white.cgColor
+            addButton.layer.shadowColor = UIColor.white.cgColor
         }
-        isKeyboardAppeared.toggle()
-    }
-
-    @objc private func hideKeyboard() {
-        UIView.animate(withDuration: 0.2) {
-            self.addView.transform = .identity
-        }
-        isKeyboardAppeared.toggle()
-    }
-
-    @objc private func dismissKeyboard() {
-        self.view.endEditing(true)
-        isKeyboardAppeared = true
     }
 
     @IBAction private func clearAllButtonDidTapped(_ sender: Any) {
-        guard !toDoLists.isEmpty else { return }
+        guard !toBuyLists.isEmpty else { return }
         showAlert()
     }
 
     @IBAction private func toggleKeyboardButtonDidTapped(_ sender: Any) {
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            let distance = self.view.frame.maxY - addView.frame.minY
-            addView.transform = isAddViewAppeared ? CGAffineTransform(translationX: 0, y: distance) : .identity
-            isAddViewAppeared.toggle()
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let self = self else { return }
+            let distance = self.view.frame.maxY - self.addView.frame.minY
+            self.addView.transform = self.isAddViewAppeared ? CGAffineTransform(translationX: 0, y: distance) : .identity
+            self.isAddViewAppeared.toggle()
         }
     }
 
@@ -184,6 +149,50 @@ final class ToBuyListViewController: UIViewController {
 
 }
 
+// MARK: - keyboard method
+private extension ToBuyListViewController {
+
+    func operateKeyboard() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showKeyboard),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(hideKeyboard),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        let tapGR = UITapGestureRecognizer(target: self,
+                                           action: #selector(dismissKeyboard))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+    }
+
+    @objc func showKeyboard(notification: Notification) {
+        guard let keyboardFrame = (
+            notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject
+        ).cgRectValue else { return }
+        let distance = addView.frame.maxY - keyboardFrame.minY
+        UIView.animate(withDuration: 0.2) {
+            self.addView.transform = CGAffineTransform(translationX: 0, y: -distance)
+        }
+        isKeyboardAppeared.toggle()
+    }
+
+    @objc func hideKeyboard() {
+        UIView.animate(withDuration: 0.2) {
+            self.addView.transform = .identity
+        }
+        isKeyboardAppeared.toggle()
+    }
+
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+        isKeyboardAppeared = true
+    }
+
+}
+
+// MARK: - UITableViewDelegate
 extension ToBuyListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -192,24 +201,27 @@ extension ToBuyListViewController: UITableViewDelegate {
 
 }
 
+// MARK: - UITableViewDataSource
 extension ToBuyListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDoLists.count
+        return toBuyLists.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ToBuyListTableViewCell.identifier,
-                                                       for: indexPath) as? ToBuyListTableViewCell
-        else { return UITableViewCell() }
-        let toDoList = toDoLists[indexPath.row]
-        cell.configure(toDoList: toDoList)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: ToBuyListTableViewCell.identifier,
+            for: indexPath
+        ) as! ToBuyListTableViewCell
+        let toBuyList = toBuyLists[indexPath.row]
+        cell.configure(toBuyList: toBuyList)
         cell.index = indexPath.row
         return cell
     }
 
 }
 
+// MARK: - UITextFieldDelegate
 extension ToBuyListViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

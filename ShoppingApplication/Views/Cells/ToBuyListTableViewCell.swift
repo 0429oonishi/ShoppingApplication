@@ -40,11 +40,11 @@ final class ToBuyListTableViewCell: UITableViewCell {
         }
     }
 
-    func configure(toDoList: ToBuyList) {
+    func configure(toBuyList: ToBuyList) {
         separatorView.backgroundColor = UIColor.black.themeColor
-        titleLabel.text = toDoList.toBuyListName
-        numberOfToBuyLabel.text = "×\(toDoList.toBuyListNumber)"
-        let buttonType: ButtonType = toDoList.isButtonChecked ? .checkmark : .circle
+        titleLabel.text = toBuyList.toBuyListName
+        numberOfToBuyLabel.text = "×\(toBuyList.toBuyListNumber)"
+        let buttonType: ButtonType = toBuyList.isButtonChecked ? .checkmark : .circle
         setImageToCellCheckButton(buttonType)
     }
 
