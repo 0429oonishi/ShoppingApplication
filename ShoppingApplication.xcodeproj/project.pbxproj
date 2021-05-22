@@ -181,6 +181,7 @@
 		AB86831526025F0700529952 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				AB97117625950FC900AAA0E1 /* LaunchScreen.storyboard */,
 				AB97117125950FC600AAA0E1 /* Main.storyboard */,
 				AB86831826025FC900529952 /* ToBuyList.storyboard */,
 				AB86831A26025FD600529952 /* HowToUseToBuyList.storyboard */,
@@ -237,7 +238,6 @@
 				AB97116B25950FC600AAA0E1 /* AppDelegate.swift */,
 				AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */,
 				AB97117425950FC900AAA0E1 /* Assets.xcassets */,
-				AB97117625950FC900AAA0E1 /* LaunchScreen.storyboard */,
 				AB97117925950FC900AAA0E1 /* Info.plist */,
 				AB32762525A1409200FB8C2F /* GoogleService-Info.plist */,
 			);

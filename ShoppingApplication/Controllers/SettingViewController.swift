@@ -1,3 +1,10 @@
+//
+//  SettingViewController.swift
+//  ShoppingApplication
+//
+//  Created by 大西玲音 on 2021/03/21.
+//
+
 import UIKit
 import StoreKit
 
