@@ -49,7 +49,7 @@ final class ToBuyListViewController: UIViewController {
         }
     }
     @IBOutlet private weak var adMobView: UIView!
-    
+
     private var isKeyboardAppeared = false
     private var isAddViewAppeared = true
     private var numberOfToBuy = 1
@@ -68,10 +68,7 @@ final class ToBuyListViewController: UIViewController {
 
         operateKeyboard()
 
-        AdMob.addAdMobView(adMobView: adMobView,
-                           width: self.view.frame.size.width,
-                           height: adMobView.frame.size.height,
-                           viewController: self)
+        AdMob().load(to: adMobView, rootVC: self)
 
         token = toDoLists.observe { [unowned self] _ in
             remainCountButton.title = toDoLists.isEmpty ? "" : "残り\(toDoLists.count)個"

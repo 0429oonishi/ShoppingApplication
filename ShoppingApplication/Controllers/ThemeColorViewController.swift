@@ -29,10 +29,8 @@ final class ThemeColorViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
 
-        AdMob.addAdMobView(adMobView: adMobView,
-                           width: self.view.frame.size.width,
-                           height: adMobView.frame.size.height,
-                           viewController: self)
+        AdMob().load(to: adMobView, rootVC: self)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {

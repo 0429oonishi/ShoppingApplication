@@ -56,10 +56,7 @@ final class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        AdMob.addAdMobView(adMobView: adMobView,
-                           width: self.view.frame.size.width,
-                           height: adMobView.frame.size.height,
-                           viewController: self)
+        AdMob().load(to: adMobView, rootVC: self)
 
         tableView.delegate = self
         tableView.dataSource = self

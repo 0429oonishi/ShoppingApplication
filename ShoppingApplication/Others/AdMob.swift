@@ -8,15 +8,20 @@
 import GoogleMobileAds
 
 struct AdMob {
-    static let AdMobId = "ca-app-pub-5791981660348332/8471327283"
 
-    static func addAdMobView(adMobView: UIView, width: CGFloat, height: CGFloat, viewController: UIViewController) {
-        var AdMobView = GADBannerView()
-        AdMobView = GADBannerView(adSize: kGADAdSizeBanner)
-        AdMobView.frame.size = CGSize(width: width, height: height)
-        AdMobView.adUnitID = AdMob.AdMobId
-        AdMobView.rootViewController = viewController
-        AdMobView.load(GADRequest())
-        adMobView.addSubview(AdMobView)
+    private let adUnitID = "ca-app-pub-5791981660348332/8471327283"
+
+    func load(to adMobView: UIView, rootVC: UIViewController) {
+        var bannerView = GADBannerView()
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.frame.size = CGSize(width: adMobView.frame.size.width,
+                                       height: adMobView.frame.size.height)
+        bannerView.adUnitID = adUnitID
+        bannerView.rootViewController = rootVC
+        bannerView.load(GADRequest())
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        adMobView.addSubview(bannerView)
+        bannerView.centerXAnchor.constraint(equalTo: adMobView.centerXAnchor).isActive = true
     }
+
 }
