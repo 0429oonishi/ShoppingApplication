@@ -53,7 +53,7 @@ final class ToBuyListTableViewCell: UITableViewCell {
         let image = UIImage(systemName: buttonType.imageName, withConfiguration: largeConfig)
         checkButton.setImage(image, for: .normal)
         guard let text = titleLabel.text else { return }
-        titleLabel.attributedText = (buttonType == .circle) ? cancelStrikethrough(text) : strikethrough(text)
+        titleLabel.attributedText = (buttonType == .circle) ? Strikethrough().erase(text) : Strikethrough().draw(text)
     }
 
 }

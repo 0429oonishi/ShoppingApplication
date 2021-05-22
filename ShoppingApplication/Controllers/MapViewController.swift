@@ -86,9 +86,9 @@ extension MapViewController: UISearchBarDelegate {
         mapSearchBar.resignFirstResponder()
         mapView.clear()
 
-        API.shared.request(searchKeyword: searchBar.text!,
-                           lat: userLocationLat,
-                           lng: userLocationLng) { placeResults in
+        MapAPIClient.shared.request(searchKeyword: searchBar.text!,
+                                    lat: userLocationLat,
+                                    lng: userLocationLng) { placeResults in
             switch placeResults {
             case .success(let placeResults):
                 if placeResults.isEmpty {
