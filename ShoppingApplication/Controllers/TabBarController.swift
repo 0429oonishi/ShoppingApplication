@@ -13,6 +13,7 @@ final class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         UITabBar.appearance().tintColor = UIColor.black.themeColor
+        
     }
     
 }
