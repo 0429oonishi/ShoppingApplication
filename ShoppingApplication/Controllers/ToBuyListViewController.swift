@@ -8,11 +8,14 @@
 import UIKit
 import RealmSwift
 
+// MARK: - ToDo adMob バグ
+
 final class ToBuyListViewController: UIViewController {
 
     @IBOutlet private weak var remainCountButton: UIBarButtonItem!
     @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var tableViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var addView: UIView!
     @IBOutlet private weak var addTextField: UITextField!
     @IBOutlet private weak var addStepper: UIStepper!
@@ -20,11 +23,9 @@ final class ToBuyListViewController: UIViewController {
     @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var adMobView: UIView!
 
-    private var isKeyboardAppeared = false
     private var isAddViewAppeared = true
     private var numberOfToBuy = 1
     private var toBuyLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
-
     private var token: NotificationToken!
 
     override func viewDidLoad() {
@@ -96,10 +97,17 @@ final class ToBuyListViewController: UIViewController {
     }
 
     @IBAction private func toggleKeyboardButtonDidTapped(_ sender: Any) {
-        UIView.animate(withDuration: 0.2) { [weak self] in
+        UIView.animate(withDuration: 0.1) { [weak self] in
             guard let self = self else { return }
             let distance = self.view.frame.maxY - self.addView.frame.minY
-            self.addView.transform = self.isAddViewAppeared ? CGAffineTransform(translationX: 0, y: distance) : .identity
+            if self.isAddViewAppeared {
+                self.addView.transform = CGAffineTransform(translationX: 0, y: distance)
+                self.tableViewBottomConstraint.constant = 0
+                self.tableViewBottomConstraint.constant -= self.addView.frame.size.height
+            } else {
+                self.addView.transform = .identity
+                self.tableViewBottomConstraint.constant = 0
+            }
             self.isAddViewAppeared.toggle()
         }
     }
@@ -116,6 +124,7 @@ final class ToBuyListViewController: UIViewController {
         toBuyList.numberPurchased = numberOfToBuy
         toBuyList.isChecked = false
         ToBuyListRealmRepository.shared.add(toBuyList)
+        tableViewBottomConstraint.constant = 0
         tableView.reloadData()
         addTextField.text = ""
         addStepper.value = 1
@@ -164,24 +173,28 @@ private extension ToBuyListViewController {
             notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject
         ).cgRectValue else { return }
         let distance = addView.frame.maxY - keyboardFrame.minY
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.1) {
             self.addView.transform = CGAffineTransform(translationX: 0, y: -distance)
+            self.tableViewBottomConstraint.constant = 0
+            self.tableViewBottomConstraint.constant += distance
         }
-        isKeyboardAppeared.toggle()
     }
 
     @objc
     func hideKeyboard() {
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.1) {
             self.addView.transform = .identity
+            self.tableViewBottomConstraint.constant = 0
         }
-        isKeyboardAppeared.toggle()
     }
 
     @objc
     func dismissKeyboard() {
         self.view.endEditing(true)
-        isKeyboardAppeared = true
+        UIView.animate(withDuration: 0.1) {
+            self.tableViewBottomConstraint.constant = 0
+            self.tableViewBottomConstraint.constant -= self.addView.frame.size.height
+        }
     }
 
 }
@@ -213,6 +226,7 @@ extension ToBuyListViewController: UITableViewDataSource {
                 toBuyList.isChecked.toggle()
             }
             cell.checkButton(toBuyList: toBuyList)
+            self.tableViewBottomConstraint.constant = 0
         }
         return cell
     }

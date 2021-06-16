@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="73Y-pn-iJd">
-                                <rect key="frame" x="0.0" y="138" width="414" height="675"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -137,6 +137,7 @@
                             <constraint firstItem="73Y-pn-iJd" firstAttribute="top" secondItem="bTt-X2-1vq" secondAttribute="bottom" id="3Pg-uD-I1r"/>
                             <constraint firstItem="9Tl-16-08P" firstAttribute="bottom" secondItem="4Y9-Hf-7lb" secondAttribute="bottom" id="3gZ-l0-Kk0"/>
                             <constraint firstItem="bTt-X2-1vq" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="5LQ-sY-oz3"/>
+                            <constraint firstItem="4Y9-Hf-7lb" firstAttribute="top" secondItem="73Y-pn-iJd" secondAttribute="bottom" id="AdF-92-B8o"/>
                             <constraint firstItem="9Tl-16-08P" firstAttribute="trailing" secondItem="73Y-pn-iJd" secondAttribute="trailing" id="DsQ-ZE-8Nw"/>
                             <constraint firstItem="qfY-eg-xYf" firstAttribute="trailing" secondItem="9Tl-16-08P" secondAttribute="trailing" id="Dyv-Gg-IHU"/>
                             <constraint firstItem="bTt-X2-1vq" firstAttribute="trailing" secondItem="9Tl-16-08P" secondAttribute="trailing" id="IZK-Io-VaL"/>
@@ -145,7 +146,6 @@
                             <constraint firstItem="4Y9-Hf-7lb" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="Wyh-7Z-sg1"/>
                             <constraint firstItem="qfY-eg-xYf" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="hGu-iK-6nt"/>
                             <constraint firstItem="9Tl-16-08P" firstAttribute="trailing" secondItem="4Y9-Hf-7lb" secondAttribute="trailing" id="pJb-vj-ISs"/>
-                            <constraint firstItem="9Tl-16-08P" firstAttribute="bottom" secondItem="73Y-pn-iJd" secondAttribute="bottom" id="rIk-N3-hrM"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="メモ" image="square.and.pencil" catalog="system" id="55q-h6-ijs"/>
@@ -160,6 +160,7 @@
                         <outlet property="navigationBar" destination="qfY-eg-xYf" id="Pc1-Zh-NFF"/>
                         <outlet property="remainCountButton" destination="Kkt-UI-tnL" id="5Za-uo-mNb"/>
                         <outlet property="tableView" destination="73Y-pn-iJd" id="TNB-2p-y5x"/>
+                        <outlet property="tableViewBottomConstraint" destination="AdF-92-B8o" id="za7-c2-KTp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsc-IZ-m2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
