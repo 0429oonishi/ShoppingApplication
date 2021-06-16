@@ -6,54 +6,34 @@
 //
 
 import UIKit
-import RealmSwift
 
 final class ToBuyListTableViewCell: UITableViewCell {
-
-    private enum ButtonType {
-        case circle
-        case checkmark
-        var imageName: String {
-            switch self {
-            case .circle: return "circle"
-            case .checkmark: return "checkmark"
-            }
-        }
-    }
-    private var toBuyLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
-    var index: Int = 0
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var checkButton: UIButton!
     @IBOutlet private weak var numberOfToBuyLabel: UILabel!
-    @IBOutlet private weak var separatorView: UIView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    var onTapEvent: (() -> Void)?
 
     @IBAction private func checkButtonDidTapped(_ sender: Any) {
-        let buttonType: ButtonType = toBuyLists[index].isButtonChecked ? .circle : .checkmark
-        setImageToCellCheckButton(buttonType)
-        ToBuyListRealmRepository.shared.update {
-            toBuyLists[index].isButtonChecked = !toBuyLists[index].isButtonChecked
+        onTapEvent?()
+    }
+
+    func configure(toBuyList: ToBuyList, onTapEvent: (() -> Void)?) {
+        self.onTapEvent = onTapEvent
+        titleLabel.text = toBuyList.title
+        numberOfToBuyLabel.text = "×\(toBuyList.numberPurchased)"
+        checkButton(toBuyList: toBuyList)
+    }
+
+    func checkButton(toBuyList: ToBuyList) {
+        if toBuyList.isChecked {
+            ImageManager().setImage(button: checkButton, imageName: "checkmark")
+            titleLabel.attributedText = Strikethrough().draw(titleLabel.text!)
+        } else {
+            ImageManager().setImage(button: checkButton, imageName: "circle")
+            titleLabel.attributedText = Strikethrough().erase(titleLabel.text!)
         }
-    }
-
-    func configure(toBuyList: ToBuyList) {
-        separatorView.backgroundColor = UIColor.black.themeColor
-        titleLabel.text = toBuyList.toBuyListName
-        numberOfToBuyLabel.text = "×\(toBuyList.toBuyListNumber)"
-        let buttonType: ButtonType = toBuyList.isButtonChecked ? .checkmark : .circle
-        setImageToCellCheckButton(buttonType)
-    }
-
-    private func setImageToCellCheckButton(_ buttonType: ButtonType) {
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        let image = UIImage(systemName: buttonType.imageName, withConfiguration: largeConfig)
-        checkButton.setImage(image, for: .normal)
-        guard let text = titleLabel.text else { return }
-        titleLabel.attributedText = (buttonType == .circle) ? Strikethrough().erase(text) : Strikethrough().draw(text)
     }
 
 }

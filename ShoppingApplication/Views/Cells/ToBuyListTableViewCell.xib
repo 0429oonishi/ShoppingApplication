@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -49,27 +48,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEH-95-eSk">
-                        <rect key="frame" x="20" y="66" width="302" height="2"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="2" id="jD0-sA-Rba"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="HEH-95-eSk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="1ne-lw-V5m"/>
                     <constraint firstAttribute="bottom" secondItem="SQK-mE-FT3" secondAttribute="bottom" constant="2" id="4nm-0W-cxZ"/>
                     <constraint firstItem="F61-XU-7La" firstAttribute="leading" secondItem="SQK-mE-FT3" secondAttribute="trailing" constant="15" id="BId-1M-uKc"/>
-                    <constraint firstAttribute="trailing" secondItem="HEH-95-eSk" secondAttribute="trailing" constant="20" id="CgZ-mg-F2Q"/>
                     <constraint firstItem="h2c-6x-Nzn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="GB0-j8-nA1"/>
                     <constraint firstItem="F61-XU-7La" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JGg-bH-sjm"/>
                     <constraint firstItem="SQK-mE-FT3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LBF-F9-wGk"/>
                     <constraint firstItem="h2c-6x-Nzn" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="Uxh-JI-BRJ"/>
                     <constraint firstAttribute="trailing" secondItem="F61-XU-7La" secondAttribute="trailing" constant="5" id="d44-De-N9F"/>
                     <constraint firstItem="SQK-mE-FT3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="ggW-qo-mzG"/>
-                    <constraint firstAttribute="bottom" secondItem="HEH-95-eSk" secondAttribute="bottom" id="v8i-xM-gH8"/>
                     <constraint firstItem="h2c-6x-Nzn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wpR-qg-WvP"/>
                     <constraint firstItem="SQK-mE-FT3" firstAttribute="leading" secondItem="h2c-6x-Nzn" secondAttribute="trailing" constant="15" id="xn3-Sh-K7I"/>
                 </constraints>
@@ -78,7 +67,6 @@
             <connections>
                 <outlet property="checkButton" destination="h2c-6x-Nzn" id="YTs-4w-oYy"/>
                 <outlet property="numberOfToBuyLabel" destination="F61-XU-7La" id="XSo-cV-8he"/>
-                <outlet property="separatorView" destination="HEH-95-eSk" id="GvQ-eM-e5d"/>
                 <outlet property="titleLabel" destination="SQK-mE-FT3" id="uml-3G-asz"/>
             </connections>
             <point key="canvasLocation" x="-62.318840579710148" y="141.29464285714286"/>
@@ -86,8 +74,5 @@
     </objects>
     <resources>
         <image name="circle" catalog="system" width="128" height="121"/>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>
