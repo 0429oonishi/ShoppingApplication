@@ -416,7 +416,7 @@ extension CalculationViewController: ShoppingListCollectionViewCellDelegate {
         let alert = UIAlertController(title: .deleteList, message: .deleteAttention, preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: .delete, style: .destructive) { _ in
             CalculationRealmRepository.shared.update {
-                self.calculations[tag].isCalculationDeleted = true
+                self.calculations[tag].isDeleted = true
             }
             let deletedCalculations = CalculationRealmRepository.shared.filter("isCalculationDeleted == true")
             CalculationRealmRepository.shared.delete(deletedCalculations)

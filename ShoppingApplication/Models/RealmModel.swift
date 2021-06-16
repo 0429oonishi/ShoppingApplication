@@ -8,14 +8,14 @@
 import RealmSwift
 
 final class ToBuyList: Object {
-    @objc dynamic var toBuyListName: String = ""
-    @objc dynamic var toBuyListNumber: Int = 0
-    @objc dynamic var isButtonChecked = false
+    @objc dynamic var title: String = ""
+    @objc dynamic var numberPurchased: Int = 0
+    @objc dynamic var isChecked = false
 }
 
 final class Calculation: Object {
     @objc dynamic var price: String = ""
-    @objc dynamic var isCalculationDeleted = false
+    @objc dynamic var isDeleted = false
     @objc dynamic var shoppingListCount: Int = 1
     @objc dynamic var shoppingListDiscount: Int = 0
 }
