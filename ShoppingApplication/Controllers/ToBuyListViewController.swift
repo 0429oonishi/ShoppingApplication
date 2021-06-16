@@ -11,6 +11,7 @@ import RealmSwift
 final class ToBuyListViewController: UIViewController {
 
     @IBOutlet private weak var remainCountButton: UIBarButtonItem!
+    @IBOutlet private weak var myTopView: UIView!
     @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableViewBottomConstraint: NSLayoutConstraint!
@@ -171,6 +172,7 @@ private extension ToBuyListViewController {
                                                object: nil)
         let tapGR = UITapGestureRecognizer(target: self,
                                            action: #selector(dismissKeyboard))
+        tapGR.delegate = self
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
     }
@@ -246,6 +248,18 @@ extension ToBuyListViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+    }
+
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension ToBuyListViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view == self.addButton {
+            return false
+        }
+        return true
     }
 
 }

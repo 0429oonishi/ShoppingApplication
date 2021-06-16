@@ -129,6 +129,10 @@
                                     <constraint firstAttribute="height" constant="50" id="6qd-TT-F2W"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgG-Ve-t2J">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Tl-16-08P"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -137,15 +141,19 @@
                             <constraint firstItem="73Y-pn-iJd" firstAttribute="top" secondItem="bTt-X2-1vq" secondAttribute="bottom" id="3Pg-uD-I1r"/>
                             <constraint firstItem="9Tl-16-08P" firstAttribute="bottom" secondItem="4Y9-Hf-7lb" secondAttribute="bottom" id="3gZ-l0-Kk0"/>
                             <constraint firstItem="bTt-X2-1vq" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="5LQ-sY-oz3"/>
-                            <constraint firstItem="4Y9-Hf-7lb" firstAttribute="top" secondItem="73Y-pn-iJd" secondAttribute="bottom" id="AdF-92-B8o"/>
                             <constraint firstItem="9Tl-16-08P" firstAttribute="trailing" secondItem="73Y-pn-iJd" secondAttribute="trailing" id="DsQ-ZE-8Nw"/>
                             <constraint firstItem="qfY-eg-xYf" firstAttribute="trailing" secondItem="9Tl-16-08P" secondAttribute="trailing" id="Dyv-Gg-IHU"/>
                             <constraint firstItem="bTt-X2-1vq" firstAttribute="trailing" secondItem="9Tl-16-08P" secondAttribute="trailing" id="IZK-Io-VaL"/>
                             <constraint firstItem="bTt-X2-1vq" firstAttribute="top" secondItem="qfY-eg-xYf" secondAttribute="bottom" id="K0G-ry-Ekd"/>
+                            <constraint firstItem="FgG-Ve-t2J" firstAttribute="top" secondItem="yfR-E8-qDo" secondAttribute="top" id="Oj4-b7-Gbr"/>
                             <constraint firstItem="qfY-eg-xYf" firstAttribute="top" secondItem="9Tl-16-08P" secondAttribute="top" id="QSV-M2-45a"/>
                             <constraint firstItem="4Y9-Hf-7lb" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="Wyh-7Z-sg1"/>
                             <constraint firstItem="qfY-eg-xYf" firstAttribute="leading" secondItem="9Tl-16-08P" secondAttribute="leading" id="hGu-iK-6nt"/>
+                            <constraint firstAttribute="trailing" secondItem="FgG-Ve-t2J" secondAttribute="trailing" id="lhY-Nf-kP0"/>
+                            <constraint firstItem="FgG-Ve-t2J" firstAttribute="leading" secondItem="yfR-E8-qDo" secondAttribute="leading" id="mok-Dm-wag"/>
                             <constraint firstItem="9Tl-16-08P" firstAttribute="trailing" secondItem="4Y9-Hf-7lb" secondAttribute="trailing" id="pJb-vj-ISs"/>
+                            <constraint firstItem="qfY-eg-xYf" firstAttribute="top" secondItem="FgG-Ve-t2J" secondAttribute="bottom" id="ti0-iq-sif"/>
+                            <constraint firstItem="4Y9-Hf-7lb" firstAttribute="top" secondItem="73Y-pn-iJd" secondAttribute="bottom" id="wDD-aa-GBK"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="メモ" image="square.and.pencil" catalog="system" id="55q-h6-ijs"/>
@@ -157,10 +165,11 @@
                         <outlet property="addStepper" destination="xbG-qC-155" id="WMi-Wy-wmY"/>
                         <outlet property="addTextField" destination="E3o-es-urE" id="zmp-eu-dRR"/>
                         <outlet property="addView" destination="4Y9-Hf-7lb" id="OWt-P5-tgF"/>
-                        <outlet property="navigationBar" destination="qfY-eg-xYf" id="Pc1-Zh-NFF"/>
+                        <outlet property="myTopView" destination="FgG-Ve-t2J" id="87S-96-5yU"/>
+                        <outlet property="navigationBar" destination="qfY-eg-xYf" id="cAe-4V-2hM"/>
                         <outlet property="remainCountButton" destination="Kkt-UI-tnL" id="5Za-uo-mNb"/>
                         <outlet property="tableView" destination="73Y-pn-iJd" id="TNB-2p-y5x"/>
-                        <outlet property="tableViewBottomConstraint" destination="AdF-92-B8o" id="za7-c2-KTp"/>
+                        <outlet property="tableViewBottomConstraint" destination="wDD-aa-GBK" id="Ai7-Ss-24E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsc-IZ-m2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -173,7 +182,7 @@
                 <viewControllerPlaceholder storyboardName="HowToUseToBuyList" id="l9M-PS-AHp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dVU-2v-e0K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="660" y="970"/>
+            <point key="canvasLocation" x="557" y="970"/>
         </scene>
     </scenes>
     <resources>
