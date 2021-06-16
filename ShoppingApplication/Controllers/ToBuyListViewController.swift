@@ -29,11 +29,7 @@ final class ToBuyListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView()
-        tableView.register(ToBuyListTableViewCell.nib,
-                           forCellReuseIdentifier: ToBuyListTableViewCell.identifier)
+        setupTableView()
         addTextField.delegate = self
         operateKeyboard()
         AdMob().load(to: adMobView, rootVC: self)
@@ -48,21 +44,7 @@ final class ToBuyListViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         addView.addBorder(width: 1, color: .black, position: .top)
-
-        addTextField.layer.masksToBounds = true
-        addTextField.layer.borderWidth = 1
-        addTextField.layer.cornerRadius = 10
-
-        addStepper.layer.cornerRadius = 8
-        addStepper.layer.borderColor = UIColor.white.cgColor
-        addStepper.layer.borderWidth = 2
-        addStepper.backgroundColor = .white
-
-        addButton.layer.borderWidth = 1
-        addButton.layer.cornerRadius = 10
-        addButton.layer.shadowOffset = CGSize(width: 1, height: 1)
-        addButton.layer.shadowRadius = 2
-        addButton.layer.shadowOpacity = 1
+        setupLayer()
 
     }
 
@@ -71,21 +53,6 @@ final class ToBuyListViewController: UIViewController {
 
         setupThemeColor()
 
-    }
-
-    private func setupThemeColor() {
-        self.view.backgroundColor = UIColor.white.themeColor
-        navigationBar.barTintColor = UIColor.white.themeColor
-        addView.backgroundColor = UIColor.white.themeColor
-        addButton.backgroundColor = UIColor.white.themeColor
-        addTextField.layer.borderColor = UIColor.black.themeColor.cgColor
-        if addButton.backgroundColor == .white {
-            addButton.layer.borderColor = UIColor.black.cgColor
-            addButton.layer.shadowColor = UIColor.black.cgColor
-        } else {
-            addButton.layer.borderColor = UIColor.white.cgColor
-            addButton.layer.shadowColor = UIColor.white.cgColor
-        }
     }
 
     @IBAction private func clearAllButtonDidTapped(_ sender: Any) {
@@ -142,6 +109,50 @@ final class ToBuyListViewController: UIViewController {
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+
+}
+
+// MARK: - setup
+private extension ToBuyListViewController {
+
+    func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.register(ToBuyListTableViewCell.nib,
+                           forCellReuseIdentifier: ToBuyListTableViewCell.identifier)
+    }
+
+    func setupThemeColor() {
+        myTopView.backgroundColor = UIColor.white.themeColor
+        navigationBar.barTintColor = UIColor.white.themeColor
+        addView.backgroundColor = UIColor.white.themeColor
+        addButton.backgroundColor = UIColor.white.themeColor
+        addTextField.layer.borderColor = UIColor.black.themeColor.cgColor
+        if addButton.backgroundColor == .white {
+            addButton.layer.borderColor = UIColor.black.cgColor
+            addButton.layer.shadowColor = UIColor.black.cgColor
+        } else {
+            addButton.layer.borderColor = UIColor.white.cgColor
+            addButton.layer.shadowColor = UIColor.white.cgColor
+        }
+    }
+
+    func setupLayer() {
+        addTextField.layer.masksToBounds = true
+        addTextField.layer.borderWidth = 1
+        addTextField.layer.cornerRadius = 10
+
+        addStepper.layer.cornerRadius = 8
+        addStepper.layer.borderColor = UIColor.white.cgColor
+        addStepper.layer.borderWidth = 2
+
+        addButton.layer.borderWidth = 1
+        addButton.layer.cornerRadius = 10
+        addButton.layer.shadowOffset = CGSize(width: 1, height: 1)
+        addButton.layer.shadowRadius = 2
+        addButton.layer.shadowOpacity = 1
     }
 
 }
