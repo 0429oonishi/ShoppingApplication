@@ -8,8 +8,6 @@
 import UIKit
 import RealmSwift
 
-// MARK: - ToDo adMob バグ
-
 final class ToBuyListViewController: UIViewController {
 
     @IBOutlet private weak var remainCountButton: UIBarButtonItem!
@@ -36,7 +34,6 @@ final class ToBuyListViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.register(ToBuyListTableViewCell.nib,
                            forCellReuseIdentifier: ToBuyListTableViewCell.identifier)
-
         addTextField.delegate = self
         operateKeyboard()
         AdMob().load(to: adMobView, rootVC: self)
