@@ -13,47 +13,18 @@ final class ToBuyListViewController: UIViewController {
     @IBOutlet private weak var remainCountButton: UIBarButtonItem!
     @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var addView: UIView! {
-        didSet {
-            addView.layer.borderWidth = 2
-            addView.layer.borderColor = UIColor.white.cgColor
-            addView.layer.shadowColor = UIColor.black.cgColor
-            addView.layer.shadowOffset = CGSize(width: 5, height: -2)
-            addView.layer.shadowRadius = 5
-            addView.layer.shadowOpacity = 0.8
-        }
-    }
-    @IBOutlet private weak var addTextField: UITextField! {
-        didSet {
-            addTextField.layer.masksToBounds = true
-            addTextField.layer.borderWidth = 1
-            addTextField.layer.cornerRadius = 10
-        }
-    }
-    @IBOutlet private weak var addStepper: UIStepper! {
-        didSet {
-            addStepper.layer.cornerRadius = 8
-            addStepper.layer.borderColor = UIColor.white.cgColor
-            addStepper.layer.borderWidth = 2
-            addStepper.backgroundColor = .white
-        }
-    }
+    @IBOutlet private weak var addView: UIView!
+    @IBOutlet private weak var addTextField: UITextField!
+    @IBOutlet private weak var addStepper: UIStepper!
     @IBOutlet private weak var addNumberLabel: UILabel!
-    @IBOutlet private weak var addButton: UIButton! {
-        didSet {
-            addButton.layer.borderWidth = 1
-            addButton.layer.cornerRadius = 10
-            addButton.layer.shadowOffset = CGSize(width: 1, height: 1)
-            addButton.layer.shadowRadius = 2
-            addButton.layer.shadowOpacity = 1
-        }
-    }
+    @IBOutlet private weak var addButton: UIButton!
     @IBOutlet private weak var adMobView: UIView!
 
     private var isKeyboardAppeared = false
     private var isAddViewAppeared = true
     private var numberOfToBuy = 1
     private var toBuyLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
+
     private var token: NotificationToken!
 
     override func viewDidLoad() {
@@ -61,8 +32,10 @@ final class ToBuyListViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         tableView.register(ToBuyListTableViewCell.nib,
                            forCellReuseIdentifier: ToBuyListTableViewCell.identifier)
+
         addTextField.delegate = self
         operateKeyboard()
         AdMob().load(to: adMobView, rootVC: self)
@@ -73,15 +46,36 @@ final class ToBuyListViewController: UIViewController {
 
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-        configureThemeColor()
-        tableView.reloadData()
+        addView.addBorder(width: 1, color: .black, position: .top)
+
+        addTextField.layer.masksToBounds = true
+        addTextField.layer.borderWidth = 1
+        addTextField.layer.cornerRadius = 10
+
+        addStepper.layer.cornerRadius = 8
+        addStepper.layer.borderColor = UIColor.white.cgColor
+        addStepper.layer.borderWidth = 2
+        addStepper.backgroundColor = .white
+
+        addButton.layer.borderWidth = 1
+        addButton.layer.cornerRadius = 10
+        addButton.layer.shadowOffset = CGSize(width: 1, height: 1)
+        addButton.layer.shadowRadius = 2
+        addButton.layer.shadowOpacity = 1
 
     }
 
-    private func configureThemeColor() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setupThemeColor()
+
+    }
+
+    private func setupThemeColor() {
         self.view.backgroundColor = UIColor.white.themeColor
         navigationBar.barTintColor = UIColor.white.themeColor
         addView.backgroundColor = UIColor.white.themeColor
@@ -118,11 +112,10 @@ final class ToBuyListViewController: UIViewController {
     @IBAction private func addButtonDidTapped(_ sender: Any) {
         guard let text = addTextField.text, !text.isEmpty else { return }
         let toBuyList = ToBuyList()
-        toBuyList.toBuyListName = text
-        toBuyList.toBuyListNumber = numberOfToBuy
-        toBuyList.isButtonChecked = false
+        toBuyList.title = text
+        toBuyList.numberPurchased = numberOfToBuy
+        toBuyList.isChecked = false
         ToBuyListRealmRepository.shared.add(toBuyList)
-
         tableView.reloadData()
         addTextField.text = ""
         addStepper.value = 1
@@ -134,14 +127,12 @@ final class ToBuyListViewController: UIViewController {
         let alert = UIAlertController(title: .deleteMemo,
                                       message: .deleteAttention,
                                       preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: .delete, style: .destructive) { [unowned self] _ in
-            let checkedToBuyLists = ToBuyListRealmRepository.shared.filter("isButtonChecked == true")
+        let deleteAction = UIAlertAction(title: .delete, style: .destructive) { _ in
+            let checkedToBuyLists = ToBuyListRealmRepository.shared.filter("isChecked == true")
             ToBuyListRealmRepository.shared.delete(checkedToBuyLists)
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
-        let cancelAction = UIAlertAction(title: .cancel, style: .cancel) { [unowned self] _ in
-            dismiss(animated: true, completion: nil)
-        }
+        let cancelAction = UIAlertAction(title: .cancel, style: .cancel)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
@@ -167,7 +158,8 @@ private extension ToBuyListViewController {
         self.view.addGestureRecognizer(tapGR)
     }
 
-    @objc func showKeyboard(notification: Notification) {
+    @objc
+    func showKeyboard(notification: Notification) {
         guard let keyboardFrame = (
             notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject
         ).cgRectValue else { return }
@@ -178,14 +170,16 @@ private extension ToBuyListViewController {
         isKeyboardAppeared.toggle()
     }
 
-    @objc func hideKeyboard() {
+    @objc
+    func hideKeyboard() {
         UIView.animate(withDuration: 0.2) {
             self.addView.transform = .identity
         }
         isKeyboardAppeared.toggle()
     }
 
-    @objc func dismissKeyboard() {
+    @objc
+    func dismissKeyboard() {
         self.view.endEditing(true)
         isKeyboardAppeared = true
     }
@@ -214,8 +208,12 @@ extension ToBuyListViewController: UITableViewDataSource {
             for: indexPath
         ) as! ToBuyListTableViewCell
         let toBuyList = toBuyLists[indexPath.row]
-        cell.configure(toBuyList: toBuyList)
-        cell.index = indexPath.row
+        cell.configure(toBuyList: toBuyList) {
+            ToBuyListRealmRepository.shared.update {
+                toBuyList.isChecked.toggle()
+            }
+            cell.checkButton(toBuyList: toBuyList)
+        }
         return cell
     }
 

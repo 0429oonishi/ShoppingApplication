@@ -17,6 +17,8 @@
 		AB23F092260A7F7E000AE6CB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23F091260A7F7E000AE6CB /* NetworkError.swift */; };
 		AB32762625A1409200FB8C2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB32762525A1409200FB8C2F /* GoogleService-Info.plist */; };
 		AB32764125A167D500FB8C2F /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AB3399C62679159D001F93E3 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3399C52679159D001F93E3 /* ImageManager.swift */; };
+		AB3399C926791F24001F93E3 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3399C826791F24001F93E3 /* UIView+Extension.swift */; };
 		AB80719725A8B9ED00E1F550 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719625A8B9ED00E1F550 /* Place.swift */; };
 		AB80719925A8BA3B00E1F550 /* HowToUseCalculationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */; };
 		AB86831926025FC900529952 /* ToBuyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB86831826025FC900529952 /* ToBuyList.storyboard */; };
@@ -76,6 +78,8 @@
 		AB23EF6A260823BD000AE6CB /* Strikethrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strikethrough.swift; sourceTree = "<group>"; };
 		AB23F091260A7F7E000AE6CB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AB32762525A1409200FB8C2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB3399C52679159D001F93E3 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		AB3399C826791F24001F93E3 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		AB80719625A8B9ED00E1F550 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		AB80719825A8BA3B00E1F550 /* HowToUseCalculationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToUseCalculationViewController.swift; sourceTree = "<group>"; };
 		AB86831826025FC900529952 /* ToBuyList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ToBuyList.storyboard; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				AB9711E22595CA2E00AAA0E1 /* UIColor+Extension.swift */,
+				AB3399C826791F24001F93E3 /* UIView+Extension.swift */,
 				AB02A2302603BE020021ADE0 /* String+Extension.swift */,
 				ABD66283263AC3B200027589 /* UIViewController+Extension.swift */,
 				ABD66285263AC3EE00027589 /* UITableViewCell+Extension.swift */,
@@ -264,6 +269,7 @@
 				AB23EF4826071F82000AE6CB /* RealmRepository.swift */,
 				AB80719625A8B9ED00E1F550 /* Place.swift */,
 				AB86832626026F8000529952 /* AdMob.swift */,
+				AB3399C52679159D001F93E3 /* ImageManager.swift */,
 				AB23EF58260801B0000AE6CB /* Designs.swift */,
 				AB23EF6A260823BD000AE6CB /* Strikethrough.swift */,
 			);
@@ -445,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB3399C926791F24001F93E3 /* UIView+Extension.swift in Sources */,
 				ABD66284263AC3B200027589 /* UIViewController+Extension.swift in Sources */,
 				AB9711CD2595BC8100AAA0E1 /* ThemeColorViewController.swift in Sources */,
 				AB23EF6B260823BD000AE6CB /* Strikethrough.swift in Sources */,
@@ -468,6 +475,7 @@
 				AB86832726026F8000529952 /* AdMob.swift in Sources */,
 				AB80719725A8B9ED00E1F550 /* Place.swift in Sources */,
 				AB97118A259511A100AAA0E1 /* MapViewController.swift in Sources */,
+				AB3399C62679159D001F93E3 /* ImageManager.swift in Sources */,
 				AB9711E72596CA5900AAA0E1 /* TabBarController.swift in Sources */,
 				AB97118D259511A100AAA0E1 /* CalculationViewController.swift in Sources */,
 				AB211A38259BDF5E002DAFBF /* RealmModel.swift in Sources */,
