@@ -13,6 +13,7 @@ final class ToBuyListViewController: UIViewController {
     @IBOutlet private weak var remainCountButton: UIBarButtonItem!
     @IBOutlet private weak var myTopView: UIView!
     @IBOutlet private weak var navigationBar: UINavigationBar!
+    @IBOutlet private weak var togglableAddViewButton: UIBarButtonItem!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var addView: UIView!
@@ -23,6 +24,7 @@ final class ToBuyListViewController: UIViewController {
     @IBOutlet private weak var adMobView: UIView!
 
     private var isAddViewAppeared = true
+    private var isKeyboardAppeared = false
     private var numberOfToBuy = 1
     private var toBuyLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
     private var token: NotificationToken!
@@ -61,19 +63,26 @@ final class ToBuyListViewController: UIViewController {
         showAlert()
     }
 
-    @IBAction private func toggleKeyboardButtonDidTapped(_ sender: Any) {
+    @IBAction private func togglableAddViewButtonDidTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.1) { [weak self] in
             guard let self = self else { return }
             let distance = self.view.frame.maxY - self.addView.frame.minY
-            if self.isAddViewAppeared {
+            switch (self.isAddViewAppeared, self.isKeyboardAppeared) {
+            case (true, true):
                 self.addView.transform = CGAffineTransform(translationX: 0, y: distance)
                 self.tableViewBottomConstraint.constant = 0
                 self.tableViewBottomConstraint.constant -= self.addView.frame.size.height
-            } else {
+                self.view.endEditing(true)
+            case (false, false):
                 self.addView.transform = .identity
                 self.tableViewBottomConstraint.constant = 0
+            case (false, true):
+                fatalError("解せぬ挙動")
+            case (true, false):
+                self.addView.transform = CGAffineTransform(translationX: 0, y: distance)
+                self.tableViewBottomConstraint.constant = 0
+                self.tableViewBottomConstraint.constant -= self.addView.frame.size.height
             }
-            self.isAddViewAppeared.toggle()
         }
     }
 
@@ -89,7 +98,6 @@ final class ToBuyListViewController: UIViewController {
         toBuyList.numberPurchased = numberOfToBuy
         toBuyList.isChecked = false
         ToBuyListRealmRepository.shared.add(toBuyList)
-        tableViewBottomConstraint.constant = 0
         tableView.reloadData()
         addTextField.text = ""
         addStepper.value = 1
@@ -171,7 +179,7 @@ private extension ToBuyListViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
         let tapGR = UITapGestureRecognizer(target: self,
-                                           action: #selector(dismissKeyboard))
+                                           action: #selector(viewDidTapped))
         tapGR.delegate = self
         tapGR.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGR)
@@ -183,27 +191,45 @@ private extension ToBuyListViewController {
             notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as AnyObject
         ).cgRectValue else { return }
         let distance = addView.frame.maxY - keyboardFrame.minY
-        UIView.animate(withDuration: 0.1) {
-            self.addView.transform = CGAffineTransform(translationX: 0, y: -distance)
-            self.tableViewBottomConstraint.constant = 0
-            self.tableViewBottomConstraint.constant += distance
+        UIView.animate(withDuration: 0.15) {
+            if self.isAddViewAppeared && !self.isKeyboardAppeared {
+                self.addView.transform = CGAffineTransform(translationX: 0, y: -distance)
+            }
         }
     }
 
     @objc
     func hideKeyboard() {
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.15) {
             self.addView.transform = .identity
-            self.tableViewBottomConstraint.constant = 0
         }
     }
 
     @objc
-    func dismissKeyboard() {
-        self.view.endEditing(true)
-        UIView.animate(withDuration: 0.1) {
-            self.tableViewBottomConstraint.constant = 0
-            self.tableViewBottomConstraint.constant -= self.addView.frame.size.height
+    func viewDidTapped() {
+        UIView.animate(withDuration: 0.15) {
+            switch (self.isAddViewAppeared, self.isKeyboardAppeared) {
+            case (true, true):
+                self.isAddViewAppeared = true
+                self.isKeyboardAppeared = false
+                self.tableViewBottomConstraint.constant = 0
+                self.view.endEditing(true)
+
+            case (false, false):
+                self.isAddViewAppeared = true
+                self.isKeyboardAppeared = false
+                self.addView.transform = .identity
+                self.tableViewBottomConstraint.constant = 0
+
+            case (false, true):
+                fatalError("解せぬ挙動")
+
+            case (true, false):
+                self.isAddViewAppeared = true
+                self.isKeyboardAppeared = false
+                self.tableViewBottomConstraint.constant = 0
+                self.tableViewBottomConstraint.constant -= self.addView.frame.size.height
+            }
         }
     }
 
@@ -236,7 +262,6 @@ extension ToBuyListViewController: UITableViewDataSource {
                 toBuyList.isChecked.toggle()
             }
             cell.checkButton(toBuyList: toBuyList)
-            self.tableViewBottomConstraint.constant = 0
         }
         return cell
     }
@@ -256,10 +281,18 @@ extension ToBuyListViewController: UITextFieldDelegate {
 extension ToBuyListViewController: UIGestureRecognizerDelegate {
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view == self.addButton {
+        if touch.view == addView {
             return false
+        } else if touch.view == addButton {
+            return false
+        } else if touch.view == addStepper {
+            return false
+        } else if touch.view == togglableAddViewButton {
+            return false
+        } else {
+            self.view.endEditing(true)
+            return true
         }
-        return true
     }
 
 }
