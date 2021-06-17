@@ -43,7 +43,7 @@
                                         <rightBarButtonItems>
                                             <barButtonItem image="keyboard.chevron.compact.down" catalog="system" id="Ktp-wS-GJE">
                                                 <connections>
-                                                    <action selector="toggleKeyboardButtonDidTapped:" destination="lwl-mK-bGX" id="x3N-bo-lTw"/>
+                                                    <action selector="togglableAddViewButtonDidTapped:" destination="lwl-mK-bGX" id="x3N-bo-lTw"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem image="trash.fill" catalog="system" id="6eC-6E-L3q">
@@ -170,6 +170,7 @@
                         <outlet property="remainCountButton" destination="Kkt-UI-tnL" id="5Za-uo-mNb"/>
                         <outlet property="tableView" destination="73Y-pn-iJd" id="TNB-2p-y5x"/>
                         <outlet property="tableViewBottomConstraint" destination="wDD-aa-GBK" id="Ai7-Ss-24E"/>
+                        <outlet property="togglableAddViewButton" destination="Ktp-wS-GJE" id="jCb-OY-6rA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsc-IZ-m2F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
