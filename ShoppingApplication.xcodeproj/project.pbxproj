@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB02A2312603BE020021ADE0 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB02A2302603BE020021ADE0 /* String+Extension.swift */; };
 		AB02A23F2603EE950021ADE0 /* MapAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB02A23E2603EE950021ADE0 /* MapAPIClient.swift */; };
-		AB211A38259BDF5E002DAFBF /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB211A37259BDF5E002DAFBF /* RealmModel.swift */; };
+		AB211A38259BDF5E002DAFBF /* ToBuyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB211A37259BDF5E002DAFBF /* ToBuyList.swift */; };
 		AB211A3A259BDF70002DAFBF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9711E22595CA2E00AAA0E1 /* UIColor+Extension.swift */; };
 		AB23EF4926071F82000AE6CB /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23EF4826071F82000AE6CB /* RealmRepository.swift */; };
 		AB23EF59260801B0000AE6CB /* Designs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB23EF58260801B0000AE6CB /* Designs.swift */; };
@@ -29,6 +29,7 @@
 		AB8683232602600F00529952 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683222602600F00529952 /* Setting.storyboard */; };
 		AB8683252602601800529952 /* ThemeColor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683242602601800529952 /* ThemeColor.storyboard */; };
 		AB86832726026F8000529952 /* AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB86832626026F8000529952 /* AdMob.swift */; };
+		AB871DB6268193100064CC05 /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB871DB5268193100064CC05 /* Calculation.swift */; };
 		AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */; };
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
@@ -72,7 +73,7 @@
 		18F3E129915F4B0509A221BD /* Pods-ShoppingApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApplication.debug.xcconfig"; path = "Target Support Files/Pods-ShoppingApplication/Pods-ShoppingApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		AB02A2302603BE020021ADE0 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		AB02A23E2603EE950021ADE0 /* MapAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPIClient.swift; sourceTree = "<group>"; };
-		AB211A37259BDF5E002DAFBF /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		AB211A37259BDF5E002DAFBF /* ToBuyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToBuyList.swift; sourceTree = "<group>"; };
 		AB23EF4826071F82000AE6CB /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		AB23EF58260801B0000AE6CB /* Designs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designs.swift; sourceTree = "<group>"; };
 		AB23EF6A260823BD000AE6CB /* Strikethrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strikethrough.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		AB8683222602600F00529952 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		AB8683242602601800529952 /* ThemeColor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemeColor.storyboard; sourceTree = "<group>"; };
 		AB86832626026F8000529952 /* AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMob.swift; sourceTree = "<group>"; };
+		AB871DB5268193100064CC05 /* Calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
 		AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseToBuyListViewController.swift; sourceTree = "<group>"; };
 		AB8FCD8E25AD790C00B673F5 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		AB8FCD9025AD791D00B673F5 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
@@ -188,6 +190,26 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		AB871DB72681938F0064CC05 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AB86832626026F8000529952 /* AdMob.swift */,
+				AB3399C52679159D001F93E3 /* ImageManager.swift */,
+				AB23EF58260801B0000AE6CB /* Designs.swift */,
+				AB23EF6A260823BD000AE6CB /* Strikethrough.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AB871DB82681941E0064CC05 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				AB211A37259BDF5E002DAFBF /* ToBuyList.swift */,
+				AB871DB5268193100064CC05 /* Calculation.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		AB8A683D25B5366300D08D16 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,13 +287,10 @@
 		AB9711C32595B4A600AAA0E1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AB211A37259BDF5E002DAFBF /* RealmModel.swift */,
 				AB23EF4826071F82000AE6CB /* RealmRepository.swift */,
+				AB871DB82681941E0064CC05 /* Entities */,
+				AB871DB72681938F0064CC05 /* Utilities */,
 				AB80719625A8B9ED00E1F550 /* Place.swift */,
-				AB86832626026F8000529952 /* AdMob.swift */,
-				AB3399C52679159D001F93E3 /* ImageManager.swift */,
-				AB23EF58260801B0000AE6CB /* Designs.swift */,
-				AB23EF6A260823BD000AE6CB /* Strikethrough.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -470,6 +489,7 @@
 				AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */,
 				AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */,
 				AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */,
+				AB871DB6268193100064CC05 /* Calculation.swift in Sources */,
 				AB80719925A8BA3B00E1F550 /* HowToUseCalculationViewController.swift in Sources */,
 				AB02A2312603BE020021ADE0 /* String+Extension.swift in Sources */,
 				AB86832726026F8000529952 /* AdMob.swift in Sources */,
@@ -478,7 +498,7 @@
 				AB3399C62679159D001F93E3 /* ImageManager.swift in Sources */,
 				AB9711E72596CA5900AAA0E1 /* TabBarController.swift in Sources */,
 				AB97118D259511A100AAA0E1 /* CalculationViewController.swift in Sources */,
-				AB211A38259BDF5E002DAFBF /* RealmModel.swift in Sources */,
+				AB211A38259BDF5E002DAFBF /* ToBuyList.swift in Sources */,
 				AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

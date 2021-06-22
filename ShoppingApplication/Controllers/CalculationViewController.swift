@@ -45,7 +45,7 @@ final class CalculationViewController: UIViewController {
     private var isCalculatorAppeared = true
     private var totalPriceToken: NotificationToken!
     private var totalNumberToken: NotificationToken!
-    private var calculations: Results<Calculation> { CalculationRealmRepository.shared.calculations }
+    private var calculations: Results<RealmCalculation> { CalculationRealmRepository.shared.calculations }
     private let budgetKey = "budgetKey"
     private var budgetPickerArray = [Int](0...9)
     private var pickerComponents = Array(repeating: 0, count: 5)
@@ -223,7 +223,7 @@ final class CalculationViewController: UIViewController {
     @IBAction private func calculatorAddButtonDidTapped(_ sender: Any) {
         guard !priceLabelString.isEmpty else { return }
         guard let priceLabelDouble = Double(priceLabelString) else { return }
-        let calculation = Calculation()
+        let calculation = RealmCalculation()
         let includeTaxPrice = Int(floor(priceLabelDouble * taxRate.value))
         calculation.price = (taxIncludeOrNotButton.currentTitle == Tax.included.text) ? priceLabelString : String(includeTaxPrice)
         CalculationRealmRepository.shared.add(calculation)

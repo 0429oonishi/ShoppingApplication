@@ -15,7 +15,7 @@ protocol ShoppingListCollectionViewCellDelegate: AnyObject {
 
 final class ShoppingListCollectionViewCell: UICollectionViewCell {
 
-    private var calculations: Results<Calculation>! { CalculationRealmRepository.shared.calculations }
+    private var calculations: Results<RealmCalculation>! { CalculationRealmRepository.shared.calculations }
     weak var delegate: ShoppingListCollectionViewCellDelegate?
 
     @IBOutlet private weak var deleteButton: UIButton!
@@ -49,7 +49,7 @@ final class ShoppingListCollectionViewCell: UICollectionViewCell {
         numberLabel.text = "×\(calculations[sender.tag].shoppingListCount)"
     }
 
-    func configure(object: Calculation) {
+    func configure(object: RealmCalculation) {
         let discount = object.shoppingListDiscount
         let discountButtonTitle = (discount != 0) ? "-\(discount)%" : "割引"
         discountButton.setTitle(discountButtonTitle, for: .normal)
