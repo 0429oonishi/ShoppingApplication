@@ -26,14 +26,14 @@ final class ToBuyListTableViewCell: UITableViewCell {
         onTapEvent?()
     }
 
-    func configure(toBuyList: ToBuyList, onTapEvent: (() -> Void)?) {
+    func configure(toBuyList: RealmToBuyList, onTapEvent: (() -> Void)?) {
         self.onTapEvent = onTapEvent
         titleLabel.text = toBuyList.title
         numberOfToBuyLabel.text = "×\(toBuyList.numberPurchased)"
         checkButton(toBuyList: toBuyList)
     }
 
-    func checkButton(toBuyList: ToBuyList) {
+    func checkButton(toBuyList: RealmToBuyList) {
         if toBuyList.isChecked {
             ImageManager().setImage(button: checkButton, imageName: "checkmark")
             titleLabel.attributedText = Strikethrough().draw(titleLabel.text!)

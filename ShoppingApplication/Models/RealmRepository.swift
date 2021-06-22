@@ -13,21 +13,21 @@ final class ToBuyListRealmRepository {
     private init() {}
 
     let realm = try! Realm()
-    lazy var toDoLists: Results<ToBuyList> = realm.objects(ToBuyList.self)
+    lazy var toDoLists: Results<RealmToBuyList> = realm.objects(RealmToBuyList.self)
 
-    func add(_ toBuyList: ToBuyList) {
+    func add(_ toBuyList: RealmToBuyList) {
         try! realm.write {
             realm.add(toBuyList)
         }
     }
 
-    func delete(_ toBuyList: Results<ToBuyList>) {
+    func delete(_ toBuyList: Results<RealmToBuyList>) {
         try! realm.write {
             realm.delete(toBuyList)
         }
     }
 
-    func filter(_ toBuyListTerm: String) -> Results<ToBuyList> {
+    func filter(_ toBuyListTerm: String) -> Results<RealmToBuyList> {
         try! realm.write {
             return toDoLists.filter(toBuyListTerm)
         }
@@ -46,21 +46,21 @@ final class CalculationRealmRepository {
     private init() {}
 
     let realm = try! Realm()
-    lazy var calculations: Results<Calculation> = realm.objects(Calculation.self)
+    lazy var calculations: Results<RealmCalculation> = realm.objects(RealmCalculation.self)
 
-    func add(_ calculation: Calculation) {
+    func add(_ calculation: RealmCalculation) {
         try! realm.write {
             realm.add(calculation)
         }
     }
 
-    func delete(_ calculation: Results<Calculation>) {
+    func delete(_ calculation: Results<RealmCalculation>) {
         try! realm.write {
             realm.delete(calculation)
         }
     }
 
-    func filter(_ calculationTerm: String) -> Results<Calculation> {
+    func filter(_ calculationTerm: String) -> Results<RealmCalculation> {
         try! realm.write {
             return calculations.filter(calculationTerm)
         }

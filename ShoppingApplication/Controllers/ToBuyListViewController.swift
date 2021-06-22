@@ -26,7 +26,7 @@ final class ToBuyListViewController: UIViewController {
     private var isAddViewAppeared = true
     private var isKeyboardAppeared = false
     private var numberOfToBuy = 1
-    private var toBuyLists: Results<ToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
+    private var toBuyLists: Results<RealmToBuyList>! { ToBuyListRealmRepository.shared.toDoLists }
     private var token: NotificationToken!
 
     override func viewDidLoad() {
@@ -93,7 +93,7 @@ final class ToBuyListViewController: UIViewController {
 
     @IBAction private func addButtonDidTapped(_ sender: Any) {
         guard let text = addTextField.text, !text.isEmpty else { return }
-        let toBuyList = ToBuyList()
+        let toBuyList = RealmToBuyList()
         toBuyList.title = text
         toBuyList.numberPurchased = numberOfToBuy
         toBuyList.isChecked = false
