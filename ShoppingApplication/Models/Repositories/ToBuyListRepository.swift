@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+protocol ToBuyListRepositoryProtocol {
+    func create(_ toBuyList: ToBuyList)
+    func update(handler: () -> Void)
+    func delete(_ toBuyList: ToBuyList)
+    func filter(_ toBuyListTerm: String) -> [ToBuyList]
+}
