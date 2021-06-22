@@ -30,6 +30,10 @@
 		AB8683252602601800529952 /* ThemeColor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB8683242602601800529952 /* ThemeColor.storyboard */; };
 		AB86832726026F8000529952 /* AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB86832626026F8000529952 /* AdMob.swift */; };
 		AB871DB6268193100064CC05 /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB871DB5268193100064CC05 /* Calculation.swift */; };
+		AB871DBB268194B80064CC05 /* DataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB871DBA268194B80064CC05 /* DataStoreProtocol.swift */; };
+		AB871DBD268195E00064CC05 /* RealmToBuyListDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB871DBC268195E00064CC05 /* RealmToBuyListDataStore.swift */; };
+		AB871DC0268199670064CC05 /* ToBuyListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB871DBF268199670064CC05 /* ToBuyListRepository.swift */; };
+		AB871DC22681997D0064CC05 /* RealmToBuyListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB871DC12681997D0064CC05 /* RealmToBuyListRepository.swift */; };
 		AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */; };
 		AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116B25950FC600AAA0E1 /* AppDelegate.swift */; };
 		AB97116E25950FC600AAA0E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB97116D25950FC600AAA0E1 /* SceneDelegate.swift */; };
@@ -92,6 +96,10 @@
 		AB8683242602601800529952 /* ThemeColor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemeColor.storyboard; sourceTree = "<group>"; };
 		AB86832626026F8000529952 /* AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMob.swift; sourceTree = "<group>"; };
 		AB871DB5268193100064CC05 /* Calculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
+		AB871DBA268194B80064CC05 /* DataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreProtocol.swift; sourceTree = "<group>"; };
+		AB871DBC268195E00064CC05 /* RealmToBuyListDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmToBuyListDataStore.swift; sourceTree = "<group>"; };
+		AB871DBF268199670064CC05 /* ToBuyListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBuyListRepository.swift; sourceTree = "<group>"; };
+		AB871DC12681997D0064CC05 /* RealmToBuyListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmToBuyListRepository.swift; sourceTree = "<group>"; };
 		AB8FCD3825A9F0F800B673F5 /* HowToUseToBuyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseToBuyListViewController.swift; sourceTree = "<group>"; };
 		AB8FCD8E25AD790C00B673F5 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleMobileAds.xcframework/ios-arm64_armv7/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 		AB8FCD9025AD791D00B673F5 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = "../GoogleMobileAdsSdkiOS-7.69.0/GoogleAppMeasurement.framework"; sourceTree = "<group>"; };
@@ -210,6 +218,24 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		AB871DB9268194A20064CC05 /* DataStores */ = {
+			isa = PBXGroup;
+			children = (
+				AB871DBA268194B80064CC05 /* DataStoreProtocol.swift */,
+				AB871DBC268195E00064CC05 /* RealmToBuyListDataStore.swift */,
+			);
+			path = DataStores;
+			sourceTree = "<group>";
+		};
+		AB871DBE268199490064CC05 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AB871DBF268199670064CC05 /* ToBuyListRepository.swift */,
+				AB871DC12681997D0064CC05 /* RealmToBuyListRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		AB8A683D25B5366300D08D16 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +315,8 @@
 			children = (
 				AB23EF4826071F82000AE6CB /* RealmRepository.swift */,
 				AB871DB82681941E0064CC05 /* Entities */,
+				AB871DB9268194A20064CC05 /* DataStores */,
+				AB871DBE268199490064CC05 /* Repositories */,
 				AB871DB72681938F0064CC05 /* Utilities */,
 				AB80719625A8B9ED00E1F550 /* Place.swift */,
 			);
@@ -471,12 +499,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB3399C926791F24001F93E3 /* UIView+Extension.swift in Sources */,
+				AB871DC0268199670064CC05 /* ToBuyListRepository.swift in Sources */,
 				ABD66284263AC3B200027589 /* UIViewController+Extension.swift in Sources */,
 				AB9711CD2595BC8100AAA0E1 /* ThemeColorViewController.swift in Sources */,
 				AB23EF6B260823BD000AE6CB /* Strikethrough.swift in Sources */,
 				AB23F092260A7F7E000AE6CB /* NetworkError.swift in Sources */,
 				AB02A23F2603EE950021ADE0 /* MapAPIClient.swift in Sources */,
 				AB97118C259511A100AAA0E1 /* SettingViewController.swift in Sources */,
+				AB871DBD268195E00064CC05 /* RealmToBuyListDataStore.swift in Sources */,
+				AB871DC22681997D0064CC05 /* RealmToBuyListRepository.swift in Sources */,
 				ABD66288263AC44A00027589 /* UICollectionViewCell+Extension.swift in Sources */,
 				AB97118B259511A100AAA0E1 /* ToBuyListViewController.swift in Sources */,
 				ABD6628A263AC46F00027589 /* UIStoryboard+Extension.swift in Sources */,
@@ -487,6 +518,7 @@
 				AB9711C92595B58D00AAA0E1 /* SettingTableViewCell.swift in Sources */,
 				AB23EF59260801B0000AE6CB /* Designs.swift in Sources */,
 				AB8FCD3925A9F0F900B673F5 /* HowToUseToBuyListViewController.swift in Sources */,
+				AB871DBB268194B80064CC05 /* DataStoreProtocol.swift in Sources */,
 				AB97116C25950FC600AAA0E1 /* AppDelegate.swift in Sources */,
 				AB971197259511B200AAA0E1 /* ToBuyListTableViewCell.swift in Sources */,
 				AB871DB6268193100064CC05 /* Calculation.swift in Sources */,

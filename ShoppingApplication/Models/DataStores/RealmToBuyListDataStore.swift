@@ -1,5 +1,5 @@
 //
-//  RealmDataStore.swift
+//  RealmToBuyListDataStore.swift
 //  ShoppingApplication
 //
 //  Created by 大西玲音 on 2021/06/22.
@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class RealmDataStore: DataStoreProtocol {
+final class RealmToBuyListDataStore: DataStoreProtocol {
     
     private let realm = try! Realm()
     private var objects: Results<RealmToBuyList> {
@@ -16,19 +16,51 @@ final class RealmDataStore: DataStoreProtocol {
     }
     
     func create(_ toBuyList: ToBuyList) {
-        <#code#>
+        let realmToBuyList = RealmToBuyList(toBuyList: toBuyList)
+        try! realm.write {
+            realm.add(realmToBuyList)
+        }
     }
     
     func update(handler: () -> Void) {
-        <#code#>
+        try! realm.write {
+            handler()
+        }
     }
     
     func delete(_ toBuyList: ToBuyList) {
-        <#code#>
+        let realmToBuyList = RealmToBuyList(toBuyList: toBuyList)
+        try! realm.write {
+            realm.delete(realmToBuyList)
+        }
     }
     
     func filter(_ toBuyListTerm: String) -> [ToBuyList] {
-        <#code#>
+        try! realm.write {
+            var toBuyLists = [ToBuyList]()
+            let filteredObject = objects.filter(toBuyListTerm)
+            for object in filteredObject {
+                toBuyLists.append(ToBuyList(toBuyList: object))
+            }
+            return toBuyLists
+        }
     }
     
+}
+
+private extension ToBuyList {
+    init(toBuyList: RealmToBuyList) {
+        self.title = toBuyList.title
+        self.numberPurchased = toBuyList.numberPurchased
+        self.isChecked = toBuyList.isChecked
+    }
+}
+
+private extension RealmToBuyList {
+    convenience init(toBuyList: ToBuyList) {
+        self.init()
+        self.title = toBuyList.title
+        self.numberPurchased = toBuyList.numberPurchased
+        self.isChecked = toBuyList.isChecked
+    }
 }
