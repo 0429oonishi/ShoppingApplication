@@ -1,5 +1,5 @@
 //
-//  ToBuyListDataStore.swift
+//  DataStoreProtocol.swift
 //  ShoppingApplication
 //
 //  Created by 大西玲音 on 2021/06/22.
@@ -7,7 +7,8 @@
 
 import Foundation
 
-protocol ToBuyListDataStoreProtocol {
+// 共通型
+protocol DataStoreProtocol {
     func create(_ toBuyList: ToBuyList)
     func update(handler: () -> Void)
     func delete(_ toBuyList: ToBuyList)
