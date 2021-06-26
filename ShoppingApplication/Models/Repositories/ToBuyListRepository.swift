@@ -12,4 +12,5 @@ protocol ToBuyListRepositoryProtocol {
     func update(handler: () -> Void)
     func delete(_ toBuyList: ToBuyList)
     func filter(_ toBuyListTerm: String) -> [ToBuyList]
+    func readAll() -> [ToBuyList]
 }

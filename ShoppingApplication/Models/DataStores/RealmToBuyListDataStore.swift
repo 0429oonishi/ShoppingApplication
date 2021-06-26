@@ -9,32 +9,32 @@ import Foundation
 import RealmSwift
 
 final class RealmToBuyListDataStore: DataStoreProtocol {
-    
+
     private let realm = try! Realm()
     private var objects: Results<RealmToBuyList> {
         return realm.objects(RealmToBuyList.self)
     }
-    
+
     func create(_ toBuyList: ToBuyList) {
         let realmToBuyList = RealmToBuyList(toBuyList: toBuyList)
         try! realm.write {
             realm.add(realmToBuyList)
         }
     }
-    
+
     func update(handler: () -> Void) {
         try! realm.write {
             handler()
         }
     }
-    
+
     func delete(_ toBuyList: ToBuyList) {
         let realmToBuyList = RealmToBuyList(toBuyList: toBuyList)
         try! realm.write {
             realm.delete(realmToBuyList)
         }
     }
-    
+
     func filter(_ toBuyListTerm: String) -> [ToBuyList] {
         try! realm.write {
             var toBuyLists = [ToBuyList]()
@@ -45,7 +45,11 @@ final class RealmToBuyListDataStore: DataStoreProtocol {
             return toBuyLists
         }
     }
-    
+
+    func readAll() -> [ToBuyList] {
+        return objects.map { ToBuyList(toBuyList: $0) }
+    }
+
 }
 
 private extension ToBuyList {
